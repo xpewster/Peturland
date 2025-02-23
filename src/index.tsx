@@ -1,15 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import Frame from './components/Frame';
+import { Path } from './constants/Path';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route index element={<Navigate to={Path.HOME} replace />} />
+        <Route path={Path.HOME} element={<Frame path={Path.HOME} />} />
+        <Route path={Path.ABOUT} element={<Frame path={Path.ABOUT} />} />
+        <Route path={Path.PROJECTS} element={<Frame path={Path.PROJECTS} />} />
+        <Route path={Path.XGEO} element={<Frame path={Path.XGEO} />} />
+        <Route path={Path.SOON} element={<Frame path={Path.SOON} />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );
 

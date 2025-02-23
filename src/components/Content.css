@@ -26,6 +26,14 @@
 }
 
 .appwindow {
-    width: 65%;
+    width: 465px;
     float: left;
+    pointer-events: none;
+}
+
+.appWindowContent {
+    pointer-events: all;
+    padding-top: 28px;
+    padding-left: 30px;
+    height: 600px;
 }

@@ -1,3 +1,17 @@
+html {background-color: rgb(0, 12, 63)}
+
+body {
+  font-family: "ＭＳ Ｐゴシック";
+  font-smooth: never;
+  -webkit-font-smoothing : none;
+}
+p {
+  font-family: "ＭＳ Ｐゴシック";
+  font-smooth: never;
+  -webkit-font-smoothing : none;
+}
+
+
 .box {
     position: relative;
     width: 700px;

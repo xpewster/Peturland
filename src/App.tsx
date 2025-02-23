@@ -6,7 +6,6 @@ import Frame from './components/Frame';
 function App() {
   return (
     <div className="App">
-      <Frame></Frame>
       <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
