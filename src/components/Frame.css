@@ -1,0 +1,36 @@
+.box {
+    position: relative;
+    width: 700px;
+    height: 2000px;
+    /* border: 1px solid black; */
+    padding: 10px;
+    margin: auto;
+}
+
+.box-header {
+    display: block;
+    width: 100%;
+    border-radius: 15px;
+    border: 7px solid orange;
+    box-sizing: border-box;
+    margin-left: auto;
+    margin-right: auto;
+    border-bottom: none;
+    z-index: 1;
+}
+
+.petur {
+    position: absolute;
+    width: 26%;
+    top: 100px;
+    right: 130px;
+    z-index: 2;
+}
+
+.dragon {
+    position: absolute;
+    top: 150px;
+    right: 0px;
+    z-index: 2;
+}
+  
