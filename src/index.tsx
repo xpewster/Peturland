@@ -6,6 +6,7 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Frame from './components/Frame';
 import { Path } from './constants/Path';
+import StatCounter from 'statcounter';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement

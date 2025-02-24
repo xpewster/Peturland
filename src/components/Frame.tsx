@@ -6,6 +6,7 @@ import './Frame.css';
 import Content from './Content';
 import { Path } from '../constants/Path';
 import { ContentType } from '../constants/ContentType';
+import coco from '../assets/coco.png';
 
 export interface FrameProps {
   path?: string;
@@ -29,12 +30,15 @@ const Frame = (props: FrameProps): React.ReactElement => {
   }
 
   return (
-    <div className="box">
-        <img className="box-header" src={header}/>
-        <img className="petur" src={petur}/>
-        <img className="dragon" src={dragon}/>
-        
-        <Content contentType={getContentType()}></Content>
+    <div>
+      <div className="box">
+          <img className="box-header" src={header}/>
+          <img className="petur" src={petur}/>
+          <img className="dragon" src={dragon}/>
+          
+          <Content contentType={getContentType()}></Content>
+      </div>
+      <img src={coco} style={{position: 'fixed', bottom: '-10px', left: 'calc(50% - 350px)', width: '200px'}}></img>
     </div>
   );
 }

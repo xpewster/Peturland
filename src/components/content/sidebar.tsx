@@ -19,8 +19,8 @@ const Sidebar = (): React.ReactElement => {
     };
 
     return (
-        <div className='sidebar'>
-            {showHover && <img className='go-button' style={{position: 'absolute', top: hoverYPos+'px', pointerEvents: 'none'}} src={gohover}></img>}
+        <div>
+            {showHover && <img className='go-button' style={{position: 'absolute', top: hoverYPos+'px', pointerEvents: 'none', opacity: 0.5}} src={gohover}></img>}
             <Link to={Path.HOME}><img className='go-button' src={go_home} onMouseEnter={() => onHover(0)} onMouseLeave={() => setShowHover(false)}></img></Link>
             <Link to={Path.ABOUT}><img className='go-button' src={go_about} onMouseEnter={() => onHover(1)} onMouseLeave={() => setShowHover(false)}></img></Link>
             <Link to={Path.PROJECTS}><img className='go-button' src={go_projs} onMouseEnter={() => onHover(2)} onMouseLeave={() => setShowHover(false)}></img></Link>
