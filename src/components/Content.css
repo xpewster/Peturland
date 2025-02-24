@@ -1,7 +1,6 @@
 .cbox {
     position: absolute;
     width: 700px;
-    height: 2000px;
     top: 210px;
     background-color: white;
     padding: 0px;
@@ -12,6 +11,11 @@
 .barbox {
     outline: 2px solid green;
     margin-right: 10px;
+}
+
+.barboxtwo {
+    outline: 2px solid blue;
+    margin-right: 0px;
 }
 
 .sidebar {
