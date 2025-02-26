@@ -6,3 +6,8 @@ svg {
   path {
     fill: #2a354d;
   }
+
+.guess-text {
+  font-family: basiic;
+  text-decoration: underline;
+}

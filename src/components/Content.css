@@ -14,7 +14,7 @@
 }
 
 .barboxtwo {
-    outline: 2px solid blue;
+    outline: 1px solid grey;
     margin-right: 0px;
 }
 
@@ -22,6 +22,13 @@
     width: 25%;
     padding-left: 20px;
     float: left;
+}
+
+.go-text {
+    position: absolute;
+    left: 10px;
+    top: 0px;
+    text-decoration: underline;
 }
 
 .go-button {
@@ -39,4 +46,21 @@
     pointer-events: all;
     padding-top: 28px;
     padding-left: 30px;
+}
+
+.barlinedashed {
+    width: 95%;
+    color: darkgreen;
+    background-color: transparent;
+    height: 1px;
+    border-width: 0;
+    border-top: dotted 1px;
+}
+
+.barline {
+    width: 95%;
+    color: darkgreen;
+    background-color: darkgreen;
+    height: 1px;
+    border-width: 0;
 }

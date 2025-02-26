@@ -1,11 +1,21 @@
 html {background-color: rgb(0, 12, 63)}
 
+@font-face { font-family: basiic; src: url('./../assets/fnt/basiic.ttf'); } 
+@font-face { font-family: RomanceA; src: url('./../assets/fnt/RomanceA.ttf'); } 
+@font-face { font-family: virale; src: url('./../assets/fnt/virale.ttf'); } 
+
 body {
-  font-family: "ＭＳ Ｐゴシック";
+  font-family: basiic;
   font-smooth: never;
   -webkit-font-smoothing : none;
 }
 p {
+  font-family: basiic;
+  font-smooth: never;
+  -webkit-font-smoothing : none;
+}
+
+.p-old {
   font-family: "ＭＳ Ｐゴシック";
   font-smooth: never;
   -webkit-font-smoothing : none;
