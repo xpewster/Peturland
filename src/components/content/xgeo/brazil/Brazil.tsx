@@ -4,13 +4,17 @@ import brazil_phone_codes from '../../../../assets/geojsons/brazil_phone_codes.j
 import './../Xgeo.css';
 import { BADS, NICES } from '../constants';
 import { randomElement } from '../helpers';
-import { PHONE_CODES } from './constants';
+import { PHONE_CODES, STATE_COLORS } from './constants';
 
 const Brazil = (): React.ReactElement => {
+    const MAP_COLOR = "#FF5533";
+
     const [toFind, setToFind] = useState<number>(Math.floor(Math.random() * PHONE_CODES.length)); // phone code to find
     const [message, setMessage] = useState<string>("");
     const [messageColor, setMessageColor] = useState<string>("green");
     const [enablePrefix, setEnablePrefix] = useState<boolean[]>(Array(9).fill(true));
+    const [enableStates, setEnableStates] = useState<boolean>(true);
+    const [enableBorders, setEnableBorders] = useState<boolean>(true);
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
@@ -54,10 +58,46 @@ const Brazil = (): React.ReactElement => {
         const newEnablePrefix = enablePrefix.map((val, i) => {if (i === index) { return !val; } else { return val; }}); setEnablePrefix(newEnablePrefix);
     }
 
+    function changeSetting(index: number) {
+        switch (index) {
+            case 0:
+                setEnableStates(!enableStates);
+                break;
+            case 1:
+                setEnableBorders(!enableBorders);
+                break;
+        }
+    }
+
+    function getCellColor(key: string): string {
+        if (enableStates) {
+            const index = Number(key.split("-")[1]);
+            return STATE_COLORS[index];
+        }
+        return MAP_COLOR;
+    }
+
+    function getStrokeWidth(key: string): string {
+        const num = Number(key.split("-")[1])
+        if (num < 14) {
+            if (num > 8) {
+                return "0.2px"
+            }
+            return "0.8px";
+        } else if (num >= STATE_COLORS.length - 9) {
+            return "1.3px";
+        }
+        return "1px";
+    }
+
     return (
         <div style={{height: '100%', paddingTop: '10px'}}>
             <p>Bra71l area codes</p>
             <div>
+                Show states<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableStates}></input>
+                Show area borders<input type="checkbox" onChange={() => {changeSetting(1)}} checked={enableBorders}></input>
+            </div>
+            <div style={{paddingBottom: '5px'}}>
                 1<input type="checkbox" onChange={() => {handleCheck(0)}} checked={enablePrefix[0]}></input>
                 2<input type="checkbox" onChange={() => {handleCheck(1)}} checked={enablePrefix[1]}></input>
                 3<input type="checkbox" onChange={() => {handleCheck(2)}} checked={enablePrefix[2]}></input>
@@ -71,13 +111,15 @@ const Brazil = (): React.ReactElement => {
             <p style={{display: 'inline'}}>Click on the region for phone code <span className='guess-text'>{PHONE_CODES[toFind]}</span> </p><button onClick={generateNewFind}>Regenerate</button>
             {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             <ComposableMap 
-            projectionConfig={{
-                scale: 800,
-                center: [-55, -15],
-            }} style={{
-                width: "100%",
-                height: "auto",
-            }}>
+                projection="geoMercator"
+                projectionConfig={{
+                    scale: 800,
+                    center: [-55, -15],
+                }} style={{
+                    width: "100%",
+                    height: "auto",
+                }}
+            >
                 <ZoomableGroup 
                     zoom={position.zoom}
                     center={position.coordinates as any}
@@ -87,8 +129,8 @@ const Brazil = (): React.ReactElement => {
                         {({ geographies }) =>
                         geographies.map((geo) => (
                             <Geography key={geo.rsmKey} geography={geo} onClick={() => { handleClick(geo.rsmKey); }} style={{
-                                default: { fill: "#06F" },
-                                hover: { fill: "#04D" },
+                                default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
+                                hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
                                 pressed: { fill: "green" },
                             }}/>
                         ))
