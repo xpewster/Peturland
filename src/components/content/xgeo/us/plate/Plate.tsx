@@ -14,6 +14,7 @@ export interface PlateProps {
 const Plate = (props: PlateProps): React.ReactElement => {
 
     if (props.blur) {
+        console.log(maine_blur)
         return <img className='plate' style={{filter: `blur(${props.blur}px)`}} src={maine_blur}></img>
     }
     

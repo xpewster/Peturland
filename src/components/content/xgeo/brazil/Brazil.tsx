@@ -8,6 +8,7 @@ import { PHONE_CODES, STATE_COLORS } from './constants';
 import dots from '../../../../assets/dots.png';
 import brazilcheat from '../../../../assets/brazilcheat.png';
 import ZoomableImage from '../../../common/ZoomableImage';
+import ScrollingDisabler from '../../../common/ScrollingDisabler';
 
 const Brazil = (): React.ReactElement => {
     const MAP_COLOR = "#FF5533";
@@ -119,42 +120,46 @@ const Brazil = (): React.ReactElement => {
             </div>
             <p style={{display: 'inline'}}>Click on the region for phone code <span className='guess-text'>{PHONE_CODES[toFind]}</span> </p><button onClick={generateNewFind}>Regenerate</button>
             {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
-            <ComposableMap 
-                projection="geoMercator"
-                projectionConfig={{
-                    scale: 800,
-                    center: [-55, -15],
-                }} style={{
-                    width: "100%",
-                    height: "auto",
-                    border: "solid 1px black"
-                }}
-            >
-                <ZoomableGroup 
-                    zoom={position.zoom}
-                    center={position.coordinates as any}
-                    onMoveEnd={handleMoveEnd}
+            <ScrollingDisabler>
+                <ComposableMap 
+                    projection="geoMercator"
+                    projectionConfig={{
+                        scale: 800,
+                        center: [-55, -15],
+                    }} style={{
+                        width: "100%",
+                        height: "auto",
+                        border: "solid 1px black"
+                    }}
                 >
-                    <Geographies geography={brazil_phone_codes}>
-                        {({ geographies }) =>
-                        geographies.map((geo) => (
-                            <Geography key={geo.rsmKey} geography={geo} onClick={() => { handleClick(geo.rsmKey); }} style={{
-                                default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
-                                hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
-                                pressed: { fill: "green" },
-                            }}/>
-                        ))
-                        }
-                    </Geographies>
-                </ZoomableGroup>
-            </ComposableMap>
+                    <ZoomableGroup 
+                        zoom={position.zoom}
+                        center={position.coordinates as any}
+                        onMoveEnd={handleMoveEnd}
+                    >
+                        <Geographies geography={brazil_phone_codes}>
+                            {({ geographies }) =>
+                            geographies.map((geo) => (
+                                <Geography key={geo.rsmKey} geography={geo} onClick={() => { handleClick(geo.rsmKey); }} style={{
+                                    default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
+                                    hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
+                                    pressed: { fill: "green" },
+                                }}/>
+                            ))
+                            }
+                        </Geographies>
+                    </ZoomableGroup>
+                </ComposableMap>
+            </ScrollingDisabler>
             <img style={{position: 'absolute', left: '-2px', top: '526px'}} src={dots}></img>
             <div style={{paddingTop: '40px'}}>
                 <div style={{display: 'inline'}}>
-                    Show cheatsheet<input type="checkbox" onChange={() => {changeSetting(2)}} checked={showCheat}></input><span style={{color: 'darkblue'}}>    Zoom in!</span> 
+                    Hide cheatsheet<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!showCheat}></input><span style={{color: 'darkblue'}}>    Zoom in!</span> 
                 </div>
             </div>
-            <ZoomableImage src={brazilcheat} divProps={{border: 'dashed 1px black', width: '80%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(3px)'}}/>
+            <div onScroll={(event) => { event.preventDefault(); }}>
+                <ZoomableImage src={brazilcheat} divProps={{border: 'dashed 1px black', width: '80%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(3px)'}}/>
+            </div>
             From <a href='https://www.plonkit.net/brazil' target="_blank" rel="noopener noreferrer">Plonkit</a>
         </div>
     );

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect, useState } from 'react';
 import './Content.css';
 import BarOne from './content/BarOne';
 import Sidebar from './content/sidebar';
@@ -11,12 +11,24 @@ import lizard from '../assets/lizardll.gif';
 import neko from '../assets/luckyneko.gif';
 import BarTwo from './content/BarTwo';
 import stars from '../assets/stars.png';
+import coco from '../assets/coco.png';
 
 export interface ContentProps {
   contentType?: ContentType;
 }
 
 const Content = (props: ContentProps): React.ReactElement => {
+  const [vw, setVw] = useState<number>(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0));
+
+  useLayoutEffect(() => {
+    function updateSize() {
+        setVw(Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0));
+    }
+    window.addEventListener('resize', updateSize);
+    updateSize();
+    return () => window.removeEventListener('resize', updateSize);
+  }, []);
+
   return (
     <div className="cbox">
         <p style={{textAlign: 'center'}}>Hi! Welcome to my website. WIP!!</p>
@@ -46,6 +58,10 @@ const Content = (props: ContentProps): React.ReactElement => {
         <p style={{textAlign: 'center'}}>(C) Peter 2025</p>
         <div style={{position: 'absolute', backgroundColor: 'rgb(0, 12, 63)', height: '300px', opacity: '100%', width: '200%', paddingLeft: '-50px'}}>
           <img src={neko} style={{paddingLeft: '325px', paddingTop: '100px'}}></img>
+        </div>
+        <div style={{position: 'fixed', bottom: '-10px', left: `${vw * 0.5 - 360}px`, width: '200px'}}>
+          <img src={coco} style={{width: '100%'}}></img>
+          <p style={{position: 'absolute', bottom: '10px', right: '50px', fontFamily: 'RomanceA', fontSmooth: 'never', color: 'white', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>Coco says to save old homes!</p>
         </div>
     </div>
   );

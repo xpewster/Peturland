@@ -103,12 +103,12 @@ const Us = (props: UsProps): React.ReactElement => {
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
-            <p>US license plates</p>
-            <img style={{position: 'absolute', left: '-2px', top: '96px'}} src={dots}></img>
+            <p style={{paddingBottom: '10px'}}>US license plates</p>
+            <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div>
                 <div>
                     Vanity plates<input type="checkbox" onChange={() => {changeSetting(3)}} checked={enableVanity}></input>
-                    Old plates<input type="checkbox" onChange={() => {changeSetting(4)}} checked={enableOld}></input>
+                    Old plates (2000-Present)<input type="checkbox" onChange={() => {changeSetting(4)}} checked={enableOld}></input>
                 </div>
                 <div>
                     Blur plate<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableBlur}></input>
@@ -116,7 +116,7 @@ const Us = (props: UsProps): React.ReactElement => {
                     Use random blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={enableRandBlur}></input>
                 </div>
             </div>
-            <img style={{position: 'absolute', left: '-2px', top: '146px'}} src={dots}></img>
+            <img style={{position: 'absolute', left: '-2px', top: '156px'}} src={dots}></img>
             <div style={{paddingTop: '10px', paddingBottom: '5px', paddingRight: '0px'}}>
                 <div>
                     Northeast<input type="checkbox" onChange={() => {handleCheck(0)}} checked={enablePrefix[0]}></input>
@@ -128,9 +128,10 @@ const Us = (props: UsProps): React.ReactElement => {
                 <div style={{paddingTop: '10px'}}>
                     <img style={{height: '15px'}} src={canada}></img> Canada<img style={{height: '15px'}} src={canada}></img><input type="checkbox" onChange={() => {handleCheck(4)}} checked={enablePrefix[5]}></input>
                     <img style={{height: '15px'}} src={mexico}></img> Mexico <img style={{height: '15px'}} src={mexico}></img><input type="checkbox" onChange={() => {handleCheck(4)}} checked={enablePrefix[6]}></input>
+                    U.S. Territories<input type="checkbox" onChange={() => {handleCheck(4)}} checked={enablePrefix[6]}></input>
                 </div> 
             </div>
-            <img style={{position: 'absolute', left: '-2px', top: '204px'}} src={dots}></img>
+            <img style={{position: 'absolute', left: '-2px', top: '214px'}} src={dots}></img>
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={generateNewFind}>Regenerate</button> <button onClick={generateNewFind}>Give up</button>
                 <div style={{display: 'block', paddingTop: "5px", width: '150px', border: "dashed 1px black"}}>
