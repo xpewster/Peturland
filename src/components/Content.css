@@ -40,12 +40,15 @@
     width: 465px;
     float: left;
     pointer-events: none;
+    padding-left: 30px;
 }
 
 .appWindowContent {
+    position: relative;
     pointer-events: all;
     padding-top: 28px;
-    padding-left: 30px;
+    padding-left: 2px;
+    padding-right: 2px;
 }
 
 .barlinedashed {
@@ -63,4 +66,39 @@
     background-color: darkgreen;
     height: 1px;
     border-width: 0;
+}
+
+.filebox {
+    position: absolute;
+    width: 457px;
+    height: 20px;
+    left: 4px;
+    top: 30px;
+    padding: 0px;
+    margin: auto;
+}
+
+.fileboxlink {
+    font-family: "ＭＳ Ｐゴシック";
+    color: black;
+    position: absolute;
+    padding-left: 20px;
+    z-index: 5;
+    text-decoration: none;
+}
+
+.fileboxlink:first-letter 
+{
+    text-decoration:underline;
+}
+
+#zoomableImage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+#zoomableImage img:hover {
+    cursor: zoom-in;
 }

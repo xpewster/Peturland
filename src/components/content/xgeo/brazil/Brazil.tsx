@@ -5,6 +5,9 @@ import './../Xgeo.css';
 import { BADS, NICES } from '../constants';
 import { randomElement } from '../helpers';
 import { PHONE_CODES, STATE_COLORS } from './constants';
+import dots from '../../../../assets/dots.png';
+import brazilcheat from '../../../../assets/brazilcheat.png';
+import ZoomableImage from '../../../common/ZoomableImage';
 
 const Brazil = (): React.ReactElement => {
     const MAP_COLOR = "#FF5533";
@@ -15,6 +18,7 @@ const Brazil = (): React.ReactElement => {
     const [enablePrefix, setEnablePrefix] = useState<boolean[]>(Array(9).fill(true));
     const [enableStates, setEnableStates] = useState<boolean>(true);
     const [enableBorders, setEnableBorders] = useState<boolean>(true);
+    const [showCheat, setShowCheat] = useState<boolean>(false);
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
@@ -33,13 +37,15 @@ const Brazil = (): React.ReactElement => {
     }
 
     function generateNewFind() {
+        let tries = 0;
         const oldToFind = toFind;
-        while(true) {
+        while(tries < 1000) {
             const newt = Math.floor(Math.random() * PHONE_CODES.length);
             if (enablePrefix[Math.trunc(PHONE_CODES[newt]/10) - 1] && oldToFind !== newt) {
                 setToFind(newt);
                 break;
             }
+            tries++;
         }
     }
 
@@ -66,6 +72,9 @@ const Brazil = (): React.ReactElement => {
             case 1:
                 setEnableBorders(!enableBorders);
                 break;
+            case 2:
+                setShowCheat(!showCheat);
+                break;
         }
     }
 
@@ -91,7 +100,7 @@ const Brazil = (): React.ReactElement => {
     }
 
     return (
-        <div style={{height: '100%', paddingTop: '10px'}}>
+        <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
             <p>Bra71l area codes</p>
             <div>
                 Show states<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableStates}></input>
@@ -118,6 +127,7 @@ const Brazil = (): React.ReactElement => {
                 }} style={{
                     width: "100%",
                     height: "auto",
+                    border: "solid 1px black"
                 }}
             >
                 <ZoomableGroup 
@@ -138,6 +148,14 @@ const Brazil = (): React.ReactElement => {
                     </Geographies>
                 </ZoomableGroup>
             </ComposableMap>
+            <img style={{position: 'absolute', left: '-2px', top: '526px'}} src={dots}></img>
+            <div style={{paddingTop: '40px'}}>
+                <div style={{display: 'inline'}}>
+                    Show cheatsheet<input type="checkbox" onChange={() => {changeSetting(2)}} checked={showCheat}></input><span style={{color: 'darkblue'}}>    Zoom in!</span> 
+                </div>
+            </div>
+            <ZoomableImage src={brazilcheat} divProps={{border: 'dashed 1px black', width: '80%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(3px)'}}/>
+            From <a href='https://www.plonkit.net/brazil' target="_blank" rel="noopener noreferrer">Plonkit</a>
         </div>
     );
 };

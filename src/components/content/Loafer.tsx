@@ -161,7 +161,7 @@ const Loafer = () => {
                     float: 'right',
                     fontFamily: "ＭＳ Ｐゴシック",
                     fontSmooth: 'never',
-                    fontSize: '10px',
+                    fontSize: '11px',
                     WebkitFontSmoothing: 'none',
                 }}
                 onClick={() => {
@@ -175,7 +175,7 @@ const Loafer = () => {
                     fontFamily: "ＭＳ Ｐゴシック",
                     fontSmooth: 'never',
                     WebkitFontSmoothing: 'none',
-                    fontSize: '10px',
+                    fontSize: running ? '11px' : '10px',
                     marginRight: '3px',
                 }}
                 onClick={() => {

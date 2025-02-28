@@ -31,9 +31,9 @@ const AppWindow = (props: AppWindowProps): React.ReactElement => {
 
     return (
         <div className='appwindow'>
-            <img style={{paddingLeft: '20px', position: 'absolute'}} src={windowtop}></img>
-            <img style={{paddingLeft: '20px', position: 'absolute', width: '465px', height: `${getContentSize(props.contentType) - TOP_BAR_HEIGHT}px`, paddingTop: TOP_BAR_HEIGHT}} src={windowsides}></img>
-            <img style={{paddingLeft: '20px', position: 'absolute', paddingTop: `${getContentSize(props.contentType)}px`}} src={windowbottom}></img>
+            <img style={{paddingLeft: '0px', position: 'absolute'}} src={windowtop}></img>
+            <img style={{paddingLeft: '0px', position: 'absolute', width: '465px', height: `${getContentSize(props.contentType) - TOP_BAR_HEIGHT}px`, paddingTop: TOP_BAR_HEIGHT}} src={windowsides}></img>
+            <img style={{paddingLeft: '0px', position: 'absolute', paddingTop: `${getContentSize(props.contentType)}px`}} src={windowbottom}></img>
             <div className='appWindowContent' style={{height: `${getContentSize(props.contentType) - TOP_BAR_HEIGHT}px`}}>
                 <AppContent contentType={props.contentType}/>
             </div>

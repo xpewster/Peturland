@@ -1,0 +1,16 @@
+.plate {
+    width: 150px;
+}
+
+.plate-blur {
+    filter: blur(10px);
+}
+
+.us-divider {
+    width: 95%;
+    color: gold;
+    background-color: transparent;
+    height: 1px;
+    border-width: 0;
+    border-top: dotted 1px;
+}
