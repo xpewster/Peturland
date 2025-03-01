@@ -10,6 +10,7 @@ import Plate from './plate/Plate';
 import dots from '../../../../assets/dots.png';
 import canada from '../../../../assets/canadamf.gif';
 import mexico from '../../../../assets/mexico.gif';
+import { PLATE_TYPE } from './plate/constants';
 
 export interface UsProps {
     quizType: QuizType;
@@ -135,7 +136,7 @@ const Us = (props: UsProps): React.ReactElement => {
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={generateNewFind}>Regenerate</button> <button onClick={generateNewFind}>Give up</button>
                 <div style={{display: 'block', paddingTop: "5px", width: '150px', border: "dashed 1px black"}}>
-                    <Plate state={STATE_NAMES.MAINE} blur={10}/>
+                    <Plate state={STATE_NAMES.MAINE} type={PLATE_TYPE.REGULAR} show={false} blur={enableBlur ? 10 : 0}/>
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
