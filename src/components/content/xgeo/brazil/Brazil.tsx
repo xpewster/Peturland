@@ -52,11 +52,19 @@ const Brazil = (): React.ReactElement => {
 
     function handleClick(key: string) {
         if (`geo-${toFind}` === key) {
-            setMessage(randomElement(NICES));
+            let newMessage;
+            do {
+                newMessage = randomElement(NICES)
+            } while (newMessage === message)
+            setMessage(newMessage);
             setMessageColor("green");
             generateNewFind();
         } else {
-            setMessage(randomElement(BADS));
+            let newMessage;
+            do {
+                newMessage = randomElement(BADS)
+            } while (newMessage === message)
+            setMessage(newMessage);
             setMessageColor("red");
         }
     }
@@ -151,7 +159,7 @@ const Brazil = (): React.ReactElement => {
                     </ZoomableGroup>
                 </ComposableMap>
             </ScrollingDisabler>
-            <img style={{position: 'absolute', left: '-2px', top: '526px'}} src={dots}></img>
+            <img style={{position: 'absolute', left: '0px', top: message ? '566px' : '516px'}} src={dots}></img>
             <div style={{paddingTop: '40px'}}>
                 <div style={{display: 'inline'}}>
                     Hide cheatsheet<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!showCheat}></input><span style={{color: 'darkblue'}}>    Zoom in!</span> 
