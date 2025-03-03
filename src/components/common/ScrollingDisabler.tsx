@@ -1,4 +1,3 @@
-// https://stackoverflow.com/questions/55508836/prevent-page-scrolling-when-mouse-is-over-one-particular-div
 import React, { useEffect } from 'react';
 import {isMobile} from 'react-device-detect';
 

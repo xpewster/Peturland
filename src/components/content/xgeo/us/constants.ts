@@ -117,3 +117,5 @@ export enum QuizType {
     STATE_HIGHWAY,
     COUNTY_SECONDARY_HIGHWAY,
 }
+
+export const REGISTRATION_STICKER_COLORS = ['red', '#00e383', 'blue', 'orange', 'yellow', 'white'];

@@ -5,7 +5,7 @@ import usa from '../../../../assets/geojsons/u_20m.json';
 import './../Xgeo.css';
 import { BADS, NICES } from '../constants';
 import { randomElement } from '../helpers';
-import { QuizType, STATE_NAMES, STATES } from './constants';
+import { QuizType, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES } from './constants';
 import Plate from './plate/Plate';
 import dots from '../../../../assets/dots.png';
 import canada from '../../../../assets/canadamf.gif';
@@ -29,7 +29,11 @@ const Us = (props: UsProps): React.ReactElement => {
     const [enableRandBlur, setEnableRandBlur] = useState<number>(10);
     const [enableVanity, setEnableVanity] = useState<boolean>(false);
     const [enableOld, setEnableOld] = useState<boolean>(true);
-    const [enableRRSC, setEnableRRSC] = useState<boolean>(false); // random registration sticker color
+
+    const [enableRRSC, setEnableRRSC] = useState<boolean>(true); // random registration sticker color
+    const [rsc, setRSC] = useState<string>("#000000");
+    const [rsc2, setRSC2] = useState<string>("#000000");
+
     const [vanityOrOldIndex, setVanityOrOldIndex] = useState<number>(Math.floor(Math.random() * 100));
     const [currentType, setCurrentType] = useState<PLATE_TYPE>(PLATE_TYPE.REGULAR);
 
@@ -58,6 +62,9 @@ const Us = (props: UsProps): React.ReactElement => {
                 if (PLATES.get(STATES[newt])!.get(newType)) {
                     setCurrentType(newType);
                     setVanityOrOldIndex(Math.floor(Math.random() * 100));
+                    setEnableRandBlur(enableRandBlur ?  Math.random()*14+10 : 0);
+                    setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                    setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                     setToFind(newt);
                     break;
                 }
@@ -100,7 +107,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 setEnableSkew(!enableSkew);
                 break;
             case 2:
-                setEnableRandBlur(enableRandBlur ? 0 : Math.random()*14+15);
+                setEnableRandBlur(enableRandBlur ? 0 : Math.random()*14+11);
                 break;
             case 3:
                 setEnableVanity(!enableVanity);
@@ -109,6 +116,8 @@ const Us = (props: UsProps): React.ReactElement => {
                 setEnableOld(!enableOld);
                 break;
             case 5:
+                setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                 setEnableRRSC(!enableRRSC);
                 break;
         }
@@ -132,14 +141,14 @@ const Us = (props: UsProps): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div>
                 <div>
-                    Vanity plates<input disabled type="checkbox" onChange={() => {changeSetting(3)}} checked={enableVanity}></input>
+                    Special plates<input disabled type="checkbox" onChange={() => {changeSetting(3)}} checked={enableVanity}></input>
                     Old plates (2000-Present)<input type="checkbox" onChange={() => {changeSetting(4)}} checked={enableOld}></input>
                 </div>
                 <div>
                     Blur plate<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableBlur}></input>
                     Use random skew<input type="checkbox" disabled onChange={() => {changeSetting(1)}} checked={enableSkew}></input>
                     Use random blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!!enableRandBlur}></input>
-                    Random registration sticker color<input disabled type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
+                    Random registration sticker color<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
                 </div>
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '176px'}} src={dots}></img>
@@ -160,8 +169,8 @@ const Us = (props: UsProps): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '234px'}} src={dots}></img>
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={generateNewFind}>Regenerate</button> <button onClick={generateNewFind}>Give up</button>
-                <div style={{display: 'block', paddingTop: "5px", width: '150px', border: "dashed 1px black"}}>
-                    <Plate state={STATES[toFind]} type={currentType} vanityOrOldIndex={vanityOrOldIndex} show={false} blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0}/>
+                <div style={{display: 'block', width: '150px', marginTop: '5px', border: "dashed 1px black"}}>
+                    <Plate state={STATES[toFind]} type={currentType} vanityOrOldIndex={vanityOrOldIndex} show={false} blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0} rsc={enableRRSC ? rsc : undefined} rsc2={enableRRSC ? rsc2 : undefined}/>
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
