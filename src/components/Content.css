@@ -82,9 +82,11 @@
     font-family: "ＭＳ Ｐゴシック";
     color: black;
     position: absolute;
-    padding-left: 20px;
     z-index: 5;
     text-decoration: none;
+    margin: 0;
+    padding-top: 0px;
+    white-space: nowrap;
 }
 
 .fileboxlink:first-letter 

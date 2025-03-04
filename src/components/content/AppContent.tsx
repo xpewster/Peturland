@@ -5,6 +5,7 @@ import About from './about/About';
 import Projects from './projects/Projects';
 import Xgeo from './xgeo/Xgeo';
 import Soon from './soon/Soon';
+import { Path } from '../../constants/Path';
 
 export interface AppContentProps {
     contentType: ContentType;
@@ -22,6 +23,10 @@ const AppContent = ({
                 return <Soon />;
             case ContentType.XGEO:
                 return <Xgeo />;
+            case ContentType.XGEO_US:
+                return <Xgeo path={Path.XGEO_US}/>;
+            case ContentType.XGEO_BR:
+                return <Xgeo path={Path.XGEO_BR}/>;
             case ContentType.SOON:
                 return <Soon />;    
             default: 

@@ -19,6 +19,8 @@ root.render(
         <Route path={Path.ABOUT} element={<Frame path={Path.ABOUT} />} />
         <Route path={Path.PROJECTS} element={<Frame path={Path.PROJECTS} />} />
         <Route path={Path.XGEO} element={<Frame path={Path.XGEO} />} />
+        <Route path={Path.XGEO_US} element={<Frame path={Path.XGEO_US} />} />
+        <Route path={Path.XGEO_BR} element={<Frame path={Path.XGEO_BR} />} />
         <Route path={Path.SOON} element={<Frame path={Path.SOON} />} />
       </Routes>
     </BrowserRouter>

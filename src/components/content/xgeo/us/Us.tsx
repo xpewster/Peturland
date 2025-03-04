@@ -17,6 +17,15 @@ export interface UsProps {
     quizType: QuizType;
 }
 
+type LAST_PLATE_INFO = {
+    tuple: PLATE_TUPLE,
+    blur: number,
+    rsc: string | undefined,
+    rsc2: string | undefined,
+    sepia: number,
+    index2: number,
+};
+
 const Us = (props: UsProps): React.ReactElement => {
     const MAP_COLOR = "#FF5533";
 
@@ -33,17 +42,37 @@ const Us = (props: UsProps): React.ReactElement => {
     const [enableRRSC, setEnableRRSC] = useState<boolean>(true); // random registration sticker color
     const [rsc, setRSC] = useState<string>("#000000");
     const [rsc2, setRSC2] = useState<string>("#000000");
+    const [randomSepia, setRandomSepia] = useState<number>(0.0);
 
     const [vanityOrOldIndex, setVanityOrOldIndex] = useState<number>(Math.floor(Math.random() * 100));
+    const [index2, setIndex2] = useState<number>(Math.floor(Math.random() * 1000));
     const [currentType, setCurrentType] = useState<PLATE_TYPE>(PLATE_TYPE.REGULAR);
 
-    const [lastPlate, setLastPlate] = useState<PLATE_TUPLE | undefined>(undefined);
+    const [lastPlate, setLastPlate] = useState<LAST_PLATE_INFO | undefined>(undefined);
+    const [enablePPBlur, setEnablePPBlur] = useState<boolean>(false);
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
     function handleMoveEnd(position: any) {
       setPosition(position);
     }
+
+    const generateNewRandBlur = (): number => {
+        return Math.random()*20+10;
+    }
+
+    const updateLastPlateInfo = () => {
+        const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
+        console.log(lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length])
+        setLastPlate({
+            tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
+            blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
+            rsc: enableRRSC ? rsc : undefined,
+            rsc2: enableRRSC ? rsc2 : undefined,
+            sepia: enableRandBlur ? randomSepia : 0,
+            index2: index2,
+        });
+    };
 
     function generateNewFind() {
         let tries = 0;
@@ -62,15 +91,27 @@ const Us = (props: UsProps): React.ReactElement => {
                 if (PLATES.get(STATES[newt])!.get(newType)) {
                     setCurrentType(newType);
                     setVanityOrOldIndex(Math.floor(Math.random() * 100));
-                    setEnableRandBlur(enableRandBlur ?  Math.random()*14+10 : 0);
+                    setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
                     setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                     setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                    setRandomSepia(Math.random() * 0.3);
                     setToFind(newt);
                     break;
                 }
             }
             tries++;
         }
+    }
+
+    function giveUp() {
+        let newMessage;
+        do {
+            newMessage = randomElement(BADS)
+        } while (newMessage === message)
+        setMessage(newMessage);
+        setMessageColor("red");
+        updateLastPlateInfo();
+        generateNewFind();
     }
 
     function handleClick(key: string) {
@@ -81,8 +122,7 @@ const Us = (props: UsProps): React.ReactElement => {
             } while (newMessage === message)
             setMessage(newMessage);
             setMessageColor("green");
-            const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
-            setLastPlate(lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length]);
+            updateLastPlateInfo();
             generateNewFind();
         } else {
             let newMessage;
@@ -107,7 +147,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 setEnableSkew(!enableSkew);
                 break;
             case 2:
-                setEnableRandBlur(enableRandBlur ? 0 : Math.random()*14+11);
+                setEnableRandBlur(enableRandBlur ? 0 : generateNewRandBlur());
                 break;
             case 3:
                 setEnableVanity(!enableVanity);
@@ -168,9 +208,9 @@ const Us = (props: UsProps): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '234px'}} src={dots}></img>
             <div style={{paddingTop: '6px'}}>
-                <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={generateNewFind}>Regenerate</button> <button onClick={generateNewFind}>Give up</button>
+                <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={generateNewFind}>Regenerate</button> <button onClick={giveUp}>Give up</button>
                 <div style={{display: 'block', width: '150px', marginTop: '5px', border: "dashed 1px black"}}>
-                    <Plate state={STATES[toFind]} type={currentType} vanityOrOldIndex={vanityOrOldIndex} show={false} blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0} rsc={enableRRSC ? rsc : undefined} rsc2={enableRRSC ? rsc2 : undefined}/>
+                    <Plate state={STATES[toFind]} type={currentType} vanityOrOldIndex={vanityOrOldIndex} show={false} blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0} rsc={enableRRSC ? rsc : undefined} rsc2={enableRRSC ? rsc2 : undefined} sepia={enableRandBlur ? randomSepia : 0} index2={index2}/>
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
@@ -210,8 +250,9 @@ const Us = (props: UsProps): React.ReactElement => {
                 </ScrollingDisabler>
             </div>
             {lastPlate && <div>
-                <p>Previous plate (P.P.):</p>
-                <Plate tuple={lastPlate} showYears show />
+                <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plate (P.P.):</p>
+                <span>Blur<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
+                <Plate tuple={lastPlate.tuple} blur={lastPlate.blur} rsc={lastPlate.rsc} rsc2={lastPlate.rsc2} sepia={lastPlate.sepia} index2={lastPlate.index2} showYears show={!enablePPBlur} svgFilterIndex={1}/>
             </div>}
         </div>
     );

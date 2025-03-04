@@ -24,6 +24,10 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.PROJECTS;
       case Path.XGEO:
         return ContentType.XGEO;
+      case Path.XGEO_US:
+        return ContentType.XGEO_US;
+      case Path.XGEO_BR:
+        return ContentType.XGEO_BR;
       case Path.SOON:
         return ContentType.SOON;
     }

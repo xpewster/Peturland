@@ -3,5 +3,7 @@ export enum ContentType {
     ABOUT,
     PROJECTS,
     XGEO,
+    XGEO_US,
+    XGEO_BR,
     SOON,
 }
