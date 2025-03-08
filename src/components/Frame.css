@@ -1,4 +1,4 @@
-html {background-color: rgb(0, 12, 63)}
+html {background-color: white}
 
 @font-face { font-family: basiic; src: url('./../assets/fnt/basiic.ttf'); } 
 @font-face { font-family: RomanceA; src: url('./../assets/fnt/RomanceA.ttf'); } 
@@ -24,18 +24,19 @@ p {
 
 .box {
     position: relative;
-    width: 700px;
+    width: 900px;
     /* border: 1px solid black; */
-    margin: auto;
-    padding-top: 10px;
+    margin: left;
+    padding-left: 5px;
+    /* padding-top: 10px; */
     margin-bottom: 100px;
 }
 
 .box-header {
     display: block;
     width: 100%;
-    border-radius: 15px;
-    border: 7px solid orange;
+    /* border-radius: 15px;
+    border: 7px solid orange; */
     box-sizing: border-box;
     margin-left: auto;
     margin-right: auto;

@@ -166,7 +166,7 @@ const Brazil = (): React.ReactElement => {
                 </div>
             </div>
             <div onScroll={(event) => { event.preventDefault(); }}>
-                <ZoomableImage src={brazilcheat} divProps={{border: 'dashed 1px black', width: '80%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(3px)'}}/>
+                <ZoomableImage src={brazilcheat} divProps={{border: 'dashed 1px black', width: '80%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(8px)'}}/>
             </div>
             From <a href='https://www.plonkit.net/brazil' target="_blank" rel="noopener noreferrer">Plonkit</a>
         </div>

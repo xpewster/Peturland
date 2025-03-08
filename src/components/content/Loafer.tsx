@@ -121,7 +121,7 @@ const Loafer = () => {
             <div
                 style={{
                     display: 'grid',
-                    gridTemplateColumns: `repeat(${numCols}, 7px)`,
+                    gridTemplateColumns: `repeat(${numCols}, 9px)`,
                     paddingTop: '10px',
                 }}>
                 {grid.map((rows, i) =>
@@ -144,8 +144,8 @@ const Loafer = () => {
                                 setGrid(newGrid);
                             }}
                             style={{
-                                width: 7,
-                                height: 6,
+                                width: 9,
+                                height: 8,
                                 backgroundColor:
                                     grid[i][j] ?
                                         'black' :
@@ -175,7 +175,8 @@ const Loafer = () => {
                     fontFamily: "ＭＳ Ｐゴシック",
                     fontSmooth: 'never',
                     WebkitFontSmoothing: 'none',
-                    fontSize: running ? '11px' : '10px',
+                    // fontSize: running ? '11px' : '10px',
+                    fontSize: '11px',
                     marginRight: '3px',
                 }}
                 onClick={() => {

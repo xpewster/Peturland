@@ -116,6 +116,7 @@ export enum QuizType {
     ADOPT_A_HIGHWAY,
     STATE_HIGHWAY,
     COUNTY_SECONDARY_HIGHWAY,
+    TREE_SPECIES,
 }
 
-export const REGISTRATION_STICKER_COLORS = ['red', '#00e383', 'blue', 'orange', 'yellow', 'white'];
+export const REGISTRATION_STICKER_COLORS = ['red', '#00e383', 'blue', 'orange', 'yellow', 'white', 'clear'];

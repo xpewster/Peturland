@@ -94,7 +94,7 @@ const Us = (props: UsProps): React.ReactElement => {
                     setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
                     setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                     setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRandomSepia(Math.random() * 0.3);
+                    setRandomSepia(Math.random() * 0.2);
                     setToFind(newt);
                     break;
                 }

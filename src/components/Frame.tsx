@@ -1,5 +1,5 @@
 import React from 'react';
-import header from '../assets/header.png';
+import header from '../assets/header2.png';
 import petur from '../assets/petur2.gif';
 import dragon from '../assets/dragongold.gif';
 import './Frame.css';

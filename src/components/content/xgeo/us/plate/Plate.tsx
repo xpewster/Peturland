@@ -105,8 +105,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                 y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
                                 width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
                                 height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
-                                floodColor={props.rsc ?? 'red'}
-                                floodOpacity="0.3"
+                                floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
+                                floodOpacity={props.rsc === 'clear' ? '0' : "0.3"}
                             />
                             <feBlend in2="SourceGraphic" in="floodFill" mode="normal" />
                         </filter>
@@ -117,13 +117,13 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                 y={`${plate ? plate[3][7] : 0}%`}
                                 width={`${plate ? plate[3][2] : 0}%`}
                                 height={`${plate ? plate[3][3] : 0}%`}
-                                floodColor={props.rsc2 ?? 'white'}
-                                floodOpacity="0.3"
+                                floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
+                                floodOpacity={props.rsc2 === 'clear' ? '0' : "0.3"}
                             />
                             <feBlend in2="SourceGraphic" in="floodFill" mode="normal" />
                         </filter>
                         <filter id={getFilterId("matrix-sepia")} x="0" y="0" width="100%" height="100%"
-                                color-interpolation-filters="sRGB">
+                                colorInterpolationFilters="sRGB"> // does it work still?
                             <feColorMatrix type="matrix"
                                 values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
                                         ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
