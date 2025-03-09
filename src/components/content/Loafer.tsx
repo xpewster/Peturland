@@ -155,7 +155,7 @@ const Loafer = () => {
                     ))
                 )}
             </div>
-            <a href='https://catagolue.hatsya.com/census/b3s23/C1/xq7' target="_blank" rel="noopener noreferrer">What's this?</a>
+            <a href='https://catagolue.hatsya.com/object/xq7_3nw17862z6952/b3s23' target="_blank" rel="noopener noreferrer">What's this?</a>
             <button
                 style={{
                     float: 'right',

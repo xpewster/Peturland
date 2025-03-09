@@ -53,6 +53,9 @@ const Us = (props: UsProps): React.ReactElement => {
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
+    const [streak, setStreak] = useState<number>(0);
+    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem("bestStreak") ? Number(localStorage.getItem("bestStreak")) : 0);
+
     function handleMoveEnd(position: any) {
       setPosition(position);
     }
@@ -120,6 +123,12 @@ const Us = (props: UsProps): React.ReactElement => {
             do {
                 newMessage = randomElement(NICES)
             } while (newMessage === message)
+            setStreak(streak + 1);
+            if (streak + 1 > bestStreak) {
+                setBestStreak(streak + 1);
+                localStorage.setItem("bestStreak", (streak + 1).toString());
+            }
+            newMessage += ` Streak: ${streak + 1}, Best Streak: ${streak + 1 > bestStreak ? streak + 1 : bestStreak}`;
             setMessage(newMessage);
             setMessageColor("green");
             updateLastPlateInfo();
@@ -129,6 +138,7 @@ const Us = (props: UsProps): React.ReactElement => {
             do {
                 newMessage = randomElement(BADS)
             } while (newMessage === message)
+            setStreak(0);
             setMessage(newMessage);
             setMessageColor("red");
         }

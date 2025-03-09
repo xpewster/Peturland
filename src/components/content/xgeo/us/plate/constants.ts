@@ -174,6 +174,59 @@ import rhode_island_reg from '../../../../../assets/plates/rhode_island/reg1997.
 import rhode_island_blank from '../../../../../assets/plates/rhode_island/blank1997.png';
 import rhode_island_blur from '../../../../../assets/plates/rhode_island/blur1997.png';
 
+// Virginia
+import virginia_reg_2006 from '../../../../../assets/plates/virginia/reg2006.png';
+import virginia_blank_2006 from '../../../../../assets/plates/virginia/blank2006.png';
+import virginia_blur_2006 from '../../../../../assets/plates/virginia/blur2006.png';
+import virginia_reg_2008 from '../../../../../assets/plates/virginia/reg2008.png';
+import virginia_blank_2008 from '../../../../../assets/plates/virginia/blank2008.png';
+import virginia_blur_2008 from '../../../../../assets/plates/virginia/blur2008.png';
+import tennessee_reg_2006 from '../../../../../assets/plates/tennessee/reg2006.png';
+import tennessee_blank_2006 from '../../../../../assets/plates/tennessee/blank2006.png';
+import tennessee_blur_2006 from '../../../../../assets/plates/tennessee/blur2006.png';
+import tennessee_reg_2022 from '../../../../../assets/plates/tennessee/reg2022.png';
+import tennessee_blank_2022 from '../../../../../assets/plates/tennessee/blank2022.png';
+import tennessee_blur_2022 from '../../../../../assets/plates/tennessee/blur2022.png';
+import arkansas_reg_2006 from '../../../../../assets/plates/arkansas/reg2006.png';
+import arkansas_blank_2006 from '../../../../../assets/plates/arkansas/blank2006.png';
+import arkansas_blur_2006 from '../../../../../assets/plates/arkansas/blur2006.png';
+import oklahoma_reg_1995 from '../../../../../assets/plates/oklahoma/reg1995.png';
+import oklahoma_blank_1995 from '../../../../../assets/plates/oklahoma/blank1995.png';
+import oklahoma_blur_1995 from '../../../../../assets/plates/oklahoma/blur1995.png';
+import oklahoma_reg_2009 from '../../../../../assets/plates/oklahoma/reg2009.png';
+import oklahoma_blank_2009 from '../../../../../assets/plates/oklahoma/blank2009.png';
+import oklahoma_blur_2009 from '../../../../../assets/plates/oklahoma/blur2009.png';
+import oklahoma_reg_2017 from '../../../../../assets/plates/oklahoma/reg2017.png';
+import oklahoma_blank_2017 from '../../../../../assets/plates/oklahoma/blank2017.png';
+import oklahoma_blur_2017 from '../../../../../assets/plates/oklahoma/blur2017.png';
+import oklahoma_reg_2024 from '../../../../../assets/plates/oklahoma/reg2024.png';
+import oklahoma_blank_2024 from '../../../../../assets/plates/oklahoma/blank2024.png';
+import oklahoma_blur_2024 from '../../../../../assets/plates/oklahoma/blur2024.png';
+import kansas_reg_2001 from '../../../../../assets/plates/kansas/reg2001.png';
+import kansas_blank_2001 from '../../../../../assets/plates/kansas/blank2001.png';
+import kansas_blur_2001 from '../../../../../assets/plates/kansas/blur2001.png';
+import kansas_reg_2007 from '../../../../../assets/plates/kansas/reg2007.png';
+import kansas_blank_2007 from '../../../../../assets/plates/kansas/blank2007.png';
+import kansas_blur_2007 from '../../../../../assets/plates/kansas/blur2007.png';
+import nebraska_reg_2002 from '../../../../../assets/plates/nebraska/reg2002.png';
+import nebraska_blank_2002 from '../../../../../assets/plates/nebraska/blank2002.png';
+import nebraska_blur_2002 from '../../../../../assets/plates/nebraska/blur2002.png';
+import nebraska_reg_2005 from '../../../../../assets/plates/nebraska/reg2005.png';
+import nebraska_blank_2005 from '../../../../../assets/plates/nebraska/blank2005.png';
+import nebraska_blur_2005 from '../../../../../assets/plates/nebraska/blur2005.png';
+import nebraska_reg_2011 from '../../../../../assets/plates/nebraska/reg2011.png';
+import nebraska_blank_2011 from '../../../../../assets/plates/nebraska/blank2011.png';
+import nebraska_blur_2011 from '../../../../../assets/plates/nebraska/blur2011.png';
+import nebraska_reg_2017 from '../../../../../assets/plates/nebraska/reg2017.png';
+import nebraska_blank_2017 from '../../../../../assets/plates/nebraska/blank2017.png';
+import nebraska_blur_2017 from '../../../../../assets/plates/nebraska/blur2017.png';
+import nebraska_reg_2023 from '../../../../../assets/plates/nebraska/reg2023.png';
+import nebraska_blank_2023 from '../../../../../assets/plates/nebraska/blank2023.png';
+import nebraska_blur_2023 from '../../../../../assets/plates/nebraska/blur2023.png';
+import colorado_reg_2000 from '../../../../../assets/plates/colorado/reg2000.png';
+import colorado_blank_2000 from '../../../../../assets/plates/colorado/blank2000.png';
+import colorado_blur_2000 from '../../../../../assets/plates/colorado/blur2000.png';
+
 import { STATE_NAMES, TERRITORY_NAMES } from '../constants';
 
 
@@ -189,8 +242,8 @@ export enum PLATE_STATE {
     BLUR = 2,
 }
 
-export type RECT_COORDS = [number, number, number, number, number?, number?, number?, number?]; // 0_x, 0_y, width, height, 1_x?, 1_y?, 2_x?, 2_y?
-export type PLATE_TUPLE = [string, string, string, RECT_COORDS, number, number?]; // reg, blank, blur, [82, 5, 14, 18], startYear, endYear?
+export type RECT_COORDS = [number, number, number, number, number?, number?, number?, number?]; // 0_x, 0_y, width, height, 0_x2?, 0_y2?, 1_x?, 1_y?
+export type PLATE_TUPLE = [string, string, string, RECT_COORDS, number, number?]; // reg, blank, blur, RECT_COORDS, startYear, endYear?
 
 export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     [STATE_NAMES.MAINE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
@@ -357,6 +410,67 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
     [STATE_NAMES.RHODE_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [rhode_island_reg, rhode_island_blank, rhode_island_blur, [82, 80, 14, 18], 1997] //
+        ]]
+    ])],
+    [STATE_NAMES.VIRGINIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [virginia_reg_2008, virginia_blank_2008, virginia_blur_2008, [82, 5, 14, 10, 82, 5, 5, 5], 2008]
+        ]],
+        [PLATE_TYPE.OLD, [
+            [virginia_reg_2006, virginia_blank_2006, virginia_blur_2006, [82, 5, 14, 10, 82, 5, 5, 5], 2006, 2008]
+        ]]
+    ])],
+    
+    [STATE_NAMES.TENNESSEE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [tennessee_reg_2022, tennessee_blank_2022, tennessee_blur_2022, [100, 100, 14, 18], 2022]
+        ]],
+        [PLATE_TYPE.OLD, [
+            [tennessee_reg_2006, tennessee_blank_2006, tennessee_blur_2006, [100, 100, 14, 18], 2006, 2022]
+        ]]
+    ])],
+    
+    [STATE_NAMES.ARKANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [arkansas_reg_2006, arkansas_blank_2006, arkansas_blur_2006, [82, 5, 14, 18], 2006]
+        ]]
+    ])],
+    
+    [STATE_NAMES.OKLAHOMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [oklahoma_reg_2024, oklahoma_blank_2024, oklahoma_blur_2024, [82, 5, 14, 10, 82, 5, 5, 5], 2024],
+            [oklahoma_reg_2017, oklahoma_blank_2017, oklahoma_blur_2017, [82, 5, 14, 10, 82, 5, 5, 5], 2017, 2024],
+        ]],
+        [PLATE_TYPE.OLD, [
+            [oklahoma_reg_1995, oklahoma_blank_1995, oklahoma_blur_1995, [82, 5, 14, 10, 82, 5, 5, 5], 1995, 2009],
+            [oklahoma_reg_2009, oklahoma_blank_2009, oklahoma_blur_2009, [82, 5, 14, 10, 82, 5, 5, 5], 2009, 2017],
+        ]]
+    ])],
+    
+    [STATE_NAMES.KANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [kansas_reg_2007, kansas_blank_2007, kansas_blur_2007, [82, 5, 14, 18], 2007]
+        ]],
+        [PLATE_TYPE.OLD, [
+            [kansas_reg_2001, kansas_blank_2001, kansas_blur_2001, [100, 100, 14, 18], 2001, 2007],
+        ]]
+    ])],
+    
+    [STATE_NAMES.NEBRASKA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [nebraska_reg_2023, nebraska_blank_2023, nebraska_blur_2023, [82, 5, 14, 18], 2023]
+        ]],
+        [PLATE_TYPE.OLD, [
+            [nebraska_reg_2002, nebraska_blank_2002, nebraska_blur_2002, [82, 5, 14, 18], 2002, 2005],
+            [nebraska_reg_2005, nebraska_blank_2005, nebraska_blur_2005, [82, 5, 14, 18], 2005, 2011],
+            [nebraska_reg_2011, nebraska_blank_2011, nebraska_blur_2011, [82, 5, 14, 18], 2011, 2017],
+            [nebraska_reg_2017, nebraska_blank_2017, nebraska_blur_2017, [82, 5, 14, 18], 2017, 2023]
+        ]]
+    ])],
+    
+    [STATE_NAMES.COLORADO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [colorado_reg_2000, colorado_blank_2000, colorado_blur_2000, [82, 80, 12, 16, 82, 80, 5, 80], 2000]
         ]]
     ])],
 ]);
