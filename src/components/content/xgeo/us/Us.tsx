@@ -5,13 +5,14 @@ import usa from '../../../../assets/geojsons/u_20m.json';
 import './../Xgeo.css';
 import { BADS, NICES } from '../constants';
 import { randomElement } from '../helpers';
-import { QuizType, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES } from './constants';
+import { QuizType, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
 import Plate from './plate/Plate';
 import dots from '../../../../assets/dots.png';
 import canada from '../../../../assets/canadamf.gif';
 import mexico from '../../../../assets/mexico.gif';
 import { PLATE_TUPLE, PLATE_TYPE, PLATES } from './plate/constants';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
+import { preloadImage } from '../../../common/preloadImage';
 
 export interface UsProps {
     quizType: QuizType;
@@ -24,6 +25,12 @@ type LAST_PLATE_INFO = {
     rsc2: string | undefined,
     sepia: number,
     index2: number,
+};
+
+type NEXT_PLATE_INFO = {
+    newt: number,
+    type: PLATE_TYPE,
+    vanityOrOldIndex: number,
 };
 
 const Us = (props: UsProps): React.ReactElement => {
@@ -56,6 +63,8 @@ const Us = (props: UsProps): React.ReactElement => {
     const [streak, setStreak] = useState<number>(0);
     const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem("bestStreak") ? Number(localStorage.getItem("bestStreak")) : 0);
 
+    const [nextPlate, setNextPlate] = useState<NEXT_PLATE_INFO | undefined>(undefined);
+
     function handleMoveEnd(position: any) {
       setPosition(position);
     }
@@ -77,7 +86,7 @@ const Us = (props: UsProps): React.ReactElement => {
         });
     };
 
-    function generateNewFind() {
+    function generateFirstFind() {
         let tries = 0;
         const oldToFind = toFind;
         while(tries < 1000) {
@@ -92,13 +101,57 @@ const Us = (props: UsProps): React.ReactElement => {
                 }
                 const newType = types[Math.floor(Math.random() * types.length)];
                 if (PLATES.get(STATES[newt])!.get(newType)) {
-                    setCurrentType(newType);
-                    setVanityOrOldIndex(Math.floor(Math.random() * 100));
+                    const newVanityOrOldIndex = Math.floor(Math.random() * 100);
                     setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
                     setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                     setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                     setRandomSepia(Math.random() * 0.2);
                     setToFind(newt);
+                    setCurrentType(newType);
+                    setVanityOrOldIndex(newVanityOrOldIndex);
+                    break;
+                }
+            }
+            tries++;
+        }
+    }
+
+    function generateNewFind() {
+        let tries = 0;
+        const oldToFind = toFind;
+        if (!nextPlate) {
+            generateFirstFind();
+            return;
+        }
+        while(tries < 1000) {
+            const newt = Math.floor(Math.random() * STATES.length);
+            if (PLATES.get(STATES[newt])) {
+                let types = [PLATE_TYPE.REGULAR];
+                if (enableOld) {
+                    types.push(PLATE_TYPE.OLD);
+                }
+                if (enableVanity) {
+                    types.push(PLATE_TYPE.VANITY);
+                }
+                const newType = types[Math.floor(Math.random() * types.length)];
+                if (PLATES.get(STATES[newt])!.get(newType)) {
+                    const newVanityOrOldIndex = Math.floor(Math.random() * 100);
+                    setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
+                    setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                    setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                    setRandomSepia(Math.random() * 0.2);
+                    setNextPlate({
+                        newt: newt,
+                        type: newType,
+                        vanityOrOldIndex: newVanityOrOldIndex,
+                    });
+                    const plateMap = PLATES.get(STATES[newt])!.get(newType)!;
+                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
+                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
+                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
+                    setToFind(nextPlate!.newt);
+                    setCurrentType(nextPlate!.type);
+                    setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
                     break;
                 }
             }
