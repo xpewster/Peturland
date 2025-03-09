@@ -315,6 +315,57 @@ import alabama_o2_blur from '../../../../../assets/plates/alabama/blur2002.png';
 import alabama2_o2_reg from '../../../../../assets/plates/alabama/reg2007.png'; // Exception: second overlapping old plate
 import alabama2_o2_blank from '../../../../../assets/plates/alabama/blank2007.png';
 import alabama2_o2_blur from '../../../../../assets/plates/alabama/blur2007.png';
+import georgia_reg from '../../../../../assets/plates/georgia/reg2012.png';
+import georgia_blank from '../../../../../assets/plates/georgia/blank2012.png';
+import georgia_blur from '../../../../../assets/plates/georgia/blur2012.png';
+import georgia2_reg from '../../../../../assets/plates/georgia/reg2012_2.png'; // Exception: second currently active plate
+import georgia2_blank from '../../../../../assets/plates/georgia/blank2012_2.png';
+import georgia2_blur from '../../../../../assets/plates/georgia/blur2012_2.png';
+import south_carolina_reg from '../../../../../assets/plates/south_carolina/reg2016.png';
+import south_carolina_blank from '../../../../../assets/plates/south_carolina/blank2016.png';
+import south_carolina_blur from '../../../../../assets/plates/south_carolina/blur2016.png';
+import south_carolina2_reg from '../../../../../assets/plates/south_carolina/reg2016_2.png'; // Exception: second currently active plate
+import south_carolina2_blank from '../../../../../assets/plates/south_carolina/blank2016_2.png';
+import south_carolina2_blur from '../../../../../assets/plates/south_carolina/blur2016_2.png';
+import south_carolina_o0_reg from '../../../../../assets/plates/south_carolina/reg2008.png';
+import south_carolina_o0_blank from '../../../../../assets/plates/south_carolina/blank2008.png';
+import south_carolina_o0_blur from '../../../../../assets/plates/south_carolina/blur2008.png';
+import south_carolina_o1_reg from '../../../../../assets/plates/south_carolina/reg1999.png';
+import south_carolina_o1_blank from '../../../../../assets/plates/south_carolina/blank1999.png';
+import south_carolina_o1_blur from '../../../../../assets/plates/south_carolina/blur1999.png';
+import south_carolina2_o1_reg from '../../../../../assets/plates/south_carolina/reg2003.png'; // Exception: second overlapping old plate
+import south_carolina2_o1_blank from '../../../../../assets/plates/south_carolina/blank2003.png';
+import south_carolina2_o1_blur from '../../../../../assets/plates/south_carolina/blur2003.png';
+import north_carolina_reg from '../../../../../assets/plates/north_carolina/reg2009.png';
+import north_carolina_blank from '../../../../../assets/plates/north_carolina/blank2009.png';
+import north_carolina_blur from '../../../../../assets/plates/north_carolina/blur2009.png';
+import north_carolina2_reg from '../../../../../assets/plates/north_carolina/reg2015.png'; // Exception: second currently active plate
+import north_carolina2_blank from '../../../../../assets/plates/north_carolina/blank2015.png';
+import north_carolina2_blur from '../../../../../assets/plates/north_carolina/blur2015.png';
+import north_carolina3_reg from '../../../../../assets/plates/north_carolina/reg2019.png'; // Exception: third currently active plate
+import north_carolina3_blank from '../../../../../assets/plates/north_carolina/blank2019.png';
+import north_carolina3_blur from '../../../../../assets/plates/north_carolina/blur2019.png';
+import north_carolina_o0_reg from '../../../../../assets/plates/north_carolina/reg2007.png';
+import north_carolina_o0_blank from '../../../../../assets/plates/north_carolina/blank2007.png';
+import north_carolina_o0_blur from '../../../../../assets/plates/north_carolina/blur2007.png';
+import florida_reg from '../../../../../assets/plates/florida/reg2003.png';
+import florida_blank from '../../../../../assets/plates/florida/blank2003.png';
+import florida_blur from '../../../../../assets/plates/florida/blur2003.png';
+import alaska_reg from '../../../../../assets/plates/alaska/reg1981.png';
+import alaska_blank from '../../../../../assets/plates/alaska/blank1981.png';
+import alaska_blur from '../../../../../assets/plates/alaska/blur1981.png';
+import alaska2_reg from '../../../../../assets/plates/alaska/reg2015.png'; // Exception: second currently active plate
+import alaska2_blank from '../../../../../assets/plates/alaska/blank2015.png';
+import alaska2_blur from '../../../../../assets/plates/alaska/blur2015.png';
+import alaska3_reg from '../../../../../assets/plates/alaska/reg2019.png'; // Exception: third currently active plate
+import alaska3_blank from '../../../../../assets/plates/alaska/blank2019.png';
+import alaska3_blur from '../../../../../assets/plates/alaska/blur2019.png';
+import alaska_o0_reg from '../../../../../assets/plates/alaska/reg2008.png';
+import alaska_o0_blank from '../../../../../assets/plates/alaska/blank2008.png';
+import alaska_o0_blur from '../../../../../assets/plates/alaska/blur2008.png';
+import hawaii_reg from '../../../../../assets/plates/hawaii/reg1991.png';
+import hawaii_blank from '../../../../../assets/plates/hawaii/blank1991.png';
+import hawaii_blur from '../../../../../assets/plates/hawaii/blur1991.png';
 
 
 /* Special plates */
@@ -659,6 +710,53 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [alabama_o1_reg, alabama_o1_blank, alabama_o1_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2009, 2014], //
             [alabama_o2_reg, alabama_o2_blank, alabama_o2_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2002, 2009], //
             [alabama2_o2_reg, alabama2_o2_blank, alabama2_o2_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2007, 2013], //
+        ]]
+    ])],
+    [STATE_NAMES.GEORGIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [georgia_reg, georgia_blank, georgia_blur, [82, 80, 14, 18], 2012], //
+            [georgia2_reg, georgia2_blank, georgia2_blur, [82, 80, 14, 18], 2012], //
+        ]],
+    ])],
+    [STATE_NAMES.SOUTH_CAROLINA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [south_carolina_reg, south_carolina_blank, south_carolina_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2016], //
+            [south_carolina2_reg, south_carolina2_blank, south_carolina2_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2016], //
+        ]],
+        [PLATE_TYPE.OLD, [
+            [south_carolina_o0_reg, south_carolina_o0_blank, south_carolina_o0_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2008, 2016], //
+            [south_carolina_o1_reg, south_carolina_o1_blank, south_carolina_o1_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1999, 2008], //
+            [south_carolina2_o1_reg, south_carolina2_o1_blank, south_carolina2_o1_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2003, 2015], //
+        ]]
+    ])],
+    [STATE_NAMES.NORTH_CAROLINA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [north_carolina_reg, north_carolina_blank, north_carolina_blur, [82, 5, 14, 18, 82, 5, 5, 5], 1983], //
+            [north_carolina2_reg, north_carolina2_blank, north_carolina2_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2015], //
+            [north_carolina3_reg, north_carolina3_blank, north_carolina3_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2019], //
+        ]],
+        [PLATE_TYPE.OLD, [
+            [north_carolina_o0_reg, north_carolina_o0_blank, north_carolina_o0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2007, 2009], //
+        ]]
+    ])],
+    [STATE_NAMES.FLORIDA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [florida_reg, florida_blank, florida_blur, [82, 5, 14, 18], 2003], //
+        ]]
+    ])],
+    [STATE_NAMES.ALASKA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [alaska_reg, alaska_blank, alaska_blur, [82, 5, 14, 18, 82, 5, 5, 5], 1981], //
+            [alaska2_reg, alaska2_blank, alaska2_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2015], //
+            [alaska3_reg, alaska3_blank, alaska3_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2019], //
+        ]],
+        [PLATE_TYPE.OLD, [
+            [alaska_o0_reg, alaska_o0_blank, alaska_o0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2008, 2010], //
+        ]]
+    ])],
+    [STATE_NAMES.HAWAII, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [hawaii_reg, hawaii_blank, hawaii_blur, [82, 5, 14, 18], 1991] //
         ]]
     ])],
 ]);

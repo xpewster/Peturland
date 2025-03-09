@@ -75,7 +75,6 @@ const Us = (props: UsProps): React.ReactElement => {
 
     const updateLastPlateInfo = () => {
         const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
-        console.log(lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length])
         setLastPlate({
             tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
             blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
@@ -121,7 +120,6 @@ const Us = (props: UsProps): React.ReactElement => {
         const oldToFind = toFind;
         if (!nextPlate) {
             generateFirstFind();
-            return;
         }
         while(tries < 1000) {
             const newt = Math.floor(Math.random() * STATES.length);
@@ -136,22 +134,24 @@ const Us = (props: UsProps): React.ReactElement => {
                 const newType = types[Math.floor(Math.random() * types.length)];
                 if (PLATES.get(STATES[newt])!.get(newType)) {
                     const newVanityOrOldIndex = Math.floor(Math.random() * 100);
-                    setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
-                    setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRandomSepia(Math.random() * 0.2);
+                    const plateMap = PLATES.get(STATES[newt])!.get(newType)!;
+                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
+                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
+                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
+                    if (nextPlate) {
+                        setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
+                        setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                        setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                        setRandomSepia(Math.random() * 0.2);
+                        setToFind(nextPlate!.newt);
+                        setCurrentType(nextPlate!.type);
+                        setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
+                    }
                     setNextPlate({
                         newt: newt,
                         type: newType,
                         vanityOrOldIndex: newVanityOrOldIndex,
                     });
-                    const plateMap = PLATES.get(STATES[newt])!.get(newType)!;
-                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
-                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
-                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
-                    setToFind(nextPlate!.newt);
-                    setCurrentType(nextPlate!.type);
-                    setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
                     break;
                 }
             }
