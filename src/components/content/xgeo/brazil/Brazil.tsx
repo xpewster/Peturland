@@ -23,6 +23,10 @@ const Brazil = (): React.ReactElement => {
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
+    const [streak, setStreak] = useState<number>(0);
+    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem("brazil_areacodes_bestStreak") ? Number(localStorage.getItem("brazil_areacodes_bestStreak")) : 0);
+    
+
     function handleZoomIn() {
       if (position.zoom >= 4) return;
       setPosition((pos: any) => ({ ...pos, zoom: pos.zoom * 2 }));
@@ -56,6 +60,12 @@ const Brazil = (): React.ReactElement => {
             do {
                 newMessage = randomElement(NICES)
             } while (newMessage === message)
+            setStreak(streak + 1);
+            if (streak + 1 > bestStreak) {
+                setBestStreak(streak + 1);
+                localStorage.setItem("bestStreak", (streak + 1).toString());
+            }
+            newMessage += ` Streak: ${streak + 1}, Best Streak: ${streak + 1 > bestStreak ? streak + 1 : bestStreak}`;
             setMessage(newMessage);
             setMessageColor("green");
             generateNewFind();
@@ -64,6 +74,7 @@ const Brazil = (): React.ReactElement => {
             do {
                 newMessage = randomElement(BADS)
             } while (newMessage === message)
+            setStreak(0);
             setMessage(newMessage);
             setMessageColor("red");
         }
@@ -126,7 +137,7 @@ const Brazil = (): React.ReactElement => {
                 8<input type="checkbox" onChange={() => {handleCheck(7)}} checked={enablePrefix[7]}></input>
                 9<input type="checkbox" onChange={() => {handleCheck(8)}} checked={enablePrefix[8]}></input>
             </div>
-            <p style={{display: 'inline'}}>Click on the region for phone code <span className='guess-text'>{PHONE_CODES[toFind]}</span> </p><button onClick={generateNewFind}>Regenerate</button>
+            <p style={{display: 'inline'}}>Click on the region for phone code <span className='guess-text'>{PHONE_CODES[toFind]}</span> </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button>
             {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             <ScrollingDisabler>
                 <ComposableMap 

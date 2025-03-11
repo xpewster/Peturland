@@ -1,18 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import './Us.css';
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps"
-import usa from '../../../../assets/geojsons/u_20m.json';
 import './../Xgeo.css';
 import { BADS, NICES } from '../constants';
 import { randomElement } from '../helpers';
-import { QuizType, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
+import { getRandomEnabledStateIndexFast, QuizType, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
 import Plate from './plate/Plate';
 import dots from '../../../../assets/dots.png';
 import canada from '../../../../assets/canadamf.gif';
 import mexico from '../../../../assets/mexico.gif';
 import { PLATE_TUPLE, PLATE_TYPE, PLATES } from './plate/constants';
-import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { preloadImage } from '../../../common/preloadImage';
+import MapWithInsets from './MapWithInsets';
 
 export interface UsProps {
     quizType: QuizType;
@@ -34,12 +32,10 @@ type NEXT_PLATE_INFO = {
 };
 
 const Us = (props: UsProps): React.ReactElement => {
-    const MAP_COLOR = "#FF5533";
-
     const [toFind, setToFind] = useState<number>(37); // phone code to find
     const [message, setMessage] = useState<string>("");
     const [messageColor, setMessageColor] = useState<string>("green");
-    const [enableRegion, setEnableRegion] = useState<boolean[]>(Array(9).fill(true));
+    const [enableRegion, setEnableRegion] = useState<boolean[]>([true, true, true, true, true, false, false, false]);
     const [enableBlur, setEnableBlur] = useState<boolean>(true);
     const [enableSkew, setEnableSkew] = useState<boolean>(false);
     const [enableRandBlur, setEnableRandBlur] = useState<number>(10);
@@ -64,6 +60,8 @@ const Us = (props: UsProps): React.ReactElement => {
     const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem("bestStreak") ? Number(localStorage.getItem("bestStreak")) : 0);
 
     const [nextPlate, setNextPlate] = useState<NEXT_PLATE_INFO | undefined>(undefined);
+
+    // const [map, setMap] = useState<any>(geoJson.combineGeoJson([{countryName: 'U.S.A.'}]));
 
     function handleMoveEnd(position: any) {
       setPosition(position);
@@ -92,24 +90,22 @@ const Us = (props: UsProps): React.ReactElement => {
             const newt = Math.floor(Math.random() * STATES.length);
             if (PLATES.get(STATES[newt])) {
                 let types = [PLATE_TYPE.REGULAR];
-                if (enableOld) {
+                if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.OLD)) {
                     types.push(PLATE_TYPE.OLD);
                 }
-                if (enableVanity) {
+                if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
                 }
                 const newType = types[Math.floor(Math.random() * types.length)];
-                if (PLATES.get(STATES[newt])!.get(newType)) {
-                    const newVanityOrOldIndex = Math.floor(Math.random() * 100);
-                    setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
-                    setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRandomSepia(Math.random() * 0.2);
-                    setToFind(newt);
-                    setCurrentType(newType);
-                    setVanityOrOldIndex(newVanityOrOldIndex);
-                    break;
-                }
+                const newVanityOrOldIndex = Math.floor(Math.random() * 100);
+                setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
+                setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                setRandomSepia(Math.random() * 0.2);
+                setToFind(newt);
+                setCurrentType(newType);
+                setVanityOrOldIndex(newVanityOrOldIndex);
+                break;
             }
             tries++;
         }
@@ -122,50 +118,53 @@ const Us = (props: UsProps): React.ReactElement => {
             generateFirstFind();
         }
         while(tries < 1000) {
-            const newt = Math.floor(Math.random() * STATES.length);
+            const newt = getRandomEnabledStateIndexFast(enableRegion) ?? 0;
             if (PLATES.get(STATES[newt])) {
                 let types = [PLATE_TYPE.REGULAR];
-                if (enableOld) {
+                if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.OLD)) {
                     types.push(PLATE_TYPE.OLD);
                 }
-                if (enableVanity) {
+                if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
                 }
                 const newType = types[Math.floor(Math.random() * types.length)];
-                if (PLATES.get(STATES[newt])!.get(newType)) {
-                    const newVanityOrOldIndex = Math.floor(Math.random() * 100);
-                    const plateMap = PLATES.get(STATES[newt])!.get(newType)!;
-                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
-                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
-                    preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
-                    if (nextPlate) {
-                        setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
-                        setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                        setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                        setRandomSepia(Math.random() * 0.2);
-                        setToFind(nextPlate!.newt);
-                        setCurrentType(nextPlate!.type);
-                        setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
-                    }
-                    setNextPlate({
-                        newt: newt,
-                        type: newType,
-                        vanityOrOldIndex: newVanityOrOldIndex,
-                    });
-                    break;
+                const newVanityOrOldIndex = Math.floor(Math.random() * 100);
+                const plateMap = PLATES.get(STATES[newt])!.get(newType)!;
+                preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
+                preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
+                preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
+                if (nextPlate) {
+                    setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
+                    setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                    setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                    setRandomSepia(Math.random() * 0.2);
+                    setToFind(nextPlate!.newt);
+                    setCurrentType(nextPlate!.type);
+                    setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
                 }
+                setNextPlate({
+                    newt: newt,
+                    type: newType,
+                    vanityOrOldIndex: newVanityOrOldIndex,
+                });
+                break;
             }
             tries++;
         }
     }
 
-    function giveUp() {
+    function lose() {
         let newMessage;
         do {
             newMessage = randomElement(BADS)
         } while (newMessage === message)
+        setStreak(0);
         setMessage(newMessage);
         setMessageColor("red");
+    }
+
+    function giveUp() {
+        lose();
         updateLastPlateInfo();
         generateNewFind();
     }
@@ -187,13 +186,7 @@ const Us = (props: UsProps): React.ReactElement => {
             updateLastPlateInfo();
             generateNewFind();
         } else {
-            let newMessage;
-            do {
-                newMessage = randomElement(BADS)
-            } while (newMessage === message)
-            setStreak(0);
-            setMessage(newMessage);
-            setMessageColor("red");
+            lose();
         }
     }
 
@@ -226,14 +219,6 @@ const Us = (props: UsProps): React.ReactElement => {
         }
     }
 
-    function getCellColor(key: string): string {
-        // if (enableBlur) {
-        //     const index = Number(key.split("-")[1]);
-        //     return STATE_COLORS[index];
-        // }
-        return MAP_COLOR;
-    }
-
     useEffect(() => {
         generateNewFind();
     }, []);
@@ -244,7 +229,7 @@ const Us = (props: UsProps): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div>
                 <div>
-                    Special plates<input disabled type="checkbox" onChange={() => {changeSetting(3)}} checked={enableVanity}></input>
+                    Special plates<input type="checkbox" onChange={() => {changeSetting(3)}} checked={enableVanity}></input>
                     Old plates (2000-Present)<input type="checkbox" onChange={() => {changeSetting(4)}} checked={enableOld}></input>
                 </div>
                 <div>
@@ -264,59 +249,28 @@ const Us = (props: UsProps): React.ReactElement => {
                     Midwest<input type="checkbox" onChange={() => {handleCheck(4)}} checked={enableRegion[4]}></input>
                 </div>
                 <div style={{paddingTop: '10px'}}>
-                    <img style={{height: '15px'}} src={canada}></img> Canada<img style={{height: '15px'}} src={canada}></img><input disabled type="checkbox" onChange={() => {handleCheck(5)}} checked={!enableRegion[5]}></input>
-                    <img style={{height: '15px'}} src={mexico}></img> Mexico <img style={{height: '15px'}} src={mexico}></img><input disabled type="checkbox" onChange={() => {handleCheck(6)}} checked={!enableRegion[6]}></input>
+                    <img style={{height: '15px'}} src={canada}></img> Canada<img style={{height: '15px'}} src={canada}></img><input type="checkbox" onChange={() => {handleCheck(5)}} checked={enableRegion[5]}></input>
+                    <img style={{height: '15px'}} src={mexico}></img> Mexico <img style={{height: '15px'}} src={mexico}></img><input type="checkbox" onChange={() => {handleCheck(6)}} checked={enableRegion[6]}></input>
                     U.S. Territories<input type="checkbox" onChange={() => {handleCheck(7)}} checked={enableRegion[7]}></input>
                 </div> 
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '234px'}} src={dots}></img>
             <div style={{paddingTop: '6px'}}>
-                <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={generateNewFind}>Regenerate</button> <button onClick={giveUp}>Give up</button>
+                <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
                 <div style={{display: 'block', width: '150px', marginTop: '5px', border: "dashed 1px black"}}>
                     <Plate state={STATES[toFind]} type={currentType} vanityOrOldIndex={vanityOrOldIndex} show={false} blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0} rsc={enableRRSC ? rsc : undefined} rsc2={enableRRSC ? rsc2 : undefined} sepia={enableRandBlur ? randomSepia : 0} index2={index2}/>
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
             <div style={{paddingTop: '10px'}}>
-                <ScrollingDisabler>
-                    <ComposableMap 
-                        projection="geoMercator"
-                        projectionConfig={{
-                            scale: 400,
-                            center: [-100, 40],
-                        }} style={{
-                            width: "100%",
-                            height: "auto",
-                            border: "solid 1px black"
-                        }}
-                    >
-                        <ZoomableGroup 
-                            zoom={position.zoom}
-                            center={position.coordinates as any}
-                            onMoveEnd={handleMoveEnd}
-                            maxZoom={100}
-                        >
-                            <Geographies geography={usa}>
-                                {({ geographies }) =>
-                                geographies.map((geo) => (
-                                    (geo.rsmKey !== 'geo-19' || enableRegion[7]) &&
-                                    <Geography key={geo.rsmKey} geography={geo} onClick={() => { handleClick(geo.rsmKey); }} style={{
-                                        default: { fill: getCellColor(geo.rsmKey), stroke: "#000000"},
-                                        hover: { fill: "#efd900", stroke: "#000000"},
-                                        pressed: { fill: "green" },
-                                    }}/>
-                                ))
-                                }
-                            </Geographies>
-                        </ZoomableGroup>
-                    </ComposableMap>
-                </ScrollingDisabler>
+                <MapWithInsets clickHandler={handleClick} enableRegions={enableRegion}/>
             </div>
             {lastPlate && <div>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plate (P.P.):</p>
                 <span>Blur<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
                 <Plate tuple={lastPlate.tuple} blur={lastPlate.blur} rsc={lastPlate.rsc} rsc2={lastPlate.rsc2} sepia={lastPlate.sepia} index2={lastPlate.index2} showYears show={!enablePPBlur} svgFilterIndex={1}/>
             </div>}
+            
         </div>
     );
 };

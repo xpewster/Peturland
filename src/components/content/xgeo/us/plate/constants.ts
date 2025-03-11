@@ -376,7 +376,7 @@ import california_sp0_reg from '../../../../../assets/plates/california/sp0_reg2
 import california_sp0_blank from '../../../../../assets/plates/california/sp0_blank2015.png';
 import california_sp0_blur from '../../../../../assets/plates/california/sp0_blur2015.png';
 
-import { STATE_NAMES, TERRITORY_NAMES } from '../constants';
+import { STATE_NAMES, TERRITORY_NAMES, US_STATE_NAMES } from '../constants';
 
 
 export enum PLATE_TYPE {
@@ -394,30 +394,30 @@ export enum PLATE_STATE {
 export type RECT_COORDS = [number, number, number, number, number?, number?, number?, number?]; // 0_x, 0_y, width, height, 0_x2?, 0_y2?, 1_x?, 1_y?
 export type PLATE_TUPLE = [string, string, string, RECT_COORDS, number, number?]; // reg, blank, blur, RECT_COORDS, startYear, endYear?
 
-export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
-    [STATE_NAMES.MAINE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
+    [US_STATE_NAMES.MAINE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[maine_reg, maine_blank, maine_blur, [82, 80, 14, 18], 1999]]] //
     ])],
-    [STATE_NAMES.NEW_HAMPSHIRE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NEW_HAMPSHIRE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[new_hampshire_reg, new_hampshire_blank, new_hampshire_blur, [82, 80, 14, 18], 1999]]] //
     ])],
-    [STATE_NAMES.VERMONT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.VERMONT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[vermont_reg, vermont_blank, vermont_blur, [100, 100, 14, 18], 1990]]] //
     ])],
-    [STATE_NAMES.NEW_YORK, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NEW_YORK, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[new_york_reg, new_york_blank, new_york_blur, [100, 100, 14, 18], 2020]]], //
         [PLATE_TYPE.OLD, [
             [new_york_o0_reg, new_york_o0_blank, new_york_o0_blur, [100, 100, 14, 18], 2010, 2020], //
             [new_york_o1_reg, new_york_o1_blank, new_york_o1_blur, [100, 100, 14, 18], 2001, 2010] //
         ]]
     ])],
-    [STATE_NAMES.PENNSYLVANIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.PENNSYLVANIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[pennsylvania_reg, pennsylvania_blank, pennsylvania_blur, [5, 5, 14, 18], 2004]]], //
         [PLATE_TYPE.OLD, [
             [pennsylvania_o0_reg, pennsylvania_o0_blank, pennsylvania_o0_blur, [5, 5, 14, 18], 1999, 2004] //
         ]]
     ])],
-    [STATE_NAMES.OHIO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.OHIO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[ohio_reg, ohio_blank, ohio_blur, [82, 80, 14, 18], 2021]]],
         [PLATE_TYPE.OLD, [
             [ohio_o0_reg, ohio_o0_blank, ohio_o0_blur, [5, 80, 14, 18, 5, 80, 82, 80], 2013, 2021], //
@@ -427,14 +427,14 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [ohio_o4_reg, ohio_o4_blank, ohio_o4_blur, [82, 5, 14, 18], 1997, 2001]
         ]]
     ])],
-    [STATE_NAMES.MICHIGAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MICHIGAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[michigan_reg, michigan_blank, michigan_blur, [82, 5, 14, 18], 2013]]], //
         [PLATE_TYPE.OLD, [
             [michigan_o0_reg, michigan_o0_blank, michigan_o0_blur, [82, 5, 14, 18], 2007, 2013], //
             [michigan_o1_reg, michigan_o1_blank, michigan_o1_blur, [82, 80, 14, 18, 5, 80], 1983, 2007] //
         ]]
     ])],
-    [STATE_NAMES.INDIANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.INDIANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [indiana_reg, indiana_blank, indiana_blur, [82, 5, 14, 18], 2017],
             [indiana2_reg, indiana2_blank, indiana2_blur, [82, 5, 14, 18], 2011],
@@ -445,25 +445,25 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [indiana_o2_reg, indiana_o2_blank, indiana_o2_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2007, 2011], //
         ]]
     ])],
-    [STATE_NAMES.ILLINOIS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.ILLINOIS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[illinois_reg, illinois_blank, illinois_blur, [82, 5, 14, 18], 2017]]],
         [PLATE_TYPE.OLD, [
             [illinois_o0_reg, illinois_o0_blank, illinois_o0_blur, [82, 5, 14, 18], 2001, 2017]
         ]]
     ])],
-    [STATE_NAMES.WISCONSIN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.WISCONSIN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[wisconsin_reg, wisconsin_blank, wisconsin_blur, [82, 80, 14, 18, 5, 80, 14, 18], 2000]]]
     ])],
-    [STATE_NAMES.MINNESOTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MINNESOTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[minnesota_reg, minnesota_blank, minnesota_blur, [82, 80, 14, 18], 1987]]]
     ])],
-    [STATE_NAMES.NORTH_DAKOTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NORTH_DAKOTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[north_dakota_reg, north_dakota_blank, north_dakota_blur, [82, 5, 14, 18], 2015]]], //
         [PLATE_TYPE.OLD, [
             [north_dakota_o0_reg, north_dakota_o0_blank, north_dakota_o0_blur, [82, 5, 14, 18], 1993, 2015], //
         ]]
     ])],
-    [STATE_NAMES.MONTANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MONTANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [montana_reg, montana_blank, montana_blur, [82, 5, 14, 18], 2010],
             [montana2_reg, montana2_blank, montana2_blur, [82, 5, 14, 18], 2006],
@@ -472,16 +472,16 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [montana5_reg, montana5_blank, montana5_blur, [82, 5, 14, 18], 1989],
         ]]
     ])],
-    [STATE_NAMES.IDAHO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.IDAHO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[idaho_reg, idaho_blank, idaho_blur, [82, 80, 14, 18], 1991]]]
     ])],
-    [STATE_NAMES.WASHINGTON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.WASHINGTON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[washington_reg, washington_blank, washington_blur, [82, 5, 14, 18], 1987]]] //
     ])],
-    [STATE_NAMES.OREGON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.OREGON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[oregon_reg, oregon_blank, oregon_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1989]]] //
     ])],
-    [STATE_NAMES.WYOMING, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.WYOMING, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [wyoming_reg, wyoming_blank, wyoming_blur, [5, 5, 14, 18], 2025], //
             [wyoming2_reg, wyoming2_blank, wyoming2_blur, [5, 5, 14, 18], 2016, 2024], //
@@ -490,21 +490,21 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [wyoming_o0_reg, wyoming_o0_blank, wyoming_o0_blur, [5, 5, 14, 18], 2008, 2016], //
         ]]
     ])],
-    [STATE_NAMES.SOUTH_DAKOTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.SOUTH_DAKOTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[south_dakota_reg, south_dakota_blank, south_dakota_blur, [82, 80, 14, 18], 2016]]], //
         [PLATE_TYPE.OLD, [
             [south_dakota_o0_reg, south_dakota_o0_blank, south_dakota_o0_blur, [82, 80, 14, 18], 2006, 2016], //
         ]]
     ])],
-    [STATE_NAMES.IOWA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.IOWA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [iowa_reg, iowa_blank, iowa_blur, [5, 80, 14, 18], 2018], //
         ]],
         [PLATE_TYPE.OLD, [
-            [iowa_o0_reg, iowa_o0_blank, iowa_o0_blur, [5, 80, 14, 18], 1997], //
+            [iowa_o0_reg, iowa_o0_blank, iowa_o0_blur, [5, 80, 14, 18], 1997, 2017], //
         ]]
     ])],
-    [STATE_NAMES.MISSOURI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MISSOURI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [missouri_reg, missouri_blank, missouri_blur, [45, 30, 10, 38], 2018], //
         ]],
@@ -512,7 +512,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [missouri_o0_reg, missouri_o0_blank, missouri_o0_blur, [45, 30, 10, 38], 2008, 2018], //
         ]]
     ])],
-    [STATE_NAMES.KENTUCKY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.KENTUCKY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [kentucky_reg, kentucky_blank, kentucky_blur, [82, 80, 14, 18], 2020], //
             [kentucky2_reg, kentucky2_blank, kentucky2_blur, [82, 80, 14, 18], 2020], //
@@ -525,12 +525,12 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [kentucky_sp0_reg, kentucky_sp0_blank, kentucky_sp0_blur, [82, 80, 14, 18], 2023] //
         ]]
     ])],
-    [STATE_NAMES.WEST_VIRGINIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.WEST_VIRGINIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [west_virginia_reg, west_virginia_blank, west_virginia_blur, [82, 80, 14, 18], 1996] //
         ]]
     ])],
-    [STATE_NAMES.MARYLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MARYLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [maryland_reg, maryland_blank, maryland_blur, [82, 5, 14, 18], 2016] //
         ]],
@@ -539,32 +539,32 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [maryland_o1_reg, maryland_o1_blank, maryland_o1_blur, [82, 5, 14, 18], 1987, 2012] //
         ]]
     ])],
-    [STATE_NAMES.DELAWARE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.DELAWARE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [delaware_reg, delaware_blank, delaware_blur, [82, 80, 14, 18], 2008] //
         ]]
     ])],
-    [STATE_NAMES.NEW_JERSEY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NEW_JERSEY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [new_jersey_reg, new_jersey_blank, new_jersey_blur, [100, 100, 14, 18], 1993] //
         ]]
     ])],
-    [STATE_NAMES.CONNECTICUT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.CONNECTICUT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [connecticut_reg, connecticut_blank, connecticut_blur, [82, 5, 14, 18], 2000] //
         ]]
     ])],
-    [STATE_NAMES.MASSACHUSETTS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MASSACHUSETTS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [massachusetts_reg, massachusetts_blank, massachusetts_blur, [82, 5, 14, 18], 1993] //
         ]]
     ])],
-    [STATE_NAMES.RHODE_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.RHODE_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [rhode_island_reg, rhode_island_blank, rhode_island_blur, [82, 80, 14, 18], 1997] //
         ]]
     ])],
-    [STATE_NAMES.VIRGINIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.VIRGINIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [virginia_reg_2008, virginia_blank_2008, virginia_blur_2008, [82, 5, 14, 10, 82, 5, 5, 5], 2008] //
         ]],
@@ -573,7 +573,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
         ]]
     ])],
     
-    [STATE_NAMES.TENNESSEE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.TENNESSEE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [tennessee_reg_2022, tennessee_blank_2022, tennessee_blur_2022, [100, 100, 14, 18], 2022] //
         ]],
@@ -582,13 +582,13 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
         ]]
     ])],
     
-    [STATE_NAMES.ARKANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.ARKANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [arkansas_reg_2006, arkansas_blank_2006, arkansas_blur_2006, [82, 5, 14, 18], 2006] //
         ]]
     ])],
     
-    [STATE_NAMES.OKLAHOMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.OKLAHOMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [oklahoma_reg_2024, oklahoma_blank_2024, oklahoma_blur_2024, [82, 5, 14, 10, 82, 5, 5, 5], 2024], //
             [oklahoma_reg_2017, oklahoma_blank_2017, oklahoma_blur_2017, [82, 5, 14, 10, 82, 5, 5, 5], 2017, 2024], //
@@ -599,7 +599,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
         ]]
     ])],
     
-    [STATE_NAMES.KANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.KANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [kansas_reg_2007, kansas_blank_2007, kansas_blur_2007, [82, 5, 14, 18], 2007] //
         ]],
@@ -608,7 +608,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
         ]]
     ])],
     
-    [STATE_NAMES.NEBRASKA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NEBRASKA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [nebraska_reg_2023, nebraska_blank_2023, nebraska_blur_2023, [82, 5, 14, 18], 2023] //
         ]],
@@ -620,20 +620,20 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
         ]]
     ])],
     
-    [STATE_NAMES.COLORADO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.COLORADO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [colorado_reg_2000, colorado_blank_2000, colorado_blur_2000, [82, 80, 12, 16, 82, 80, 5, 80], 2000] //
         ]]
     ])],
 
-    [STATE_NAMES.UTAH, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.UTAH, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [utah_reg, utah_blank, utah_blur, [85, 5, 10, 18], 2008], //
             [utah2_reg, utah2_blank, utah2_blur, [85, 5, 10, 18], 2009], //
             [utah3_reg, utah3_blank, utah3_blur, [85, 5, 10, 18], 2017], //
         ]]
     ])],
-    [STATE_NAMES.NEVADA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NEVADA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [nevada_reg, nevada_blank, nevada_blur, [82, 5, 14, 18], 2017] //
         ]],
@@ -642,7 +642,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
         ]]
     ])],
 
-    [STATE_NAMES.CALIFORNIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.CALIFORNIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [california_reg, california_blank, california_blur, [82, 5, 14, 10, 82, 5, 5, 5], 1993] //
         ]],
@@ -650,12 +650,12 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [california_sp0_reg, california_sp0_blank, california_sp0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2015] //
         ]]
     ])],
-    [STATE_NAMES.ARIZONA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.ARIZONA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [arizona_reg, arizona_blank, arizona_blur, [100, 100, 14, 18], 1997] //
         ]]
     ])],
-    [STATE_NAMES.NEW_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NEW_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [new_mexico_reg, new_mexico_blank, new_mexico_blur, [82, 80, 14, 18], 1991], //
             [new_mexico2_reg, new_mexico2_blank, new_mexico2_blur, [100, 100, 14, 18], 2010], //
@@ -665,7 +665,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [new_mexico_o0_reg, new_mexico_o0_blank, new_mexico_o0_blur, [100, 100, 14, 18], 1999, 2010] //
         ]]
     ])],
-    [STATE_NAMES.TEXAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.TEXAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [texas_reg, texas_blank, texas_blur, [100, 100, 14, 18], 2012], //
         ]],
@@ -675,12 +675,12 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [texas_o2_reg, texas_o2_blank, texas_o2_blur, [100, 100, 14, 18], 1999, 2009], //
         ]]
     ])],
-    [STATE_NAMES.DISTRICT_OF_COLUMBIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.DISTRICT_OF_COLUMBIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [district_of_columbia_reg, district_of_columbia_blank, district_of_columbia_blur, [100, 100, 14, 18], 1998] //
         ]]
     ])],
-    [STATE_NAMES.LOUISIANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.LOUISIANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [louisiana_reg, louisiana_blank, louisiana_blur, [100, 100, 14, 18], 2016], //
         ]],
@@ -689,7 +689,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [louisiana_o1_reg, louisiana_o1_blank, louisiana_o1_blur, [100, 100, 14, 18], 2011, 2014], //
         ]]
     ])],
-    [STATE_NAMES.MISSISSIPPI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.MISSISSIPPI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [mississippi_reg, mississippi_blank, mississippi_blur, [82, 80, 14, 18], 2024], //
         ]],
@@ -700,7 +700,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [mississippi_o3_reg, mississippi_o3_blank, mississippi_o3_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2003, 2009], //
         ]]
     ])],
-    [STATE_NAMES.ALABAMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.ALABAMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [alabama_reg, alabama_blank, alabama_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2022], //
             [alabama2_reg, alabama2_blank, alabama2_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2013], //
@@ -712,13 +712,13 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [alabama2_o2_reg, alabama2_o2_blank, alabama2_o2_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2007, 2013], //
         ]]
     ])],
-    [STATE_NAMES.GEORGIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.GEORGIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [georgia_reg, georgia_blank, georgia_blur, [82, 80, 14, 18], 2012], //
             [georgia2_reg, georgia2_blank, georgia2_blur, [82, 80, 14, 18], 2012], //
         ]],
     ])],
-    [STATE_NAMES.SOUTH_CAROLINA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.SOUTH_CAROLINA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [south_carolina_reg, south_carolina_blank, south_carolina_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2016], //
             [south_carolina2_reg, south_carolina2_blank, south_carolina2_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2016], //
@@ -729,7 +729,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [south_carolina2_o1_reg, south_carolina2_o1_blank, south_carolina2_o1_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2003, 2015], //
         ]]
     ])],
-    [STATE_NAMES.NORTH_CAROLINA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.NORTH_CAROLINA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [north_carolina_reg, north_carolina_blank, north_carolina_blur, [82, 5, 14, 18, 82, 5, 5, 5], 1983], //
             [north_carolina2_reg, north_carolina2_blank, north_carolina2_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2015], //
@@ -739,12 +739,12 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [north_carolina_o0_reg, north_carolina_o0_blank, north_carolina_o0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2007, 2009], //
         ]]
     ])],
-    [STATE_NAMES.FLORIDA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.FLORIDA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [florida_reg, florida_blank, florida_blur, [82, 5, 14, 18], 2003], //
         ]]
     ])],
-    [STATE_NAMES.ALASKA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.ALASKA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [alaska_reg, alaska_blank, alaska_blur, [82, 5, 14, 18, 82, 5, 5, 5], 1981], //
             [alaska2_reg, alaska2_blank, alaska2_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2015], //
@@ -754,7 +754,7 @@ export const PLATES = new Map<STATE_NAMES | TERRITORY_NAMES, Map<PLATE_TYPE, PLA
             [alaska_o0_reg, alaska_o0_blank, alaska_o0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2008, 2010], //
         ]]
     ])],
-    [STATE_NAMES.HAWAII, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+    [US_STATE_NAMES.HAWAII, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [hawaii_reg, hawaii_blank, hawaii_blur, [82, 5, 14, 18], 1991] //
         ]]
