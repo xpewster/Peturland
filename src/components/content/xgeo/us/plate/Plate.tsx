@@ -16,6 +16,8 @@ export interface PlateProps {
     rsc2?: string;
     sepia?: number;
     svgFilterIndex?: number;
+    skew?: number[];
+    scale?: number;
 }
 
 const Plate = (props: PlateProps): React.ReactElement => {
@@ -85,61 +87,131 @@ const Plate = (props: PlateProps): React.ReactElement => {
     return (
         <div className='plate'>
             {props.blur && !props.show ?
-                <>
-                    <svg viewBox='0 0 150 75'>
-                        <defs>
-                            <filter id={getFilterId("turb")}>
-                                <feTurbulence
-                                    type='fractalNoise'
-                                    baseFrequency={0.6}
-                                    numOctaves={1}
-                                >
-                                </feTurbulence>
-                            </filter>
-                            <filter id={getFilterId("combinedFilter")}>
-                                <feFlood result="rs"
-                                    x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
-                                    y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
-                                    width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
-                                    height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
-                                    floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
-                                    floodOpacity={props.rsc === 'clear' ? '0' : "0.3"}
+                <div style={{
+                    perspective: '800px',
+                    width: '150px',
+                    height: '75px',
+                    position: 'relative',
+                    overflow: 'hidden',
+                  }}>
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 2,
+                    }}>
+                        <svg viewBox='0 0 150 75'>
+                            <defs>
+                                <filter id={getFilterId("turb")}>
+                                    <feTurbulence
+                                        type='fractalNoise'
+                                        baseFrequency={0.4}
+                                        numOctaves={1}
+                                    >
+                                    </feTurbulence>
+                                </filter>
+                            </defs>
+                            <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%" 
+                                style={{opacity: 0.2}} filter={`url(#${getFilterId("turb")})`} 
                                 />
-                                <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
-                                {plate && plate[3].length === 8 && (
-                                    <>
-                                        <feFlood result="rs2"
-                                            x={`${plate ? (plate[3][6] ?? 100) : 0}%`}
-                                            y={`${plate ? (plate[3][7] ?? 100) : 0}%`}
-                                            width={`${plate ? plate[3][2] : 0}%`}
-                                            height={`${plate ? plate[3][3] : 0}%`}
-                                            floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
-                                            floodOpacity={props.rsc2 === 'clear' ? '0' : "0.3"}
-                                        />
-                                        <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
-                                    </>
-                                )}
-                                <feColorMatrix type="matrix"
-                                    values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
-                                            ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
-                                            ${(0.272 - 0.272 * (1 - sepia))} ${(0.534 - 0.534 * (1 - sepia))} ${(0.131 + 0.869 * (1 - sepia))} 0 0
-                                            0 0 0 1 0`}
-                                    in={plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1"}
-                                    result="sepia" />
-                                <feGaussianBlur in="sepia" stdDeviation={(props.blur ?? 0) / 1.5} />
-                            </filter>
-                            <mask id={getFilterId("transformedMask")}>
-                                <rect x="0" y="0" width="150" height="75" fill="white" />
-                            </mask>
-                        </defs>
-                        <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%" 
-                            style={{opacity: 0.3}} filter={`url(#${getFilterId("turb")})`} 
-                            />
-                        <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%" 
-                            filter={`url(#${getFilterId("combinedFilter")})`}
-                            mask={`url(#${getFilterId("transformedMask")})`} />        
-                    </svg>
-                </>
+                        </svg>
+                    </div>
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 1,
+                        filter: props.skew ? `blur(${props.blur / (1.414 * 1.5)}px)` : 'none',
+                    }}>
+                        <svg viewBox='0 0 150 75'>
+                            <defs>
+                                <filter id={getFilterId("combinedFilter")}>
+                                    <feFlood result="rs"
+                                        x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
+                                        y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
+                                        width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
+                                        height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
+                                        floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
+                                        floodOpacity={props.rsc === 'clear' ? '0' : "0.3"}
+                                    />
+                                    <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
+                                    {plate && plate[3].length === 8 && (
+                                        <>
+                                            <feFlood result="rs2"
+                                                x={`${plate ? (plate[3][6] ?? 100) : 0}%`}
+                                                y={`${plate ? (plate[3][7] ?? 100) : 0}%`}
+                                                width={`${plate ? plate[3][2] : 0}%`}
+                                                height={`${plate ? plate[3][3] : 0}%`}
+                                                floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
+                                                floodOpacity={props.rsc2 === 'clear' ? '0' : "0.3"}
+                                            />
+                                            <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
+                                        </>
+                                    )}
+                                    <feColorMatrix type="matrix"
+                                        values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
+                                                ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
+                                                ${(0.272 - 0.272 * (1 - sepia))} ${(0.534 - 0.534 * (1 - sepia))} ${(0.131 + 0.869 * (1 - sepia))} 0 0
+                                                0 0 0 1 0`}
+                                        in={plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1"}
+                                        result="sepia" />
+                                    <feGaussianBlur in="sepia" stdDeviation={(props.blur ?? 0) * (props.skew ? (1.0/1.414) : 1) / 1.5} /> {/* (Math.abs(props.skew?.[1] ?? 0)/90 + 1)*/}
+                                </filter>
+                            </defs>
+                            <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="150px" height="75px"
+                                style={{
+                                    transformStyle: 'preserve-3d',
+                                    transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
+                                    transformOrigin: 'center center',
+                                }}
+                                filter={`url(#${getFilterId("combinedFilter")})`}
+                            />        
+                        </svg>
+                    </div>
+                    {/* Skew indicator lines */}
+                    <div style={{
+                        position: 'absolute',
+                        top: 0,
+                        left: 0,
+                        width: '100%',
+                        height: '100%',
+                        zIndex: 3,
+                        pointerEvents: 'none', 
+                    }}>
+                        <svg viewBox='0 0 150 75' style={{
+                            width: '100%',
+                            height: '100%',
+                            overflow: 'visible',
+                        }}>
+                        <line 
+                            x1="-50" y1="0" 
+                            x2="200" y2="0"
+                            stroke="gray" 
+                            strokeWidth="1" 
+                            strokeDasharray="5,5"
+                            style={{
+                                transformOrigin: 'center center',
+                                transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
+                            }}
+                        />
+                        <line 
+                            x1="-50" y1="75" 
+                            x2="200" y2="75"
+                            stroke="gray" 
+                            strokeWidth="1" 
+                            strokeDasharray="5,5"
+                            style={{
+                                transformOrigin: 'center center',
+                                transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
+                            }}
+                        />
+                        </svg>
+                    </div>
+                </div>
                 : <img className='plate' src={getSrc()}></img>
             }
             {(props.showYears && plate) ?

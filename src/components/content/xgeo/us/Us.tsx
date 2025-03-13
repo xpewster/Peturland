@@ -23,6 +23,8 @@ type LAST_PLATE_INFO = {
     rsc: string | undefined,
     rsc2: string | undefined,
     sepia: number,
+    skew?: number[],
+    scale?: number,
     index2: number,
 };
 
@@ -47,6 +49,8 @@ const Us = (props: UsProps): React.ReactElement => {
     const [rsc, setRSC] = useState<string>("#000000");
     const [rsc2, setRSC2] = useState<string>("#000000");
     const [randomSepia, setRandomSepia] = useState<number>(0.0);
+    const [randomSkew, setRandomSkew] = useState<number[]>([0, 0]);
+    const [randomScale, setRandomScale] = useState<number>(1.0);
 
     const [vanityOrOldIndex, setVanityOrOldIndex] = useState<number>(Math.floor(Math.random() * 100));
     const [index2, setIndex2] = useState<number>(Math.floor(Math.random() * 1000));
@@ -58,18 +62,27 @@ const Us = (props: UsProps): React.ReactElement => {
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
     const [streak, setStreak] = useState<number>(0);
-    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion)) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion))) : 0);
+    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, [...enableRegion, false])) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, [...enableRegion, false]))) : 0);
 
     const [nextPlate, setNextPlate] = useState<NEXT_PLATE_INFO | undefined>(undefined);
 
-    // const [map, setMap] = useState<any>(geoJson.combineGeoJson([{countryName: 'U.S.A.'}]));
-
-    function handleMoveEnd(position: any) {
-      setPosition(position);
-    }
+    /* ----------------- */
 
     const generateNewRandBlur = (): number => {
         return Math.random()*20+10;
+    };
+
+    const generateRandomParameters = (): void => {
+        setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
+        setRSC(randomElement(REGISTRATION_STICKER_COLORS));
+        setRSC2(randomElement(REGISTRATION_STICKER_COLORS));
+        setRandomSepia(Math.random() * 0.2);
+        setRandomSkew([Math.random()*20-10, Math.random()*160-80]);
+        setRandomScale(Math.random()*0.5+0.5);
+    };
+
+    const getStreakIndicatorArray = (): boolean[] => {
+        return [...enableRegion, enableSkew];
     }
 
     const updateLastPlateInfo = () => {
@@ -81,6 +94,8 @@ const Us = (props: UsProps): React.ReactElement => {
             rsc: enableRRSC ? rsc : undefined,
             rsc2: enableRRSC ? rsc2 : undefined,
             sepia: enableRandBlur ? randomSepia : 0,
+            skew: enableSkew ? randomSkew : undefined,
+            scale: enableSkew ? randomScale : 1,
             index2: index2,
         });
     };
@@ -98,12 +113,9 @@ const Us = (props: UsProps): React.ReactElement => {
                 if (enableVanity && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
                 }
-                const newType = types[Math.floor(Math.random() * types.length)];
+                const newType = randomElement(types);
                 const newVanityOrOldIndex = Math.floor(Math.random() * 100);
-                setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
-                setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                setRandomSepia(Math.random() * 0.2);
+                generateRandomParameters();
                 setToFind(newt);
                 setCurrentType(newType);
                 setVanityOrOldIndex(newVanityOrOldIndex);
@@ -129,17 +141,14 @@ const Us = (props: UsProps): React.ReactElement => {
                 if (enableVanity && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
                 }
-                const newType = types[Math.floor(Math.random() * types.length)];
+                const newType = randomElement(types);
                 const newVanityOrOldIndex = Math.floor(Math.random() * 100);
                 const plateMap = PLATES.get(STATES[newt])!.get(newType)!;
                 preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
                 preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
                 preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
                 if (nextPlate && !skipCurrentUpdate) {
-                    setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
-                    setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                    setRandomSepia(Math.random() * 0.2);
+                    generateRandomParameters();
                     setToFind(nextPlate!.newt);
                     setCurrentType(nextPlate!.type);
                     setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
@@ -160,8 +169,8 @@ const Us = (props: UsProps): React.ReactElement => {
             generateNewFind(true);
         }
         setStreak(0);
-        setBestStreak(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion)) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion))) : 0);
-    }, [JSON.stringify(enableRegion)]);
+        setBestStreak(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, getStreakIndicatorArray())) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, getStreakIndicatorArray()))) : 0);
+    }, [JSON.stringify(enableRegion), enableSkew]);
 
     function lose() {
         let newMessage;
@@ -188,7 +197,7 @@ const Us = (props: UsProps): React.ReactElement => {
             setStreak(streak + 1);
             if (streak + 1 > bestStreak) {
                 setBestStreak(streak + 1);
-                localStorage.setItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion), (streak + 1).toString());
+                localStorage.setItem(getStreakKey(QuizType.US_LICENSE_PLATES, getStreakIndicatorArray()), (streak + 1).toString());
             }
             newMessage += ` Streak: ${streak + 1}, Best Streak: ${streak + 1 > bestStreak ? streak + 1 : bestStreak}`;
             setMessage(newMessage);
@@ -222,8 +231,8 @@ const Us = (props: UsProps): React.ReactElement => {
                 setEnableOld(!enableOld);
                 break;
             case 5:
-                setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
-                setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
+                setRSC(randomElement(REGISTRATION_STICKER_COLORS));
+                setRSC2(randomElement(REGISTRATION_STICKER_COLORS));
                 setEnableRRSC(!enableRRSC);
                 break;
         }
@@ -244,7 +253,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 </div>
                 <div>
                     Blur plate<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableBlur}></input>
-                    Use random skew<input type="checkbox" disabled onChange={() => {changeSetting(1)}} checked={enableSkew}></input>
+                    Use random skew<input type="checkbox" onChange={() => { setStreak(0); changeSetting(1); }} checked={enableSkew}></input>
                     Use random blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!!enableRandBlur}></input>
                     Random registration sticker color<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
                 </div>
@@ -268,7 +277,19 @@ const Us = (props: UsProps): React.ReactElement => {
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
                 <div style={{display: 'block', width: '150px', marginTop: '5px', border: "dashed 1px black"}}>
-                    <Plate state={STATES[toFind]} type={currentType} vanityOrOldIndex={vanityOrOldIndex} show={false} blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0} rsc={enableRRSC ? rsc : undefined} rsc2={enableRRSC ? rsc2 : undefined} sepia={enableRandBlur ? randomSepia : 0} index2={index2}/>
+                    <Plate
+                        state={STATES[toFind]}
+                        type={currentType}
+                        vanityOrOldIndex={vanityOrOldIndex}
+                        show={false}
+                        blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0}
+                        rsc={enableRRSC ? rsc : undefined}
+                        rsc2={enableRRSC ? rsc2 : undefined}
+                        sepia={enableRandBlur ? randomSepia : 0}
+                        skew={enableSkew ? randomSkew : undefined}
+                        scale={enableSkew ? randomScale : 1}
+                        index2={index2}
+                    />
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
@@ -278,7 +299,20 @@ const Us = (props: UsProps): React.ReactElement => {
             {lastPlate && <div>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plate (P.P.):</p>
                 <span>Blur<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
-                <Plate state={lastPlate.state} tuple={lastPlate.tuple} blur={lastPlate.blur} rsc={lastPlate.rsc} rsc2={lastPlate.rsc2} sepia={lastPlate.sepia} index2={lastPlate.index2} showYears show={!enablePPBlur} svgFilterIndex={1}/>
+                <Plate
+                    state={lastPlate.state}
+                    tuple={lastPlate.tuple}
+                    blur={lastPlate.blur}
+                    rsc={lastPlate.rsc}
+                    rsc2={lastPlate.rsc2}
+                    sepia={lastPlate.sepia}
+                    skew={lastPlate.skew}
+                    scale={lastPlate.scale}
+                    index2={lastPlate.index2}
+                    showYears
+                    show={!enablePPBlur}
+                    svgFilterIndex={1}
+                />
             </div>}
             
         </div>
