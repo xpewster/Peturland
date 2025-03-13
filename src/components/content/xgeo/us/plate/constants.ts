@@ -367,6 +367,96 @@ import hawaii_reg from '../../../../../assets/plates/hawaii/reg1991.png';
 import hawaii_blank from '../../../../../assets/plates/hawaii/blank1991.png';
 import hawaii_blur from '../../../../../assets/plates/hawaii/blur1991.png';
 
+/* U.S. Territories */
+import puerto_rico_reg from '../../../../../assets/plates/us_territories/puerto_rico/reg1987.png';
+import puerto_rico_blank from '../../../../../assets/plates/us_territories/puerto_rico/blank1987.png';
+import puerto_rico_blur from '../../../../../assets/plates/us_territories/puerto_rico/blur1987.png';
+import puerto_rico2_reg from '../../../../../assets/plates/us_territories/puerto_rico/reg2007.png'; // Exception: second currently active plate
+import puerto_rico2_blank from '../../../../../assets/plates/us_territories/puerto_rico/blank2007.png';
+import puerto_rico2_blur from '../../../../../assets/plates/us_territories/puerto_rico/blur2007.png';
+import american_samoa_reg from '../../../../../assets/plates/us_territories/american_samoa/reg2011.png';
+import american_samoa_blank from '../../../../../assets/plates/us_territories/american_samoa/blank2011.png';
+import american_samoa_blur from '../../../../../assets/plates/us_territories/american_samoa/blur2011.png';
+import guam_reg from '../../../../../assets/plates/us_territories/guam/reg2009.png';
+import guam_blank from '../../../../../assets/plates/us_territories/guam/blank2009.png';
+import guam_blur from '../../../../../assets/plates/us_territories/guam/blur2009.png';
+import northern_mariana_islands_reg from '../../../../../assets/plates/us_territories/northern_mariana_islands/reg2005.png';
+import northern_mariana_islands_blank from '../../../../../assets/plates/us_territories/northern_mariana_islands/blank2005.png';
+import northern_mariana_islands_blur from '../../../../../assets/plates/us_territories/northern_mariana_islands/blur2005.png';
+import us_virgin_islands_reg from '../../../../../assets/plates/us_territories/us_virgin_islands/reg2016.png';
+import us_virgin_islands_blank from '../../../../../assets/plates/us_territories/us_virgin_islands/blank2016.png';
+import us_virgin_islands_blur from '../../../../../assets/plates/us_territories/us_virgin_islands/blur2016.png';
+import us_virgin_islands_o0_reg from '../../../../../assets/plates/us_territories/us_virgin_islands/reg2006.png';
+import us_virgin_islands_o0_blank from '../../../../../assets/plates/us_territories/us_virgin_islands/blank2006.png';
+import us_virgin_islands_o0_blur from '../../../../../assets/plates/us_territories/us_virgin_islands/blur2006.png';
+
+/* Canada */
+import british_columbia_reg from '../../../../../assets/plates/canada/british_columbia/reg1986.png';
+import british_columbia_blank from '../../../../../assets/plates/canada/british_columbia/blank1986.png';
+import british_columbia_blur from '../../../../../assets/plates/canada/british_columbia/blur1986.png';
+import yukon_reg from '../../../../../assets/plates/canada/yukon/reg1990.png';
+import yukon_blank from '../../../../../assets/plates/canada/yukon/blank1990.png';
+import yukon_blur from '../../../../../assets/plates/canada/yukon/blur1990.png';
+import alberta_reg from '../../../../../assets/plates/canada/alberta/reg1984.png';
+import alberta_blank from '../../../../../assets/plates/canada/alberta/blank1984.png';
+import alberta_blur from '../../../../../assets/plates/canada/alberta/blur1984.png';
+import northwest_territories_reg from '../../../../../assets/plates/canada/northwest_territories/reg2010.png';
+import northwest_territories_blank from '../../../../../assets/plates/canada/northwest_territories/blank2010.png';
+import northwest_territories_blur from '../../../../../assets/plates/canada/northwest_territories/blur2010.png';
+import northwest_territories_o0_reg from '../../../../../assets/plates/canada/northwest_territories/reg1986.png';
+import northwest_territories_o0_blank from '../../../../../assets/plates/canada/northwest_territories/blank1986.png';
+import northwest_territories_o0_blur from '../../../../../assets/plates/canada/northwest_territories/blur1986.png';
+import nunavut_reg from '../../../../../assets/plates/canada/nunavut/reg2012.png';
+import nunavut_blank from '../../../../../assets/plates/canada/nunavut/blank2012.png';
+import nunavut_blur from '../../../../../assets/plates/canada/nunavut/blur2012.png';
+import nunavut_o0_reg from '../../../../../assets/plates/canada/nunavut/reg2000.png';
+import nunavut_o0_blank from '../../../../../assets/plates/canada/nunavut/blank2000.png';
+import nunavut_o0_blur from '../../../../../assets/plates/canada/nunavut/blur2000.png';
+import saskatchewan_reg from '../../../../../assets/plates/canada/saskatchewan/reg2009.png';
+import saskatchewan_blank from '../../../../../assets/plates/canada/saskatchewan/blank2009.png';
+import saskatchewan_blur from '../../../../../assets/plates/canada/saskatchewan/blur2009.png';
+import manitoba_reg from '../../../../../assets/plates/canada/manitoba/reg1997.png';
+import manitoba_blank from '../../../../../assets/plates/canada/manitoba/blank1997.png';
+import manitoba_blur from '../../../../../assets/plates/canada/manitoba/blur1997.png';
+import ontario_reg from '../../../../../assets/plates/canada/ontario/reg1996.png';
+import ontario_blank from '../../../../../assets/plates/canada/ontario/blank1996.png';
+import ontario_blur from '../../../../../assets/plates/canada/ontario/blur1996.png';
+import ontario_o0_reg from '../../../../../assets/plates/canada/ontario/reg2023.png';
+import ontario_o0_blank from '../../../../../assets/plates/canada/ontario/blank2023.png';
+import ontario_o0_blur from '../../../../../assets/plates/canada/ontario/blur2023.png';
+import quebec_reg from '../../../../../assets/plates/canada/quebec/reg1983.png';
+import quebec_blank from '../../../../../assets/plates/canada/quebec/blank1983.png';
+import quebec_blur from '../../../../../assets/plates/canada/quebec/blur1983.png';
+import new_brunswick_reg from '../../../../../assets/plates/canada/new_brunswick/reg2011.png';
+import new_brunswick_blank from '../../../../../assets/plates/canada/new_brunswick/blank2011.png';
+import new_brunswick_blur from '../../../../../assets/plates/canada/new_brunswick/blur2011.png';
+import new_brunswick_o0_reg from '../../../../../assets/plates/canada/new_brunswick/reg1992.png';
+import new_brunswick_o0_blank from '../../../../../assets/plates/canada/new_brunswick/blank1992.png';
+import new_brunswick_o0_blur from '../../../../../assets/plates/canada/new_brunswick/blur1992.png';
+import nova_scotia_reg from '../../../../../assets/plates/canada/nova_scotia/reg2012.png';
+import nova_scotia_blank from '../../../../../assets/plates/canada/nova_scotia/blank2012.png';
+import nova_scotia_blur from '../../../../../assets/plates/canada/nova_scotia/blur2012.png';
+import newfoundland_and_labrador_reg from '../../../../../assets/plates/canada/newfoundland_and_labrador/reg2022.png';
+import newfoundland_and_labrador_blank from '../../../../../assets/plates/canada/newfoundland_and_labrador/blank2022.png';
+import newfoundland_and_labrador_blur from '../../../../../assets/plates/canada/newfoundland_and_labrador/blur2022.png';
+import newfoundland_and_labrador_o0_reg from '../../../../../assets/plates/canada/newfoundland_and_labrador/reg2008.png';
+import newfoundland_and_labrador_o0_blank from '../../../../../assets/plates/canada/newfoundland_and_labrador/blank2008.png';
+import newfoundland_and_labrador_o0_blur from '../../../../../assets/plates/canada/newfoundland_and_labrador/blur2008.png';
+import newfoundland_and_labrador_o1_reg from '../../../../../assets/plates/canada/newfoundland_and_labrador/reg2004.png';
+import newfoundland_and_labrador_o1_blank from '../../../../../assets/plates/canada/newfoundland_and_labrador/blank2004.png';
+import newfoundland_and_labrador_o1_blur from '../../../../../assets/plates/canada/newfoundland_and_labrador/blur2004.png';
+import prince_edward_island_reg from '../../../../../assets/plates/canada/prince_edward_island/reg2022.png';
+import prince_edward_island_blank from '../../../../../assets/plates/canada/prince_edward_island/blank2022.png';
+import prince_edward_island_blur from '../../../../../assets/plates/canada/prince_edward_island/blur2022.png';
+import prince_edward_island_o0_reg from '../../../../../assets/plates/canada/prince_edward_island/reg2013.png';
+import prince_edward_island_o0_blank from '../../../../../assets/plates/canada/prince_edward_island/blank2013.png';
+import prince_edward_island_o0_blur from '../../../../../assets/plates/canada/prince_edward_island/blur2013.png';
+import prince_edward_island_o1_reg from '../../../../../assets/plates/canada/prince_edward_island/reg2007.png';
+import prince_edward_island_o1_blank from '../../../../../assets/plates/canada/prince_edward_island/blank2007.png';
+import prince_edward_island_o1_blur from '../../../../../assets/plates/canada/prince_edward_island/blur2007.png';
+import prince_edward_island_o2_reg from '../../../../../assets/plates/canada/prince_edward_island/reg1997.png';
+import prince_edward_island_o2_blank from '../../../../../assets/plates/canada/prince_edward_island/blank1997.png';
+import prince_edward_island_o2_blur from '../../../../../assets/plates/canada/prince_edward_island/blur1997.png';
 
 /* Special plates */
 import kentucky_sp0_reg from '../../../../../assets/plates/kentucky/sp0_reg2023.png';
@@ -375,8 +465,34 @@ import kentucky_sp0_blur from '../../../../../assets/plates/kentucky/sp0_blur202
 import california_sp0_reg from '../../../../../assets/plates/california/sp0_reg2015.png';
 import california_sp0_blank from '../../../../../assets/plates/california/sp0_blank2015.png';
 import california_sp0_blur from '../../../../../assets/plates/california/sp0_blur2015.png';
+// To add:
+// Washington State University
+// Crater Lake
+// Idaho wildlife programs
+// Las Vegas Commemorative Plate
+// AZ: First Responder, Veterans
+// Colorado: Columbine, Blackout
+// NE: mountain lion conservation plate
+// OK: In God We Trust
+// TX: Classic black
+// Minnesota: blackout
+// Iowa: blackout
+// arkansas razorback plate
+// Louisiana: Saints, LSU
+// Kentucky: Friends of Coal
+// TN: Don't Tread On Me
+// Michigan: mackinac bridge, winter wonderland
+// Indiana: IU, Purdue
+// University of Alabama, Auburn 
+// Ohio: OSU
+// Chesapeake Bay plate
+// Scenic Virginia
+// USC
+// Fl: Endless summer, helping sea turtles, UF
+// Cape cod and islands
+// Shore to Please
 
-import { STATE_NAMES, TERRITORY_NAMES, US_STATE_NAMES } from '../constants';
+import { CANADA_PROVINCE_NAMES, STATE_NAMES, TERRITORY_NAMES, US_STATE_NAMES } from '../constants';
 
 
 export enum PLATE_TYPE {
@@ -759,4 +875,111 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [hawaii_reg, hawaii_blank, hawaii_blur, [82, 5, 14, 18], 1991] //
         ]]
     ])],
+
+    /* U.S. Territories */
+    [TERRITORY_NAMES.PUERTO_RICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [puerto_rico_reg, puerto_rico_blank, puerto_rico_blur, [100, 100, 14, 18], 1987], //
+            [puerto_rico2_reg, puerto_rico2_blank, puerto_rico2_blur, [100, 100, 14, 18], 2007, 2023], //
+        ]],
+    ])],
+    [TERRITORY_NAMES.AMERICAN_SAMOA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [american_samoa_reg, american_samoa_blank, american_samoa_blur, [100, 100, 14, 18], 2011] //
+        ]],
+    ])],
+    [TERRITORY_NAMES.GUAM, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [guam_reg, guam_blank, guam_blur, [5, 5, 14, 18, 82, 80, 82, 5], 2009] //
+        ]],
+    ])],
+    [TERRITORY_NAMES.NORTHERN_MARIANA_ISLANDS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [northern_mariana_islands_reg, northern_mariana_islands_blank, northern_mariana_islands_blur, [5, 5, 14, 18, 82, 80, 82, 5], 2005] //
+        ]],
+    ])],
+    [TERRITORY_NAMES.US_VIRGIN_ISLANDS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [
+            [us_virgin_islands_reg, us_virgin_islands_blank, us_virgin_islands_blur, [100, 100, 14, 18], 2016] //
+        ]],
+        [PLATE_TYPE.OLD, [
+            [us_virgin_islands_o0_reg, us_virgin_islands_o0_blank, us_virgin_islands_o0_blur, [100, 100, 14, 18], 2006, 2016] //
+        ]],
+    ])],
+
+    /* Canada */
+    [CANADA_PROVINCE_NAMES.BRITISH_COLUMBIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[british_columbia_reg, british_columbia_blank, british_columbia_blur, [45, 80, 25, 18, 37, 80], 1986]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.YUKON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[yukon_reg, yukon_blank, yukon_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1990]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.ALBERTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[alberta_reg, alberta_blank, alberta_blur, [5, 80, 14, 18, 5, 5, 82, 80], 1984]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.NORTHWEST_TERRITORIES, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[northwest_territories_reg, northwest_territories_blank, northwest_territories_blur, [60, 10, 14, 18], 2010]]], //
+        [PLATE_TYPE.OLD, [
+            [northwest_territories_o0_reg, northwest_territories_o0_blank, northwest_territories_o0_blur, [40, 80, 14, 18], 1986, 2010] //
+        ]]
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.NUNAVUT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[nunavut_reg, nunavut_blank, nunavut_blur, [30, 80, 14, 18, 30, 80, 60, 80], 2012]]], //
+        [PLATE_TYPE.OLD, [
+            [nunavut_o0_reg, nunavut_o0_blank, nunavut_o0_blur, [40, 80, 14, 18, 40, 80, 5, 80], 2000, 2012] //
+        ]]
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.SASKATCHEWAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[saskatchewan_reg, saskatchewan_blank, saskatchewan_blur, [82, 80, 14, 18], 2009]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.MANITOBA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[manitoba_reg, manitoba_blank, manitoba_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1997]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.ONTARIO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[ontario_reg, ontario_blank, ontario_blur, [82, 5, 14, 18], 1996]]], //
+        [PLATE_TYPE.OLD, [
+            [ontario_o0_reg, ontario_o0_blank, ontario_o0_blur, [82, 5, 14, 18], 2023, 2023] //
+        ]]
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.QUEBEC, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[quebec_reg, quebec_blank, quebec_blur, [5, 80, 14, 18, 5, 5, 82, 80], 1983]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.NEW_BRUNSWICK, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[new_brunswick_reg, new_brunswick_blank, new_brunswick_blur, [82, 5, 14, 18], 2011]]], //
+        [PLATE_TYPE.OLD, [
+            [new_brunswick_o0_reg, new_brunswick_o0_blank, new_brunswick_o0_blur, [82, 5, 14, 18], 1992, 2011] //
+        ]]
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.NOVA_SCOTIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[nova_scotia_reg, nova_scotia_blank, nova_scotia_blur, [82, 5, 14, 18], 2012]]] //
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.NEWFOUNDLAND_AND_LABRADOR, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[newfoundland_and_labrador_reg, newfoundland_and_labrador_blank, newfoundland_and_labrador_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2022]]], //
+        [PLATE_TYPE.OLD, [
+            [newfoundland_and_labrador_o0_reg, newfoundland_and_labrador_o0_blank, newfoundland_and_labrador_o0_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2008, 2022], //
+            [newfoundland_and_labrador_o1_reg, newfoundland_and_labrador_o1_blank, newfoundland_and_labrador_o1_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2004, 2008] //
+        ]]
+    ])],
+    
+    [CANADA_PROVINCE_NAMES.PRINCE_EDWARD_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[prince_edward_island_reg, prince_edward_island_blank, prince_edward_island_blur, [82, 5, 14, 18], 2022]]], //
+        [PLATE_TYPE.OLD, [
+            [prince_edward_island_o0_reg, prince_edward_island_o0_blank, prince_edward_island_o0_blur, [82, 5, 14, 18], 2013, 2022], //
+            [prince_edward_island_o1_reg, prince_edward_island_o1_blank, prince_edward_island_o1_blur, [82, 5, 14, 18], 2007, 2013], //
+            [prince_edward_island_o2_reg, prince_edward_island_o2_blank, prince_edward_island_o2_blur, [82, 80, 14, 18], 1997, 2007] //
+        ]]
+    ])]
 ]);
+
+

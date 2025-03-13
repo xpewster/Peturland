@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import './Us.css';
 import './../Xgeo.css';
-import { BADS, NICES } from '../constants';
-import { randomElement } from '../helpers';
-import { getRandomEnabledStateIndexFast, QuizType, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
+import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../constants';
+import { getStreakKey, randomElement } from '../helpers';
+import { getRandomEnabledStateIndexFast, isStateEnabled, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
 import Plate from './plate/Plate';
 import dots from '../../../../assets/dots.png';
 import canada from '../../../../assets/canadamf.gif';
@@ -17,6 +17,7 @@ export interface UsProps {
 }
 
 type LAST_PLATE_INFO = {
+    state: STATE_NAMES,
     tuple: PLATE_TUPLE,
     blur: number,
     rsc: string | undefined,
@@ -57,7 +58,7 @@ const Us = (props: UsProps): React.ReactElement => {
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
     const [streak, setStreak] = useState<number>(0);
-    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem("bestStreak") ? Number(localStorage.getItem("bestStreak")) : 0);
+    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion)) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion))) : 0);
 
     const [nextPlate, setNextPlate] = useState<NEXT_PLATE_INFO | undefined>(undefined);
 
@@ -74,6 +75,7 @@ const Us = (props: UsProps): React.ReactElement => {
     const updateLastPlateInfo = () => {
         const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
         setLastPlate({
+            state: STATES[toFind],
             tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
             blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
             rsc: enableRRSC ? rsc : undefined,
@@ -93,7 +95,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.OLD)) {
                     types.push(PLATE_TYPE.OLD);
                 }
-                if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
+                if (enableVanity && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
                 }
                 const newType = types[Math.floor(Math.random() * types.length)];
@@ -111,7 +113,7 @@ const Us = (props: UsProps): React.ReactElement => {
         }
     }
 
-    function generateNewFind() {
+    function generateNewFind(skipCurrentUpdate?: boolean) {
         let tries = 0;
         const oldToFind = toFind;
         if (!nextPlate) {
@@ -124,7 +126,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.OLD)) {
                     types.push(PLATE_TYPE.OLD);
                 }
-                if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
+                if (enableVanity && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
                 }
                 const newType = types[Math.floor(Math.random() * types.length)];
@@ -133,7 +135,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][0]);
                 preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][1]);
                 preloadImage(plateMap[newVanityOrOldIndex % plateMap.length][2]);
-                if (nextPlate) {
+                if (nextPlate && !skipCurrentUpdate) {
                     setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
                     setRSC(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
                     setRSC2(REGISTRATION_STICKER_COLORS[Math.floor(Math.random() * REGISTRATION_STICKER_COLORS.length)]);
@@ -152,6 +154,14 @@ const Us = (props: UsProps): React.ReactElement => {
             tries++;
         }
     }
+
+    useEffect(() => {
+        if(!isStateEnabled(enableRegion, nextPlate?.newt ?? 0)) {
+            generateNewFind(true);
+        }
+        setStreak(0);
+        setBestStreak(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion)) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion))) : 0);
+    }, [JSON.stringify(enableRegion)]);
 
     function lose() {
         let newMessage;
@@ -178,7 +188,7 @@ const Us = (props: UsProps): React.ReactElement => {
             setStreak(streak + 1);
             if (streak + 1 > bestStreak) {
                 setBestStreak(streak + 1);
-                localStorage.setItem("bestStreak", (streak + 1).toString());
+                localStorage.setItem(getStreakKey(QuizType.US_LICENSE_PLATES, enableRegion), (streak + 1).toString());
             }
             newMessage += ` Streak: ${streak + 1}, Best Streak: ${streak + 1 > bestStreak ? streak + 1 : bestStreak}`;
             setMessage(newMessage);
@@ -268,7 +278,7 @@ const Us = (props: UsProps): React.ReactElement => {
             {lastPlate && <div>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plate (P.P.):</p>
                 <span>Blur<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
-                <Plate tuple={lastPlate.tuple} blur={lastPlate.blur} rsc={lastPlate.rsc} rsc2={lastPlate.rsc2} sepia={lastPlate.sepia} index2={lastPlate.index2} showYears show={!enablePPBlur} svgFilterIndex={1}/>
+                <Plate state={lastPlate.state} tuple={lastPlate.tuple} blur={lastPlate.blur} rsc={lastPlate.rsc} rsc2={lastPlate.rsc2} sepia={lastPlate.sepia} index2={lastPlate.index2} showYears show={!enablePPBlur} svgFilterIndex={1}/>
             </div>}
             
         </div>

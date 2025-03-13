@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
+import { isStateEnabled } from './constants';
 
 export interface MapWithInsetsProps {
     clickHandler: (key: string) => void;
@@ -33,7 +34,6 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
     };
 
     const handleClick = (rsmKey: string) => {
-        console.log(rsmKey);
         props.clickHandler(rsmKey);
     };
 
@@ -55,7 +55,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
         if (!props.enableRegions[6] && getKeyNum(geo.rsmKey) >= 52 && getKeyNum(geo.rsmKey) <= 83) {
             return false; // mexico
         }
-        return true;
+        return isStateEnabled(props.enableRegions, getKeyNum(geo.rsmKey));
     }
 
     return (

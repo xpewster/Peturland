@@ -4,7 +4,7 @@ import { PLATE_STATE, PLATE_TUPLE, PLATE_TYPE, PLATES } from './constants';
 import { preloadImage } from '../../../../common/preloadImage';
 
 export interface PlateProps {
-    state?: STATE_NAMES | TERRITORY_NAMES;
+    state?: STATE_NAMES;
     type?: PLATE_TYPE;
     vanityOrOldIndex?: number;
     index2?: number;
@@ -86,74 +86,17 @@ const Plate = (props: PlateProps): React.ReactElement => {
         <div className='plate'>
             {props.blur && !props.show ?
                 <>
-                    {/* <svg style={{position: 'absolute', width: '150px', height: '75px', opacity: '0.2'}} viewBox='0 0 150 75'>
-                        <filter x="0%" y="0%" width="100%" height="100%" id="turb">
-                            <feTurbulence
-                                type='fractalNoise'
-                                baseFrequency={0.4}
-                                numOctaves={1}
-                            >
-                            </feTurbulence>
-                        </filter>
-                        <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%" filter='url(#turb)'></image>
-                    </svg>
-                    <svg viewBox='0 0 150 75'>
-                        <filter id={getFilterId("rs")} x="0" y="0" width="100%" height="100%">
-                            <feFlood
-                                result="floodFill"
-                                x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
-                                y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
-                                width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
-                                height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
-                                floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
-                                floodOpacity={props.rsc === 'clear' ? '0' : "0.3"}
-                            />
-                            <feBlend in2="SourceGraphic" in="floodFill" mode="normal" />
-                        </filter>
-                        <filter id={getFilterId("rs2")} x="0" y="0" width="100%" height="100%">
-                            <feFlood
-                                result="floodFill"
-                                x={`${plate ? (plate[3][6] ?? 100) : 0}%`}
-                                y={`${plate ? (plate[3][7] ?? 100) : 0}%`}
-                                width={`${plate ? plate[3][2] : 0}%`}
-                                height={`${plate ? plate[3][3] : 0}%`}
-                                floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
-                                floodOpacity={props.rsc2 === 'clear' ? '0' : "0.3"}
-                            />
-                            <feBlend in2="SourceGraphic" in="floodFill" mode="normal" />
-                        </filter>
-                        <filter id={getFilterId("matrix-sepia")} x="0" y="0" width="100%" height="100%"
-                                colorInterpolationFilters="sRGB"> 
-                            <feColorMatrix type="matrix"
-                                values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
-                                        ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
-                                        ${(0.272 - 0.272 * (1 - sepia))} ${(0.534 - 0.534 * (1 - sepia))} ${(0.131 + 0.869 * (1 - sepia))} 0 0
-                                        0 0 0 1 0`}/>
-                        </filter>
-                        <filter x="0%" y="0%" width="100%" height="100%" id={getFilterId("gblur")}>
-                            <feGaussianBlur
-                                stdDeviation={(props.blur ?? 0) / 1.5}
-                            >
-
-                            </feGaussianBlur>
-                        </filter>
-                        <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%"
-                            filter={getFilterUrls()}></image>
-                    </svg> */}
                     <svg viewBox='0 0 150 75'>
                         <defs>
                             <filter id={getFilterId("turb")}>
                                 <feTurbulence
                                     type='fractalNoise'
-                                    baseFrequency={0.4}
+                                    baseFrequency={0.6}
                                     numOctaves={1}
                                 >
                                 </feTurbulence>
                             </filter>
                             <filter id={getFilterId("combinedFilter")}>
-                                {/* Start with the image */}
-                                
-                                {/* Apply registration sticker 1 */}
                                 <feFlood result="rs"
                                     x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
                                     y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
@@ -163,8 +106,6 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                     floodOpacity={props.rsc === 'clear' ? '0' : "0.3"}
                                 />
                                 <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
-                                
-                                {/* Apply registration sticker 2 if needed */}
                                 {plate && plate[3].length === 8 && (
                                     <>
                                         <feFlood result="rs2"
@@ -178,8 +119,6 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                         <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
                                     </>
                                 )}
-                                
-                                {/* Apply sepia effect */}
                                 <feColorMatrix type="matrix"
                                     values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
                                             ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
@@ -187,22 +126,31 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                             0 0 0 1 0`}
                                     in={plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1"}
                                     result="sepia" />
-                                
-                                {/* Finally apply blur */}
                                 <feGaussianBlur in="sepia" stdDeviation={(props.blur ?? 0) / 1.5} />
                             </filter>
+                            <mask id={getFilterId("transformedMask")}>
+                                <rect x="0" y="0" width="150" height="75" fill="white" />
+                            </mask>
                         </defs>
                         <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%" 
-                            style={{opacity: 0.2}} filter={`url(#${getFilterId("turb")})`} />
+                            style={{opacity: 0.3}} filter={`url(#${getFilterId("turb")})`} 
+                            />
                         <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="100%" height="100%" 
-                            filter={`url(#${getFilterId("combinedFilter")})`} />
+                            filter={`url(#${getFilterId("combinedFilter")})`}
+                            mask={`url(#${getFilterId("transformedMask")})`} />        
                     </svg>
                 </>
                 : <img className='plate' src={getSrc()}></img>
             }
-            {(props.showYears && plate) ? (plate.length === 5 ?
-                <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-Present)`}</p>
-                : <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-${plate[5]})`}</p>) : <></>}
+            {(props.showYears && plate) ?
+                <>
+                    <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{props.state?.toString()}</p>
+                    {(plate.length === 5 ?
+                        <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-Present)`}</p>
+                        : <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-${plate[5]})`}</p>)
+                    }
+                </> : <></>
+            }
         </div>
         
     )

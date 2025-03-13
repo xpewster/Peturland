@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import './Xgeo.css';
 import Brazil from './brazil/Brazil';
 import Us from './us/Us';
-import { QuizType } from './us/constants';
 import filebox from '../../../assets/filebox.png';
 import { Path } from '../../../constants/Path';
 import { Link } from 'react-router';
+import { QuizType } from './constants';
 
 export interface XgeoProps {
     path?: string;
@@ -17,7 +17,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
         switch(props.path) {
             default:
             case Path.XGEO_US:
-                return <Us quizType={QuizType.LICENSE_PLATES}/>;
+                return <Us quizType={QuizType.US_LICENSE_PLATES}/>;
             case Path.XGEO_BR:
                 return <Brazil />;
         }
@@ -28,7 +28,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const handleClick = (index: number) => {
         switch(index) {
             case 0:
-                setElement(<Us quizType={QuizType.LICENSE_PLATES}/>);
+                setElement(<Us quizType={QuizType.US_LICENSE_PLATES}/>);
                 break;
             default:    
             case 1:

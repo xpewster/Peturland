@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps"
 import brazil_phone_codes from '../../../../assets/geojsons/brazil_phone_codes.json';
 import './../Xgeo.css';
-import { BADS, NICES } from '../constants';
-import { randomElement } from '../helpers';
+import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../constants';
+import { getStreakKey, randomElement } from '../helpers';
 import { PHONE_CODES, STATE_COLORS } from './constants';
 import dots from '../../../../assets/dots.png';
 import brazilcheat from '../../../../assets/brazilcheat.png';
@@ -24,7 +24,7 @@ const Brazil = (): React.ReactElement => {
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
     const [streak, setStreak] = useState<number>(0);
-    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem("brazil_areacodes_bestStreak") ? Number(localStorage.getItem("brazil_areacodes_bestStreak")) : 0);
+    const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix)) ? Number(localStorage.getItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix))) : 0);
     
 
     function handleZoomIn() {
@@ -40,6 +40,11 @@ const Brazil = (): React.ReactElement => {
     function handleMoveEnd(position: any) {
       setPosition(position);
     }
+
+    useEffect(() => {
+        setStreak(0);
+        setBestStreak(localStorage.getItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix)) ? Number(localStorage.getItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix))) : 0);
+    }, [JSON.stringify(enablePrefix)]);
 
     function generateNewFind() {
         let tries = 0;
@@ -63,7 +68,7 @@ const Brazil = (): React.ReactElement => {
             setStreak(streak + 1);
             if (streak + 1 > bestStreak) {
                 setBestStreak(streak + 1);
-                localStorage.setItem("bestStreak", (streak + 1).toString());
+                localStorage.setItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix), (streak + 1).toString());
             }
             newMessage += ` Streak: ${streak + 1}, Best Streak: ${streak + 1 > bestStreak ? streak + 1 : bestStreak}`;
             setMessage(newMessage);
