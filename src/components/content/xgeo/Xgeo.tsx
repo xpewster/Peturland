@@ -6,6 +6,7 @@ import filebox from '../../../assets/filebox.png';
 import { Path } from '../../../constants/Path';
 import { Link } from 'react-router';
 import { QuizType } from './constants';
+import Mongolia from './mongolia/Mongolia';
 
 export interface XgeoProps {
     path?: string;
@@ -20,6 +21,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <Us quizType={QuizType.US_LICENSE_PLATES}/>;
             case Path.XGEO_BR:
                 return <Brazil />;
+            case Path.XGEO_MONG:
+                return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
         }
     };
 

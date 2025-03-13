@@ -27,6 +27,8 @@ const AppContent = ({
                 return <Xgeo path={Path.XGEO_US}/>;
             case ContentType.XGEO_BR:
                 return <Xgeo path={Path.XGEO_BR}/>;
+            case ContentType.XGEO_MONG:
+                return <Xgeo path={Path.XGEO_MONG}/>;
             case ContentType.SOON:
                 return <Soon />;    
             default: 

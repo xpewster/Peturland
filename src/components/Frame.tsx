@@ -28,6 +28,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_US;
       case Path.XGEO_BR:
         return ContentType.XGEO_BR;
+      case Path.XGEO_MONG:
+        return ContentType.XGEO_MONG;
       case Path.SOON:
         return ContentType.SOON;
     }

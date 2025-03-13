@@ -32,7 +32,7 @@ const Sidebar = (): React.ReactElement => {
                 <Link to={Path.PROJECTS}><img className='go-button' src={go_projs} onMouseEnter={() => onHover(2)} onMouseLeave={() => setShowHover(false)}></img><p className='go-text'></p></Link>
             </div>
             <div style={{position: 'relative'}}>
-                <Link to={Path.XGEO}><img className='go-button' src={go_xgeo} onMouseEnter={() => onHover(3)} onMouseLeave={() => setShowHover(false)}></img><p className='go-text'></p></Link>
+                <Link to={Path.XGEO_US}><img className='go-button' src={go_xgeo} onMouseEnter={() => onHover(3)} onMouseLeave={() => setShowHover(false)}></img><p className='go-text'></p></Link>
             </div>
             <div style={{position: 'relative'}}>
                 <Link to={Path.SOON}><img className='go-button' src={go_soon} onMouseEnter={() => onHover(4)} onMouseLeave={() => setShowHover(false)}></img><p className='go-text'></p></Link>

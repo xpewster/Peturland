@@ -8,6 +8,8 @@ export enum QuizType {
     US_COUNTY_SECONDARY_HIGHWAY,
     NA_TREE_SPECIES,
     BRAZIL_AREA_CODES,
+    MONG_DRIVING_DIRECTION,
+    MONG_CAR_META,
 }
 
 export enum LocalStorageStreakKeys {

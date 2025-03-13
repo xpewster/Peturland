@@ -5,5 +5,6 @@ export enum ContentType {
     XGEO,
     XGEO_US,
     XGEO_BR,
+    XGEO_MONG,
     SOON,
 }

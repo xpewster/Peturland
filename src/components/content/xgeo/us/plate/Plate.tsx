@@ -80,7 +80,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
                 }
                 return choosePlate(old_plates![(props.vanityOrOldIndex ?? 0) % old_plates.length], state);
             case PLATE_TYPE.VANITY:
-                return choosePlate(state_plates.get(PLATE_TYPE.REGULAR)![0], state); // Todo: impl
+                const vanity_plates = state_plates.get(PLATE_TYPE.VANITY) ?? [];
+                return choosePlate(vanity_plates![(props.vanityOrOldIndex ?? 0) % vanity_plates.length], state);
         }
     }
 
