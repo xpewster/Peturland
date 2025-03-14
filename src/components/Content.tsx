@@ -42,7 +42,10 @@ const Content = (props: ContentProps): React.ReactElement => {
             <Loafer />
             <Counter />
             {
-              (getContentSize(props.contentType ?? ContentType.HOME) > 600) ? <img style={{height: `${getContentSize(props.contentType ?? ContentType.HOME) - 450}px`}} src={lizard}></img> : <></>
+              (getContentSize(props.contentType ?? ContentType.HOME) > 600) ? <img style={{
+                height: `${getContentSize(props.contentType ?? ContentType.HOME) - 450}px`,
+                imageRendering: 'pixelated',                 /* Universal support since 2021   */
+              }} src={lizard}></img> : <></>
             }
           </div>
           <div style={{paddingBottom: '10px'}}>

@@ -1,6 +1,6 @@
-export type CoordinateAnswerPair = [[number, number], [string]];
+import { CoordinateAnswerPair } from "../common/constants";
 
-export const COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
+export const FAR_EAST_COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
     [[387, 309], ["northwest"]], // Original: [551, 440], ["nw"]
     [[359, 273], ["southeast"]], // Original: [511, 389], ["se"]
     [[382, 280], ["northeast"]], // Original: [543, 399], ["ne"]

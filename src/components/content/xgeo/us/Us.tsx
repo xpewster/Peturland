@@ -104,7 +104,7 @@ const Us = (props: UsProps): React.ReactElement => {
         let tries = 0;
         const oldToFind = toFind;
         while(tries < 1000) {
-            const newt = Math.floor(Math.random() * STATES.length);
+            const newt = getRandomEnabledStateIndexFast(enableRegion) ?? 0;
             if (PLATES.get(STATES[newt])) {
                 let types = [PLATE_TYPE.REGULAR];
                 if (enableOld && PLATES.get(STATES[newt])!.get(PLATE_TYPE.OLD)) {

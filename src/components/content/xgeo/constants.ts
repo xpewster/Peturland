@@ -15,4 +15,6 @@ export enum QuizType {
 export enum LocalStorageStreakKeys {
     US_LICENSE_PLATES = "bestStreak",
     BRAZIL_AREA_CODES = "brazil_areacodes_bestStreak",
+    MONG_DRIVING_DIRECTION = "mongolia_driving_direction_bestStreak",
+    MONG_CAR_META = "mongolia_car_meta_bestStreak",
 }

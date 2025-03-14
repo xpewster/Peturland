@@ -213,7 +213,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         </svg>
                     </div>
                 </div>
-                : <img className='plate' src={getSrc()}></img>
+                : <img className='plate' style={{paddingBottom: 0}} src={getSrc()}></img>
             }
             {(props.showYears && plate) ?
                 <>

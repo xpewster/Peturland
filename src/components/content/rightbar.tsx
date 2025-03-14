@@ -36,6 +36,15 @@ const Rightbar = (): React.ReactElement => {
             <img className='rbarbox' src={npp}/>
             <img className='rbarbox' style={{outline: '1px solid grey'}} src={a9}/>
             <p className='rightbarlink'>Feed</p>
+            <a href="https://info.flagcounter.com/ImIH"><img className='rbarbox' src="https://s05.flagcounter.com/count/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style={{
+                outline: 0,
+                width: '100%',
+            }} /></a>
+            <a href="https://info.flagcounter.com/ImIH"><img className='rbarbox' src="https://s05.flagcounter.com/count_US/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style={{
+                outline: 0,
+                width: '100%',
+            }} /></a>
+            <p className='rightbarlink' style={{marginTop: 0}}>See who's visited from  <span><a className='rightbarlink' href='credits'>your country!</a></span></p>
             <a href='https://catagolue.hatsya.com/home' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={catagolue}/></a>
             <img className='rbarbox' src={yoshi}/>
           </div>
