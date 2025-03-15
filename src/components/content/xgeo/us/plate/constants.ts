@@ -492,7 +492,434 @@ import california_sp0_blur from '../../../../../assets/plates/california/sp0_blu
 // Cape cod and islands
 // Shore to Please
 
-import { CANADA_PROVINCE_NAMES, STATE_NAMES, TERRITORY_NAMES, US_STATE_NAMES } from '../constants';
+
+/* Mexico */
+import aguascalientes_reg from '../../../../../assets/plates/mexico/aguascalientes/reg2023.png';
+import aguascalientes_blank from '../../../../../assets/plates/mexico/aguascalientes/blank2023.png';
+import aguascalientes_blur from '../../../../../assets/plates/mexico/aguascalientes/blur2023.png';
+import aguascalientes_o0_reg from '../../../../../assets/plates/mexico/aguascalientes/reg2017.png';
+import aguascalientes_o0_blank from '../../../../../assets/plates/mexico/aguascalientes/blank2017.png';
+import aguascalientes_o0_blur from '../../../../../assets/plates/mexico/aguascalientes/blur2017.png';
+import aguascalientes_o1_reg from '../../../../../assets/plates/mexico/aguascalientes/reg2012.png';
+import aguascalientes_o1_blank from '../../../../../assets/plates/mexico/aguascalientes/blank2012.png';
+import aguascalientes_o1_blur from '../../../../../assets/plates/mexico/aguascalientes/blur2012.png';
+import aguascalientes_o2_reg from '../../../../../assets/plates/mexico/aguascalientes/reg2005.png';
+import aguascalientes_o2_blank from '../../../../../assets/plates/mexico/aguascalientes/blank2005.png';
+import aguascalientes_o2_blur from '../../../../../assets/plates/mexico/aguascalientes/blur2005.png';
+import baja_california_reg from '../../../../../assets/plates/mexico/baja_california/reg2022.png';
+import baja_california_blank from '../../../../../assets/plates/mexico/baja_california/blank2022.png';
+import baja_california_blur from '../../../../../assets/plates/mexico/baja_california/blur2022.png';
+import baja_california_o0_reg from '../../../../../assets/plates/mexico/baja_california/reg2020.png';
+import baja_california_o0_blank from '../../../../../assets/plates/mexico/baja_california/blank2020.png';
+import baja_california_o0_blur from '../../../../../assets/plates/mexico/baja_california/blur2020.png';
+import baja_california_o1_reg from '../../../../../assets/plates/mexico/baja_california/reg2017.png';
+import baja_california_o1_blank from '../../../../../assets/plates/mexico/baja_california/blank2017.png';
+import baja_california_o1_blur from '../../../../../assets/plates/mexico/baja_california/blur2017.png';
+import baja_california_o2_reg from '../../../../../assets/plates/mexico/baja_california/reg2014.png';
+import baja_california_o2_blank from '../../../../../assets/plates/mexico/baja_california/blank2014.png';
+import baja_california_o2_blur from '../../../../../assets/plates/mexico/baja_california/blur2014.png';
+import baja_california_o3_reg from '../../../../../assets/plates/mexico/baja_california/reg2012.png';
+import baja_california_o3_blank from '../../../../../assets/plates/mexico/baja_california/blank2012.png';
+import baja_california_o3_blur from '../../../../../assets/plates/mexico/baja_california/blur2012.png';
+import baja_california_o4_reg from '../../../../../assets/plates/mexico/baja_california/reg2010.png';
+import baja_california_o4_blank from '../../../../../assets/plates/mexico/baja_california/blank2010.png';
+import baja_california_o4_blur from '../../../../../assets/plates/mexico/baja_california/blur2010.png';
+import baja_california_sur_reg from '../../../../../assets/plates/mexico/baja_california_sur/reg2022.png';
+import baja_california_sur_blank from '../../../../../assets/plates/mexico/baja_california_sur/blank2022.png';
+import baja_california_sur_blur from '../../../../../assets/plates/mexico/baja_california_sur/blur2022.png';
+import baja_california_sur_o0_reg from '../../../../../assets/plates/mexico/baja_california_sur/reg2017.png';
+import baja_california_sur_o0_blank from '../../../../../assets/plates/mexico/baja_california_sur/blank2017.png';
+import baja_california_sur_o0_blur from '../../../../../assets/plates/mexico/baja_california_sur/blur2017.png';
+import baja_california_sur_o1_reg from '../../../../../assets/plates/mexico/baja_california_sur/reg2006.png';
+import baja_california_sur_o1_blank from '../../../../../assets/plates/mexico/baja_california_sur/blank2006.png';
+import baja_california_sur_o1_blur from '../../../../../assets/plates/mexico/baja_california_sur/blur2006.png';
+import campeche_reg from '../../../../../assets/plates/mexico/campeche/reg2023.png';
+import campeche_blank from '../../../../../assets/plates/mexico/campeche/blank2023.png';
+import campeche_blur from '../../../../../assets/plates/mexico/campeche/blur2023.png';
+import campeche_o0_reg from '../../../../../assets/plates/mexico/campeche/reg2020.png';
+import campeche_o0_blank from '../../../../../assets/plates/mexico/campeche/blank2020.png';
+import campeche_o0_blur from '../../../../../assets/plates/mexico/campeche/blur2020.png';
+import campeche_o1_reg from '../../../../../assets/plates/mexico/campeche/reg2017.png';
+import campeche_o1_blank from '../../../../../assets/plates/mexico/campeche/blank2017.png';
+import campeche_o1_blur from '../../../../../assets/plates/mexico/campeche/blur2017.png';
+import campeche_o2_reg from '../../../../../assets/plates/mexico/campeche/reg2014.png';
+import campeche_o2_blank from '../../../../../assets/plates/mexico/campeche/blank2014.png';
+import campeche_o2_blur from '../../../../../assets/plates/mexico/campeche/blur2014.png';
+import campeche_o3_reg from '../../../../../assets/plates/mexico/campeche/reg2011.png';
+import campeche_o3_blank from '../../../../../assets/plates/mexico/campeche/blank2011.png';
+import campeche_o3_blur from '../../../../../assets/plates/mexico/campeche/blur2011.png';
+import campeche_o4_reg from '../../../../../assets/plates/mexico/campeche/reg2008.png';
+import campeche_o4_blank from '../../../../../assets/plates/mexico/campeche/blank2008.png';
+import campeche_o4_blur from '../../../../../assets/plates/mexico/campeche/blur2008.png';
+import chihuahua_reg from '../../../../../assets/plates/mexico/chihuahua/reg2023.png';
+import chihuahua_blank from '../../../../../assets/plates/mexico/chihuahua/blank2023.png';
+import chihuahua_blur from '../../../../../assets/plates/mexico/chihuahua/blur2023.png';
+import chihuahua_o0_reg from '../../../../../assets/plates/mexico/chihuahua/reg2022.png';
+import chihuahua_o0_blank from '../../../../../assets/plates/mexico/chihuahua/blank2022.png';
+import chihuahua_o0_blur from '../../../../../assets/plates/mexico/chihuahua/blur2022.png';
+import chihuahua_o1_reg from '../../../../../assets/plates/mexico/chihuahua/reg2017.png';
+import chihuahua_o1_blank from '../../../../../assets/plates/mexico/chihuahua/blank2017.png';
+import chihuahua_o1_blur from '../../../../../assets/plates/mexico/chihuahua/blur2017.png';
+import chihuahua_o2_reg from '../../../../../assets/plates/mexico/chihuahua/reg2016.png';
+import chihuahua_o2_blank from '../../../../../assets/plates/mexico/chihuahua/blank2016.png';
+import chihuahua_o2_blur from '../../../../../assets/plates/mexico/chihuahua/blur2016.png';
+import chihuahua_o3_reg from '../../../../../assets/plates/mexico/chihuahua/reg2015.png';
+import chihuahua_o3_blank from '../../../../../assets/plates/mexico/chihuahua/blank2015.png';
+import chihuahua_o3_blur from '../../../../../assets/plates/mexico/chihuahua/blur2015.png';
+import chihuahua_o4_reg from '../../../../../assets/plates/mexico/chihuahua/reg2012.png';
+import chihuahua_o4_blank from '../../../../../assets/plates/mexico/chihuahua/blank2012.png';
+import chihuahua_o4_blur from '../../../../../assets/plates/mexico/chihuahua/blur2012.png';
+import chihuahua_o5_reg from '../../../../../assets/plates/mexico/chihuahua/reg2009.png';
+import chihuahua_o5_blank from '../../../../../assets/plates/mexico/chihuahua/blank2009.png';
+import chihuahua_o5_blur from '../../../../../assets/plates/mexico/chihuahua/blur2009.png';
+import ciudad_de_mexico_reg from '../../../../../assets/plates/mexico/ciudad_de_mexico/reg2019.png';
+import ciudad_de_mexico_blank from '../../../../../assets/plates/mexico/ciudad_de_mexico/blank2019.png';
+import ciudad_de_mexico_blur from '../../../../../assets/plates/mexico/ciudad_de_mexico/blur2019.png';
+import ciudad_de_mexico_o0_reg from '../../../../../assets/plates/mexico/ciudad_de_mexico/reg2016.png';
+import ciudad_de_mexico_o0_blank from '../../../../../assets/plates/mexico/ciudad_de_mexico/blank2016.png';
+import ciudad_de_mexico_o0_blur from '../../../../../assets/plates/mexico/ciudad_de_mexico/blur2016.png';
+import coahuila_reg from '../../../../../assets/plates/mexico/coahuila/reg2022.png';
+import coahuila_blank from '../../../../../assets/plates/mexico/coahuila/blank2022.png';
+import coahuila_blur from '../../../../../assets/plates/mexico/coahuila/blur2022.png';
+import coahuila_o0_reg from '../../../../../assets/plates/mexico/coahuila/reg2019.png';
+import coahuila_o0_blank from '../../../../../assets/plates/mexico/coahuila/blank2019.png';
+import coahuila_o0_blur from '../../../../../assets/plates/mexico/coahuila/blur2019.png';
+import coahuila_o1_reg from '../../../../../assets/plates/mexico/coahuila/reg2017.png';
+import coahuila_o1_blank from '../../../../../assets/plates/mexico/coahuila/blank2017.png';
+import coahuila_o1_blur from '../../../../../assets/plates/mexico/coahuila/blur2017.png';
+import coahuila_o2_reg from '../../../../../assets/plates/mexico/coahuila/reg2016.png';
+import coahuila_o2_blank from '../../../../../assets/plates/mexico/coahuila/blank2016.png';
+import coahuila_o2_blur from '../../../../../assets/plates/mexico/coahuila/blur2016.png';
+import coahuila_o3_reg from '../../../../../assets/plates/mexico/coahuila/reg2013.png';
+import coahuila_o3_blank from '../../../../../assets/plates/mexico/coahuila/blank2013.png';
+import coahuila_o3_blur from '../../../../../assets/plates/mexico/coahuila/blur2013.png';
+import coahuila_o4_reg from '../../../../../assets/plates/mexico/coahuila/reg2010.png';
+import coahuila_o4_blank from '../../../../../assets/plates/mexico/coahuila/blank2010.png';
+import coahuila_o4_blur from '../../../../../assets/plates/mexico/coahuila/blur2010.png';
+import colima_reg from '../../../../../assets/plates/mexico/colima/reg2022.png';
+import colima_blank from '../../../../../assets/plates/mexico/colima/blank2022.png';
+import colima_blur from '../../../../../assets/plates/mexico/colima/blur2022.png';
+import colima_o0_reg from '../../../../../assets/plates/mexico/colima/reg2017.png';
+import colima_o0_blank from '../../../../../assets/plates/mexico/colima/blank2017.png';
+import colima_o0_blur from '../../../../../assets/plates/mexico/colima/blur2017.png';
+import colima_o1_reg from '../../../../../assets/plates/mexico/colima/reg2010.png';
+import colima_o1_blank from '../../../../../assets/plates/mexico/colima/blank2010.png';
+import colima_o1_blur from '../../../../../assets/plates/mexico/colima/blur2010.png';
+import distrito_federal_reg from '../../../../../assets/plates/mexico/distrito_federal/reg2013.png';
+import distrito_federal_blank from '../../../../../assets/plates/mexico/distrito_federal/blank2013.png';
+import distrito_federal_blur from '../../../../../assets/plates/mexico/distrito_federal/blur2013.png';
+import distrito_federal_o0_reg from '../../../../../assets/plates/mexico/distrito_federal/reg2008.png';
+import distrito_federal_o0_blank from '../../../../../assets/plates/mexico/distrito_federal/blank2008.png';
+import distrito_federal_o0_blur from '../../../../../assets/plates/mexico/distrito_federal/blur2008.png';
+import durango_reg from '../../../../../assets/plates/mexico/durango/reg2023.png';
+import durango_blank from '../../../../../assets/plates/mexico/durango/blank2023.png';
+import durango_blur from '../../../../../assets/plates/mexico/durango/blur2023.png';
+import durango_o0_reg from '../../../../../assets/plates/mexico/durango/reg2017.png';
+import durango_o0_blank from '../../../../../assets/plates/mexico/durango/blank2017.png';
+import durango_o0_blur from '../../../../../assets/plates/mexico/durango/blur2017.png';
+import durango_o1_reg from '../../../../../assets/plates/mexico/durango/reg2009.png';
+import durango_o1_blank from '../../../../../assets/plates/mexico/durango/blank2009.png';
+import durango_o1_blur from '../../../../../assets/plates/mexico/durango/blur2009.png';
+import estado_de_mexico_reg from '../../../../../assets/plates/mexico/estado_de_mexico/reg2024.png';
+import estado_de_mexico_blank from '../../../../../assets/plates/mexico/estado_de_mexico/blank2024.png';
+import estado_de_mexico_blur from '../../../../../assets/plates/mexico/estado_de_mexico/blur2024.png';
+import estado_de_mexico_o0_reg from '../../../../../assets/plates/mexico/estado_de_mexico/reg2018.png';
+import estado_de_mexico_o0_blank from '../../../../../assets/plates/mexico/estado_de_mexico/blank2018.png';
+import estado_de_mexico_o0_blur from '../../../../../assets/plates/mexico/estado_de_mexico/blur2018.png';
+import estado_de_mexico_o1_reg from '../../../../../assets/plates/mexico/estado_de_mexico/reg2016.png';
+import estado_de_mexico_o1_blank from '../../../../../assets/plates/mexico/estado_de_mexico/blank2016.png';
+import estado_de_mexico_o1_blur from '../../../../../assets/plates/mexico/estado_de_mexico/blur2016.png';
+import estado_de_mexico_o2_reg from '../../../../../assets/plates/mexico/estado_de_mexico/reg2015.png';
+import estado_de_mexico_o2_blank from '../../../../../assets/plates/mexico/estado_de_mexico/blank2015.png';
+import estado_de_mexico_o2_blur from '../../../../../assets/plates/mexico/estado_de_mexico/blur2015.png';
+import estado_de_mexico_o3_reg from '../../../../../assets/plates/mexico/estado_de_mexico/reg2009.png';
+import estado_de_mexico_o3_blank from '../../../../../assets/plates/mexico/estado_de_mexico/blank2009.png';
+import estado_de_mexico_o3_blur from '../../../../../assets/plates/mexico/estado_de_mexico/blur2009.png';
+import guanajuato_reg from '../../../../../assets/plates/mexico/guanajuato/reg2020.png';
+import guanajuato_blank from '../../../../../assets/plates/mexico/guanajuato/blank2020.png';
+import guanajuato_blur from '../../../../../assets/plates/mexico/guanajuato/blur2020.png';
+import guanajuato_o0_reg from '../../../../../assets/plates/mexico/guanajuato/reg2017.png';
+import guanajuato_o0_blank from '../../../../../assets/plates/mexico/guanajuato/blank2017.png';
+import guanajuato_o0_blur from '../../../../../assets/plates/mexico/guanajuato/blur2017.png';
+import guanajuato_o1_reg from '../../../../../assets/plates/mexico/guanajuato/reg2016.png';
+import guanajuato_o1_blank from '../../../../../assets/plates/mexico/guanajuato/blank2016.png';
+import guanajuato_o1_blur from '../../../../../assets/plates/mexico/guanajuato/blur2016.png';
+import guanajuato_o2_reg from '../../../../../assets/plates/mexico/guanajuato/reg2008.png';
+import guanajuato_o2_blank from '../../../../../assets/plates/mexico/guanajuato/blank2008.png';
+import guanajuato_o2_blur from '../../../../../assets/plates/mexico/guanajuato/blur2008.png';
+import guerrero_reg from '../../../../../assets/plates/mexico/guerrero/reg2022.png';
+import guerrero_blank from '../../../../../assets/plates/mexico/guerrero/blank2022.png';
+import guerrero_blur from '../../../../../assets/plates/mexico/guerrero/blur2022.png';
+import guerrero_o0_reg from '../../../../../assets/plates/mexico/guerrero/reg2018.png';
+import guerrero_o0_blank from '../../../../../assets/plates/mexico/guerrero/blank2018.png';
+import guerrero_o0_blur from '../../../../../assets/plates/mexico/guerrero/blur2018.png';
+import guerrero_o1_reg from '../../../../../assets/plates/mexico/guerrero/reg2016.png';
+import guerrero_o1_blank from '../../../../../assets/plates/mexico/guerrero/blank2016.png';
+import guerrero_o1_blur from '../../../../../assets/plates/mexico/guerrero/blur2016.png';
+import guerrero_o2_reg from '../../../../../assets/plates/mexico/guerrero/reg2015.png';
+import guerrero_o2_blank from '../../../../../assets/plates/mexico/guerrero/blank2015.png';
+import guerrero_o2_blur from '../../../../../assets/plates/mexico/guerrero/blur2015.png';
+import guerrero_o3_reg from '../../../../../assets/plates/mexico/guerrero/reg2012.png';
+import guerrero_o3_blank from '../../../../../assets/plates/mexico/guerrero/blank2012.png';
+import guerrero_o3_blur from '../../../../../assets/plates/mexico/guerrero/blur2012.png';
+import guerrero_o4_reg from '../../../../../assets/plates/mexico/guerrero/reg2009.png';
+import guerrero_o4_blank from '../../../../../assets/plates/mexico/guerrero/blank2009.png';
+import guerrero_o4_blur from '../../../../../assets/plates/mexico/guerrero/blur2009.png';
+import hidalgo_reg from '../../../../../assets/plates/mexico/hidalgo/reg2023.png';
+import hidalgo_blank from '../../../../../assets/plates/mexico/hidalgo/blank2023.png';
+import hidalgo_blur from '../../../../../assets/plates/mexico/hidalgo/blur2023.png';
+import hidalgo_o0_reg from '../../../../../assets/plates/mexico/hidalgo/reg2018.png';
+import hidalgo_o0_blank from '../../../../../assets/plates/mexico/hidalgo/blank2018.png';
+import hidalgo_o0_blur from '../../../../../assets/plates/mexico/hidalgo/blur2018.png';
+import hidalgo_o1_reg from '../../../../../assets/plates/mexico/hidalgo/reg2013.png';
+import hidalgo_o1_blank from '../../../../../assets/plates/mexico/hidalgo/blank2013.png';
+import hidalgo_o1_blur from '../../../../../assets/plates/mexico/hidalgo/blur2013.png';
+import hidalgo_o2_reg from '../../../../../assets/plates/mexico/hidalgo/reg2006.png';
+import hidalgo_o2_blank from '../../../../../assets/plates/mexico/hidalgo/blank2006.png';
+import hidalgo_o2_blur from '../../../../../assets/plates/mexico/hidalgo/blur2006.png';
+import hidalgo_o3_reg from '../../../../../assets/plates/mexico/hidalgo/reg2002.png';
+import hidalgo_o3_blank from '../../../../../assets/plates/mexico/hidalgo/blank2002.png';
+import hidalgo_o3_blur from '../../../../../assets/plates/mexico/hidalgo/blur2002.png';
+import jalisco_reg from '../../../../../assets/plates/mexico/jalisco/reg2019.png';
+import jalisco_blank from '../../../../../assets/plates/mexico/jalisco/blank2019.png';
+import jalisco_blur from '../../../../../assets/plates/mexico/jalisco/blur2019.png';
+import jalisco_o0_reg from '../../../../../assets/plates/mexico/jalisco/reg2017.png';
+import jalisco_o0_blank from '../../../../../assets/plates/mexico/jalisco/blank2017.png';
+import jalisco_o0_blur from '../../../../../assets/plates/mexico/jalisco/blur2017.png';
+import jalisco_o1_reg from '../../../../../assets/plates/mexico/jalisco/reg2011.png';
+import jalisco_o1_blank from '../../../../../assets/plates/mexico/jalisco/blank2011.png';
+import jalisco_o1_blur from '../../../../../assets/plates/mexico/jalisco/blur2011.png';
+import jalisco_o2_reg from '../../../../../assets/plates/mexico/jalisco/reg2002.png';
+import jalisco_o2_blank from '../../../../../assets/plates/mexico/jalisco/blank2002.png';
+import jalisco_o2_blur from '../../../../../assets/plates/mexico/jalisco/blur2002.png';
+import michoacan_reg from '../../../../../assets/plates/mexico/michoacan/reg2022.png';
+import michoacan_blank from '../../../../../assets/plates/mexico/michoacan/blank2022.png';
+import michoacan_blur from '../../../../../assets/plates/mexico/michoacan/blur2022.png';
+import michoacan_o0_reg from '../../../../../assets/plates/mexico/michoacan/reg2019.png';
+import michoacan_o0_blank from '../../../../../assets/plates/mexico/michoacan/blank2019.png';
+import michoacan_o0_blur from '../../../../../assets/plates/mexico/michoacan/blur2019.png';
+import michoacan_o1_reg from '../../../../../assets/plates/mexico/michoacan/reg2016.png';
+import michoacan_o1_blank from '../../../../../assets/plates/mexico/michoacan/blank2016.png';
+import michoacan_o1_blur from '../../../../../assets/plates/mexico/michoacan/blur2016.png';
+import michoacan_o2_reg from '../../../../../assets/plates/mexico/michoacan/reg2012.png';
+import michoacan_o2_blank from '../../../../../assets/plates/mexico/michoacan/blank2012.png';
+import michoacan_o2_blur from '../../../../../assets/plates/mexico/michoacan/blur2012.png';
+import michoacan_o3_reg from '../../../../../assets/plates/mexico/michoacan/reg2007.png';
+import michoacan_o3_blank from '../../../../../assets/plates/mexico/michoacan/blank2007.png';
+import michoacan_o3_blur from '../../../../../assets/plates/mexico/michoacan/blur2007.png';
+import morelos_reg from '../../../../../assets/plates/mexico/morelos/reg2023.png';
+import morelos_blank from '../../../../../assets/plates/mexico/morelos/blank2023.png';
+import morelos_blur from '../../../../../assets/plates/mexico/morelos/blur2023.png';
+import morelos_o0_reg from '../../../../../assets/plates/mexico/morelos/reg2019.png';
+import morelos_o0_blank from '../../../../../assets/plates/mexico/morelos/blank2019.png';
+import morelos_o0_blur from '../../../../../assets/plates/mexico/morelos/blur2019.png';
+import morelos_o1_reg from '../../../../../assets/plates/mexico/morelos/reg2013.png';
+import morelos_o1_blank from '../../../../../assets/plates/mexico/morelos/blank2013.png';
+import morelos_o1_blur from '../../../../../assets/plates/mexico/morelos/blur2013.png';
+import morelos_o2_reg from '../../../../../assets/plates/mexico/morelos/reg2008.png';
+import morelos_o2_blank from '../../../../../assets/plates/mexico/morelos/blank2008.png';
+import morelos_o2_blur from '../../../../../assets/plates/mexico/morelos/blur2008.png';
+import nayarit_reg from '../../../../../assets/plates/mexico/nayarit/reg2022.png';
+import nayarit_blank from '../../../../../assets/plates/mexico/nayarit/blank2022.png';
+import nayarit_blur from '../../../../../assets/plates/mexico/nayarit/blur2022.png';
+import nayarit_o0_reg from '../../../../../assets/plates/mexico/nayarit/reg2021.png';
+import nayarit_o0_blank from '../../../../../assets/plates/mexico/nayarit/blank2021.png';
+import nayarit_o0_blur from '../../../../../assets/plates/mexico/nayarit/blur2021.png';
+import nayarit_o1_reg from '../../../../../assets/plates/mexico/nayarit/reg2017.png';
+import nayarit_o1_blank from '../../../../../assets/plates/mexico/nayarit/blank2017.png';
+import nayarit_o1_blur from '../../../../../assets/plates/mexico/nayarit/blur2017.png';
+import nayarit_o2_reg from '../../../../../assets/plates/mexico/nayarit/reg2016.png';
+import nayarit_o2_blank from '../../../../../assets/plates/mexico/nayarit/blank2016.png';
+import nayarit_o2_blur from '../../../../../assets/plates/mexico/nayarit/blur2016.png';
+import nayarit_o3_reg from '../../../../../assets/plates/mexico/nayarit/reg2013.png';
+import nayarit_o3_blank from '../../../../../assets/plates/mexico/nayarit/blank2013.png';
+import nayarit_o3_blur from '../../../../../assets/plates/mexico/nayarit/blur2013.png';
+import nayarit_o4_reg from '../../../../../assets/plates/mexico/nayarit/reg2010.png';
+import nayarit_o4_blank from '../../../../../assets/plates/mexico/nayarit/blank2010.png';
+import nayarit_o4_blur from '../../../../../assets/plates/mexico/nayarit/blur2010.png';
+import nuevo_leon_reg from '../../../../../assets/plates/mexico/nuevo_leon/reg2022.png';
+import nuevo_leon_blank from '../../../../../assets/plates/mexico/nuevo_leon/blank2022.png';
+import nuevo_leon_blur from '../../../../../assets/plates/mexico/nuevo_leon/blur2022.png';
+import nuevo_leon_o0_reg from '../../../../../assets/plates/mexico/nuevo_leon/reg2016.png';
+import nuevo_leon_o0_blank from '../../../../../assets/plates/mexico/nuevo_leon/blank2016.png';
+import nuevo_leon_o0_blur from '../../../../../assets/plates/mexico/nuevo_leon/blur2016.png';
+import nuevo_leon_o1_reg from '../../../../../assets/plates/mexico/nuevo_leon/reg2011.png';
+import nuevo_leon_o1_blank from '../../../../../assets/plates/mexico/nuevo_leon/blank2011.png';
+import nuevo_leon_o1_blur from '../../../../../assets/plates/mexico/nuevo_leon/blur2011.png';
+import nuevo_leon_o2_reg from '../../../../../assets/plates/mexico/nuevo_leon/reg2008.png';
+import nuevo_leon_o2_blank from '../../../../../assets/plates/mexico/nuevo_leon/blank2008.png';
+import nuevo_leon_o2_blur from '../../../../../assets/plates/mexico/nuevo_leon/blur2008.png';
+import oaxaca_reg from '../../../../../assets/plates/mexico/oaxaca/reg2023.png';
+import oaxaca_blank from '../../../../../assets/plates/mexico/oaxaca/blank2023.png';
+import oaxaca_blur from '../../../../../assets/plates/mexico/oaxaca/blur2023.png';
+import oaxaca_o0_reg from '../../../../../assets/plates/mexico/oaxaca/reg2018.png';
+import oaxaca_o0_blank from '../../../../../assets/plates/mexico/oaxaca/blank2018.png';
+import oaxaca_o0_blur from '../../../../../assets/plates/mexico/oaxaca/blur2018.png';
+import oaxaca_o1_reg from '../../../../../assets/plates/mexico/oaxaca/reg2013.png';
+import oaxaca_o1_blank from '../../../../../assets/plates/mexico/oaxaca/blank2013.png';
+import oaxaca_o1_blur from '../../../../../assets/plates/mexico/oaxaca/blur2013.png';
+import oaxaca_o2_reg from '../../../../../assets/plates/mexico/oaxaca/reg2009.png';
+import oaxaca_o2_blank from '../../../../../assets/plates/mexico/oaxaca/blank2009.png';
+import oaxaca_o2_blur from '../../../../../assets/plates/mexico/oaxaca/blur2009.png';
+import puebla_reg from '../../../../../assets/plates/mexico/puebla/reg2020.png';
+import puebla_blank from '../../../../../assets/plates/mexico/puebla/blank2020.png';
+import puebla_blur from '../../../../../assets/plates/mexico/puebla/blur2020.png';
+import puebla_o0_reg from '../../../../../assets/plates/mexico/puebla/reg2019.png';
+import puebla_o0_blank from '../../../../../assets/plates/mexico/puebla/blank2019.png';
+import puebla_o0_blur from '../../../../../assets/plates/mexico/puebla/blur2019.png';
+import puebla_o1_reg from '../../../../../assets/plates/mexico/puebla/reg2011.png';
+import puebla_o1_blank from '../../../../../assets/plates/mexico/puebla/blank2011.png';
+import puebla_o1_blur from '../../../../../assets/plates/mexico/puebla/blur2011.png';
+import puebla_o2_reg from '../../../../../assets/plates/mexico/puebla/reg2010.png';
+import puebla_o2_blank from '../../../../../assets/plates/mexico/puebla/blank2010.png';
+import puebla_o2_blur from '../../../../../assets/plates/mexico/puebla/blur2010.png';
+import queretaro_reg from '../../../../../assets/plates/mexico/queretaro/reg2022.png';
+import queretaro_blank from '../../../../../assets/plates/mexico/queretaro/blank2022.png';
+import queretaro_blur from '../../../../../assets/plates/mexico/queretaro/blur2022.png';
+import queretaro_o0_reg from '../../../../../assets/plates/mexico/queretaro/reg2017.png';
+import queretaro_o0_blank from '../../../../../assets/plates/mexico/queretaro/blank2017.png';
+import queretaro_o0_blur from '../../../../../assets/plates/mexico/queretaro/blur2017.png';
+import queretaro_o1_reg from '../../../../../assets/plates/mexico/queretaro/reg2008.png';
+import queretaro_o1_blank from '../../../../../assets/plates/mexico/queretaro/blank2008.png';
+import queretaro_o1_blur from '../../../../../assets/plates/mexico/queretaro/blur2008.png';
+import quintana_roo_reg from '../../../../../assets/plates/mexico/quintana_roo/reg2023.png';
+import quintana_roo_blank from '../../../../../assets/plates/mexico/quintana_roo/blank2023.png';
+import quintana_roo_blur from '../../../../../assets/plates/mexico/quintana_roo/blur2023.png';
+import quintana_roo_o0_reg from '../../../../../assets/plates/mexico/quintana_roo/reg2020.png';
+import quintana_roo_o0_blank from '../../../../../assets/plates/mexico/quintana_roo/blank2020.png';
+import quintana_roo_o0_blur from '../../../../../assets/plates/mexico/quintana_roo/blur2020.png';
+import quintana_roo_o1_reg from '../../../../../assets/plates/mexico/quintana_roo/reg2017.png';
+import quintana_roo_o1_blank from '../../../../../assets/plates/mexico/quintana_roo/blank2017.png';
+import quintana_roo_o1_blur from '../../../../../assets/plates/mexico/quintana_roo/blur2017.png';
+import quintana_roo_o2_reg from '../../../../../assets/plates/mexico/quintana_roo/reg2014.png';
+import quintana_roo_o2_blank from '../../../../../assets/plates/mexico/quintana_roo/blank2014.png';
+import quintana_roo_o2_blur from '../../../../../assets/plates/mexico/quintana_roo/blur2014.png';
+import quintana_roo_o3_reg from '../../../../../assets/plates/mexico/quintana_roo/reg2011.png';
+import quintana_roo_o3_blank from '../../../../../assets/plates/mexico/quintana_roo/blank2011.png';
+import quintana_roo_o3_blur from '../../../../../assets/plates/mexico/quintana_roo/blur2011.png';
+import quintana_roo_o4_reg from '../../../../../assets/plates/mexico/quintana_roo/reg2007.png';
+import quintana_roo_o4_blank from '../../../../../assets/plates/mexico/quintana_roo/blank2007.png';
+import quintana_roo_o4_blur from '../../../../../assets/plates/mexico/quintana_roo/blur2007.png';
+import san_luis_potosi_reg from '../../../../../assets/plates/mexico/san_luis_potosi/reg2022.png';
+import san_luis_potosi_blank from '../../../../../assets/plates/mexico/san_luis_potosi/blank2022.png';
+import san_luis_potosi_blur from '../../../../../assets/plates/mexico/san_luis_potosi/blur2022.png';
+import san_luis_potosi_o0_reg from '../../../../../assets/plates/mexico/san_luis_potosi/reg2016.png';
+import san_luis_potosi_o0_blank from '../../../../../assets/plates/mexico/san_luis_potosi/blank2016.png';
+import san_luis_potosi_o0_blur from '../../../../../assets/plates/mexico/san_luis_potosi/blur2016.png';
+import san_luis_potosi_o1_reg from '../../../../../assets/plates/mexico/san_luis_potosi/reg2013.png';
+import san_luis_potosi_o1_blank from '../../../../../assets/plates/mexico/san_luis_potosi/blank2013.png';
+import san_luis_potosi_o1_blur from '../../../../../assets/plates/mexico/san_luis_potosi/blur2013.png';
+import san_luis_potosi_o2_reg from '../../../../../assets/plates/mexico/san_luis_potosi/reg2010.png';
+import san_luis_potosi_o2_blank from '../../../../../assets/plates/mexico/san_luis_potosi/blank2010.png';
+import san_luis_potosi_o2_blur from '../../../../../assets/plates/mexico/san_luis_potosi/blur2010.png';
+import sinaloa_reg from '../../../../../assets/plates/mexico/sinaloa/reg2021.png';
+import sinaloa_blank from '../../../../../assets/plates/mexico/sinaloa/blank2021.png';
+import sinaloa_blur from '../../../../../assets/plates/mexico/sinaloa/blur2021.png';
+import sinaloa_o0_reg from '../../../../../assets/plates/mexico/sinaloa/reg2017.png';
+import sinaloa_o0_blank from '../../../../../assets/plates/mexico/sinaloa/blank2017.png';
+import sinaloa_o0_blur from '../../../../../assets/plates/mexico/sinaloa/blur2017.png';
+import sinaloa_o1_reg from '../../../../../assets/plates/mexico/sinaloa/reg2012.png';
+import sinaloa_o1_blank from '../../../../../assets/plates/mexico/sinaloa/blank2012.png';
+import sinaloa_o1_blur from '../../../../../assets/plates/mexico/sinaloa/blur2012.png';
+import sinaloa_o2_reg from '../../../../../assets/plates/mexico/sinaloa/reg2006.png';
+import sinaloa_o2_blank from '../../../../../assets/plates/mexico/sinaloa/blank2006.png';
+import sinaloa_o2_blur from '../../../../../assets/plates/mexico/sinaloa/blur2006.png';
+import sonora_reg from '../../../../../assets/plates/mexico/sonora/reg2014.png';
+import sonora_blank from '../../../../../assets/plates/mexico/sonora/blank2014.png';
+import sonora_blur from '../../../../../assets/plates/mexico/sonora/blur2014.png';
+import sonora_o0_reg from '../../../../../assets/plates/mexico/sonora/reg2011.png';
+import sonora_o0_blank from '../../../../../assets/plates/mexico/sonora/blank2011.png';
+import sonora_o0_blur from '../../../../../assets/plates/mexico/sonora/blur2011.png';
+import sonora_o1_reg from '../../../../../assets/plates/mexico/sonora/reg2008.png';
+import sonora_o1_blank from '../../../../../assets/plates/mexico/sonora/blank2008.png';
+import sonora_o1_blur from '../../../../../assets/plates/mexico/sonora/blur2008.png';
+import tabasco_reg from '../../../../../assets/plates/mexico/tabasco/reg2020.png';
+import tabasco_blank from '../../../../../assets/plates/mexico/tabasco/blank2020.png';
+import tabasco_blur from '../../../../../assets/plates/mexico/tabasco/blur2020.png';
+import tabasco_o0_reg from '../../../../../assets/plates/mexico/tabasco/reg2017.png';
+import tabasco_o0_blank from '../../../../../assets/plates/mexico/tabasco/blank2017.png';
+import tabasco_o0_blur from '../../../../../assets/plates/mexico/tabasco/blur2017.png';
+import tabasco_o1_reg from '../../../../../assets/plates/mexico/tabasco/reg2014.png';
+import tabasco_o1_blank from '../../../../../assets/plates/mexico/tabasco/blank2014.png';
+import tabasco_o1_blur from '../../../../../assets/plates/mexico/tabasco/blur2014.png';
+import tabasco_o2_reg from '../../../../../assets/plates/mexico/tabasco/reg2009.png';
+import tabasco_o2_blank from '../../../../../assets/plates/mexico/tabasco/blank2009.png';
+import tabasco_o2_blur from '../../../../../assets/plates/mexico/tabasco/blur2009.png';
+import tamaulipas_reg from '../../../../../assets/plates/mexico/tamaulipas/reg2023.png';
+import tamaulipas_blank from '../../../../../assets/plates/mexico/tamaulipas/blank2023.png';
+import tamaulipas_blur from '../../../../../assets/plates/mexico/tamaulipas/blur2023.png';
+import tamaulipas_o0_reg from '../../../../../assets/plates/mexico/tamaulipas/reg2022.png';
+import tamaulipas_o0_blank from '../../../../../assets/plates/mexico/tamaulipas/blank2022.png';
+import tamaulipas_o0_blur from '../../../../../assets/plates/mexico/tamaulipas/blur2022.png';
+import tamaulipas_o1_reg from '../../../../../assets/plates/mexico/tamaulipas/reg2019.png';
+import tamaulipas_o1_blank from '../../../../../assets/plates/mexico/tamaulipas/blank2019.png';
+import tamaulipas_o1_blur from '../../../../../assets/plates/mexico/tamaulipas/blur2019.png';
+import tamaulipas_o2_reg from '../../../../../assets/plates/mexico/tamaulipas/reg2016.png';
+import tamaulipas_o2_blank from '../../../../../assets/plates/mexico/tamaulipas/blank2016.png';
+import tamaulipas_o2_blur from '../../../../../assets/plates/mexico/tamaulipas/blur2016.png';
+import tamaulipas_o3_reg from '../../../../../assets/plates/mexico/tamaulipas/reg2013.png';
+import tamaulipas_o3_blank from '../../../../../assets/plates/mexico/tamaulipas/blank2013.png';
+import tamaulipas_o3_blur from '../../../../../assets/plates/mexico/tamaulipas/blur2013.png';
+import tamaulipas_o4_reg from '../../../../../assets/plates/mexico/tamaulipas/reg2010.png';
+import tamaulipas_o4_blank from '../../../../../assets/plates/mexico/tamaulipas/blank2010.png';
+import tamaulipas_o4_blur from '../../../../../assets/plates/mexico/tamaulipas/blur2010.png';
+import tlaxcala_reg from '../../../../../assets/plates/mexico/tlaxcala/reg2023.png';
+import tlaxcala_blank from '../../../../../assets/plates/mexico/tlaxcala/blank2023.png';
+import tlaxcala_blur from '../../../../../assets/plates/mexico/tlaxcala/blur2023.png';
+import tlaxcala_o0_reg from '../../../../../assets/plates/mexico/tlaxcala/reg2020.png';
+import tlaxcala_o0_blank from '../../../../../assets/plates/mexico/tlaxcala/blank2020.png';
+import tlaxcala_o0_blur from '../../../../../assets/plates/mexico/tlaxcala/blur2020.png';
+import tlaxcala_o1_reg from '../../../../../assets/plates/mexico/tlaxcala/reg2017.png';
+import tlaxcala_o1_blank from '../../../../../assets/plates/mexico/tlaxcala/blank2017.png';
+import tlaxcala_o1_blur from '../../../../../assets/plates/mexico/tlaxcala/blur2017.png';
+import tlaxcala_o2_reg from '../../../../../assets/plates/mexico/tlaxcala/reg2015.png';
+import tlaxcala_o2_blank from '../../../../../assets/plates/mexico/tlaxcala/blank2015.png';
+import tlaxcala_o2_blur from '../../../../../assets/plates/mexico/tlaxcala/blur2015.png';
+import tlaxcala_o3_reg from '../../../../../assets/plates/mexico/tlaxcala/reg2012.png';
+import tlaxcala_o3_blank from '../../../../../assets/plates/mexico/tlaxcala/blank2012.png';
+import tlaxcala_o3_blur from '../../../../../assets/plates/mexico/tlaxcala/blur2012.png';
+import tlaxcala_o4_reg from '../../../../../assets/plates/mexico/tlaxcala/reg2006.png';
+import tlaxcala_o4_blank from '../../../../../assets/plates/mexico/tlaxcala/blank2006.png';
+import tlaxcala_o4_blur from '../../../../../assets/plates/mexico/tlaxcala/blur2006.png';
+import veracruz_reg from '../../../../../assets/plates/mexico/veracruz/reg2019.png';
+import veracruz_blank from '../../../../../assets/plates/mexico/veracruz/blank2019.png';
+import veracruz_blur from '../../../../../assets/plates/mexico/veracruz/blur2019.png';
+import veracruz_o0_reg from '../../../../../assets/plates/mexico/veracruz/reg2017.png';
+import veracruz_o0_blank from '../../../../../assets/plates/mexico/veracruz/blank2017.png';
+import veracruz_o0_blur from '../../../../../assets/plates/mexico/veracruz/blur2017.png';
+import veracruz_o1_reg from '../../../../../assets/plates/mexico/veracruz/reg2011.png';
+import veracruz_o1_blank from '../../../../../assets/plates/mexico/veracruz/blank2011.png';
+import veracruz_o1_blur from '../../../../../assets/plates/mexico/veracruz/blur2011.png';
+import veracruz_o2_reg from '../../../../../assets/plates/mexico/veracruz/reg2008.png';
+import veracruz_o2_blank from '../../../../../assets/plates/mexico/veracruz/blank2008.png';
+import veracruz_o2_blur from '../../../../../assets/plates/mexico/veracruz/blur2008.png';
+import yucatan_reg from '../../../../../assets/plates/mexico/yucatan/reg2020.png';
+import yucatan_blank from '../../../../../assets/plates/mexico/yucatan/blank2020.png';
+import yucatan_blur from '../../../../../assets/plates/mexico/yucatan/blur2020.png';
+import yucatan_o0_reg from '../../../../../assets/plates/mexico/yucatan/reg2017.png';
+import yucatan_o0_blank from '../../../../../assets/plates/mexico/yucatan/blank2017.png';
+import yucatan_o0_blur from '../../../../../assets/plates/mexico/yucatan/blur2017.png';
+import yucatan_o1_reg from '../../../../../assets/plates/mexico/yucatan/reg2013.png';
+import yucatan_o1_blank from '../../../../../assets/plates/mexico/yucatan/blank2013.png';
+import yucatan_o1_blur from '../../../../../assets/plates/mexico/yucatan/blur2013.png';
+import yucatan_o2_reg from '../../../../../assets/plates/mexico/yucatan/reg2009.png';
+import yucatan_o2_blank from '../../../../../assets/plates/mexico/yucatan/blank2009.png';
+import yucatan_o2_blur from '../../../../../assets/plates/mexico/yucatan/blur2009.png';
+import zacatecas_reg from '../../../../../assets/plates/mexico/zacatecas/reg2022.png';
+import zacatecas_blank from '../../../../../assets/plates/mexico/zacatecas/blank2022.png';
+import zacatecas_blur from '../../../../../assets/plates/mexico/zacatecas/blur2022.png';
+import zacatecas_o0_reg from '../../../../../assets/plates/mexico/zacatecas/reg2017.png';
+import zacatecas_o0_blank from '../../../../../assets/plates/mexico/zacatecas/blank2017.png';
+import zacatecas_o0_blur from '../../../../../assets/plates/mexico/zacatecas/blur2017.png';
+import zacatecas_o1_reg from '../../../../../assets/plates/mexico/zacatecas/reg2011.png';
+import zacatecas_o1_blank from '../../../../../assets/plates/mexico/zacatecas/blank2011.png';
+import zacatecas_o1_blur from '../../../../../assets/plates/mexico/zacatecas/blur2011.png';
+import zacatecas_o2_reg from '../../../../../assets/plates/mexico/zacatecas/reg2008.png';
+import zacatecas_o2_blank from '../../../../../assets/plates/mexico/zacatecas/blank2008.png';
+import zacatecas_o2_blur from '../../../../../assets/plates/mexico/zacatecas/blur2008.png';
+
+
+import { CANADA_PROVINCE_NAMES, MEXICO_STATE_NAMES, STATE_NAMES, TERRITORY_NAMES, US_STATE_NAMES } from '../constants';
 
 
 export enum PLATE_TYPE {
@@ -911,59 +1338,48 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     [CANADA_PROVINCE_NAMES.BRITISH_COLUMBIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[british_columbia_reg, british_columbia_blank, british_columbia_blur, [45, 80, 25, 18, 37, 80], 1986]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.YUKON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[yukon_reg, yukon_blank, yukon_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1990]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.ALBERTA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[alberta_reg, alberta_blank, alberta_blur, [5, 80, 14, 18, 5, 5, 82, 80], 1984]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.NORTHWEST_TERRITORIES, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[northwest_territories_reg, northwest_territories_blank, northwest_territories_blur, [60, 10, 14, 18], 2010]]], //
         [PLATE_TYPE.OLD, [
             [northwest_territories_o0_reg, northwest_territories_o0_blank, northwest_territories_o0_blur, [40, 80, 14, 18], 1986, 2010] //
         ]]
     ])],
-    
     [CANADA_PROVINCE_NAMES.NUNAVUT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[nunavut_reg, nunavut_blank, nunavut_blur, [30, 80, 14, 18, 30, 80, 60, 80], 2012]]], //
         [PLATE_TYPE.OLD, [
             [nunavut_o0_reg, nunavut_o0_blank, nunavut_o0_blur, [40, 80, 14, 18, 40, 80, 5, 80], 2000, 2012] //
         ]]
     ])],
-    
     [CANADA_PROVINCE_NAMES.SASKATCHEWAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[saskatchewan_reg, saskatchewan_blank, saskatchewan_blur, [82, 80, 14, 18], 2009]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.MANITOBA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[manitoba_reg, manitoba_blank, manitoba_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1997]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.ONTARIO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[ontario_reg, ontario_blank, ontario_blur, [82, 5, 14, 18], 1996]]], //
         [PLATE_TYPE.OLD, [
             [ontario_o0_reg, ontario_o0_blank, ontario_o0_blur, [82, 5, 14, 18], 2023, 2023] //
         ]]
     ])],
-    
     [CANADA_PROVINCE_NAMES.QUEBEC, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[quebec_reg, quebec_blank, quebec_blur, [5, 80, 14, 18, 5, 5, 82, 80], 1983]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.NEW_BRUNSWICK, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[new_brunswick_reg, new_brunswick_blank, new_brunswick_blur, [82, 5, 14, 18], 2011]]], //
         [PLATE_TYPE.OLD, [
             [new_brunswick_o0_reg, new_brunswick_o0_blank, new_brunswick_o0_blur, [82, 5, 14, 18], 1992, 2011] //
         ]]
     ])],
-    
     [CANADA_PROVINCE_NAMES.NOVA_SCOTIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[nova_scotia_reg, nova_scotia_blank, nova_scotia_blur, [82, 5, 14, 18], 2012]]] //
     ])],
-    
     [CANADA_PROVINCE_NAMES.NEWFOUNDLAND_AND_LABRADOR, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[newfoundland_and_labrador_reg, newfoundland_and_labrador_blank, newfoundland_and_labrador_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2022]]], //
         [PLATE_TYPE.OLD, [
@@ -971,7 +1387,6 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [newfoundland_and_labrador_o1_reg, newfoundland_and_labrador_o1_blank, newfoundland_and_labrador_o1_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2004, 2008] //
         ]]
     ])],
-    
     [CANADA_PROVINCE_NAMES.PRINCE_EDWARD_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[prince_edward_island_reg, prince_edward_island_blank, prince_edward_island_blur, [82, 5, 14, 18], 2022]]], //
         [PLATE_TYPE.OLD, [
@@ -979,7 +1394,280 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [prince_edward_island_o1_reg, prince_edward_island_o1_blank, prince_edward_island_o1_blur, [82, 5, 14, 18], 2007, 2013], //
             [prince_edward_island_o2_reg, prince_edward_island_o2_blank, prince_edward_island_o2_blur, [82, 80, 14, 18], 1997, 2007] //
         ]]
+    ])],
+
+    /* Mexico */
+    [MEXICO_STATE_NAMES.AGUASCALIENTES, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[aguascalientes_reg, aguascalientes_blank, aguascalientes_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [aguascalientes_o0_reg, aguascalientes_o0_blank, aguascalientes_o0_blur, [100, 100, 14, 18], 2017, 2023],
+            [aguascalientes_o1_reg, aguascalientes_o1_blank, aguascalientes_o1_blur, [100, 100, 14, 18], 2012, 2017],
+            [aguascalientes_o2_reg, aguascalientes_o2_blank, aguascalientes_o2_blur, [100, 100, 14, 18], 2005, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.BAJA_CALIFORNIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[baja_california_reg, baja_california_blank, baja_california_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [baja_california_o0_reg, baja_california_o0_blank, baja_california_o0_blur, [100, 100, 14, 18], 2020, 2022],
+            [baja_california_o1_reg, baja_california_o1_blank, baja_california_o1_blur, [100, 100, 14, 18], 2017, 2020],
+            [baja_california_o2_reg, baja_california_o2_blank, baja_california_o2_blur, [100, 100, 14, 18], 2014, 2017],
+            [baja_california_o3_reg, baja_california_o3_blank, baja_california_o3_blur, [100, 100, 14, 18], 2012, 2014],
+            [baja_california_o4_reg, baja_california_o4_blank, baja_california_o4_blur, [100, 100, 14, 18], 2010, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.BAJA_CALIFORNIA_SUR, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[baja_california_sur_reg, baja_california_sur_blank, baja_california_sur_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [baja_california_sur_o0_reg, baja_california_sur_o0_blank, baja_california_sur_o0_blur, [100, 100, 14, 18], 2017, 2022],
+            [baja_california_sur_o1_reg, baja_california_sur_o1_blank, baja_california_sur_o1_blur, [100, 100, 14, 18], 2006, 2017],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.CAMPECHE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[campeche_reg, campeche_blank, campeche_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [campeche_o0_reg, campeche_o0_blank, campeche_o0_blur, [100, 100, 14, 18], 2020, 2023],
+            [campeche_o1_reg, campeche_o1_blank, campeche_o1_blur, [100, 100, 14, 18], 2017, 2020],
+            [campeche_o2_reg, campeche_o2_blank, campeche_o2_blur, [100, 100, 14, 18], 2014, 2017],
+            [campeche_o3_reg, campeche_o3_blank, campeche_o3_blur, [100, 100, 14, 18], 2011, 2014],
+            [campeche_o4_reg, campeche_o4_blank, campeche_o4_blur, [100, 100, 14, 18], 2008, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.CHIHUAHUA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[chihuahua_reg, chihuahua_blank, chihuahua_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [chihuahua_o0_reg, chihuahua_o0_blank, chihuahua_o0_blur, [100, 100, 14, 18], 2022, 2023],
+            [chihuahua_o1_reg, chihuahua_o1_blank, chihuahua_o1_blur, [100, 100, 14, 18], 2017, 2022],
+            [chihuahua_o2_reg, chihuahua_o2_blank, chihuahua_o2_blur, [100, 100, 14, 18], 2016, 2017],
+            [chihuahua_o3_reg, chihuahua_o3_blank, chihuahua_o3_blur, [100, 100, 14, 18], 2015, 2016],
+            [chihuahua_o4_reg, chihuahua_o4_blank, chihuahua_o4_blur, [100, 100, 14, 18], 2012, 2015],
+            [chihuahua_o5_reg, chihuahua_o5_blank, chihuahua_o5_blur, [100, 100, 14, 18], 2009, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.CIUDAD_DE_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[ciudad_de_mexico_reg, ciudad_de_mexico_blank, ciudad_de_mexico_blur, [100, 100, 14, 18], 2019]]],
+        [PLATE_TYPE.OLD, [
+            [ciudad_de_mexico_o0_reg, ciudad_de_mexico_o0_blank, ciudad_de_mexico_o0_blur, [100, 100, 14, 18], 2016, 2019],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.COAHUILA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[coahuila_reg, coahuila_blank, coahuila_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [coahuila_o0_reg, coahuila_o0_blank, coahuila_o0_blur, [100, 100, 14, 18], 2019, 2022],
+            [coahuila_o1_reg, coahuila_o1_blank, coahuila_o1_blur, [100, 100, 14, 18], 2017, 2019],
+            [coahuila_o2_reg, coahuila_o2_blank, coahuila_o2_blur, [100, 100, 14, 18], 2016, 2017],
+            [coahuila_o3_reg, coahuila_o3_blank, coahuila_o3_blur, [100, 100, 14, 18], 2013, 2016],
+            [coahuila_o4_reg, coahuila_o4_blank, coahuila_o4_blur, [100, 100, 14, 18], 2010, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.COLIMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[colima_reg, colima_blank, colima_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [colima_o0_reg, colima_o0_blank, colima_o0_blur, [100, 100, 14, 18], 2017, 2022],
+            [colima_o1_reg, colima_o1_blank, colima_o1_blur, [100, 100, 14, 18], 2010, 2017],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.DISTRITO_FEDERAL, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[distrito_federal_reg, distrito_federal_blank, distrito_federal_blur, [100, 100, 14, 18], 2013]]],
+        [PLATE_TYPE.OLD, [
+            [distrito_federal_o0_reg, distrito_federal_o0_blank, distrito_federal_o0_blur, [100, 100, 14, 18], 2008, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.DURANGO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[durango_reg, durango_blank, durango_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [durango_o0_reg, durango_o0_blank, durango_o0_blur, [100, 100, 14, 18], 2017, 2023],
+            [durango_o1_reg, durango_o1_blank, durango_o1_blur, [100, 100, 14, 18], 2009, 2017],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.ESTADO_DE_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[estado_de_mexico_reg, estado_de_mexico_blank, estado_de_mexico_blur, [100, 100, 14, 18], 2024]]],
+        [PLATE_TYPE.OLD, [
+            [estado_de_mexico_o0_reg, estado_de_mexico_o0_blank, estado_de_mexico_o0_blur, [100, 100, 14, 18], 2018, 2024],
+            [estado_de_mexico_o1_reg, estado_de_mexico_o1_blank, estado_de_mexico_o1_blur, [100, 100, 14, 18], 2016, 2018],
+            [estado_de_mexico_o2_reg, estado_de_mexico_o2_blank, estado_de_mexico_o2_blur, [100, 100, 14, 18], 2015, 2016],
+            [estado_de_mexico_o3_reg, estado_de_mexico_o3_blank, estado_de_mexico_o3_blur, [100, 100, 14, 18], 2009, 2015],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.GUANAJUATO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[guanajuato_reg, guanajuato_blank, guanajuato_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.OLD, [
+            [guanajuato_o0_reg, guanajuato_o0_blank, guanajuato_o0_blur, [100, 100, 14, 18], 2017, 2020],
+            [guanajuato_o1_reg, guanajuato_o1_blank, guanajuato_o1_blur, [100, 100, 14, 18], 2016, 2017],
+            [guanajuato_o2_reg, guanajuato_o2_blank, guanajuato_o2_blur, [100, 100, 14, 18], 2008, 2016],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.GUERRERO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[guerrero_reg, guerrero_blank, guerrero_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [guerrero_o0_reg, guerrero_o0_blank, guerrero_o0_blur, [100, 100, 14, 18], 2018, 2022],
+            [guerrero_o1_reg, guerrero_o1_blank, guerrero_o1_blur, [100, 100, 14, 18], 2016, 2018],
+            [guerrero_o2_reg, guerrero_o2_blank, guerrero_o2_blur, [100, 100, 14, 18], 2015, 2016],
+            [guerrero_o3_reg, guerrero_o3_blank, guerrero_o3_blur, [100, 100, 14, 18], 2012, 2015],
+            [guerrero_o4_reg, guerrero_o4_blank, guerrero_o4_blur, [100, 100, 14, 18], 2009, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.HIDALGO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[hidalgo_reg, hidalgo_blank, hidalgo_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [hidalgo_o0_reg, hidalgo_o0_blank, hidalgo_o0_blur, [100, 100, 14, 18], 2018, 2023],
+            [hidalgo_o1_reg, hidalgo_o1_blank, hidalgo_o1_blur, [100, 100, 14, 18], 2013, 2018],
+            [hidalgo_o2_reg, hidalgo_o2_blank, hidalgo_o2_blur, [100, 100, 14, 18], 2006, 2013],
+            [hidalgo_o3_reg, hidalgo_o3_blank, hidalgo_o3_blur, [100, 100, 14, 18], 2002, 2006],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.JALISCO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[jalisco_reg, jalisco_blank, jalisco_blur, [100, 100, 14, 18], 2019]]],
+        [PLATE_TYPE.OLD, [
+            [jalisco_o0_reg, jalisco_o0_blank, jalisco_o0_blur, [100, 100, 14, 18], 2017, 2019],
+            [jalisco_o1_reg, jalisco_o1_blank, jalisco_o1_blur, [100, 100, 14, 18], 2011, 2017],
+            [jalisco_o2_reg, jalisco_o2_blank, jalisco_o2_blur, [100, 100, 14, 18], 2002, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.MICHOACAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[michoacan_reg, michoacan_blank, michoacan_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [michoacan_o0_reg, michoacan_o0_blank, michoacan_o0_blur, [100, 100, 14, 18], 2019, 2022],
+            [michoacan_o1_reg, michoacan_o1_blank, michoacan_o1_blur, [100, 100, 14, 18], 2016, 2019],
+            [michoacan_o2_reg, michoacan_o2_blank, michoacan_o2_blur, [100, 100, 14, 18], 2012, 2016],
+            [michoacan_o3_reg, michoacan_o3_blank, michoacan_o3_blur, [100, 100, 14, 18], 2007, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.MORELOS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[morelos_reg, morelos_blank, morelos_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [morelos_o0_reg, morelos_o0_blank, morelos_o0_blur, [100, 100, 14, 18], 2019, 2023],
+            [morelos_o1_reg, morelos_o1_blank, morelos_o1_blur, [100, 100, 14, 18], 2013, 2019],
+            [morelos_o2_reg, morelos_o2_blank, morelos_o2_blur, [100, 100, 14, 18], 2008, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.NAYARIT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[nayarit_reg, nayarit_blank, nayarit_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [nayarit_o0_reg, nayarit_o0_blank, nayarit_o0_blur, [100, 100, 14, 18], 2021, 2022],
+            [nayarit_o1_reg, nayarit_o1_blank, nayarit_o1_blur, [100, 100, 14, 18], 2017, 2021],
+            [nayarit_o2_reg, nayarit_o2_blank, nayarit_o2_blur, [100, 100, 14, 18], 2016, 2017],
+            [nayarit_o3_reg, nayarit_o3_blank, nayarit_o3_blur, [100, 100, 14, 18], 2013, 2016],
+            [nayarit_o4_reg, nayarit_o4_blank, nayarit_o4_blur, [100, 100, 14, 18], 2010, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.NUEVO_LEON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[nuevo_leon_reg, nuevo_leon_blank, nuevo_leon_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [nuevo_leon_o0_reg, nuevo_leon_o0_blank, nuevo_leon_o0_blur, [100, 100, 14, 18], 2016, 2022],
+            [nuevo_leon_o1_reg, nuevo_leon_o1_blank, nuevo_leon_o1_blur, [100, 100, 14, 18], 2011, 2016],
+            [nuevo_leon_o2_reg, nuevo_leon_o2_blank, nuevo_leon_o2_blur, [100, 100, 14, 18], 2008, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.OAXACA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[oaxaca_reg, oaxaca_blank, oaxaca_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [oaxaca_o0_reg, oaxaca_o0_blank, oaxaca_o0_blur, [100, 100, 14, 18], 2018, 2023],
+            [oaxaca_o1_reg, oaxaca_o1_blank, oaxaca_o1_blur, [100, 100, 14, 18], 2013, 2018],
+            [oaxaca_o2_reg, oaxaca_o2_blank, oaxaca_o2_blur, [100, 100, 14, 18], 2009, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.PUEBLA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[puebla_reg, puebla_blank, puebla_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.OLD, [
+            [puebla_o0_reg, puebla_o0_blank, puebla_o0_blur, [100, 100, 14, 18], 2019, 2020],
+            [puebla_o1_reg, puebla_o1_blank, puebla_o1_blur, [100, 100, 14, 18], 2011, 2019],
+            [puebla_o2_reg, puebla_o2_blank, puebla_o2_blur, [100, 100, 14, 18], 2010, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.QUERETARO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[queretaro_reg, queretaro_blank, queretaro_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [queretaro_o0_reg, queretaro_o0_blank, queretaro_o0_blur, [100, 100, 14, 18], 2017, 2022],
+            [queretaro_o1_reg, queretaro_o1_blank, queretaro_o1_blur, [100, 100, 14, 18], 2008, 2017],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.QUINTANA_ROO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[quintana_roo_reg, quintana_roo_blank, quintana_roo_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [quintana_roo_o0_reg, quintana_roo_o0_blank, quintana_roo_o0_blur, [100, 100, 14, 18], 2020, 2023],
+            [quintana_roo_o1_reg, quintana_roo_o1_blank, quintana_roo_o1_blur, [100, 100, 14, 18], 2017, 2020],
+            [quintana_roo_o2_reg, quintana_roo_o2_blank, quintana_roo_o2_blur, [100, 100, 14, 18], 2014, 2017],
+            [quintana_roo_o3_reg, quintana_roo_o3_blank, quintana_roo_o3_blur, [100, 100, 14, 18], 2011, 2014],
+            [quintana_roo_o4_reg, quintana_roo_o4_blank, quintana_roo_o4_blur, [100, 100, 14, 18], 2007, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.SAN_LUIS_POTOSI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[san_luis_potosi_reg, san_luis_potosi_blank, san_luis_potosi_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [san_luis_potosi_o0_reg, san_luis_potosi_o0_blank, san_luis_potosi_o0_blur, [100, 100, 14, 18], 2016, 2022],
+            [san_luis_potosi_o1_reg, san_luis_potosi_o1_blank, san_luis_potosi_o1_blur, [100, 100, 14, 18], 2013, 2016],
+            [san_luis_potosi_o2_reg, san_luis_potosi_o2_blank, san_luis_potosi_o2_blur, [100, 100, 14, 18], 2010, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.SINALOA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[sinaloa_reg, sinaloa_blank, sinaloa_blur, [100, 100, 14, 18], 2021]]],
+        [PLATE_TYPE.OLD, [
+            [sinaloa_o0_reg, sinaloa_o0_blank, sinaloa_o0_blur, [100, 100, 14, 18], 2017, 2021],
+            [sinaloa_o1_reg, sinaloa_o1_blank, sinaloa_o1_blur, [100, 100, 14, 18], 2012, 2017],
+            [sinaloa_o2_reg, sinaloa_o2_blank, sinaloa_o2_blur, [100, 100, 14, 18], 2006, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.SONORA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[sonora_reg, sonora_blank, sonora_blur, [100, 100, 14, 18], 2014]]],
+        [PLATE_TYPE.OLD, [
+            [sonora_o0_reg, sonora_o0_blank, sonora_o0_blur, [100, 100, 14, 18], 2011, 2014],
+            [sonora_o1_reg, sonora_o1_blank, sonora_o1_blur, [100, 100, 14, 18], 2008, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.TABASCO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[tabasco_reg, tabasco_blank, tabasco_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.OLD, [
+            [tabasco_o0_reg, tabasco_o0_blank, tabasco_o0_blur, [100, 100, 14, 18], 2017, 2020],
+            [tabasco_o1_reg, tabasco_o1_blank, tabasco_o1_blur, [100, 100, 14, 18], 2014, 2017],
+            [tabasco_o2_reg, tabasco_o2_blank, tabasco_o2_blur, [100, 100, 14, 18], 2009, 2014],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.TAMAULIPAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[tamaulipas_reg, tamaulipas_blank, tamaulipas_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [tamaulipas_o0_reg, tamaulipas_o0_blank, tamaulipas_o0_blur, [100, 100, 14, 18], 2022, 2023],
+            [tamaulipas_o1_reg, tamaulipas_o1_blank, tamaulipas_o1_blur, [100, 100, 14, 18], 2019, 2022],
+            [tamaulipas_o2_reg, tamaulipas_o2_blank, tamaulipas_o2_blur, [100, 100, 14, 18], 2016, 2019],
+            [tamaulipas_o3_reg, tamaulipas_o3_blank, tamaulipas_o3_blur, [100, 100, 14, 18], 2013, 2016],
+            [tamaulipas_o4_reg, tamaulipas_o4_blank, tamaulipas_o4_blur, [100, 100, 14, 18], 2010, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.TLAXCALA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[tlaxcala_reg, tlaxcala_blank, tlaxcala_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.OLD, [
+            [tlaxcala_o0_reg, tlaxcala_o0_blank, tlaxcala_o0_blur, [100, 100, 14, 18], 2020, 2023],
+            [tlaxcala_o1_reg, tlaxcala_o1_blank, tlaxcala_o1_blur, [100, 100, 14, 18], 2017, 2020],
+            [tlaxcala_o2_reg, tlaxcala_o2_blank, tlaxcala_o2_blur, [100, 100, 14, 18], 2015, 2017],
+            [tlaxcala_o3_reg, tlaxcala_o3_blank, tlaxcala_o3_blur, [100, 100, 14, 18], 2012, 2015],
+            [tlaxcala_o4_reg, tlaxcala_o4_blank, tlaxcala_o4_blur, [100, 100, 14, 18], 2006, 2012],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.VERACRUZ, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+
+        [PLATE_TYPE.REGULAR, [[veracruz_reg, veracruz_blank, veracruz_blur, [100, 100, 14, 18], 2019]]],
+        [PLATE_TYPE.OLD, [
+            [veracruz_o0_reg, veracruz_o0_blank, veracruz_o0_blur, [100, 100, 14, 18], 2017, 2019],
+            [veracruz_o1_reg, veracruz_o1_blank, veracruz_o1_blur, [100, 100, 14, 18], 2011, 2017],
+            [veracruz_o2_reg, veracruz_o2_blank, veracruz_o2_blur, [100, 100, 14, 18], 2008, 2011],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.YUCATAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[yucatan_reg, yucatan_blank, yucatan_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.OLD, [
+            [yucatan_o0_reg, yucatan_o0_blank, yucatan_o0_blur, [100, 100, 14, 18], 2017, 2020],
+            [yucatan_o1_reg, yucatan_o1_blank, yucatan_o1_blur, [100, 100, 14, 18], 2013, 2017],
+            [yucatan_o2_reg, yucatan_o2_blank, yucatan_o2_blur, [100, 100, 14, 18], 2009, 2013],
+        ]],
+    ])],
+    [MEXICO_STATE_NAMES.ZACATECAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[zacatecas_reg, zacatecas_blank, zacatecas_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.OLD, [
+            [zacatecas_o0_reg, zacatecas_o0_blank, zacatecas_o0_blur, [100, 100, 14, 18], 2017, 2022],
+            [zacatecas_o1_reg, zacatecas_o1_blank, zacatecas_o1_blur, [100, 100, 14, 18], 2011, 2017],
+            [zacatecas_o2_reg, zacatecas_o2_blank, zacatecas_o2_blur, [100, 100, 14, 18], 2008, 2011],
+        ]],
     ])]
+
 ]);
 
 

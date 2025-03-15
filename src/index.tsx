@@ -15,14 +15,11 @@ root.render(
     <BrowserRouter>
       <Routes>
         <Route index element={<Navigate to={Path.HOME} replace />} />
-        <Route path={Path.HOME} element={<Frame path={Path.HOME} />} />
-        <Route path={Path.ABOUT} element={<Frame path={Path.ABOUT} />} />
-        <Route path={Path.PROJECTS} element={<Frame path={Path.PROJECTS} />} />
-        <Route path={Path.XGEO} element={<Frame path={Path.XGEO} />} />
-        <Route path={Path.XGEO_US} element={<Frame path={Path.XGEO_US} />} />
-        <Route path={Path.XGEO_BR} element={<Frame path={Path.XGEO_BR} />} />
-        <Route path={Path.XGEO_MONG} element={<Frame path={Path.XGEO_MONG} />} />
-        <Route path={Path.SOON} element={<Frame path={Path.SOON} />} />
+        {
+          Object.keys(Path).map((key) => {
+            return <Route key={key} path={Path[key as keyof typeof Path]} element={<Frame path={Path[key as keyof typeof Path]} />} />
+          })
+        }
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
