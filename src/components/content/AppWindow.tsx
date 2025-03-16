@@ -13,9 +13,9 @@ export interface AppWindowProps {
 export const getContentSize = (type: ContentType) => {
     switch (type) {
         case ContentType.HOME:
-            return 500;
+            return 700;
         case ContentType.ABOUT:
-            return 500;
+            return 700;
         case ContentType.PROJECTS:
             return 800;
         case ContentType.XGEO:
@@ -27,7 +27,7 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_MONG:
             return 900;
         case ContentType.SOON:
-            return 500;
+            return 700;
     }
 }
 

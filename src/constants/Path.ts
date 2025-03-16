@@ -7,4 +7,8 @@ export enum Path {
     XGEO_BR = "/xgeo/brazil/phone-codes",
     XGEO_MONG = "/xgeo/mongolia/driving-direction",
     SOON = "/coming-soon",
+    CREDITS = "/credits",
+    EIGHTYEIGHT = "/88x31",
+    DIGICAM = "/digicam",
+    VISITORS = "/visitors",
 }

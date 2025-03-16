@@ -44,6 +44,11 @@
     outline: 2px solid green;
 }
 
+.rbarbox2 {
+    margin-bottom: 5px;
+    outline: 1px solid darkgoldenrod;
+}
+
 .go-text {
     position: absolute;
     left: 10px;
@@ -61,7 +66,6 @@
     width: 465px;
     float: left;
     pointer-events: none;
-    padding-left: 30px;
 }
 
 .appWindowContent {
@@ -124,4 +128,10 @@
 
 #zoomableImage img:hover {
     cursor: zoom-in;
+}
+
+.bartext {
+    font-family: 'glamourgirl';
+    color: white;
+    text-shadow: black 1px 0 10px;
 }

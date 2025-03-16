@@ -14,6 +14,9 @@ import stars from '../assets/stars.png';
 import coco from '../assets/coco.png';
 import monet from '../assets/ft.jpg';
 import Rightbar from './content/rightbar';
+import { Chatbox } from './content/chatbox/Chatbox';
+import BarBar from './content/BarBar';
+import Home from './content/home/Home';
 
 export interface ContentProps {
   contentType?: ContentType;
@@ -36,41 +39,38 @@ const Content = (props: ContentProps): React.ReactElement => {
         <p style={{textAlign: 'left', paddingLeft: '10px'}}>Hi! Welcome to my website. WIP!!</p>
         <img className='sidebar' style={{width: '100%', paddingTop: '0px', paddingBottom: '5px', paddingLeft: '0px'}} src={stars}></img>
         <hr className='barlinedashed'></hr>
-        <div>
+        <div style={{width: '100%', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`}}>
           <div className='sidebar'>
             <Sidebar />
             <Loafer />
             <Counter />
-            {
-              (getContentSize(props.contentType ?? ContentType.HOME) > 600) ? <img style={{
-                height: `${getContentSize(props.contentType ?? ContentType.HOME) - 450}px`,
-                imageRendering: 'pixelated',                 /* Universal support since 2021   */
-              }} src={lizard}></img> : <></>
-            }
+            <div style={{position: 'relative'}}>
+              {
+                (getContentSize(props.contentType ?? ContentType.HOME) > 600) ? <img style={{
+                  height: `${getContentSize(props.contentType ?? ContentType.HOME) - 450}px`,
+                  imageRendering: 'pixelated',
+                  position: 'absolute',
+                }} src={lizard}></img> : <></>
+              }
+            </div>
+            <BarBar />
           </div>
-          <div style={{paddingBottom: '10px'}}>
-            <AppWindow contentType={props.contentType ?? ContentType.HOME}/>
-            {/* <div className='appwindow' style={{paddingTop: '5px'}}>
-              <img style={{width: '620px', height: '250px', border: 'solid 1px darkgreen'}} src={monet}></img>
-            </div> */}
+          <div style={{marginLeft: '30px', float: 'left', width: '465px', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`, paddingBottom: '10px'}}>
+            {props.contentType === ContentType.HOME ? <Home /> : <AppWindow contentType={props.contentType ?? ContentType.HOME}/>}
+            <Chatbox />
           </div>
           <Rightbar />
-          <div style={{paddingBottom: '30px'}}>
-            {/* <img className='sidebar' style={{width: 'calc(100% - 40px)', paddingTop: '10px', paddingBottom: '10px', opacity: '90%'}} src={piano}></img> */}
+          {/* <div style={{paddingBottom: '30px'}}>
             <img className='sidebar' style={{width: '100%', paddingTop: '0px', paddingBottom: '5px', paddingLeft: '0px'}} src={stars}></img>
-            {/* <iframe style={{borderRadius: '12px', width: '90%'}} src="https://open.spotify.com/embed/playlist/3LA3NO864Yyu2vNXlD89TI?utm_source=generator" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe> */}
             <hr className='barlinedashed'></hr>
-            {/* <BarOne /> */}
             <hr className='barlinedashed'></hr>
             <BarTwo />
-          </div>
+          </div> */}
         </div>
-        <hr className='barline'></hr>
         <p style={{textAlign: 'center'}}>(C) Peter 2025</p>
-        <div style={{position: 'absolute', backgroundColor: 'rgb(255, 255, 255)', height: '300px', opacity: '100%', width: '200%', paddingLeft: '-50px'}}>
+        {/* <div style={{position: 'absolute', backgroundColor: 'rgb(255, 255, 255)', height: '300px', opacity: '100%', width: '200%', paddingLeft: '-50px'}}>
           <img src={neko} style={{paddingLeft: '425px', paddingTop: '100px'}}></img>
-        </div>
-        {/* left: `${vw * 0.5 - 360}px` */}
+        </div> */}
         <div style={{position: 'fixed', bottom: '-10px', left: '0px', width: '200px'}}> 
           <img src={coco} style={{width: '100%'}}></img>
           <p style={{position: 'absolute', bottom: '10px', right: '50px', fontFamily: 'RomanceA', fontSmooth: 'never', color: 'white', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>Coco says to save old homes!</p>

@@ -1,5 +1,4 @@
 import React from 'react';
-import fish from '../../../assets/fish1.gif';
 
 const Projects = (): React.ReactElement => {
     return (
