@@ -67,7 +67,7 @@ const Content = (props: ContentProps): React.ReactElement => {
             <BarTwo />
           </div> */}
         </div>
-        <p style={{textAlign: 'center'}}>(C) Peter 2025</p>
+        <p style={{textAlign: 'center'}}>(C) Peturland 2025</p>
         {/* <div style={{position: 'absolute', backgroundColor: 'rgb(255, 255, 255)', height: '300px', opacity: '100%', width: '200%', paddingLeft: '-50px'}}>
           <img src={neko} style={{paddingLeft: '425px', paddingTop: '100px'}}></img>
         </div> */}

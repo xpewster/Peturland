@@ -3,6 +3,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simp
 import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { isStateEnabled } from './constants';
+import { MAP_COLOR } from '../constants';
 
 export interface MapWithInsetsProps {
     clickHandler: (key: string) => void;
@@ -10,7 +11,6 @@ export interface MapWithInsetsProps {
 }
 
 const MapWithInsets = (props: MapWithInsetsProps) => {
-    const MAP_COLOR = "#FF5533";
     // Use the same position state for the main map
     const [position, setPosition] = useState({
         coordinates: [-105, 36],

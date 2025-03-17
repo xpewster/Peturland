@@ -26,6 +26,14 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO;
       case Path.XGEO_US:
         return ContentType.XGEO_US;
+      case Path.XGEO_US_ADOPT_A_HIGHWAY:
+        return ContentType.XGEO_US_ADOPT_A_HIGHWAY;
+      case Path.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
+        return ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY;
+      case Path.XGEO_US_STATE_FLAGS:
+        return ContentType.XGEO_US_STATE_FLAGS;
+      case Path.XGEO_US_STATE_HIGHWAY:
+        return ContentType.XGEO_US_STATE_HIGHWAY;
       case Path.XGEO_BR:
         return ContentType.XGEO_BR;
       case Path.XGEO_MONG:
@@ -34,6 +42,7 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.SOON;
     }
   }
+
 
   return (
     <div>

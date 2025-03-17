@@ -3,25 +3,36 @@ import './Xgeo.css';
 import Brazil from './brazil/Brazil';
 import Us from './us/Us';
 import filebox from '../../../assets/filebox.png';
-import { Path } from '../../../constants/Path';
 import { Link } from 'react-router';
 import { QuizType } from './constants';
 import Mongolia from './mongolia/Mongolia';
+import { ContentType } from '../../../constants/ContentType';
+import { Path } from '../../../constants/Path';
+import GenericRegionSelectionQuiz from './common/GenericRegionSelectionQuiz';
+import UsAdoptAHighway from './us/UsAdoptAHighway';
 
 export interface XgeoProps {
-    path?: string;
+    contentType?: ContentType;
 }
 
 const Xgeo = (props: XgeoProps): React.ReactElement => {
 
     const getGame = () => {
-        switch(props.path) {
+        switch(props.contentType) {
             default:
-            case Path.XGEO_US:
+            case ContentType.XGEO_US:
                 return <Us quizType={QuizType.US_LICENSE_PLATES}/>;
-            case Path.XGEO_BR:
+            case ContentType.XGEO_US_ADOPT_A_HIGHWAY:
+                return <UsAdoptAHighway />;
+            case ContentType.XGEO_US_STATE_HIGHWAY:
+                return <Us quizType={QuizType.US_STATE_HIGHWAY}/>;
+            case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
+                return <Us quizType={QuizType.US_COUNTY_SECONDARY_HIGHWAY}/>;
+            case ContentType.XGEO_US_STATE_FLAGS:
+                return <Us quizType={QuizType.US_STATE_FLAGS}/>;
+            case ContentType.XGEO_BR:
                 return <Brazil />;
-            case Path.XGEO_MONG:
+            case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
         }
     };

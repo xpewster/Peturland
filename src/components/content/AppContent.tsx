@@ -18,17 +18,19 @@ const AppContent = ({
     const getContent = (): React.ReactElement => {
         switch(contentType) {
             case ContentType.ABOUT:
-                return <About />;
+                return <Soon />;
             case ContentType.PROJECTS:
                 return <Soon />;
             case ContentType.XGEO:
                 return <Xgeo />;
             case ContentType.XGEO_US:
-                return <Xgeo path={Path.XGEO_US}/>;
+            case ContentType.XGEO_US_ADOPT_A_HIGHWAY:
+            case ContentType.XGEO_US_STATE_HIGHWAY:
+            case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
+            case ContentType.XGEO_US_STATE_FLAGS:
             case ContentType.XGEO_BR:
-                return <Xgeo path={Path.XGEO_BR}/>;
             case ContentType.XGEO_MONG:
-                return <Xgeo path={Path.XGEO_MONG}/>;
+                return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:
                 return <Soon />;    
             default: 

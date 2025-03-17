@@ -5,6 +5,7 @@ import windowsides from '../../assets/xpsides.png';
 import windowbottom from '../../assets/xpbottom.png';
 import { ContentType } from '../../constants/ContentType';
 import AppContent from './AppContent';
+import { QuizType } from './xgeo/constants';
 
 export interface AppWindowProps {
     contentType: ContentType;
@@ -28,6 +29,8 @@ export const getContentSize = (type: ContentType) => {
             return 900;
         case ContentType.SOON:
             return 700;
+        default:
+            return 1000;
     }
 }
 
@@ -41,7 +44,7 @@ const AppWindow = (props: AppWindowProps): React.ReactElement => {
             <img style={{paddingLeft: '0px', position: 'absolute', width: '465px', height: `${getContentSize(props.contentType) - TOP_BAR_HEIGHT}px`, paddingTop: TOP_BAR_HEIGHT}} src={windowsides}></img>
             <img style={{paddingLeft: '0px', position: 'absolute', paddingTop: `${getContentSize(props.contentType)}px`}} src={windowbottom}></img>
             <div className='appWindowContent' style={{height: `${getContentSize(props.contentType) - TOP_BAR_HEIGHT}px`}}>
-                <AppContent contentType={props.contentType}/>
+                <AppContent contentType={props.contentType} />
             </div>
         </div>
     );

@@ -13,15 +13,19 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
         case QuizType.US_LICENSE_PLATES:
             return LocalStorageStreakKeys.US_LICENSE_PLATES + enabledRegionBits;
         case QuizType.US_ADOPT_A_HIGHWAY:
-            return "default" + enabledRegionBits;
+            return LocalStorageStreakKeys.US_ADOPT_A_HIGHWAY + enabledRegionBits;
         case QuizType.US_STATE_HIGHWAY:
-            return "default" + enabledRegionBits;
+            return LocalStorageStreakKeys.US_STATE_HIGHWAY + enabledRegionBits;
         case QuizType.US_COUNTY_SECONDARY_HIGHWAY:
-            return "default" + enabledRegionBits;
+            return LocalStorageStreakKeys.US_COUNTY_SECONDARY_HIGHWAY + enabledRegionBits;
+        case QuizType.US_STATE_FLAGS:
+            return LocalStorageStreakKeys.US_STATE_FLAGS + enabledRegionBits;
         case QuizType.NA_TREE_SPECIES:
-            return "default" + enabledRegionBits;
+            return LocalStorageStreakKeys.NA_TREE_SPECIES + enabledRegionBits;
         case QuizType.BRAZIL_AREA_CODES:
             return LocalStorageStreakKeys.BRAZIL_AREA_CODES + enabledRegionBits;
+        case QuizType.MONG_DRIVING_DIRECTION:
+            return LocalStorageStreakKeys.MONG_DRIVING_DIRECTION + enabledRegionBits;
         default:
             return "default" + enabledRegionBits;
     }
