@@ -112,11 +112,21 @@
     margin: 0;
     padding-top: 0px;
     white-space: nowrap;
+    height: 18px;
+    padding-bottom: 2px;
+}
+
+.fileboxlink.top:hover {
+    background-color: #c7dcff;
 }
 
 .fileboxlink:first-letter 
 {
     text-decoration:underline;
+}
+
+.fileboxitem:hover {
+    background-color: #c7dcff;
 }
 
 #zoomableImage {

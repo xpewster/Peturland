@@ -66,6 +66,8 @@ const Us = (props: UsProps): React.ReactElement => {
 
     const [nextPlate, setNextPlate] = useState<NEXT_PLATE_INFO | undefined>(undefined);
 
+    const [loading, setLoading] = useState<boolean>(true);
+
     /* ----------------- */
 
     const generateNewRandBlur = (): number => {
@@ -140,6 +142,9 @@ const Us = (props: UsProps): React.ReactElement => {
                 }
                 if (enableVanity && PLATES.get(STATES[newt])!.get(PLATE_TYPE.VANITY)) {
                     types.push(PLATE_TYPE.VANITY);
+                }
+                if (loading) {
+                    setLoading(false);
                 }
                 const newType = randomElement(types);
                 const newVanityOrOldIndex = Math.floor(Math.random() * 100);
@@ -276,8 +281,8 @@ const Us = (props: UsProps): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '234px'}} src={dots}></img>
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
-                <div style={{display: 'block', width: '150px', marginTop: '5px', border: "dashed 1px black"}}>
-                    <Plate
+                <div style={{display: 'block', width: '150px', height: '75px', marginTop: '5px', border: "dashed 1px black"}}>
+                    {!loading && <Plate
                         state={STATES[toFind]}
                         type={currentType}
                         vanityOrOldIndex={vanityOrOldIndex}
@@ -289,7 +294,7 @@ const Us = (props: UsProps): React.ReactElement => {
                         skew={enableSkew ? randomSkew : undefined}
                         scale={enableSkew ? randomScale : 1}
                         index2={index2}
-                    />
+                    />}
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>

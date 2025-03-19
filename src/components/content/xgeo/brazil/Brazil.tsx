@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps"
 import brazil_phone_codes from '../../../../assets/geojsons/brazil_phone_codes.json';
 import './../Xgeo.css';
-import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../constants';
+import { BADS, LocalStorageStreakKeys, MAP_COLOR, NICES, QuizType } from '../constants';
 import { getStreakKey, randomElement } from '../helpers';
 import { PHONE_CODES, STATE_COLORS } from './constants';
 import dots from '../../../../assets/dots.png';
@@ -11,7 +11,6 @@ import ZoomableImage from '../../../common/ZoomableImage';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
 
 const Brazil = (): React.ReactElement => {
-    const MAP_COLOR = "#FF5533";
 
     const [toFind, setToFind] = useState<number>(Math.floor(Math.random() * PHONE_CODES.length)); // phone code to find
     const [message, setMessage] = useState<string>("");
