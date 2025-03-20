@@ -17,6 +17,9 @@ import { preloadImage2 } from '../../common/preloadImage';
 import phone from '../../../assets/gifs/phone.gif'
 import texas from '../../../assets/gifs/texas.gif';
 import putlitter from '../../../assets/fileboxicons/put-litter-in-its-place.png';
+import UsFlags from './us/Flags/UsFlags';
+import head from '../../../assets/fileboxicons/ca.png';
+import navigatehere from '../../../assets//navigatehere.png';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -24,18 +27,22 @@ export interface XgeoProps {
 
 const Xgeo = (props: XgeoProps): React.ReactElement => {
 
-    const NA_IMGS = [lice, texas, putlitter, mi];
+    const NA_IMGS = [lice, texas, putlitter, head];
     const NA_STRINGS = ['License Plates', 'State Flags', 'Adopt-A-Highway', 'State Highway'];
-    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_ADOPT_A_HIGHWAY];
+    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_ADOPT_A_HIGHWAY];
 
     const BR_IMGS = [phone];
     const BR_STRINGS = ['Phone Codes'];
     const BR_LINKS = [Path.XGEO_BR];
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
+    const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);
 
     useEffect(() => {
         NA_IMGS.forEach((src) => {
+            preloadImage2(src);
+        });
+        BR_IMGS.forEach((src) => {
             preloadImage2(src);
         });
     }, []);
@@ -52,7 +59,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
             case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
                 return <Us quizType={QuizType.US_COUNTY_SECONDARY_HIGHWAY}/>;
             case ContentType.XGEO_US_STATE_FLAGS:
-                return <Us quizType={QuizType.US_STATE_FLAGS}/>;
+                return <UsFlags/>;
             case ContentType.XGEO_BR:
                 return <Brazil />;
             case ContentType.XGEO_MONG:
@@ -60,9 +67,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
         }
     };
 
-    const [element, setElement] = useState<React.ReactElement>(getGame());
-
     const handleClick = (index: number) => {
+        setShowNavigateHere(false);
         setShowFilebox(showFilebox.map((val, i) => {if (i === index) { return !val; } else { return false; }}));
     }
 
@@ -96,11 +102,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                     {showFilebox[0] && <div style={{position: 'absolute', left: '10px', top: '22px', zIndex: 10}}><Filebox imageSrcs={NA_IMGS} strings={NA_STRINGS} links={NA_LINKS} onClick={onFileboxClick}></Filebox></div>}
                     <div style={{left: '130px'}} onClick={() => handleClick(1)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(1), color: showFilebox[1] ? 'white' : 'black'}}>Brazil</p></div>
                     {showFilebox[1] && <div style={{position: 'absolute', left: '120px', top: '22px', zIndex: 10}}><Filebox imageSrcs={BR_IMGS} strings={BR_STRINGS} links={BR_LINKS} onClick={onFileboxClick}></Filebox></div>}
-                
-                    {/* <a href="#" style={{left: '0px'}} className='fileboxlink' onClick={(event) => { event?.preventDefault(); handleClick(0); }}>North America</a>
-                    <a href="#" style={{left: '110px'}} className='fileboxlink' onClick={(event) => { event?.preventDefault(); handleClick(1); }}>Bra71l</a> */}
+
                 </div>
                 <img className='filebox' src={filebox}></img>
+                <img src={navigatehere} style={{pointerEvents: 'none', position: 'absolute', top: '25px', left: '160px', display: showNavigateHere ? undefined : 'none'}}></img>
             </div>
             {getGame()}
         </div>

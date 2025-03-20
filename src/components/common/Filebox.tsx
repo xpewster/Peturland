@@ -7,6 +7,7 @@ export interface FileboxProps {
     imageSrcs: any[];
     strings: string[];
     links: any[];
+    styles?: React.CSSProperties[];
     onClick: () => void;
 }
 
@@ -14,11 +15,11 @@ const Filebox = (props: FileboxProps): React.ReactElement => {
 
     const ITEM_HEIGHT = '24px';
 
-    const getFileboxItem = (src: any, text: string, link: any): React.ReactElement => {
+    const getFileboxItem = (src: any, text: string, link: any, style?: React.CSSProperties): React.ReactElement => {
         return (
             <Link to={link} onClick={props.onClick} style={{width: '100%', height: ITEM_HEIGHT, textDecoration: 'none', color: 'black'}}>
                 <div className="fileboxitem" style={{width: '100%', height: ITEM_HEIGHT, whiteSpace: 'nowrap', display: 'flex'}}>
-                    <img src={src} style={{width: '18px', height: '18px', padding: '2px'}}></img>
+                    <img src={src} style={{width: '18px', height: '18px', padding: '2px', ...style}}></img>
                     <p className="fileboxlink" style={{paddingLeft: '26px', paddingTop: '3px', height: ITEM_HEIGHT}}>{text}</p>
                 </div>
             </Link>
@@ -33,11 +34,11 @@ const Filebox = (props: FileboxProps): React.ReactElement => {
                     return (
                         <>
                             <hr style={{width: '92%', color: '#ACA899', zIndex: 15, marginTop: '4px', marginBottom: '4px'}}></hr>
-                            {getFileboxItem(src, props.strings[i], props.links[i])}
+                            {getFileboxItem(src, props.strings[i], props.links[i], props.styles?.[i])}
                         </>
-                    )
+                    );
                 }
-                return getFileboxItem(src, props.strings[i], props.links[i])
+                return getFileboxItem(src, props.strings[i], props.links[i], props.styles?.[i]);
             })}
         </div>
     );

@@ -2,13 +2,16 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Navigate, Route, Routes } from "react-router";
 import './index.css';
-import App from './App';
 import reportWebVitals from './reportWebVitals';
 import Frame from './components/Frame';
 import { Path } from './constants/Path';
 import Credits from './components/standalone/Credits';
 import Digicam from './components/standalone/digicam';
 import EightyEight from './components/standalone/88x31';
+import Visitors from './components/standalone/Visitors';
+import Support from './components/standalone/Support';
+import PatchNotes from './components/standalone/PatchNotes';
+import TravelLog from './components/standalone/TravelLog';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -20,7 +23,7 @@ root.render(
         <Route index element={<Navigate to={Path.HOME} replace />} />
         {
           Object.keys(Path).map((key) => {
-            if ([Path.CREDITS, Path.DIGICAM, Path.EIGHTYEIGHT].includes(Path[key as keyof typeof Path])) {
+            if ([Path.CREDITS, Path.DIGICAM, Path.EIGHTYEIGHT, Path.VISITORS, Path.SUPPORT, Path.ANNOUNCEMENTS, Path.TRAVEL_LOG].includes(Path[key as keyof typeof Path])) {
               return;
             }
             return <Route key={key} path={Path[key as keyof typeof Path]} element={<Frame path={Path[key as keyof typeof Path]} />} />
@@ -29,6 +32,10 @@ root.render(
         <Route path={Path.CREDITS} element={<Credits/>} />
         <Route path={Path.DIGICAM} element={<Digicam />} />
         <Route path={Path.EIGHTYEIGHT} element={<EightyEight />} />
+        <Route path={Path.VISITORS} element={<Visitors />} />
+        <Route path={Path.SUPPORT} element={<Support />} />
+        <Route path={Path.ANNOUNCEMENTS} element={<PatchNotes />} />
+        <Route path={Path.TRAVEL_LOG} element={<TravelLog />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

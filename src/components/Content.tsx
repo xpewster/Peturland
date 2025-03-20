@@ -17,6 +17,7 @@ import Rightbar from './content/rightbar';
 import { Chatbox } from './content/chatbox/Chatbox';
 import BarBar from './content/BarBar';
 import Home from './content/home/Home';
+import underconstruction from '../assets/88x31/construction.gif';
 
 export interface ContentProps {
   contentType?: ContentType;
@@ -67,12 +68,12 @@ const Content = (props: ContentProps): React.ReactElement => {
             <BarTwo />
           </div> */}
         </div>
-        <p style={{textAlign: 'center'}}>(C) Peturland 2025</p>
+        <p style={{textAlign: 'center'}}>(C) Peturland 2025 <img src={underconstruction} /></p>
         {/* <div style={{position: 'absolute', backgroundColor: 'rgb(255, 255, 255)', height: '300px', opacity: '100%', width: '200%', paddingLeft: '-50px'}}>
           <img src={neko} style={{paddingLeft: '425px', paddingTop: '100px'}}></img>
         </div> */}
-        <div style={{position: 'fixed', bottom: '-10px', left: '0px', width: '200px'}}> 
-          <img src={coco} style={{width: '100%'}}></img>
+        <div style={{position: 'fixed', bottom: '-10px', left: '0px', width: '200px', pointerEvents: 'none'}}> 
+          <img src={coco} style={{width: '100%', pointerEvents: 'none'}}></img>
           <p style={{position: 'absolute', bottom: '10px', right: '50px', fontFamily: 'RomanceA', fontSmooth: 'never', color: 'white', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>Coco says to save old homes!</p>
         </div>
     </div>

@@ -18,6 +18,8 @@ export interface GenericRegionSelectionQuizProps {
     disallowRepeats?: boolean;
     enableSkew?: boolean;
     enableRegions?: boolean[];
+    answerIndexToYears?: (number[] | null)[];
+    showYears?: boolean;
     regionsBitFlag?: number[];
 }
 
@@ -85,7 +87,6 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     }
 
     const updateLastItem = () => {
-        console.log(toFind)
         setLastItem([lastItem[0] === -2 ? -1 : toFind, randIndex, sepia, skew, scale]);
     }
 
@@ -141,13 +142,13 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
 
     function generateNewFind(skipCurrentUpdate?: boolean) {
         let tries = 0;
-        const oldToFind = toFind;
+        const currentOrFutureToFind = nextItem ? nextItem.newt : toFind;
         if (!nextItem) {
             generateFirstFind();
         }
         while(tries < 1000) {
             const newt = getRandomEnabledStateIndexFast(props.enableRegions ?? []) ?? 0;
-            if ((oldToFind === newt && props.disallowRepeats) || props.toFindIndexToAnswerIndicesArray[newt].length === 0) {
+            if ((currentOrFutureToFind  === newt && props.disallowRepeats) || props.toFindIndexToAnswerIndicesArray[newt].length === 0) {
                 tries++;
                 continue;
             }
@@ -155,7 +156,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 setLoading(false);
             }
             const newIndex = (Math.floor(Math.random() * 100));
-            preloadImage(props.answerIndexToElement(props.toFindIndexToAnswerIndicesArray[newt][randIndex % props.toFindIndexToAnswerIndicesArray[newt].length]));
+            preloadImage(props.answerIndexToElement(props.toFindIndexToAnswerIndicesArray[newt][newIndex % props.toFindIndexToAnswerIndicesArray[newt].length]));
             if (nextItem && !skipCurrentUpdate) {
                 generateRandomParameters();
                 setToFind(nextItem!.newt);
@@ -206,6 +207,17 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         }
         return props.answerIndexToElement(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
     };
+
+    const getYearString = (index: number): string => {
+        if (props.answerIndexToYears?.[index] === null) {
+            return "";
+        } else if (props.answerIndexToYears?.[index]![0] === null && props.answerIndexToYears[index]![1] !== null) {
+            return `(-${props.answerIndexToYears?.[index]![1]})`;
+        } else if (props.answerIndexToYears?.[index]![1] === null) {
+            return `(${props.answerIndexToYears[index]![0]}-)`;
+        }
+        return `(${props.answerIndexToYears?.[index]![0]}-${props.answerIndexToYears?.[index]![1]})`;
+    }
 
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
@@ -294,7 +306,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                     result="sepia" />
                             </filter>
                         </defs>
-                        <image href={getSrc(1)} xlinkHref={getSrc(1)} x="0" y="0"
+                        <image href={getSrc(1)} xlinkHref={getSrc(1)} x="0" y="0" width="100%" height="100%"
                             style={props.enableSkew ? {
                                 transformStyle: 'preserve-3d',
                                 transform: `rotateX(${lastItem[3][0] ?? 0}deg) rotateY(${lastItem[3][1] ?? 0}deg) scale(${lastItem[4] ?? 1})`,
@@ -305,7 +317,9 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                     </svg>
                     : <img style={{height: '150px', display: 'block'}} src={getSrc(1)}></img>
                 }
-                <p className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()}</p>
+                <p className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
+                    ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])
+                    : ''}</p>
             </div>}
         </div>
     );

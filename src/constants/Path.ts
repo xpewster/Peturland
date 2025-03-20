@@ -16,4 +16,7 @@ export enum Path {
     EIGHTYEIGHT = "/88x31",
     DIGICAM = "/digicam",
     VISITORS = "/visitors",
+    SUPPORT = "/support",
+    ANNOUNCEMENTS = "/patch-notes",
+    TRAVEL_LOG = "/travel-log",
 }

@@ -35,20 +35,20 @@ const Rightbar = (): React.ReactElement => {
             <a href='https://www.oriland.com/gallery/animals/main.php?index.php' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={oriland}/></a>
             <a href='https://github.com/dremin/RetroBar' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={xp}/></a>
             <img className='rbarbox' src={hostyellow}/>
-            <img className='rbarbox' src={npp}/>
+            <a href="https://notepad-plus-plus.org/" target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={npp}/></a>
             <img className='rbarbox' style={{outline: '1px solid grey', boxShadow: '-1px -1px #ffffff, 1px 1px #808080, 2px 2px #0a0a0a, -2px -2px #dfdfdf'}} src={a9}/>
             {/* <p className='rightbarlink'>Feed</p> */}
             <div style={{border: 'dashed 1px darkgoldenrod', padding: '5px', marginBottom: '10px'}}>
             <img src={smlnew} style={{position: 'absolute', top: '710px', right: '0px'}}/>
-            <a href="https://info.flagcounter.com/ImIH"><img className='rbarbox' src="https://s05.flagcounter.com/count/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style={{
+            <a href="https://info.flagcounter.com/ImIH" target="_blank" rel="noopener noreferrer"><img className='rbarbox' src="https://s05.flagcounter.com/count/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style={{
                 outline: 0,
                 width: '100%',
             }} /></a>
-            <a href="https://info.flagcounter.com/ImIH"><img className='rbarbox' src="https://s05.flagcounter.com/count_US/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style={{
+            <img className='rbarbox' src="https://s05.flagcounter.com/count_US/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" style={{
                 outline: 0,
                 width: '100%',
-            }} /></a>
-            <p className='rightbarlink' style={{marginTop: 0}}>See who's visited from  <span><a className='rightbarlink' href='credits'>your country!</a></span></p>
+            }} />
+            <p className='rightbarlink' style={{marginTop: 0}}>See who's visited from  <span><Link to={Path.VISITORS} className='rightbarlink'>your country!</Link></span></p>
             {/* <a href='https://catagolue.hatsya.com/home' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={catagolue}/></a>
             <img className='rbarbox' src={yoshi}/> */}
             <a href="https://www.moonconnection.com" target="mc_moon_ph"><img src="https://www.moonmodule.com/cs/dm/vn.gif" width="118" height="196" alt="" /></a><div style={{position: 'relative', width: '118px'}}><div style={{position: 'absolute', top: '-20px', left: '6px', background: '#000000', width:'116px', textAlign: 'center'}}><a href="https://www.moonconnection.com/" target="mc_moon_ph"></a></div></div>
