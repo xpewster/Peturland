@@ -12,6 +12,7 @@ import Visitors from './components/standalone/Visitors';
 import Support from './components/standalone/Support';
 import PatchNotes from './components/standalone/PatchNotes';
 import TravelLog from './components/standalone/TravelLog';
+import UnderConstructionStandalone from './components/standalone/UnderConstructionStandalone';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -23,7 +24,7 @@ root.render(
         <Route index element={<Navigate to={Path.HOME} replace />} />
         {
           Object.keys(Path).map((key) => {
-            if ([Path.CREDITS, Path.DIGICAM, Path.EIGHTYEIGHT, Path.VISITORS, Path.SUPPORT, Path.ANNOUNCEMENTS, Path.TRAVEL_LOG].includes(Path[key as keyof typeof Path])) {
+            if ([Path.CREDITS, Path.DIGICAM, Path.EIGHTYEIGHT, Path.VISITORS, Path.SUPPORT, Path.ANNOUNCEMENTS, Path.TRAVEL_LOG, Path.SOON].includes(Path[key as keyof typeof Path])) {
               return;
             }
             return <Route key={key} path={Path[key as keyof typeof Path]} element={<Frame path={Path[key as keyof typeof Path]} />} />
@@ -36,6 +37,7 @@ root.render(
         <Route path={Path.SUPPORT} element={<Support />} />
         <Route path={Path.ANNOUNCEMENTS} element={<PatchNotes />} />
         <Route path={Path.TRAVEL_LOG} element={<TravelLog />} />
+        <Route path={Path.SOON} element={<UnderConstructionStandalone />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

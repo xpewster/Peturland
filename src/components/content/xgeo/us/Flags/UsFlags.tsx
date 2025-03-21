@@ -80,7 +80,7 @@ const UsFlags = (): React.ReactElement => {
                     clickText={'Click on the right state!'}
                     regionIndexArray={STATES}
                     toFindIndexToAnswerIndicesArray={getToFindIndexToAnswerIndicesArray()}
-                    answerIndexToElement={getFlagImage}
+                    answerIndexToSrc={getFlagImage}
                     streakKey={getStreakKey(QuizType.US_STATE_FLAGS, enableRegion)}
                     disallowRepeats={true}
                     enableSkew={enableDistort}
@@ -88,6 +88,8 @@ const UsFlags = (): React.ReactElement => {
                     showYears={true}
                     answerIndexToYears={US_FLAGS_TO_YEARS}
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
+                    numLastItems={5}
+                    itemHeight={150}
                 />
             </div>
         </div>

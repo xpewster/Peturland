@@ -9,7 +9,7 @@ import dots from '../../../../assets/dots.png';
 import { CoordinateAnswerPair, SelectorType } from './constants';
 
 export interface GenericMapMarkerQuizProps {
-    quizTitle: string;
+    quizTitle: React.ReactElement;
     showGeoWarning: boolean;
     regionToMapSrcMap: Map<string, string>;
     enableRegions: string[];
@@ -115,20 +115,20 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
             <p style={{paddingBottom: '12px'}}>{props.quizTitle}</p>
-                <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
+                <img style={{position: 'absolute', left: '-2px', top: '111px'}} src={dots}></img>
                 {props.showGeoWarning ?
                     <>
                         <div>
                             This quiz is only applicable for Geoguessr/Google Streetview!
                         </div>
-                        <img style={{position: 'absolute', left: '-2px', top: '148px', paddingBottom: '8px'}} src={dots}></img>
+                        <img style={{position: 'absolute', left: '-2px', top: '153px', paddingBottom: '8px'}} src={dots}></img>
                     </>
                     : <></>
                 }
-                <div style={{paddingBottom: '12px'}}>
+                <div style={{paddingBottom: '12px', paddingTop: '7px'}}>
                     {getRegionSelectionElements()}
                 </div>
-                <img style={{position: 'absolute', left: '-2px', top: props.showGeoWarning ? '196px' : '158px'}} src={dots}></img>
+                <img style={{position: 'absolute', left: '-2px', top: props.showGeoWarning ? '201px' : '163px'}} src={dots}></img>
             <div style={{padding: 0, margin: 0, width: '100%'}}>
                 <p style={{display: 'inline'}}>{props.clickText}</p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button>
                 <div style={{paddingTop: '10px', paddingBottom: '5px'}}>

@@ -22,9 +22,21 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO:
             return 1000;
         case ContentType.XGEO_US:
+            return 1010;
+        case ContentType.XGEO_US_STATE_FLAGS:
+            return 1050;
+        case ContentType.XGEO_US_ADOPT_A_HIGHWAY:
+            return 1050;
+        case ContentType.XGEO_US_STATE_HIGHWAY:
+            return 905;
+        case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
             return 1000;
+        case ContentType.XGEO_NA_ABBREVIATIONS:
+            return 820;
         case ContentType.XGEO_BR:
             return 1000;
+        case ContentType.XGEO_BR_ABBREVIATIONS:
+            return 800;
         case ContentType.XGEO_MONG:
             return 900;
         case ContentType.SOON:

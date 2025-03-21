@@ -28,10 +28,10 @@ export const Visitors = (): React.ReactElement => {
                 width: '150px',
             }} /></a>
             {countries.map((country) => {
-                return <img className='rbarbox' src={`https://s05.flagcounter.com/count_${country}/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/`} alt="Flag Counter" style={{
+                return <a href="https://s05.flagcounter.com/countries/ImIH/" target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={`https://s05.flagcounter.com/count_${country}/ImIH/bg_FFD21F/txt_004502/border_B8B8B8/columns_2/maxflags_20/viewers_0/labels_0/pageviews_0/flags_0/percent_0/`} alt="Flag Counter" style={{
                     outline: 0,
                     width: '150px',
-                }} />
+                }} /></a>
             })}
         </div>
     </Standalone>;

@@ -64,7 +64,6 @@
 
 .appwindow {
     width: 465px;
-    float: left;
     pointer-events: none;
 }
 

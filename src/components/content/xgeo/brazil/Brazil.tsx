@@ -169,7 +169,7 @@ const Brazil = (): React.ReactElement => {
                 </ScrollingDisabler>
                 <div style={{paddingTop: '40px'}}>
                     <div style={{display: 'inline'}}>
-                        Hide cheatsheet<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!showCheat}></input><span style={{color: 'darkblue'}}>    Zoom in!</span> 
+                        Hide cheatsheet<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!showCheat}></input>
                     </div>
                 </div>
                 <div onScroll={(event) => { event.preventDefault(); }}>

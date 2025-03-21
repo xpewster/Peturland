@@ -11,11 +11,14 @@ export interface ZoomableImageProps {
 const ZoomableImage = (props: ZoomableImageProps): React.ReactElement => {
     return (
         <div className='zoomableImage' style={{...props.divProps}}>
-            <TransformWrapper>
-                <TransformComponent>
-                    <img id={"zoomableContent"} src={props.src} style={{...props.imageStyleProps}}></img>
-                </TransformComponent>
-            </TransformWrapper>
+            <div style={{position: 'relative'}}>
+                <p style={{position: 'absolute', right: '30px', bottom: '10px', zIndex: 10, margin: 0, color: 'darkblue'}}>Zoom in!</p>
+                <TransformWrapper>
+                    <TransformComponent>
+                        <img id={"zoomableContent"} src={props.src} style={{...props.imageStyleProps}}></img>
+                    </TransformComponent>
+                </TransformWrapper>
+            </div>
         </div>
     );
 };

@@ -1,4 +1,17 @@
+.yoshi {
+  position: absolute;
+  transform: translateY(-50%);
+  animation: slide 10s linear infinite;
+}
 
+@keyframes slide {
+  0% {
+      left: 0;
+  }
+  100% {
+      left: 445px;
+  }
+} 
     .iframe-container {
       width: 461px;
       height: 250px;

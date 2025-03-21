@@ -18,6 +18,7 @@ export interface UsProps {
 
 type LAST_PLATE_INFO = {
     state: STATE_NAMES,
+    type: PLATE_TYPE,
     tuple: PLATE_TUPLE,
     blur: number,
     rsc: string | undefined,
@@ -56,7 +57,8 @@ const Us = (props: UsProps): React.ReactElement => {
     const [index2, setIndex2] = useState<number>(Math.floor(Math.random() * 1000));
     const [currentType, setCurrentType] = useState<PLATE_TYPE>(PLATE_TYPE.REGULAR);
 
-    const [lastPlate, setLastPlate] = useState<LAST_PLATE_INFO | undefined>(undefined);
+    // const [lastPlate, setLastPlate] = useState<LAST_PLATE_INFO | undefined>(undefined);
+    const [lastPlates, setLastPlates] = useState<LAST_PLATE_INFO[]>([]);
     const [enablePPBlur, setEnablePPBlur] = useState<boolean>(false);
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
@@ -88,18 +90,40 @@ const Us = (props: UsProps): React.ReactElement => {
     }
 
     const updateLastPlateInfo = () => {
-        const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
-        setLastPlate({
-            state: STATES[toFind],
-            tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
-            blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
-            rsc: enableRRSC ? rsc : undefined,
-            rsc2: enableRRSC ? rsc2 : undefined,
-            sepia: enableRandBlur ? randomSepia : 0,
-            skew: enableSkew ? randomSkew : undefined,
-            scale: enableSkew ? randomScale : 1,
-            index2: index2,
+        setLastPlates((prev) => {
+            const newLastPlate = [...prev];
+            const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
+            newLastPlate.unshift({
+                state: STATES[toFind],
+                type: currentType,
+                tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
+                blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
+                rsc: enableRRSC ? rsc : undefined,
+                rsc2: enableRRSC ? rsc2 : undefined,
+                sepia: enableRandBlur ? randomSepia : 0,
+                skew: enableSkew ? randomSkew : undefined,
+                scale: enableSkew ? randomScale : 1,
+                index2: index2,
+            });
+            if (lastPlates.length >= 5) {
+                newLastPlate.pop();
+            }
+            return newLastPlate as LAST_PLATE_INFO[];
         });
+        // const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
+        // setLastPlate({
+        //     state: STATES[toFind],
+        //     type: currentType,
+        //     tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
+        //     blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
+        //     rsc: enableRRSC ? rsc : undefined,
+        //     rsc2: enableRRSC ? rsc2 : undefined,
+        //     sepia: enableRandBlur ? randomSepia : 0,
+        //     skew: enableSkew ? randomSkew : undefined,
+        //     scale: enableSkew ? randomScale : 1,
+        //     index2: index2,
+        // });
+
     };
 
     function generateFirstFind() {
@@ -301,25 +325,28 @@ const Us = (props: UsProps): React.ReactElement => {
             <div style={{paddingTop: '10px'}}>
                 <MapWithInsets clickHandler={handleClick} enableRegions={enableRegion}/>
             </div>
-            {lastPlate && <div>
-                <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plate (P.P.):</p>
+            {lastPlates.length ? <div className="scrollable-content" style={{border: 'dashed 1px #808080', overflow: 'scroll', height: '250px', width: '200px', marginTop: '5px', paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
+                <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plates (P.P.):</p>
                 <span>Blur<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
-                <Plate
-                    state={lastPlate.state}
-                    tuple={lastPlate.tuple}
-                    blur={lastPlate.blur}
-                    rsc={lastPlate.rsc}
-                    rsc2={lastPlate.rsc2}
-                    sepia={lastPlate.sepia}
-                    skew={lastPlate.skew}
-                    scale={lastPlate.scale}
-                    index2={lastPlate.index2}
-                    showYears
-                    show={!enablePPBlur}
-                    svgFilterIndex={1}
-                />
-            </div>}
-            
+                {lastPlates.map((lastPlate, index) => 
+                    <Plate
+                        state={lastPlate.state}
+                        type={lastPlate.type}
+                        tuple={lastPlate.tuple}
+                        blur={lastPlate.blur}
+                        rsc={lastPlate.rsc}
+                        rsc2={lastPlate.rsc2}
+                        sepia={lastPlate.sepia}
+                        skew={lastPlate.skew}
+                        scale={lastPlate.scale}
+                        index2={lastPlate.index2}
+                        showYears
+                        show={!enablePPBlur}
+                        svgFilterIndex={1 + index}
+                    />
+                )}
+            </div> : <></>
+            }
         </div>
     );
 };

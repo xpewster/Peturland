@@ -28,7 +28,11 @@ const AppContent = ({
             case ContentType.XGEO_US_STATE_HIGHWAY:
             case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
             case ContentType.XGEO_US_STATE_FLAGS:
+            case ContentType.XGEO_NA_ABBREVIATIONS:
+            case ContentType.XGEO_NA_TREE_SPECIES:
             case ContentType.XGEO_BR:
+            case ContentType.XGEO_BR_ABBREVIATIONS:
+            case ContentType.XGEO_BR_POSTCODES:
             case ContentType.XGEO_MONG:
                 return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:

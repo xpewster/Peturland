@@ -6,6 +6,7 @@ import { FAR_EAST_COORDINATE_ANSWER_PAIRS } from './constants';
 import GenericMapMarkerQuiz from '../common/GenericMapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../common/constants';
 import { QuizType } from '../constants';
+import car from '../../../../assets/fileboxicons/car.png';
 
 export interface MongoliaProps {
     quizType: QuizType;
@@ -13,12 +14,12 @@ export interface MongoliaProps {
 
 const Mongolia = (props: MongoliaProps): React.ReactElement => {
 
-    const getQuizTitle = (): string => {
+    const getQuizTitle = (): React.ReactElement => {
         switch(props.quizType) {
             case QuizType.MONG_DRIVING_DIRECTION:
-                return "Mongolia driving directions";
+                return <span><img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> Mongolia driving directions <img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> WIP!</span>;
             default:
-                return "Mongolia quiz";
+                return  <span>Mongolia quiz</span>;
         }
     };
 
@@ -63,7 +64,7 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
             answerIndex={0}
             quizType={QuizType.MONG_DRIVING_DIRECTION}
             disallowRepeats={true} 
-            showGeoWarning={false}
+            showGeoWarning={true}
         />
     );
 };

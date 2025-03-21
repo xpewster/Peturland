@@ -64,13 +64,16 @@ const UsAdoptAHighway = (): React.ReactElement => {
                     clickText={'Click on the right state!'}
                     regionIndexArray={STATES}
                     toFindIndexToAnswerIndicesArray={REGION_TO_SIGN_IMAGES}
-                    answerIndexToElement={getSignImage}
+                    answerIndexToSrc={getSignImage}
                     answerIndexToRegionIndices={SIGN_TO_ANSWER_REGION_INDICES}
                     streakKey={getStreakKey(QuizType.US_ADOPT_A_HIGHWAY, enableRegion)}
                     disallowRepeats={true}
                     enableSkew={enableDistort}
                     enableRegions={enableRegion}
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
+                    itemHeight={150}
+                    dashedBorder={true}
+                    minRandScale={0.1}
                 />
             </div>
         </div>

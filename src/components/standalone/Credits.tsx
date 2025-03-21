@@ -3,13 +3,14 @@
 // https://cyber.dabamos.de/88x31/index4.html
 // gifcities
 // 99gifshop
+// basiic
 
 import Standalone from "./Standalone"
 
 export const Credits = (): React.ReactElement => {
     
     return <Standalone>
-        <div>...Rest be assured the credits will be filled in soon!</div>
+        <div>...Rest assured the credits will be filled in soon!</div>
     </Standalone>;
 }
 
