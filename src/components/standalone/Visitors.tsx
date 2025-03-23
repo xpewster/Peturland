@@ -33,6 +33,7 @@ export const Visitors = (): React.ReactElement => {
                     width: '150px',
                 }} /></a>
             })}
+            <a style={{display: 'block'}} href="https://s05.flagcounter.com/countries/ImIH/" target="_blank" rel="noopener noreferrer">Other countries</a>
         </div>
     </Standalone>;
 }

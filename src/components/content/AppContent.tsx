@@ -18,7 +18,7 @@ const AppContent = ({
     const getContent = (): React.ReactElement => {
         switch(contentType) {
             case ContentType.ABOUT:
-                return <Soon />;
+                return <About />;
             case ContentType.PROJECTS:
                 return <Soon />;
             case ContentType.XGEO:

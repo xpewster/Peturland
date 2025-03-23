@@ -6,7 +6,8 @@ export const PatchNotes = (): React.ReactElement => {
 
     const dateNotesPairs: DatedComponent[] = [
         ['03-19-2025', <></>, "First check in!"],
-        ['03-20-2025', <></>, "Added N.A. State highway games and abbreviation games! \nPlus some cool new things, check out yoshi on the home page~! Don't click on him pl0x \nAlso, the xgeo games can track multiple PPs or PI's!"],
+        ['03-20-2025', <></>, "I added new xgeo games for N.A. State highway signs and NA/BR abbreviations! \nPlus some cool new things, check out yoshi on the home page~! But don't click on him pl0x \nAlso, the xgeo games can now track multiple PPs or PI's!"],
+        ['03-22-2025', <></>, "Finally composed the about page.."],
     ];
 
     return <Standalone>

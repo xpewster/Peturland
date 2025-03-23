@@ -13,13 +13,13 @@ export const Chatbox = (): React.ReactElement => {
     const audio = new Audio(yoshideath);
     audio.volume = 0.1;
 
-    useEffect(() => {
-        if (!([Path.HOME.toString(), Path.SOON.toString(), Path.PROJECTS.toString()].includes(location.pathname))) {
-            setShowYoshi(false);
-        } else {
-            setShowYoshi(true);
-        }
-    }, [location.pathname]);
+    // useEffect(() => {
+    //     if (!([Path.HOME.toString(), Path.SOON.toString(), Path.PROJECTS.toString()].includes(location.pathname))) {
+    //         setShowYoshi(false);
+    //     } else {
+    //         setShowYoshi(true);
+    //     }
+    // }, [location.pathname]);
 
     const handleClick = () => {
         audio.play();
@@ -27,7 +27,7 @@ export const Chatbox = (): React.ReactElement => {
     };
   
   return <div style={{position: 'relative'}}>
-        {showYoshi && <img src={yoshiwalk} className='yoshi' onClick={handleClick} style={{position: 'absolute', top: '-20px'}} />}
+        {showYoshi && <img src={yoshiwalk} className='yoshi' onClick={handleClick} style={{position: 'absolute', bottom: '-22px', zIndex: 5}} />}
         <div className="iframe-container">
             <div className="scrollable-content">
                 <iframe className="embedded-iframe" src="https://peturland.atabook.org"></iframe>
