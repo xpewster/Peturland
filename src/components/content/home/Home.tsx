@@ -108,17 +108,7 @@ const Home = (): React.ReactElement => {
                 {showFilebox[1] && <div style={{position: 'absolute', left: '10px', top: '20px', zIndex: 10}}><Filebox imageSrcs={FB2_IMGS} strings={FB2_STRINGS} links={FB2_LINKS} onClick={onFileboxClick}></Filebox></div>}
                 <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>W</span>hat you'll find</p>
                 <ul style={{paddingTop: '20px', paddingLeft: '20px', zIndex: 8}}>
-                    <li>a yearning for the <span style={{color: 'darkgoldenrod'}}>color</span> and
-                        <span style={{color: 'green'}}> c</span>
-                        <span style={{color: 'red'}}>h</span>
-                        <span style={{color: 'brown'}}>a</span>
-                        <span style={{color: 'purple'}}>r</span>
-                        <span style={{color: 'aquamarine'}}>a</span>
-                        <span style={{color: 'pink'}}>c</span>
-                        <span style={{color: 'orange'}}>t</span>
-                        <span style={{color: 'goldenrod'}}>e</span>
-                        <span style={{color: 'limegreen'}}>r </span>
-                    of the past</li>
+                    <li>a yearning for the <span style={{color: 'darkgoldenrod'}}>color</span> and character of the past</li>
                     <li>bits and pieces from the webmaster's life</li>
                     <li>some works..</li>
                     <li>geography quizzes (hello GeoGuessr friends! click xgeo {'<--'})</li>
