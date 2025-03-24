@@ -22,20 +22,6 @@ import spotify from '../../../assets/fileboxicons/spotify.png';
 import letterboxd from '../../../assets/fileboxicons/letterboxd.png';
 import steam from '../../../assets/fileboxicons/steam.png';
 
-/*
-
-Favorites:
-- Color combination: Green/Gold/Orange
-- Video game: CS:GO
-- Video game OST: Wind Waker
-- Piano song: The Promise (FF13 piano collections)
-- Movies: Princess Mononoke,
-- Animes: HxH, Fairy Tail, Made in Abyss, Mushishi, any miyazaki movie
-- Places: My bed, my desk, hm
-- Stargazing spots: Steens Mountain, Grand Staircase-Escalante NM, Valley Spring TX
-- Childhood games: Toontown rewritten, tales of pirates, Halo 3, xGen Stick Arena Ballistick
-- Smash character: yoshi
-*/
 
 const About = (): React.ReactElement => {
 
@@ -46,6 +32,19 @@ const About = (): React.ReactElement => {
     const LINKS_EXTERNAL = [true, false, true, true, true, true];   
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
+
+    useEffect(() => {
+        // Check if there's a hash in the URL
+        if (window.location.hash) {
+          // Get the element by ID (without the # symbol)
+          const element = document.getElementById(window.location.hash.substring(1));
+          
+          if (element) {
+            // Scroll to the element
+            element.scrollIntoView();
+          }
+        }
+      }, []);
     
     useEffect(() => {
         LINKS_IMGS.forEach((src) => {
@@ -98,7 +97,7 @@ const About = (): React.ReactElement => {
                 <p>Hi! My name is Peter. "Petur" is my childhood stuffed turtle up there on the header. He was envisioned as a gamer/hacker/coder type, and as I have become basically the same thing,
                     I have created this website vicariously for him. You can consider it as <i>our</i> website though. yes I am a grown man.. </p>
                 <p>I've come to think of Petur
-                    as an extension and preservation of my younger self and the light in his eyes that has long since been dwindled. lol.
+                    as an extension and preservation of my younger self and the fire in his eyes that has long since been dwindled. lol.
                 </p>
                 <img className='iframe-container' src={animegirl} style={{width: '70%', margin: 'auto', height: '200px', zIndex: 20}} />
                 <div style={{position: 'relative'}}>
@@ -110,7 +109,7 @@ const About = (): React.ReactElement => {
                 <div>
                     <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Hobbies</span>: </p>
                     <ul style={{paddingInlineStart: '15px', paddingRight: '20px'}}>
-                        <li>Gaming. I'm also an amateur game dev--check out my portfolio! &lt;--</li>
+                        <li>Gaming. I'm also an amateur game dev--go peruse my portfolio! &lt;--</li>
                         <li>Anime.</li>
                         <li>Stargazing! I own two telescopes: An Orion 8" XT8+ and a Hubble Optics UL16. and an NMT 20" in the shop <img src={cool} /></li>
                         <li>Piano. I also play the Ocarina and am learning the guitar</li>
@@ -123,22 +122,22 @@ const About = (): React.ReactElement => {
                                 <li><b>Video games (right now)</b>: CS:GO, GeoGuessr, ARAMs</li>
                                 <li><b>Video games (childhood)</b>: ToonTown, Tales of Pirates, Halo 3, XGen Stick Arena: Ballistick</li>
                                 <li><b>Movies</b>: Princess Mononoke, Dredd, The Princess Bride, </li>
-                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, Kaiba, Mushishi, Solo Leveling, any Miyazaki movie</li>
+                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, Kaiba, Mushishi, Solo Leveling, any Miyazaki movie, Spy Family</li>
+                                <li><b>TV Shows</b>: HotD, Fallout, The Witcher</li>
                                 <li><b>OSTs</b>: Wind waker, FF13, Mononoke-hime, In This Corner of the World, Interstellar, 86</li>
                                 <li><b>Bands/artists</b>: Mass of the Fermenting Dregs, Tricot, Gracie Abrams, The Strokes, Hideki Naganuma</li>
-                                <li><b>Songs to play on the piano</b>: The Promise (FF13), Rouge no Dengon (Hirohashi Makiko), Kaze no Tani no Nausicaa (Makiko), You've got a friend in me</li>
-                                <li><b>Stargazing spots</b>: Steens Mountain summit, Homestead Overlook (UT), Valley Spring (TX)</li>
-                                <li><b>Color combination</b>: Green/Gold/Orange</li>
+                                <li><b>Songs to play on the piano</b>: <a href='https://www.youtube.com/watch?v=kOFqpwrL9fw' target="_blank" rel="noopener noreferrer">The Promise (FF13)</a>, Rouge no Dengon (Hirohashi Makiko), Kaze no Tani no Nausicaa (Makiko), You've got a friend in me</li>
+                                <li><b>Celestial Objects</b>: Needle Galaxy, Orion Nebula, Saturn, M35/NGC 2168, Caroline's Rose</li>
                             </ul>
                         </div>
                         <img src={transfercrop} style={{position: 'absolute', right: '0px', bottom: 'calc(50% - 30px)', height: '120px', imageRendering: 'pixelated'}}></img>
                     </div>
                     <div style={{position: 'relative', marginTop: '5px'}}>
                         <div style={{border: '1px dashed darkgoldenrod', width: '60%', padding: '5px'}}>
-                            <u>Links</u>
+                            <u id='links'>Links</u>
                             <ul style={{paddingInlineStart: '15px'}}>
                                 <li><b><a href={'https://www.instagram.com/petethebeeat'} target="_blank" rel="noopener noreferrer">Instagram</a></b> <img src={ig} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></li>
-                                <li><b><a href={Path.SUPPORT} target="_blank" rel="noopener noreferrer">Discord</a></b> <img src={discord} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></li>
+                                <li><b><Link to={Path.SUPPORT}>Discord</Link></b> <img src={discord} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></li>
                                 <li><b><a href={'https://myanimelist.net/profile/Pewster'} target="_blank" rel="noopener noreferrer">MyAnimeList</a></b> <img src={myanimelist} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></li>
                                 <li><b><a href={'https://letterboxd.com/pewster/films/by/entry-rating/'} target="_blank" rel="noopener noreferrer">Letterboxd</a></b> <img src={letterboxd} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></li>
                                 <li><b><a href={'https://open.spotify.com/user/fresyonmzn6hgni6r0lj4d5ua'} target="_blank" rel="noopener noreferrer">Spotify</a></b> <img src={spotify} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></li>

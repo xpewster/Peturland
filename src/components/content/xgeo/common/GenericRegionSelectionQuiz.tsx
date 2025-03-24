@@ -29,6 +29,7 @@ export interface GenericRegionSelectionQuizProps {
     answerIndexToShowIndex?: number[][];
     numLastItems?: number;
     mapParameters?: MapParameters;
+    styleFunction?: (rsmKey: string) => any;
 }
 
 type LastItem = [number, number, number, number[], number]; // [toFind, randIndex, sepia, skew, scale]
@@ -114,13 +115,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     }
 
     const updateLastItem = () => {
-        // setLastItems(lastItems.map((val, index) => {
-        //     if (index === lastItems.length - 1) {
-        //         return [toFind, randIndex, sepia, skew, scale];
-        //     } else {
-        //         return lastItems[index + 1];
-        //     }
-        // }));
+        if (props.numLastItems === 0) return;
         setLastItems((prev) => {
             const newLastItem = [...prev];
             newLastItem.unshift([lastItems[lastItems.length-1][0] === -2 ? -1 : toFind, randIndex, sepia, skew, scale]);
@@ -187,7 +182,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         }
         while(tries < 1000) {
             const newt = getRandomEnabledStateIndexFast(props.enableRegions ?? []) ?? 0;
-            if ((currentOrFutureToFind  === newt && props.disallowRepeats) || props.toFindIndexToAnswerIndicesArray[newt].length === 0) {
+            if ((currentOrFutureToFind === newt && props.disallowRepeats) || (props.toFindIndexToAnswerIndicesArray[newt]?.length ?? 0) === 0) {
                 tries++;
                 continue;
             }
@@ -332,10 +327,10 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                             key={geo.rsmKey} 
                                             geography={geo} 
                                             onClick={() => { handleClick(geo.rsmKey); }} 
-                                            style={{
-                                                default: { fill: MAP_COLOR, stroke: "#000000"},
-                                                hover: { fill: MAP_HOVER_COLOR, stroke: "#000000"},
-                                                pressed: { fill: "green" },
+                                            style={props.styleFunction ? props.styleFunction(geo.rsmKey) : {
+                                                default: { fill: MAP_COLOR, stroke: "#000000", outline: 'none' },
+                                                hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
+                                                pressed: { fill: "green", outline: 'none' },
                                             }}
                                         />
                                     ))
@@ -345,7 +340,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 </ComposableMap>
             </ScrollingDisabler>
             </div>
-            {(lastItems[0][0] >= 0) && <div className="scrollable-content" style={{paddingLeft: '5px', marginTop: '5px', border: (props.numLastItems ?? 1 > 1) ? 'dashed 1px #808080' : undefined, height: `${(props.itemHeight ?? 75) + 100}px`, overflow: (props.numLastItems ?? 1) > 1 ? 'scroll' : undefined, width: `${(props.itemHeight ?? 25) + 125}px`}}>
+            {((props.numLastItems ?? 1) > 0 && lastItems[0][0] >= 0) && <div className="scrollable-content" style={{paddingLeft: '5px', marginTop: '5px', border: (props.numLastItems ?? 1 > 1) ? 'dashed 1px #808080' : undefined, height: `${(props.itemHeight ?? 75) + 100}px`, overflow: (props.numLastItems ?? 1) > 1 ? 'scroll' : undefined, width: `${(props.itemHeight ?? 25) + 125}px`}}>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>{(props.numLastItems ?? 1) > 1 ? "Previous items:" : "Previous item:"}</p>
                 {props.enableSkew && <span>Angle<input type='checkbox' onChange={() => {setEnablePPSkew(!enablePPSkew);}} checked={enablePPSkew}></input></span>}
                 {lastItems.map((lastItem, index) => <>
@@ -374,9 +369,9 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                 </svg>
                                 : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block'}} src={getSrc(1, index)}></img>
                             )}
-                            {<p className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
+                            {<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
                                 ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])
-                                : ''}</p>}
+                                : ''}</span>}
                             </p>
                         </div>
                     }

@@ -20,7 +20,7 @@ export const TravelLog = (): React.ReactElement => {
         [
             'Best cities',
             <></>,
-            "Da Nang\nOsaka\nSan Diego\nSeattle\nAustin"
+            "Da Nang\nOsaka\nSan Diego\nSeattle\nNYC"
         ],
         [
             'Favorite places so far',

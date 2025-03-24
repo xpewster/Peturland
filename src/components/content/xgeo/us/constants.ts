@@ -235,7 +235,7 @@ export const STATE_TO_REGION_BITFLAG = [
 ];
   
 // This array maps region indices to their bit flags
-export const REGION_INDEX_TO_BIT = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x100, 0x200];
+export const REGION_INDEX_TO_BIT = [0x01, 0x02, 0x04, 0x08, 0x10, 0x20, 0x40, 0x80, 0x100, 0x200, 0x400];
   
 export const getRandomEnabledStateIndexFast = (enableRegion: boolean[]): number | null => {
     // Convert enableRegion array to a bit flag

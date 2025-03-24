@@ -18,11 +18,13 @@ import UsFlags from './us/Flags/UsFlags';
 import head from '../../../assets/fileboxicons/ca.png';
 import shortcut from '../../../assets/fileboxicons/shortcut.png';
 import car from '../../../assets/fileboxicons/car.png';
+import folder from '../../../assets/fileboxicons/folder.png';
 
 import navigatehere from '../../../assets//navigatehere.png';
 import UsStateHighways from './us/StateHighways/UsStateHighways';
 import UsAbbreviations from './us/Abbreviations/UsAbbreviations';
 import BrazilAbbreviations from './brazil/Abbreviations/BrazilAbbreviations';
+import BrazilPostcodes from './brazil/Postcodes/BrazilPostcodes';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -34,9 +36,9 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', ];
     const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY];
 
-    const BR_IMGS = [phone, shortcut];
-    const BR_STRINGS = ['Phone Codes', '2-Letter Abbreviations'];
-    const BR_LINKS = [Path.XGEO_BR, Path.XGEO_BR_ABBREVIATIONS];
+    const BR_IMGS = [phone, shortcut, folder];
+    const BR_STRINGS = ['Phone Codes', '2-Letter Abbreviations', 'Postcodes (CEP)'];
+    const BR_LINKS = [Path.XGEO_BR, Path.XGEO_BR_ABBREVIATIONS, Path.XGEO_BR_POSTCODES];
 
     const EU_IMGS = [shortcut];
     const EU_STRINGS = ['Coming Soon'];
@@ -79,7 +81,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
             case ContentType.XGEO_BR_ABBREVIATIONS:
                 return <BrazilAbbreviations />;
             case ContentType.XGEO_BR_POSTCODES:
-                return <Brazil />;
+                return <BrazilPostcodes />;
             case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
         }

@@ -157,8 +157,8 @@ const Brazil = (): React.ReactElement => {
                                 {({ geographies }) =>
                                 geographies.map((geo) => (
                                     <Geography key={geo.rsmKey} geography={geo} onClick={() => { handleClick(geo.rsmKey); }} style={{
-                                        default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
-                                        hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey)},
+                                        default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey), outline: 'none'},
+                                        hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey), outline: 'none'},
                                         pressed: { fill: "green" },
                                     }}/>
                                 ))

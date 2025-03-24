@@ -38,8 +38,8 @@ export const Digicam = (): React.ReactElement => {
         [P1000921, 250], 
         [P1000738, 400],
         [P1000858, 400],
-        [P1000886, 600],
         [P1000838, 370], 
+        [P1000886, 600],
     ];
     
     return <Standalone backToTopButton>
