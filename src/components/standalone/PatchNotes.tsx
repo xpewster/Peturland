@@ -9,6 +9,7 @@ export const PatchNotes = (): React.ReactElement => {
         ['03-20-2025', <></>, "I added new xgeo games for N.A. State highway signs and NA/BR abbreviations! \nPlus some cool new things, check out yoshi on the home page~! But don't click on him pl0x \nAlso, the xgeo games can now track multiple PPs or PI's!"],
         ['03-22-2025', <></>, "Finally composed the about page!"],
         ['03-23-2025', <></>, "I added an xgeo game for Brazil Postcodes. Super annoying to make as I had to trace the json myself.."],
+        ['03-26-2025', <></>, "Tracked down that rascally memory leak! Also added the Portfolio page"],
     ];
 
     return <Standalone>

@@ -20,7 +20,7 @@ const AppContent = ({
             case ContentType.ABOUT:
                 return <About />;
             case ContentType.PROJECTS:
-                return <Soon />;
+                return <Projects />;
             case ContentType.XGEO:
                 return <Xgeo />;
             case ContentType.XGEO_US:

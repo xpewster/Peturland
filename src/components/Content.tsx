@@ -18,6 +18,7 @@ import { Chatbox } from './content/chatbox/Chatbox';
 import BarBar from './content/BarBar';
 import Home from './content/home/Home';
 import underconstruction from '../assets/88x31/construction.gif';
+import AppContent from './content/AppContent';
 
 export interface ContentProps {
   contentType?: ContentType;
@@ -98,7 +99,7 @@ const Content = (props: ContentProps): React.ReactElement => {
             </div>
           </div>
           <div style={{marginLeft: '30px', float: 'left', width: '465px', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`, paddingBottom: '10px'}}>
-            {props.contentType === ContentType.HOME ? <Home /> : <AppWindow contentType={props.contentType ?? ContentType.HOME}/>}
+            {[ContentType.HOME].includes(props.contentType ?? ContentType.HOME) ? <AppContent contentType={props.contentType ?? ContentType.HOME} /> : <AppWindow contentType={props.contentType ?? ContentType.HOME}/>}
             <Chatbox />
           </div>
           <Rightbar />

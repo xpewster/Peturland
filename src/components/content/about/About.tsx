@@ -94,10 +94,10 @@ const About = (): React.ReactElement => {
                 <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Pronouns</span>: <img src={boy} style={{height: '15px'}} /> (He/Him) <img src={boy} style={{height: '15px'}} />&nbsp;&nbsp;&nbsp;<span style={{textDecoration: 'underline'}}>Age</span>: 24</p>
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
                 <img src={mail} />
-                <p>Hi! My name is Peter. "Petur" is my childhood stuffed turtle up there on the header. He was envisioned as a gamer/hacker/coder type, and as I have become basically the same thing,
-                    I have created this website vicariously for him. You can consider it as <i>our</i> website though. yes I am a grown man.. </p>
+                <p>Hi! My name is Peter. "Petur" is my childhood stuffed turtle up there on the header. He was envisioned as a gamer/hacker/coder type, and as I have become a similar thing,
+                    I have created this website vicariously for him. I shan't let him take all the credit though, you can consider it as <i>our</i> website.</p>
                 <p>I've come to think of Petur
-                    as an extension and preservation of my younger self and the fire in his eyes that has long since been dwindled. lol.
+                    as an extension and preservation of my younger self and the fire in my eyes that have long since been dwindled. Haha!
                 </p>
                 <img className='iframe-container' src={animegirl} style={{width: '70%', margin: 'auto', height: '200px', zIndex: 20}} />
                 <div style={{position: 'relative'}}>
@@ -112,7 +112,7 @@ const About = (): React.ReactElement => {
                         <li>Gaming. I'm also an amateur game dev--go peruse my portfolio! &lt;--</li>
                         <li>Anime.</li>
                         <li>Stargazing! I own two telescopes: An Orion 8" XT8+ and a Hubble Optics UL16. and an NMT 20" in the shop <img src={cool} /></li>
-                        <li>Piano. I also play the Ocarina and am learning the guitar</li>
+                        <li>Piano! I also play the Ocarina and am learning the guitar at a world record slow pace</li>
                         <li>Antiquing: Hitting up thrift shops and antique malls on a road trip is one of life's great joys.</li>
                     </ul>
                     <div style={{position: 'relative'}}>

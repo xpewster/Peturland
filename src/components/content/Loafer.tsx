@@ -107,14 +107,18 @@ const Loafer = () => {
         }
     }, []);
 
-    window.addEventListener("mousedown", (event) => {
-        setMouseDown(true);
-    });
-    
-    window.addEventListener("mouseup", () => {
-        setMouseDown(false);
-    });
-
+    useEffect(() => {
+        const handleMouseDown = () => setMouseDown(true);
+        const handleMouseUp = () => setMouseDown(false);
+        
+        window.addEventListener("mousedown", handleMouseDown);
+        window.addEventListener("mouseup", handleMouseUp);
+        
+        return () => {
+            window.removeEventListener("mousedown", handleMouseDown);
+            window.removeEventListener("mouseup", handleMouseUp);
+        };
+    }, []);
 
     return (
         <>

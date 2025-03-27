@@ -161,9 +161,9 @@ const Home = (): React.ReactElement => {
                 <p style={{position: 'absolute', top: '250px', paddingLeft: '70px', width: '50%', fontSize: '11px'}}>home states!</p>
             </div>
             <div style={{position: 'absolute', padding: '0', top: '526px', left: '48px', width: '356px', height: '200px'}}>
-                <div ref={ref} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(2)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(2), fontFamily: 'basiic', color: showFilebox[2] ? 'white' : 'black'}}>What you absolutely will NOT find</p></div>
+                <div ref={ref} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(2)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(2), fontFamily: 'basiic', color: showFilebox[2] ? 'white' : 'black'}}>What you surely will NOT find</p></div>
                 {showFilebox[2] && <div style={{position: 'absolute', left: '10px', top: '20px', zIndex: 10}}><Filebox imageSrcs={FB3_IMGS} strings={FB3_STRINGS} links={FB3_LINKS} onClick={onFileboxClick}></Filebox></div>}
-                <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>W</span>hat you absolutely will NOT find</p>
+                <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>W</span>hat you surely will NOT find</p>
                 <ul style={{paddingTop: '20px', paddingLeft: '20px'}}>
                     <li>millenial gray</li>
                     <li><a href='https://simple.wikipedia.org/wiki/Hotlinking' target="_blank" rel="noopener noreferrer">hotlinking</a></li>

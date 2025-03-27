@@ -2,7 +2,8 @@ html {background-color: white}
 
 @font-face { font-family: basiic; src: url('./../assets/fnt/basiic.ttf'); } 
 @font-face { font-family: RomanceA; src: url('./../assets/fnt/RomanceA.ttf'); } 
-@font-face { font-family: virale; src: url('./../assets/fnt/virale.ttf'); } 
+@font-face { font-family: yoster; src: url('./../assets/fnt/yoster.ttf'); } 
+@font-face { font-family: Bangalore; src: url('./../assets/fnt/Bangalore.ttf'); } 
 @font-face { font-family: glamourgirl; src: url('./../assets/fnt/GLAMOURGIRL.TTF'); } 
 
 body {
