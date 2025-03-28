@@ -3,7 +3,7 @@ import './Us.css';
 import './../Xgeo.css';
 import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../constants';
 import { getStreakKey, randomElement } from '../helpers';
-import { getRandomEnabledStateIndexFast, isStateEnabled, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
+import { getRandomEnabledStateIndexFast, HOLDER_COLORS, isStateEnabled, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
 import Plate from './plate/Plate';
 import dots from '../../../../assets/dots.png';
 import canada from '../../../../assets/canadamf.gif';
@@ -23,7 +23,9 @@ type LAST_PLATE_INFO = {
     blur: number,
     rsc: string | undefined,
     rsc2: string | undefined,
+    hc: string | undefined,
     sepia: number,
+    brightness: number,
     skew?: number[],
     scale?: number,
     index2: number,
@@ -49,7 +51,9 @@ const Us = (props: UsProps): React.ReactElement => {
     const [enableRRSC, setEnableRRSC] = useState<boolean>(true); // random registration sticker color
     const [rsc, setRSC] = useState<string>("#000000");
     const [rsc2, setRSC2] = useState<string>("#000000");
+    const [hc, setHC] = useState<string>("black"); // holder color
     const [randomSepia, setRandomSepia] = useState<number>(0.0);
+    const [randomBrightness, setRandomBrightness] = useState<number>(1.0);
     const [randomSkew, setRandomSkew] = useState<number[]>([0, 0]);
     const [randomScale, setRandomScale] = useState<number>(1.0);
 
@@ -80,7 +84,9 @@ const Us = (props: UsProps): React.ReactElement => {
         setEnableRandBlur(enableRandBlur ? generateNewRandBlur() : 0);
         setRSC(randomElement(REGISTRATION_STICKER_COLORS));
         setRSC2(randomElement(REGISTRATION_STICKER_COLORS));
+        setHC(randomElement(HOLDER_COLORS));
         setRandomSepia(Math.random() * 0.2);
+        setRandomBrightness(Math.random() * 0.15 + 0.85);
         setRandomSkew([Math.random()*20-10, Math.random()*160-80]);
         setRandomScale(Math.random()*0.5+0.5);
     };
@@ -100,7 +106,9 @@ const Us = (props: UsProps): React.ReactElement => {
                 blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
                 rsc: enableRRSC ? rsc : undefined,
                 rsc2: enableRRSC ? rsc2 : undefined,
+                hc: enableRRSC ? hc : undefined,
                 sepia: enableRandBlur ? randomSepia : 0,
+                brightness: enableRandBlur ? randomBrightness : 1,
                 skew: enableSkew ? randomSkew : undefined,
                 scale: enableSkew ? randomScale : 1,
                 index2: index2,
@@ -110,20 +118,6 @@ const Us = (props: UsProps): React.ReactElement => {
             }
             return newLastPlate as LAST_PLATE_INFO[];
         });
-        // const lastPlateTupleArray = PLATES.get(STATES[toFind])!.get(currentType)!;
-        // setLastPlate({
-        //     state: STATES[toFind],
-        //     type: currentType,
-        //     tuple: lastPlateTupleArray[vanityOrOldIndex % lastPlateTupleArray.length],
-        //     blur: enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0,
-        //     rsc: enableRRSC ? rsc : undefined,
-        //     rsc2: enableRRSC ? rsc2 : undefined,
-        //     sepia: enableRandBlur ? randomSepia : 0,
-        //     skew: enableSkew ? randomSkew : undefined,
-        //     scale: enableSkew ? randomScale : 1,
-        //     index2: index2,
-        // });
-
     };
 
     function generateFirstFind() {
@@ -262,6 +256,7 @@ const Us = (props: UsProps): React.ReactElement => {
             case 5:
                 setRSC(randomElement(REGISTRATION_STICKER_COLORS));
                 setRSC2(randomElement(REGISTRATION_STICKER_COLORS));
+                setHC(randomElement(HOLDER_COLORS));
                 setEnableRRSC(!enableRRSC);
                 break;
         }
@@ -284,7 +279,7 @@ const Us = (props: UsProps): React.ReactElement => {
                     Blur plate<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableBlur}></input>
                     Use random skew<input type="checkbox" onChange={() => { setStreak(0); changeSetting(1); }} checked={enableSkew}></input>
                     Use random blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!!enableRandBlur}></input>
-                    Random registration sticker color<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
+                    Random registration sticker/holder color<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
                 </div>
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '176px'}} src={dots}></img>
@@ -314,7 +309,9 @@ const Us = (props: UsProps): React.ReactElement => {
                         blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0}
                         rsc={enableRRSC ? rsc : undefined}
                         rsc2={enableRRSC ? rsc2 : undefined}
+                        hc={enableRRSC ? hc : undefined}
                         sepia={enableRandBlur ? randomSepia : 0}
+                        brightness={enableRandBlur ? randomBrightness : 1}
                         skew={enableSkew ? randomSkew : undefined}
                         scale={enableSkew ? randomScale : 1}
                         index2={index2}
@@ -336,7 +333,9 @@ const Us = (props: UsProps): React.ReactElement => {
                         blur={lastPlate.blur}
                         rsc={lastPlate.rsc}
                         rsc2={lastPlate.rsc2}
+                        hc={lastPlate.hc}
                         sepia={lastPlate.sepia}
+                        brightness={lastPlate.brightness}
                         skew={lastPlate.skew}
                         scale={lastPlate.scale}
                         index2={lastPlate.index2}

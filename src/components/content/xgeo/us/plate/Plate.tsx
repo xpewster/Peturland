@@ -14,7 +14,9 @@ export interface PlateProps {
     tuple?: PLATE_TUPLE;
     rsc?: string;
     rsc2?: string;
+    hc?: string;
     sepia?: number;
+    brightness?: number;
     svgFilterIndex?: number;
     skew?: number[];
     scale?: number;
@@ -128,53 +130,73 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         zIndex: 1,
                         filter: props.skew ? `blur(${props.blur / (1.414 * 1.5)}px)` : 'none',
                     }}>
-                        <svg viewBox='0 0 150 75'>
-                            <defs>
-                                <filter id={getFilterId("combinedFilter")}>
-                                    <feFlood result="rs"
-                                        x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
-                                        y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
-                                        width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
-                                        height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
-                                        floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
-                                        floodOpacity={props.rsc === 'clear' ? '0' : "0.3"}
-                                    />
-                                    <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
-                                    {plate && plate[3].length === 8 && (
-                                        <>
-                                            <feFlood result="rs2"
-                                                x={`${plate ? (plate[3][6] ?? 100) : 0}%`}
-                                                y={`${plate ? (plate[3][7] ?? 100) : 0}%`}
-                                                width={`${plate ? plate[3][2] : 0}%`}
-                                                height={`${plate ? plate[3][3] : 0}%`}
-                                                floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
-                                                floodOpacity={props.rsc2 === 'clear' ? '0' : "0.3"}
-                                            />
-                                            <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
-                                        </>
-                                    )}
-                                    <feColorMatrix type="matrix"
-                                        values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
-                                                ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
-                                                ${(0.272 - 0.272 * (1 - sepia))} ${(0.534 - 0.534 * (1 - sepia))} ${(0.131 + 0.869 * (1 - sepia))} 0 0
-                                                0 0 0 1 0`}
-                                        in={plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1"}
-                                        result="sepia" />
-                                    <feGaussianBlur in="sepia" stdDeviation={(props.blur ?? 0) * (props.skew ? (1.0/1.414) : 1) / 1.5} /> {/* (Math.abs(props.skew?.[1] ?? 0)/90 + 1)*/}
-                                </filter>
-                            </defs>
-                            <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="150px" height="75px"
-                                style={{
-                                    transformStyle: 'preserve-3d',
-                                    transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
-                                    transformOrigin: 'center center',
-                                }}
-                                filter={`url(#${getFilterId("combinedFilter")})`}
-                            />        
-                        </svg>
+                        <div style={{filter: `brightness(${props.brightness ?? 1})`}}>
+                            <svg viewBox='0 0 150 75'>
+                                <defs>
+                                    <filter id={getFilterId("combinedFilter")}>
+                                        <feFlood result="rs"
+                                            x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
+                                            y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
+                                            width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
+                                            height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
+                                            floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
+                                            floodOpacity={props.rsc === 'clear' ? '0' : "0.6"}
+                                        />
+                                        <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
+                                        {plate && plate[3].length === 8 && (
+                                            <>
+                                                <feFlood result="rs2"
+                                                    x={`${plate ? (plate[3][6] ?? 100) : 0}%`}
+                                                    y={`${plate ? (plate[3][7] ?? 100) : 0}%`}
+                                                    width={`${plate ? plate[3][2] : 0}%`}
+                                                    height={`${plate ? plate[3][3] : 0}%`}
+                                                    floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
+                                                    floodOpacity={props.rsc2 === 'clear' ? '0' : "0.6"}
+                                                />
+                                                <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
+                                            </>
+                                        )}
+                                        <feColorMatrix type="matrix"
+                                            values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
+                                                    ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
+                                                    ${(0.272 - 0.272 * (1 - sepia))} ${(0.534 - 0.534 * (1 - sepia))} ${(0.131 + 0.869 * (1 - sepia))} 0 0
+                                                    0 0 0 1 0`}
+                                            in={plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1"}
+                                            result="sepia" />
+                                        <feFlood result="hc"
+                                            x={'20%'}
+                                            y={'0%'}
+                                            width={'60%'}
+                                            height={'10%'}
+                                            floodColor={props.hc ? props.hc : 'black'}
+                                            floodOpacity={(props.hc && props.hc !== 'clear') ? '1' : "0"}
+                                        />
+                                        <feBlend in="hc" in2="sepia" mode="normal" result="blendedHc1" />
+                                        <feFlood result="hc2"
+                                            x={'-10%'}
+                                            y={'90%'}
+                                            width={'120%'}
+                                            height={'10%'}
+                                            floodColor={props.hc ? props.hc : 'black'}
+                                            floodOpacity={(props.hc && props.hc !== 'clear') ? '1' : "0"}
+                                        />
+                                        <feBlend in="hc2" in2="blendedHc1" mode="normal" result="blendedHc2" />
+                                        <feGaussianBlur in="blendedHc2" stdDeviation={(props.blur ?? 0) * (props.skew ? (1.0/1.414) : 1) / 1.5} /> {/* (Math.abs(props.skew?.[1] ?? 0)/90 + 1)*/}
+                                    </filter>
+                                </defs>
+                                <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="150px" height="75px"
+                                    style={{
+                                        transformStyle: 'preserve-3d',
+                                        transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
+                                        transformOrigin: 'center center',
+                                    }}
+                                    filter={`url(#${getFilterId("combinedFilter")})`}
+                                /> 
+                            </svg>
+                        </div>
                     </div>
                     {/* Skew indicator lines */}
-                    <div style={{
+                    {props.skew && <div style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
@@ -210,8 +232,30 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                 transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
                             }}
                         />
+                        <line 
+                            x1="0" y1="-25" 
+                            x2="0" y2="100"
+                            stroke="gray" 
+                            strokeWidth="3" 
+                            strokeDasharray="5,5"
+                            style={{
+                                transformOrigin: 'center center',
+                                transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
+                            }}
+                        />
+                        <line 
+                            x1="150" y1="-25" 
+                            x2="150" y2="100"
+                            stroke="gray" 
+                            strokeWidth="3" 
+                            strokeDasharray="5,5"
+                            style={{
+                                transformOrigin: 'center center',
+                                transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
+                            }}
+                        />
                         </svg>
-                    </div>
+                    </div>}
                 </div>
                 : <img className='plate' style={{paddingBottom: 0}} src={getSrc()}></img>
             }

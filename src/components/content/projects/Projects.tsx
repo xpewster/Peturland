@@ -10,6 +10,7 @@ import peturland2 from '../../../assets/portfolio/peturland2.png';
 import oceanrender from '../../../assets/portfolio/OceanRender.png';
 import folder from '../../../assets/fileboxicons/folder.png';
 import github from '../../../assets/fileboxicons/github.png';
+import phone from '../../../assets/gifs/phone.gif'
 import ps from '../../../assets/fileboxicons/ps.png';
 import filebox from '../../../assets/filebox.png';
 import circles from '../../../assets/circles.png';
@@ -21,11 +22,11 @@ import { Path } from '../../../constants/Path';
 
 const Projects = (): React.ReactElement => {
 
-    const LINKS_IMGS = [github, folder];
-    const LINKS_STRINGS = ['Github', 'More about'];
-    const LINKS_LINKS = ["https://github.com/xpewster", Path.ABOUT];
+    const LINKS_IMGS = [github, folder, phone];
+    const LINKS_STRINGS = ['Github', 'More about', 'Contact'];
+    const LINKS_LINKS = ["https://github.com/xpewster", Path.ABOUT, Path.SUPPORT];
     // const LINKS_STYLES = [{imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}];
-    const LINKS_EXTERNAL = [true, false, true, true, true, true];   
+    const LINKS_EXTERNAL = [true, false, false, true, true, true];   
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
 

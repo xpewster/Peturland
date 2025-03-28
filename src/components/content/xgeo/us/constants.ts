@@ -269,3 +269,4 @@ export const isStateEnabled = (enableRegion: boolean[], index: number): boolean 
 };
 
 export const REGISTRATION_STICKER_COLORS = ['red', '#00e383', 'blue', 'orange', 'yellow', 'white', 'clear'];
+export const HOLDER_COLORS = ['black', 'silver', 'pink', '#001538', '#380e00', 'clear', 'clear', 'clear', 'clear', 'clear', 'clear', 'clear', 'clear'];
