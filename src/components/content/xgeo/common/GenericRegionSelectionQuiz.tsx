@@ -15,9 +15,12 @@ export interface GenericRegionSelectionQuizProps {
     answerIndexToSrc?: (toFind: number) => any;
     answerIndexToText?: (toFind: number) => React.ReactElement;
     answerIndexToRegionIndices?: number[][];
+    answerDescriptions?: string[];
     streakKey: string;
     disallowRepeats?: boolean;
     enableSkew?: boolean;
+    enableRandColor?: boolean;
+    randColorEnabledIndices?: boolean[];
     enableRegions?: boolean[];
     answerIndexToYears?: (number[] | null)[];
     showYears?: boolean;
@@ -32,7 +35,7 @@ export interface GenericRegionSelectionQuizProps {
     styleFunction?: (rsmKey: string) => any;
 }
 
-type LastItem = [number, number, number, number[], number]; // [toFind, randIndex, sepia, skew, scale]
+type LastItem = [number, number, number, number[], number, number]; // [toFind, randIndex, sepia, skew, scale, hue_rotate]
 
 type NextItem = {
     newt: number,
@@ -52,18 +55,19 @@ export interface MapParameters {
 
 const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): React.ReactElement => {
 
-    const [toFind, setToFind] = useState<number>(1);
+    const [toFind, setToFind] = useState<number>(props.toFindIndexToAnswerIndicesArray.findIndex((val) => val.length > 0) ?? 1);
     const [randIndex, setRandIndex] = useState<number>(Math.floor(Math.random() * 100));
     const [sepia, setSepia] = useState<number>(0);
     const [skew, setSkew] = useState<number[]>([0, 0]);
     const [scale, setScale] = useState<number>(1);
+    const [hueRotate, setHueRotate] = useState<number>(0);
 
     const [loading, setLoading] = useState<boolean>(true);
 
     const [message, setMessage] = useState<string>("");
     const [messageColor, setMessageColor] = useState<string>("green");
 
-    const [lastItems, setLastItems] = useState<LastItem[]>(Array.from({ length: props.numLastItems ?? 1 }, () => [-1, 0, 0, [0, 0, 0], 1]));
+    const [lastItems, setLastItems] = useState<LastItem[]>(Array.from({ length: props.numLastItems ?? 1 }, () => [-1, 0, 0, [0, 0, 0], 1, 0]));
     const [enablePPSkew, setEnablePPSkew] = useState<boolean>(false);
     const [nextItem, setNextItem] = useState<NextItem | null>(null);
 
@@ -96,6 +100,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         setSepia(Math.random() * 0.2);
         setSkew([Math.random()*20-10, Math.random()*160-80]);
         setScale(Math.random()*(1-(props.minRandScale ?? 0.5))+(props.minRandScale ?? 0.5));
+        setHueRotate(Math.random()*360);
     };
 
     function lose() {
@@ -118,7 +123,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         if (props.numLastItems === 0) return;
         setLastItems((prev) => {
             const newLastItem = [...prev];
-            newLastItem.unshift([lastItems[lastItems.length-1][0] === -2 ? -1 : toFind, randIndex, sepia, skew, scale]);
+            newLastItem.unshift([lastItems[lastItems.length-1][0] === -2 ? -1 : toFind, randIndex, sepia, skew, scale, hueRotate]);
             newLastItem.pop();
             return newLastItem as LastItem[];
         });
@@ -269,7 +274,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
             <p style={{display: 'inline'}}>{props.clickText} {props.answerIndexToText && getSrc(0)} </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
-            {!(loading || props.answerIndexToText) && props.enableSkew ? <svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined, marginTop: '5px'}}>
+            {!(loading || props.answerIndexToText) && props.enableSkew ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false))? `hue-rotate(${hueRotate}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined, marginTop: '5px'}}>
                     <defs>
                         <filter id={getFilterId("combinedFilter", 2)}>
                             <feColorMatrix type="matrix"
@@ -289,8 +294,8 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                         } : {}}
                         filter={props.enableSkew ? `url(#${getFilterId("combinedFilter", 2)})` : undefined}
                     />        
-                </svg>
-                : (!(loading || props.answerIndexToText) && <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', marginTop: '5px'}} src={getSrc()}></img>)
+                </svg></div>
+                : (!(loading || props.answerIndexToText) && <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', marginTop: '5px', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false)) ? `hue-rotate(${hueRotate}deg)` : undefined}} src={getSrc()}></img>)
             }
             {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             <div style={{position: 'relative', width: '100%', paddingTop: '5px'}}>
@@ -346,7 +351,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 {lastItems.map((lastItem, index) => <>
                     {lastItem[0] === -1 ? <></> :
                         <div style={{display: 'block', paddingBottom: '5px'}}>
-                            <p style={{marginTop: 0}}>{index + 1}. {props.answerIndexToText ? getSrc(1, index) : ((enablePPSkew && props.enableSkew) ? <svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined}}>
+                            <p style={{marginTop: 0}}>{index + 1}. {props.answerIndexToText ? getSrc(1, index) : ((enablePPSkew && props.enableSkew) ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined}}>
                                     <defs>
                                         <filter id={getFilterId("combinedFilter", 3 + index)}>
                                             <feColorMatrix type="matrix"
@@ -366,8 +371,8 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                         } : {}}
                                         filter={props.enableSkew ? `url(#${getFilterId("combinedFilter", 3 + index)})` : undefined}
                                     />        
-                                </svg>
-                                : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block'}} src={getSrc(1, index)}></img>
+                                </svg></div>
+                                : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}} src={getSrc(1, index)}></img>
                             )}
                             {<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
                                 ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])

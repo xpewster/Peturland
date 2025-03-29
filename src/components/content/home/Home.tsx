@@ -80,11 +80,13 @@ const Home = (): React.ReactElement => {
         return showFilebox[index] ? LINK_CLICK_COLOR : undefined;
     };
 
-    const ref = useRef<any>(null);
+    const ref0 = useRef<any>(null);
+    const ref1 = useRef<any>(null);
+    const ref2 = useRef<any>(null);
     
     useEffect(() => {
         function handleClickOutside(event: any) {
-            if (ref.current && !ref.current.contains(event.target)) {
+            if ((ref0.current && !ref0.current.contains(event.target)) && (ref1.current && !ref1.current.contains(event.target)) && (ref2.current && !ref2.current.contains(event.target))) {
                 onFileboxClick();
             }
         }
@@ -92,19 +94,19 @@ const Home = (): React.ReactElement => {
         return () => {
             document.removeEventListener('mousedown', handleClickOutside);
         };
-    }, [ref]);
+    }, []);
 
     return (
         <div style={{position: 'relative'}}>
             <img src={home}></img>
             <div style={{position: 'absolute', padding: '0', top: '30px', left: '10px', width: '306px', height: '329px'}}>
-                <div ref={ref} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(0)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(0), fontFamily: 'basiic', color: showFilebox[0] ? 'white' : 'black'}}>Home</p></div>
+                <div ref={ref0} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(0)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(0), fontFamily: 'basiic', color: showFilebox[0] ? 'white' : 'black'}}>Home</p></div>
                 {showFilebox[0] && <div style={{position: 'absolute', left: '10px', top: '20px', zIndex: 10}}><Filebox imageSrcs={FB_IMGS} strings={FB_STRINGS} links={FB_LINKS} styles={FB_STYLES} onClick={onFileboxClick}></Filebox></div>}
                 <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>H</span>ome</p>
                 <p style={{paddingTop: '20px', paddingLeft: '10px'}}>you've stumbled upon the webmaster's humble <img style={{height: '15px'}} src={house}></img> homestead <img style={{height: '15px'}} src={house}></img> {'on the internet 8}'}</p>
             </div>
             <div style={{position: 'absolute', padding: '0', top: '171px', left: '124px', width: '326px', height: '329px'}}>
-                <div ref={ref} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(1)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(1), fontFamily: 'basiic', color: showFilebox[1] ? 'white' : 'black'}}>What you'll find</p></div>
+                <div ref={ref1} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(1)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(1), fontFamily: 'basiic', color: showFilebox[1] ? 'white' : 'black'}}>What you'll find</p></div>
                 {showFilebox[1] && <div style={{position: 'absolute', left: '10px', top: '20px', zIndex: 10}}><Filebox imageSrcs={FB2_IMGS} strings={FB2_STRINGS} links={FB2_LINKS} onClick={onFileboxClick}></Filebox></div>}
                 <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>W</span>hat you'll find</p>
                 <ul style={{paddingTop: '20px', paddingLeft: '20px', zIndex: 8}}>
@@ -161,7 +163,7 @@ const Home = (): React.ReactElement => {
                 <p style={{position: 'absolute', top: '250px', paddingLeft: '70px', width: '50%', fontSize: '11px'}}>home states!</p>
             </div>
             <div style={{position: 'absolute', padding: '0', top: '526px', left: '48px', width: '356px', height: '200px'}}>
-                <div ref={ref} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(2)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(2), fontFamily: 'basiic', color: showFilebox[2] ? 'white' : 'black'}}>What you surely will NOT find</p></div>
+                <div ref={ref2} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(2)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(2), fontFamily: 'basiic', color: showFilebox[2] ? 'white' : 'black'}}>What you surely will NOT find</p></div>
                 {showFilebox[2] && <div style={{position: 'absolute', left: '10px', top: '20px', zIndex: 10}}><Filebox imageSrcs={FB3_IMGS} strings={FB3_STRINGS} links={FB3_LINKS} onClick={onFileboxClick}></Filebox></div>}
                 <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>W</span>hat you surely will NOT find</p>
                 <ul style={{paddingTop: '20px', paddingLeft: '20px'}}>

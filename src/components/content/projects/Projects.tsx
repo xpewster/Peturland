@@ -51,6 +51,18 @@ const Projects = (): React.ReactElement => {
 
     const ref = useRef<any>(null);
 
+    useEffect(() => {
+        function handleClickOutside(event: any) {
+            if (ref.current && !ref.current.contains(event.target)) {
+                onFileboxClick();
+            }
+        }
+        document.addEventListener('mousedown', handleClickOutside);
+        return () => {
+            document.removeEventListener('mousedown', handleClickOutside);
+        };
+    }, [ref]);
+
     return (
         <div>
             <div style={{height: '20px'}}>

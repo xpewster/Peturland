@@ -31,6 +31,8 @@ export const getContentSize = (type: ContentType) => {
             return 905;
         case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
             return 1000;
+        case ContentType.XGEO_US_WINDSHIELD_STICKERS:
+            return 900;
         case ContentType.XGEO_NA_ABBREVIATIONS:
             return 820;
         case ContentType.XGEO_BR:

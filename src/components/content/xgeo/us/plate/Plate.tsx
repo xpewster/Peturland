@@ -140,7 +140,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                             width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
                                             height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
                                             floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
-                                            floodOpacity={props.rsc === 'clear' ? '0' : "0.6"}
+                                            floodOpacity={props.rsc === 'clear' ? '0' : "0.5"}
                                         />
                                         <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
                                         {plate && plate[3].length === 8 && (
@@ -151,7 +151,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                                     width={`${plate ? plate[3][2] : 0}%`}
                                                     height={`${plate ? plate[3][3] : 0}%`}
                                                     floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
-                                                    floodOpacity={props.rsc2 === 'clear' ? '0' : "0.6"}
+                                                    floodOpacity={props.rsc2 === 'clear' ? '0' : "0.5"}
                                                 />
                                                 <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
                                             </>
@@ -173,9 +173,9 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                         />
                                         <feBlend in="hc" in2="sepia" mode="normal" result="blendedHc1" />
                                         <feFlood result="hc2"
-                                            x={'-10%'}
+                                            x={'0%'}
                                             y={'90%'}
-                                            width={'120%'}
+                                            width={'100%'}
                                             height={'10%'}
                                             floodColor={props.hc ? props.hc : 'black'}
                                             floodOpacity={(props.hc && props.hc !== 'clear') ? '1' : "0"}

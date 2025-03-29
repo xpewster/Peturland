@@ -20,6 +20,8 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
             return LocalStorageStreakKeys.US_COUNTY_SECONDARY_HIGHWAY + enabledRegionBits;
         case QuizType.US_STATE_FLAGS:
             return LocalStorageStreakKeys.US_STATE_FLAGS + enabledRegionBits;
+        case QuizType.US_WINDSHIELD_STICKERS:
+            return LocalStorageStreakKeys.US_WINDSHIELD_STICKERS + enabledRegionBits;
         case QuizType.NA_TREE_SPECIES:
             return LocalStorageStreakKeys.NA_TREE_SPECIES + enabledRegionBits;
         case QuizType.NA_ABBREVIATIONS:

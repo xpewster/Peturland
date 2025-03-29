@@ -55,6 +55,7 @@ const Rightbar = (): React.ReactElement => {
             </div>
             {/* <a href='https://konachan.com/' target="_blank" rel="noopener noreferrer"><img className='rbarbox2' src={kona}/></a>
             <a href="https://en.wikipedia.org/wiki/Source_(game_engine)"><img className='rbarbox2' src="https://88x31.kate.pet/source-poweredby-orange.png" height="31" /></a> */}
+            {/* <div style={{width: '100%', height: '250px', border: 'dashed 1px black'}}></div> */}
           </div>
     );
 };

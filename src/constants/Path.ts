@@ -8,6 +8,7 @@ export enum Path {
     XGEO_US_STATE_HIGHWAY = "/xgeo/na/state-highway",
     XGEO_US_COUNTY_SECONDARY_HIGHWAY = "/xgeo/na/county-secondary-highway",
     XGEO_US_STATE_FLAGS = "/xgeo/na/state-flags",
+    XGEO_US_WINDSHIELD_STICKERS = "/xgeo/na/windshield-stickers",
     XGEO_NA_ABBREVIATIONS = "/xgeo/na/abbreviations",
     XGEO_NA_TREE_SPECIES = "/xgeo/na/tree-species",
     XGEO_BR = "/xgeo/br/phone-codes",

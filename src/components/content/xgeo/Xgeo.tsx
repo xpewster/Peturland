@@ -19,12 +19,14 @@ import head from '../../../assets/fileboxicons/ca.png';
 import shortcut from '../../../assets/fileboxicons/shortcut.png';
 import car from '../../../assets/fileboxicons/car.png';
 import folder from '../../../assets/fileboxicons/folder.png';
+import sticky from '../../../assets/fileboxicons/sticky.gif';
 
 import navigatehere from '../../../assets//navigatehere.png';
 import UsStateHighways from './us/StateHighways/UsStateHighways';
 import UsAbbreviations from './us/Abbreviations/UsAbbreviations';
 import BrazilAbbreviations from './brazil/Abbreviations/BrazilAbbreviations';
 import BrazilPostcodes from './brazil/Postcodes/BrazilPostcodes';
+import UsWindshieldStickers from './us/WindshieldStickers/UsWindshieldStickers';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -32,9 +34,9 @@ export interface XgeoProps {
 
 const Xgeo = (props: XgeoProps): React.ReactElement => {
 
-    const NA_IMGS = [lice, texas, shortcut, putlitter, head];
-    const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', ];
-    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY];
+    const NA_IMGS = [lice, texas, shortcut, putlitter, head, sticky];
+    const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', 'Windshield Stickers'];
+    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY, Path.XGEO_US_WINDSHIELD_STICKERS];
 
     const BR_IMGS = [phone, shortcut, folder];
     const BR_STRINGS = ['Phone Codes', '2-Letter Abbreviations', 'Postcodes (CEP)'];
@@ -74,6 +76,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <Us quizType={QuizType.US_COUNTY_SECONDARY_HIGHWAY}/>;
             case ContentType.XGEO_US_STATE_FLAGS:
                 return <UsFlags/>;
+            case ContentType.XGEO_US_WINDSHIELD_STICKERS:
+                return <UsWindshieldStickers/>;
             case ContentType.XGEO_NA_ABBREVIATIONS:
                 return <UsAbbreviations />;
             case ContentType.XGEO_BR:

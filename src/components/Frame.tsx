@@ -34,6 +34,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_US_STATE_FLAGS;
       case Path.XGEO_US_STATE_HIGHWAY:
         return ContentType.XGEO_US_STATE_HIGHWAY;
+      case Path.XGEO_US_WINDSHIELD_STICKERS:
+        return ContentType.XGEO_US_WINDSHIELD_STICKERS;
       case Path.XGEO_NA_ABBREVIATIONS:
         return ContentType.XGEO_NA_ABBREVIATIONS;
       case Path.XGEO_BR:
