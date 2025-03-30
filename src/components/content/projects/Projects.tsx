@@ -87,7 +87,7 @@ const Projects = (): React.ReactElement => {
                     projectName='Missilecave'
                     playLink='https://drive.google.com/file/d/1x8JXBUyneb8767Kpt7kB2ce-I9rgBAWQ/view?usp=sharing'
                     images={[missilecave, missilecave2]}
-                    text={<p>Missilecave was my pet project in highschool. It's a platformer game--I'm pretty happy with how the movement works in the game but I never got around to fleshing everything out/filling out the level chart. Shelved for now. In the demo you can play levels 1-19. I also included old versions of levels 21-39 that I had deleted for fun. You can press ENTER to skip levels. If you press ENTER after level 19/20 you can play the SECRET hard levels!</p>}
+                    text={<p>Missilecave was my pet project in highschool. It's a platformer game--I'm pretty happy with how the movement works in the game but I never got around to fleshing everything out/filling out the level chart. Shelved for now. <br /><br /> In the demo you can play levels 1-19. I also included old versions of levels 21-39 that I had deleted for fun. You can press ENTER to skip levels. If you press ENTER after level 19/20 you can play the SECRET hard levels!</p>}
                 />
                 <ProjectWindow 
                     projectName='Peturland'

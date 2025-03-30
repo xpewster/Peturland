@@ -55,8 +55,27 @@ const Rightbar = (): React.ReactElement => {
             </div>
             {/* <a href='https://konachan.com/' target="_blank" rel="noopener noreferrer"><img className='rbarbox2' src={kona}/></a>
             <a href="https://en.wikipedia.org/wiki/Source_(game_engine)"><img className='rbarbox2' src="https://88x31.kate.pet/source-poweredby-orange.png" height="31" /></a> */}
-            {/* <div style={{width: '100%', height: '250px', border: 'dashed 1px black'}}></div> */}
-          </div>
+            <div style={{width: '100%', height: '200px'}}>
+                <iframe 
+                    src="/InTheSky?hemisphere=north" 
+                    width="100%" 
+                    height="100%" 
+                    style={{maxWidth: '100%', border: 'none', overflow: 'scroll'}}
+                    title="Tonight's Visible Object"
+                ></iframe>
+            </div>
+            <div style={{width: '100%', height: '200px'}}>
+                <iframe 
+                    src="/InTheSky?hemisphere=south" 
+                    width="100%" 
+                    height="100%" 
+                    style={{maxWidth: '100%', border: 'none', overflow: 'scroll'}}
+                    title="Tonight's Visible Object"
+                ></iframe>
+            </div>
+            <hr style={{marginBottom: '5px'}}/>
+            <Link to={Path.GET_IN_THE_SKY} style={{float: 'right', textAlign: 'right', fontSize: '12px', marginTop: '0px', textDecoration: 'none', color: 'darkblue'}} >Get this widget. [?]</Link>
+        </div>
     );
 };
 

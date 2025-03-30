@@ -1,6 +1,7 @@
 import peturshell from '../../assets/peturshell.png';
 import back from '../../assets/gifs/back.gif';
 import { Link, useNavigate } from 'react-router';
+import { Path } from '../../constants/Path';
 
 export interface StandaloneProps {
     children: React.ReactNode;
@@ -23,8 +24,10 @@ export const Standalone = ({
     
     return <div>
         <a id="top" style={{top: '0'}}></a>
-        <Link to="/" onClick={() => {nav(-1)}} style={{textDecoration: 'none', color: 'black'}}>
+        <Link to={Path.HOME} onClick={() => {nav(-1)}} style={{textDecoration: 'none', color: 'black'}}>
             <img src={peturshell} style={{imageRendering: 'pixelated', height: '100px'}}></img>
+        </Link>
+        <Link to="/" onClick={() => {nav(-1)}} style={{textDecoration: 'none', color: 'black'}}>
             <img src={back} style={{imageRendering: 'pixelated', height: '50px'}}></img>
         </Link>
         <hr></hr>

@@ -23,4 +23,6 @@ export enum Path {
     SUPPORT = "/support",
     ANNOUNCEMENTS = "/patch-notes",
     TRAVEL_LOG = "/travel-log",
+    IN_THE_SKY = "/InTheSky", 
+    GET_IN_THE_SKY = "/get-in-the-sky",
 }
