@@ -132,7 +132,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                     {showFilebox[3] && <div style={{position: 'absolute', left: '240px', top: '22px', zIndex: 10}}><Filebox imageSrcs={MONG_IMGS} strings={MONG_STRINGS} links={MONG_LINKS} styles={MONG_STYLES} onClick={onFileboxClick}></Filebox></div>}
                 </div>
                 <img className='filebox' src={filebox}></img>
-                <img src={navigatehere} style={{pointerEvents: 'none', position: 'absolute', top: '25px', left: '260px', display: showNavigateHere ? undefined : 'none'}}></img>
+                <img src={navigatehere} alt='Navigate here' style={{pointerEvents: 'none', position: 'absolute', top: '25px', left: '260px', display: showNavigateHere ? undefined : 'none'}}></img>
             </div>
             {getGame()}
         </div>

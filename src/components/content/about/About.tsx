@@ -3,17 +3,14 @@ import filebox from '../../../assets/filebox.png';
 import dots from '../../../assets/dots.png';
 import { preloadImage2 } from '../../common/preloadImage';
 import Filebox, { LINK_CLICK_COLOR } from '../../common/Filebox';
-import folder from '../../../assets/fileboxicons/folder.png';
 import boy from '../../../assets/gifs/boy.gif';
 import { Path } from '../../../constants/Path';
 import mail from '../../../assets/gifs/MAIL.gif';
 import animegirl from '../../../assets/animegirl.jpg';
-import texas from '../../../assets/gifs/texas.gif';
 import trees from '../../../assets/gifs/pinetree.gif';
 import cool from '../../../assets/fileboxicons/cool.gif';
 import telescope from '../../../assets/telescope.gif';
 import { Link } from 'react-router';
-import globe from '../../../assets/gifs/globe.gif';
 import transfercrop from '../../../assets/gifs/transfercrop.gif';
 import ig from '../../../assets/fileboxicons/ig2.png';
 import discord from '../../../assets/fileboxicons/discord.png';
@@ -91,7 +88,7 @@ const About = (): React.ReactElement => {
             <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
                 <p style={{paddingBottom: '10px'}}>About the webmaster</p>
                 <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
-                <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Pronouns</span>: <img src={boy} style={{height: '15px'}} /> (He/Him) <img src={boy} style={{height: '15px'}} />&nbsp;&nbsp;&nbsp;<span style={{textDecoration: 'underline'}}>Age</span>: 24</p>
+                <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Pronouns</span>: <img src={boy} alt='Boy' style={{height: '15px'}} /> (He/Him) <img src={boy} alt='Boy' style={{height: '15px'}} />&nbsp;&nbsp;&nbsp;<span style={{textDecoration: 'underline'}}>Age</span>: 24</p>
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
                 <img src={mail} />
                 <p>Hi! My name is Peter. "Petur" is my childhood stuffed turtle up there on the header. He was envisioned as a gamer/hacker/coder type, and as I have become a similar thing,
@@ -99,7 +96,7 @@ const About = (): React.ReactElement => {
                 <p>I've come to think of Petur
                     as an extension and preservation of my younger self and the fire in my eyes that have long since been dwindled. Haha!
                 </p>
-                <img className='iframe-container' src={animegirl} style={{width: '70%', margin: 'auto', height: '200px', zIndex: 20}} />
+                <img className='iframe-container' src={animegirl} alt='NEET' style={{width: '70%', margin: 'auto', height: '200px', zIndex: 20}} />
                 <div style={{position: 'relative'}}>
                     <p style={{paddingTop: '2px', zIndex: 10, position: 'relative'}}> <span style={{textDecoration: 'underline'}}>Where I'm from</span>: I was born and raised in the beautiful&nbsp;
                     <a href={'https://www.google.com/maps/@?api=1&map_action=pano&pano=tKNcR0MWB2OrAT8fkCS40A&viewpoint=29.82585,-99.134259&heading=251.1045460580811&pitch=-3.4909402145744224&fov=82.437282220988&shorturl=1#extra%5Btags%5D=texas+hill+country&extra%5BloadMode%5D=latLng'} target="_blank" rel="noopener noreferrer">hill country</a> of Texas but moved to Seattle a few years ago. I love the grunge and sunleth beauty of Seattle but Texas will always be home :) </p>

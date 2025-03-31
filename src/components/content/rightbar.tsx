@@ -5,7 +5,6 @@ import sayNo from '../../assets/88x31/roly-saynotoweb3.gif';
 import lain from '../../assets/88x31/lain.gif';
 import shiina from '../../assets/88x31/shiina.png';
 import wtf from '../../assets/88x31/1971.gif';
-import catagolue from '../../assets/88x31/catagolue.png';
 import tt from '../../assets/88x31/tt.png';
 import oriland from '../../assets/88x31/oribana.gif';
 import smlnew from '../../assets/smlnew.gif';
@@ -14,8 +13,6 @@ import cs from '../../assets/88x31/cs.gif';
 import hostyellow from '../../assets/88x31/hostyellow.gif';
 import npp from '../../assets/88x31/notepadpp3.gif';
 import xp from '../../assets/88x31/winxp.gif';
-import yoshi from '../../assets/88x31/yoshihatchbutton.gif';
-import kona from '../../assets/88x31/kona88.png';
 import { Link } from 'react-router';
 
 const Rightbar = (): React.ReactElement => {
@@ -51,7 +48,7 @@ const Rightbar = (): React.ReactElement => {
             <p className='rightbarlink' style={{marginTop: 0}}>See who's visited from  <span><Link to={Path.VISITORS} className='rightbarlink'>your country!</Link></span></p>
             {/* <a href='https://catagolue.hatsya.com/home' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={catagolue}/></a>
             <img className='rbarbox' src={yoshi}/> */}
-            <a href="https://www.moonconnection.com" target="mc_moon_ph"><img src="https://www.moonmodule.com/cs/dm/vn.gif" width="118" height="196" alt="" /></a><div style={{position: 'relative', width: '118px'}}><div style={{position: 'absolute', top: '-20px', left: '6px', background: '#000000', width:'116px', textAlign: 'center'}}><a href="https://www.moonconnection.com/" target="mc_moon_ph"></a></div></div>
+            <a href="https://www.moonconnection.com" target="mc_moon_ph"><img src="https://www.moonmodule.com/cs/dm/vn.gif" width="118" height="196" alt="Moon phase" /></a><div style={{position: 'relative', width: '118px'}}><div style={{position: 'absolute', top: '-20px', left: '6px', background: '#000000', width:'116px', textAlign: 'center'}}><a href="https://www.moonconnection.com/" target="mc_moon_ph"></a></div></div>
             </div>
             {/* <a href='https://konachan.com/' target="_blank" rel="noopener noreferrer"><img className='rbarbox2' src={kona}/></a>
             <a href="https://en.wikipedia.org/wiki/Source_(game_engine)"><img className='rbarbox2' src="https://88x31.kate.pet/source-poweredby-orange.png" height="31" /></a> */}

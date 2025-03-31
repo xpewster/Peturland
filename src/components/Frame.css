@@ -2,23 +2,22 @@ html {background-color: white}
 
 @font-face { font-family: basiic; src: url('./../assets/fnt/basiic.ttf'); } 
 @font-face { font-family: RomanceA; src: url('./../assets/fnt/RomanceA.ttf'); } 
-@font-face { font-family: yoster; src: url('./../assets/fnt/yoster.ttf'); } 
 @font-face { font-family: Bangalore; src: url('./../assets/fnt/Bangalore.ttf'); } 
 @font-face { font-family: glamourgirl; src: url('./../assets/fnt/GLAMOURGIRL.TTF'); } 
 
 body {
-  font-family: basiic;
+  font-family: basiic, sans-serif;
   font-smooth: never;
   -webkit-font-smoothing : none;
 }
 p {
-  font-family: basiic;
+  font-family: basiic, sans-serif;
   font-smooth: never;
   -webkit-font-smoothing : none;
 }
 
 .p-old {
-  font-family: "ＭＳ Ｐゴシック";
+  font-family: "ＭＳ Ｐゴシック", basiic, sans-serif;
   font-smooth: never;
   -webkit-font-smoothing : none;
 }
@@ -51,7 +50,7 @@ p {
     width: 26%;
     top: 100px;
     right: 130px;
-    z-index: 2;
+    z-index: 3;
     image-rendering: pixelated;
 }
 

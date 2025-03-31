@@ -1,8 +1,7 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import yoshiwalk from '../../../assets/gifs/yoshiwalk.gif';
 import './Chatbox.css'
 import { useLocation } from 'react-router';
-import { Path } from '../../../constants/Path';
 import yoshideath from '../../../assets/audio/yoshideath.mp3';
 
 export const Chatbox = (): React.ReactElement => {
@@ -27,7 +26,7 @@ export const Chatbox = (): React.ReactElement => {
     };
   
   return <div style={{position: 'relative'}}>
-        {showYoshi && <img src={yoshiwalk} className='yoshi' onClick={handleClick} style={{position: 'absolute', bottom: '-22px', zIndex: 5}} />}
+        {showYoshi && <img src={yoshiwalk} alt='Yoshi walking' className='yoshi' onClick={handleClick} style={{position: 'absolute', bottom: '-22px', zIndex: 5}} />}
         <div className="iframe-container">
             <div className="scrollable-content">
                 <iframe className="embedded-iframe" src="https://peturland.atabook.org"></iframe>

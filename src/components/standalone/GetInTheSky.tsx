@@ -1,6 +1,5 @@
 import React from "react";
 import Standalone from "./Standalone"
-import InTheSky from "../dso/InTheSky";
 import { Link } from "react-router";
 import { Path } from "../../constants/Path";
 
@@ -39,7 +38,7 @@ export const GetInTheSky = (): React.ReactElement => {
             <p>
                 The widget's still a work in progress, but it works mostly for now. I'm still adding more objects and such~
             </p>
-            <hr style={{opacity: 0.5, width: '99%'}}/>
+            <hr className="standalonehr"/>
             <iframe 
                 src={src}
                 width={`${width}px`}
@@ -55,7 +54,7 @@ export const GetInTheSky = (): React.ReactElement => {
                 width={width} 
                 height={height}
             /> */}
-            <hr style={{opacity: 0.5, width: '99%'}}/>
+            <hr className="standalonehr"/>
             <div style={{border: 'dashed 1px darkgoldenrod', padding: '10px', display: 'inline', marginRight: '5px'}}>
             <p style={{display: 'inline'}}>Hemisphere: <select
                     value={hemisphere} 
@@ -109,7 +108,7 @@ export const GetInTheSky = (): React.ReactElement => {
                 ></input>
             </p>
             </div>
-            <hr style={{opacity: 0.5, width: '99%'}}/>
+            <hr className="standalonehr"/>
             <p>Put this code into your html on your website!</p>
             <textarea value={code} style={{width: '300px', resize: 'none', display: 'block'}}></textarea>
             <button

@@ -25,10 +25,8 @@ export const Standalone = ({
     return <div>
         <a id="top" style={{top: '0'}}></a>
         <Link to={Path.HOME} onClick={() => {nav(-1)}} style={{textDecoration: 'none', color: 'black'}}>
-            <img src={peturshell} style={{imageRendering: 'pixelated', height: '100px'}}></img>
-        </Link>
-        <Link to="/" onClick={() => {nav(-1)}} style={{textDecoration: 'none', color: 'black'}}>
-            <img src={back} style={{imageRendering: 'pixelated', height: '50px'}}></img>
+            <img src={peturshell} alt='Logo' style={{imageRendering: 'pixelated', height: '100px'}}></img>
+            <img src={back} alt='Back' style={{imageRendering: 'pixelated', height: '50px'}}></img>
         </Link>
         <hr></hr>
         {children}

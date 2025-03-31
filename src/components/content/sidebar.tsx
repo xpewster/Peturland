@@ -1,5 +1,4 @@
 import React from 'react';
-import go from '../../assets/go.png';
 import go_home from '../../assets/go3_home.png';
 import go_about from '../../assets/go3_about.png';
 import go_xgeo from '../../assets/go3_xgeo.png';
@@ -10,7 +9,6 @@ import go_about_hover from '../../assets/go3_aboutp.gif';
 import go_xgeo_hover from '../../assets/go3_xgeop.gif';
 import go_soon_hover from '../../assets/go3_soonp.gif';
 import go_projs_hover from '../../assets/go3_projsp.gif';
-import gohover from '../../assets/test/ezgif-4e4cbf7f8b42cb.gif';
 import { Link } from 'react-router';
 import { Path } from '../../constants/Path';
 
@@ -30,19 +28,19 @@ const Sidebar = (): React.ReactElement => {
     return (
         <div style={{position: 'relative'}}>
             <div style={{position: 'relative'}}>
-                <Link to={Path.HOME}><img className='go-button' src={srcs[0]} onMouseEnter={() => onHover(0)} onMouseOut={() => onUnhover(0)}></img><p className='go-text'></p></Link>
+                <Link to={Path.HOME}><img className='go-button' alt='Button' src={srcs[0]} onMouseEnter={() => onHover(0)} onMouseOut={() => onUnhover(0)}></img><p className='go-text'></p></Link>
             </div>
             <div style={{position: 'relative'}}>
-                <Link to={Path.ABOUT}><img className='go-button' src={srcs[1]} onMouseEnter={() => onHover(1)} onMouseOut={() => onUnhover(1)}></img><p className='go-text'></p></Link>
+                <Link to={Path.ABOUT}><img className='go-button' alt='Button' src={srcs[1]} onMouseEnter={() => onHover(1)} onMouseOut={() => onUnhover(1)}></img><p className='go-text'></p></Link>
             </div>
             <div style={{position: 'relative'}}>
-                <Link to={Path.PROJECTS}><img className='go-button' src={srcs[2]} onMouseEnter={() => onHover(2)} onMouseOut={() => onUnhover(2)}></img><p className='go-text'></p></Link>
+                <Link to={Path.PROJECTS}><img className='go-button' alt='Button' src={srcs[2]} onMouseEnter={() => onHover(2)} onMouseOut={() => onUnhover(2)}></img><p className='go-text'></p></Link>
             </div>
             <div style={{position: 'relative'}}>
-                <Link to={Path.XGEO_US}><img className='go-button' src={srcs[3]} onMouseEnter={() => onHover(3)} onMouseOut={() => onUnhover(3)}></img><p className='go-text'></p></Link>
+                <Link to={Path.XGEO_US}><img className='go-button' alt='Button' src={srcs[3]} onMouseEnter={() => onHover(3)} onMouseOut={() => onUnhover(3)}></img><p className='go-text'></p></Link>
             </div>
             <div style={{position: 'relative'}}>
-                <Link to={Path.SOON}><img className='go-button' src={srcs[4]} onMouseEnter={() => onHover(4)} onMouseOut={() => onUnhover(4)}></img><p className='go-text'></p></Link>
+                <Link to={Path.SOON}><img className='go-button' alt='Button' src={srcs[4]} onMouseEnter={() => onHover(4)} onMouseOut={() => onUnhover(4)}></img><p className='go-text'></p></Link>
             </div>
         </div>
     );

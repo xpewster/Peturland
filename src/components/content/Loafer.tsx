@@ -163,7 +163,7 @@ const Loafer = () => {
             <button
                 style={{
                     float: 'right',
-                    fontFamily: "ＭＳ Ｐゴシック",
+                    fontFamily: "ＭＳ Ｐゴシック, basiic, sans-serif",
                     fontSmooth: 'never',
                     fontSize: '11px',
                     WebkitFontSmoothing: 'none',
@@ -176,7 +176,7 @@ const Loafer = () => {
             <button
                 style={{
                     float: 'right',
-                    fontFamily: "ＭＳ Ｐゴシック",
+                    fontFamily: "ＭＳ Ｐゴシック, basiic, sans-serif",
                     fontSmooth: 'never',
                     WebkitFontSmoothing: 'none',
                     // fontSize: running ? '11px' : '10px',

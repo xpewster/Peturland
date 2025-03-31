@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import portw from '../../../assets/portw.png';
 import folder from '../../../assets/fileboxicons/folder.png';
 import filebox from '../../../assets/filebox.png';
@@ -20,32 +20,6 @@ const ProjectWindow = (props: ProjectWindowProps): React.ReactElement => {
     const scrollableRef = useRef<HTMLDivElement>(null);
     const [pos, setPos] = useState<number>(0);
 
-    // useEffect(() => {
-    // const scrollableDiv = scrollableRef.current;
-
-    // if (!scrollableDiv) return;
-
-    // const handleWheel = (e: WheelEvent) => {
-    //     // Check if we need to scroll (when at top or bottom)
-    //     const { scrollTop, scrollHeight, clientHeight } = scrollableDiv;
-    //     const isAtTop = scrollTop === 0;
-    //     const isAtBottom = scrollTop + clientHeight >= scrollHeight;
-        
-    //     // Only prevent default if:
-    //     // - Scrolling up and not at the top, or
-    //     // - Scrolling down and not at the bottom
-    //     if ((e.deltaY < 0 && !isAtTop) || (e.deltaY > 0 && !isAtBottom)) {
-    //     e.preventDefault();
-    //     }
-    // };
-
-    // scrollableDiv.addEventListener('wheel', handleWheel, { passive: false });
-
-    // return () => {
-    //     scrollableDiv.removeEventListener('wheel', handleWheel);
-    // };
-    // }, []);
-
     const handleClick = (index: number) => {
         switch (index) {
             case 0:
@@ -58,7 +32,6 @@ const ProjectWindow = (props: ProjectWindowProps): React.ReactElement => {
                                             scrollableRef.current.getBoundingClientRect().top + 
                                             scrollableRef.current.scrollTop;
                       
-                      // Scroll to that position
                       scrollableRef.current.scrollTo({ 
                         top: aboutPosition, 
                       });
@@ -97,7 +70,7 @@ const ProjectWindow = (props: ProjectWindowProps): React.ReactElement => {
                 </div>
                 {
                     props.images.map((image: any, index: number) => (
-                        <img key={index} src={image} style={{width: '100%', height: 'auto', margin: 0, imageRendering: 'pixelated'}} />
+                        <img key={index} src={image} alt='Portfolio image' style={{width: '100%', height: 'auto', margin: 0, imageRendering: 'pixelated'}} />
                     ))
                 }
                 <div id={'about' + props.projectName} style={{padding: '10px'}}>

@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 
 import { TransformWrapper, TransformComponent } from "react-zoom-pan-pinch";
 
@@ -15,7 +15,7 @@ const ZoomableImage = (props: ZoomableImageProps): React.ReactElement => {
                 <p style={{position: 'absolute', right: '30px', bottom: '10px', zIndex: 10, margin: 0, color: 'darkblue'}}>Zoom in!</p>
                 <TransformWrapper>
                     <TransformComponent>
-                        <img id={"zoomableContent"} src={props.src} style={{...props.imageStyleProps}}></img>
+                        <img id={"zoomableContent"} alt='Zoomable content' src={props.src} style={{...props.imageStyleProps}}></img>
                     </TransformComponent>
                 </TransformWrapper>
             </div>

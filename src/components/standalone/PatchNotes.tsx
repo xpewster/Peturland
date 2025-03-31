@@ -10,7 +10,7 @@ export const PatchNotes = (): React.ReactElement => {
         ['03-22-2025', <></>, "Finally composed the about page!"],
         ['03-23-2025', <></>, "I added an xgeo game for Brazil Postcodes. Super annoying to make as I had to trace the json myself.."],
         ['03-26-2025', <></>, "Tracked down that rascally memory leak! Also added the Portfolio page"],
-        ['03-29-2025', <></>, "Attention fellow website owners--I've created a new WhatsInTheSky widget you can use, check out the home page~"],
+        ['03-29-2025', <></>, "Attention fellow webmasters--I've created a new WhatsInTheSky widget you can use, check out the home page~"],
     ];
 
     return <Standalone>

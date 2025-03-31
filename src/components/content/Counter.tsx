@@ -9,7 +9,7 @@ const Counter = (): React.ReactElement => {
 
             <div style={{position: 'absolute', width:'100%', bottom: '0px'}}>
                 <p className='p-old' style={{whiteSpace: 'nowrap', marginBottom: '0px', textAlign: 'center'}}>You are visitor number </p>
-                <a style={{paddingTop: '0px', marginLeft: '30px', display: 'block'}} href='https://www.counter12.com'><img src='https://www.counter12.com/img-W2aCyz59D8xD6DaW-72.gif' style={{border: '0'}} alt='free counter'/></a><script type='text/javascript' src='https://www.counter12.com/ad.js?id=W2aCyz59D8xD6DaW'></script>
+                <a style={{paddingTop: '0px', marginLeft: '30px', display: 'block'}} href='https://www.counter12.com'><img src='https://www.counter12.com/img-W2aCyz59D8xD6DaW-72.gif' style={{border: '0'}} alt='Visitor counter'/></a><script type='text/javascript' src='https://www.counter12.com/ad.js?id=W2aCyz59D8xD6DaW'></script>
             </div>
         </div>
     );

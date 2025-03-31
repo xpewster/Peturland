@@ -24,72 +24,71 @@ const InTheSky: React.FC<InTheSkyProps> = ({
     const height = 195 * (width/130); // Adjust height based on width for scaling
 
     const drawObjectImage = (ctx: CanvasRenderingContext2D, dsoId: string, x: number, y: number, onComplete: Function) => {
-        const imageSrc = getDsoImage(dsoId);
-        const scaleSize = width;     // Base scaling size
-        const targetWidth = 84 * (width/130);    // Final width
-        const targetHeight = 72 * (width/130);   // Final height
+      const imageSrc = getDsoImage(dsoId);
+      const scaleSize = width;     // Base scaling size
+      const targetWidth = 84 * (width/130);    // Final width
+      const targetHeight = 72 * (width/130);   // Final height
+      
+      if (imageSrc) {
+        const img = new Image();
+        img.src = imageSrc;
         
-        if (imageSrc) {
-          const img = new Image();
-          img.src = imageSrc;
+        img.onload = () => {
+          ctx.imageSmoothingEnabled = false;
           
-          img.onload = () => {
-            // Disable image smoothing for pixelated effect
-            ctx.imageSmoothingEnabled = false;
-            
-            // Calculate scaling based on the longer dimension to reach scaleSize
-            let scaledWidth, scaledHeight;
-            
-            if (img.width >= img.height) {
-              // Wider image - scale by width
-              scaledWidth = scaleSize;
-              scaledHeight = (img.height / img.width) * scaleSize;
-            } else {
-              // Taller image - scale by height
-              scaledHeight = scaleSize;
-              scaledWidth = (img.width / img.height) * scaleSize;
-            }
-            
-            // Calculate the top-left position to center the scaled image for the clip
-            const clipX = (scaledWidth - targetWidth) / 2;
-            const clipY = (scaledHeight - targetHeight) / 2;
-            
-            // First draw the image scaled to a temporary canvas
-            const tempCanvas = document.createElement('canvas');
-            tempCanvas.width = scaledWidth;
-            tempCanvas.height = scaledHeight;
-            const tempCtx: CanvasRenderingContext2D | null = tempCanvas.getContext('2d');
-            if (!tempCtx) return;
-            tempCtx.imageSmoothingEnabled = false;
-            tempCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
-            
-            // Then draw the clipped portion to the main canvas
-            ctx.drawImage(
-              tempCanvas,
-              clipX, clipY, targetWidth, targetHeight, // Source - the clipped portion
-              x, y, targetWidth, targetHeight           // Destination - where to draw
-            );
-            onComplete();
-          };
+          // Calculate scaling based on the SMALLER dimension to reach scaleSize
+          let scaledWidth, scaledHeight;
           
-          img.onerror = () => {
-            console.error(`Failed to load image for ${dsoId}`);
-            // Draw fallback
-            ctx.fillStyle = '#222';
-            ctx.fillRect(x, y, targetWidth, targetHeight);
-            ctx.fillStyle = '#FFF';
-            ctx.font = '12px Arial';
-            ctx.fillText('No image', x + 5, y + targetHeight/2);
-          };
-        } else {
-          // No image available
+          if (img.width <= img.height) {
+            // Wider or square image - scale by width
+            scaledWidth = scaleSize;
+            scaledHeight = (img.height / img.width) * scaleSize;
+          } else {
+            // Taller image - scale by height
+            scaledHeight = scaleSize;
+            scaledWidth = (img.width / img.height) * scaleSize;
+          }
+          
+          // Calculate the top-left position to center the scaled image for the clip
+          const clipX = (scaledWidth - targetWidth) / 2;
+          const clipY = (scaledHeight - targetHeight) / 2;
+          
+          // First draw the image scaled to a temporary canvas
+          const tempCanvas = document.createElement('canvas');
+          tempCanvas.width = scaledWidth;
+          tempCanvas.height = scaledHeight;
+          const tempCtx: CanvasRenderingContext2D | null = tempCanvas.getContext('2d');
+          if (!tempCtx) return;
+          tempCtx.imageSmoothingEnabled = false;
+          tempCtx.drawImage(img, 0, 0, scaledWidth, scaledHeight);
+          
+          // Then draw the clipped portion to the main canvas
+          ctx.drawImage(
+            tempCanvas,
+            clipX, clipY, targetWidth, targetHeight, // Source - the clipped portion
+            x, y, targetWidth, targetHeight           // Destination - where to draw
+          );
+          onComplete();
+        };
+        
+        img.onerror = () => {
+          console.error(`Failed to load image for ${dsoId}`);
+          // Draw fallback
           ctx.fillStyle = '#222';
           ctx.fillRect(x, y, targetWidth, targetHeight);
           ctx.fillStyle = '#FFF';
           ctx.font = '12px Arial';
           ctx.fillText('No image', x + 5, y + targetHeight/2);
-        }
-    };
+        };
+      } else {
+        // No image available
+        ctx.fillStyle = '#222';
+        ctx.fillRect(x, y, targetWidth, targetHeight);
+        ctx.fillStyle = '#FFF';
+        ctx.font = '12px Arial';
+        ctx.fillText('No image', x + 5, y + targetHeight/2);
+      }
+  };
 
     const getCommonName = (dsoName: string): string => {
         if (dsoName[0].toLowerCase() === 'm') {

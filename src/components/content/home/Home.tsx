@@ -1,10 +1,4 @@
 import React, { useEffect, useRef, useState } from 'react';
-import fish from '../../../assets/fish1.gif';
-import bar from '../../../assets/bar.png';
-import barflip from '../../../assets/barflip.png';
-import filebox from '../../../assets/filebox.png';
-import { Link } from 'react-router';
-import dots from '../../../assets/dots.png';
 import home from '../../../assets/home.png';
 import house from '../../../assets/gifs/house02.gif';
 import { ComposableMap, Geographies, Geography } from 'react-simple-maps';
@@ -100,10 +94,10 @@ const Home = (): React.ReactElement => {
         <div style={{position: 'relative'}}>
             <img src={home}></img>
             <div style={{position: 'absolute', padding: '0', top: '30px', left: '10px', width: '306px', height: '329px'}}>
-                <div ref={ref0} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(0)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(0), fontFamily: 'basiic', color: showFilebox[0] ? 'white' : 'black'}}>Home</p></div>
+                <div ref={ref0} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(0)} className='fileboxlink top'><p className='fileboxlink top' style={{backgroundColor: getLinkBackgroundColor(0), color: showFilebox[0] ? 'white' : 'black'}}>Home</p></div>
                 {showFilebox[0] && <div style={{position: 'absolute', left: '10px', top: '20px', zIndex: 10}}><Filebox imageSrcs={FB_IMGS} strings={FB_STRINGS} links={FB_LINKS} styles={FB_STYLES} onClick={onFileboxClick}></Filebox></div>}
-                <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>H</span>ome</p>
-                <p style={{paddingTop: '20px', paddingLeft: '10px'}}>you've stumbled upon the webmaster's humble <img style={{height: '15px'}} src={house}></img> homestead <img style={{height: '15px'}} src={house}></img> {'on the internet 8}'}</p>
+                <p className='p-old' style={{paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>H</span>ome</p>
+                <p style={{paddingTop: '15px', paddingLeft: '10px'}}>you've stumbled upon the webmaster's humble <img style={{height: '15px'}} src={house} alt='House'></img> homestead <img style={{height: '15px'}} src={house} alt='House'></img> {'on the internet 8}'}</p>
             </div>
             <div style={{position: 'absolute', padding: '0', top: '171px', left: '124px', width: '326px', height: '329px'}}>
                 <div ref={ref1} style={{position: 'absolute', left: '14px', top: '0px'}} onClick={() => handleClick(1)} className='fileboxlink top'><p className='fileboxlink top' style={{paddingTop: '2px', paddingBottom: '0px', backgroundColor: getLinkBackgroundColor(1), fontFamily: 'basiic', color: showFilebox[1] ? 'white' : 'black'}}>What you'll find</p></div>

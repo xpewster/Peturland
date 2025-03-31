@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from 'react';
-import portw from '../../../assets/portw.png';
 import dots from '../../../assets/dots.png';
 import mail from '../../../assets/gifs/MAIL.gif';
 import missilecave from '../../../assets/portfolio/missilecavePV.png';
 import missilecave2 from '../../../assets/portfolio/missilecave2.png';
 import picoban from '../../../assets/portfolio/picobanPV.png';
 import peturland from '../../../assets/portfolio/peturland1.png';
-import peturland2 from '../../../assets/portfolio/peturland2.png';
 import oceanrender from '../../../assets/portfolio/OceanRender.png';
 import folder from '../../../assets/fileboxicons/folder.png';
 import github from '../../../assets/fileboxicons/github.png';
@@ -75,7 +73,7 @@ const Projects = (): React.ReactElement => {
             <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
                 <p style={{paddingBottom: '10px'}}>Portfolio</p>
                 <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
-                <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Skills</span>: Java,C++,Go,Typescript,React,Clojure,Photoshop<img src={ps} style={{height: '18px', verticalAlign: 'middle', opacity: '0.8'}} /></p>
+                <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Skills</span>: Java,C++,Go,Typescript,React,Clojure,Photoshop<img src={ps} alt='Ps' style={{height: '18px', verticalAlign: 'middle', opacity: '0.8'}} /></p>
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
                 <img src={mail} />
                 <p>Hello! I was indoctrinated into programming from a young age~ I found my passion in game development though! I made a ton of games as a kid on Yoyogames with GameMaker. Once high school rolled around I started dabbling in <i>serious</i> languages like C++, Java, etc. My corporate wage cage has brought my amateur career to a screeching halt but I hope to get back to it soon! Here are some of my projects from over the years:</p>

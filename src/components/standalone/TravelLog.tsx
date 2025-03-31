@@ -1,5 +1,4 @@
 import Standalone from "./Standalone"
-import underconstruction from '../../assets/88x31/construction.gif';
 import DatedComponentList, { DatedComponent } from "../common/DatedComponentList";
 import globe from '../../assets/gifs/globe.gif';
 

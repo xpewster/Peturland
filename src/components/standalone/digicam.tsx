@@ -46,7 +46,7 @@ export const Digicam = (): React.ReactElement => {
         <div style={{width: '1600px'}}>
             {IMAGE_LIST.reverse().map((src, i) => {
                 return (
-                    <a href={src[0]}><img src={src[0]} style={{margin: '5px', height: `${src[1]}px`, imageRendering: 'pixelated'}}></img></a>
+                    <a href={src[0]}><img src={src[0]} alt='Digicam photo' style={{margin: '5px', height: `${src[1]}px`, imageRendering: 'pixelated'}}></img></a>
                 );
             })}
         </div>

@@ -5,7 +5,7 @@ export const UnderConstructionStandalone = (): React.ReactElement => {
 
     return <Standalone>
         <div style={{paddingLeft: '10px', paddingRight: '10px'}}>
-            <img src={underconstruction} />
+            <img src={underconstruction} alt='Under Construction' />
         </div>
     </Standalone>;
 }

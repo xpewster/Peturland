@@ -103,7 +103,7 @@
 }
 
 .fileboxlink {
-    font-family: "ＭＳ Ｐゴシック";
+    font-family: "ＭＳ Ｐゴシック", basiic, sans-serif;
     color: black;
     position: absolute;
     z-index: 5;
@@ -143,4 +143,9 @@
     font-family: 'glamourgirl';
     color: white;
     text-shadow: black 1px 0 10px;
+}
+
+.standalonehr {
+    opacity: 0.5;
+    width: 99%;
 }
