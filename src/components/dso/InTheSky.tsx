@@ -91,7 +91,7 @@ const InTheSky: React.FC<InTheSkyProps> = ({
   };
 
     const getCommonName = (dsoName: string): string => {
-        if (dsoName[0].toLowerCase() === 'm') {
+        if (dsoName[0].toLowerCase() === 'm' && dsoName.length > 1 && !isNaN(parseInt(dsoName.slice(1)))) {
             return "Messier " + dsoName.slice(1); // e.g. M1 -> Messier 1
         }
         return dsoName;
@@ -132,7 +132,9 @@ const InTheSky: React.FC<InTheSkyProps> = ({
         ctx.font = `${Math.floor(10 * (width/130))}px basiic`;
         ctx.textAlign = 'center';
         ctx.fillText(`In the ${hemisphere.toLowerCase()}ern sky tonight`, width/2, 12 * (width/130));
-        if (getCommonName(object.name).length > 14) {
+        if (getCommonName(object.name).length > 17) {
+            ctx.font = `${Math.floor(11 * (width/130))}px basiic`;
+        } else if (getCommonName(object.name).length > 14) {
             ctx.font = `${Math.floor(14 * (width/130))}px basiic`;
         } else {
             ctx.font = `${Math.floor(16 * (width/130))}px basiic`;
