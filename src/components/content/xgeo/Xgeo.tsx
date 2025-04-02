@@ -9,17 +9,19 @@ import { ContentType } from '../../../constants/ContentType';
 import { Path } from '../../../constants/Path';
 import UsAdoptAHighway from './us/AdoptAHighway/UsAdoptAHighway';
 import Filebox, { LINK_CLICK_COLOR } from '../../common/Filebox';
-import lice from '../../../assets/plates/iowa/reg2018.png';
 import { preloadImage2 } from '../../common/preloadImage';
+import lice from '../../../assets/fileboxicons/xp/msvbvm50.dll_14_1202-2.png';
 import phone from '../../../assets/gifs/phone.gif'
-import texas from '../../../assets/gifs/texas.gif';
-import putlitter from '../../../assets/fileboxicons/put-litter-in-its-place.png';
+import texas from '../../../assets/fileboxicons/xp/oledb32r.dll_14_206-1.png';
+import putlitter from '../../../assets/fileboxicons/xp/cleanmgr.exe_14_104-2.png';
 import UsFlags from './us/Flags/UsFlags';
-import head from '../../../assets/fileboxicons/ca.png';
+import head from '../../../assets/fileboxicons/xp/shimgvw.dll_14_1-1.png';
 import shortcut from '../../../assets/fileboxicons/shortcut.png';
 import car from '../../../assets/fileboxicons/car.png';
 import folder from '../../../assets/fileboxicons/folder.png';
-import sticky from '../../../assets/fileboxicons/sticky.gif';
+import folder2 from '../../../assets/fileboxicons/xp/shell32.dll_14_20-8.png';
+import sticky from '../../../assets/fileboxicons/xp/ntbackup.exe_14_102-1.png';
+import regency from '../../../assets/fileboxicons/xp/freecell.exe_14_601-4.png';
 
 import navigatehere from '../../../assets//navigatehere.png';
 import UsStateHighways from './us/StateHighways/UsStateHighways';
@@ -27,6 +29,8 @@ import UsAbbreviations from './us/Abbreviations/UsAbbreviations';
 import BrazilAbbreviations from './brazil/Abbreviations/BrazilAbbreviations';
 import BrazilPostcodes from './brazil/Postcodes/BrazilPostcodes';
 import UsWindshieldStickers from './us/WindshieldStickers/UsWindshieldStickers';
+import CompoundFilebox from '../../common/CompoundFilebox';
+import Kabupaten from './indo/Kabupaten/Kabupaten';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -37,6 +41,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const NA_IMGS = [lice, texas, shortcut, putlitter, head, sticky];
     const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', 'Windshield Stickers'];
     const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY, Path.XGEO_US_WINDSHIELD_STICKERS];
+    const NA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const BR_IMGS = [phone, shortcut, folder];
     const BR_STRINGS = ['Phone Codes', '2-Letter Abbreviations', 'Postcodes (CEP)'];
@@ -51,6 +56,19 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const MONG_LINKS = [Path.XGEO_MONG];
     const MONG_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
+    const INDO_IMGS = [regency];
+    const INDO_STRINGS = ['Kabupaten'];
+    const INDO_LINKS = [Path.XGEO_INDONESIA_KABUPATEN];
+    const INDO_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    
+    const TOP_IMGS = [folder2, folder2];
+    const TOP_STRINGS = ['Mongolia', 'Indonesia'];
+    const TOP_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS];
+    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS];
+    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS];
+    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES];
+
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
     const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);
 
@@ -59,6 +77,12 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
             preloadImage2(src);
         });
         BR_IMGS.forEach((src) => {
+            preloadImage2(src);
+        });
+        EU_IMGS.forEach((src) => {
+            preloadImage2(src);
+        });
+        TOP_IMGS.forEach((src) => {
             preloadImage2(src);
         });
     }, []);
@@ -88,6 +112,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <BrazilPostcodes />;
             case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
+            case ContentType.XGEO_INDONESIA_KABUPATEN:
+                return <Kabupaten />;
         }
     };
 
@@ -123,13 +149,15 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
             <div style={{height: '20px'}}>
                 <div style={{paddingTop: '2px', position: 'relative'}} ref={ref}>
                     <div style={{left: '20px'}} onClick={() => handleClick(0)} className='fileboxlink top'><p className='fileboxlink top' style={{backgroundColor: getLinkBackgroundColor(0), color: showFilebox[0] ? 'white' : 'black'}}>North America</p></div>
-                    {showFilebox[0] && <div style={{position: 'absolute', left: '20px', top: '22px', zIndex: 10}}><Filebox imageSrcs={NA_IMGS} strings={NA_STRINGS} links={NA_LINKS} onClick={onFileboxClick}></Filebox></div>}
+                    {showFilebox[0] && <div style={{position: 'absolute', left: '20px', top: '22px', zIndex: 10}}><Filebox imageSrcs={NA_IMGS} strings={NA_STRINGS} links={NA_LINKS} styles={NA_STYLES} onClick={onFileboxClick}></Filebox></div>}
                     <div style={{left: '130px'}} onClick={() => handleClick(1)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(1), color: showFilebox[1] ? 'white' : 'black'}}>Brazil</p></div>
                     {showFilebox[1] && <div style={{position: 'absolute', left: '130px', top: '22px', zIndex: 10}}><Filebox imageSrcs={BR_IMGS} strings={BR_STRINGS} links={BR_LINKS} onClick={onFileboxClick}></Filebox></div>}
                     <div style={{left: '180px'}} onClick={() => handleClick(2)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(2), color: showFilebox[2] ? 'white' : 'black'}}>Europe</p></div>
                     {showFilebox[2] && <div style={{position: 'absolute', left: '180px', top: '22px', zIndex: 10}}><Filebox imageSrcs={EU_IMGS} strings={EU_STRINGS} links={EU_LINKS} onClick={onFileboxClick}></Filebox></div>}
-                    <div style={{left: '240px'}} onClick={() => handleClick(3)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(3), color: showFilebox[3] ? 'white' : 'black'}}>Mongolia</p></div>
-                    {showFilebox[3] && <div style={{position: 'absolute', left: '240px', top: '22px', zIndex: 10}}><Filebox imageSrcs={MONG_IMGS} strings={MONG_STRINGS} links={MONG_LINKS} styles={MONG_STYLES} onClick={onFileboxClick}></Filebox></div>}
+                    <div style={{left: '240px'}} onClick={() => handleClick(3)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(3), color: showFilebox[3] ? 'white' : 'black'}}>Other Countries</p></div>
+                    {showFilebox[3] && <div style={{position: 'absolute', left: '240px', top: '22px', zIndex: 10}}>
+                            <CompoundFilebox topImageSrcs={TOP_IMGS} topStrings={TOP_STRINGS} topStyles={TOP_STYLES} imageSrcs={TOP_SUB_SRCS} strings={TOP_SUB_STRINGS} links={TOP_SUB_LINKS} styles={TOP_SUB_STYLES} onClick={onFileboxClick}></CompoundFilebox>
+                        </div>}
                 </div>
                 <img className='filebox' src={filebox}></img>
                 <img src={navigatehere} alt='Navigate here' style={{pointerEvents: 'none', position: 'absolute', top: '25px', left: '260px', display: showNavigateHere ? undefined : 'none'}}></img>

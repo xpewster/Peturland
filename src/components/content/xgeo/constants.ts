@@ -13,8 +13,11 @@ export enum QuizType {
     BRAZIL_AREA_CODES,
     BRAZIL_ABBREVIATIONS,
     BRAZIL_POSTCODES,
+    EU_BOLLARDS,
+    EU_CHEVRONS,
     MONG_DRIVING_DIRECTION,
     MONG_CAR_META,
+    INDONESIA_KABUPATEN,
 }
 
 export enum LocalStorageStreakKeys {
@@ -29,8 +32,11 @@ export enum LocalStorageStreakKeys {
     BRAZIL_AREA_CODES = "brazil_areacodes_bestStreak",
     BRAZIL_ABBREVIATIONS = "brazil_abbreviations_bestStreak",
     BRAZIL_POSTCODES = "brazil_postcodes_bestStreak",
+    EU_BOLLARDS = "eu_bollards_bestStreak",
+    EU_CHEVRONS = "eu_chevrons_bestStreak",
     MONG_DRIVING_DIRECTION = "mongolia_driving_direction_bestStreak",
     MONG_CAR_META = "mongolia_car_meta_bestStreak",
+    INDONESIA_KABUPATEN = "indonesia_kabupaten_bestStreak",
 }
 
 export const MAP_COLOR = "#FF5533";

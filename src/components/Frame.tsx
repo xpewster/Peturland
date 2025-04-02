@@ -43,8 +43,16 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_BR_ABBREVIATIONS;
       case Path.XGEO_BR_POSTCODES:
         return ContentType.XGEO_BR_POSTCODES;
+      case Path.XGEO_EU:
+        return ContentType.XGEO_EU;
+      case Path.XGEO_EU_BOLLARDS:
+        return ContentType.XGEO_EU_BOLLARDS;
+      case Path.XGEO_EU_CHEVRONS:
+        return ContentType.XGEO_EU_CHEVRONS;
       case Path.XGEO_MONG:
         return ContentType.XGEO_MONG;
+      case Path.XGEO_INDONESIA_KABUPATEN:
+        return ContentType.XGEO_INDONESIA_KABUPATEN;
       case Path.SOON:
         return ContentType.SOON;
     }

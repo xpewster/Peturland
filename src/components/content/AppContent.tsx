@@ -34,7 +34,11 @@ const AppContent = ({
             case ContentType.XGEO_BR:
             case ContentType.XGEO_BR_ABBREVIATIONS:
             case ContentType.XGEO_BR_POSTCODES:
+            case ContentType.XGEO_EU:
+            case ContentType.XGEO_EU_BOLLARDS:
+            case ContentType.XGEO_EU_CHEVRONS:
             case ContentType.XGEO_MONG:
+            case ContentType.XGEO_INDONESIA_KABUPATEN:
                 return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:
                 return <Soon />;    

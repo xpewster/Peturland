@@ -38,7 +38,7 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_BR_ABBREVIATIONS:
             return 800;
         case ContentType.XGEO_BR_POSTCODES:
-            return 1070;
+            return 1150;
         case ContentType.XGEO_MONG:
             return 900;
         case ContentType.SOON:

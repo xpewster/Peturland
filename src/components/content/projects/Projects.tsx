@@ -6,8 +6,8 @@ import missilecave2 from '../../../assets/portfolio/missilecave2.png';
 import picoban from '../../../assets/portfolio/picobanPV.png';
 import peturland from '../../../assets/portfolio/peturland1.png';
 import oceanrender from '../../../assets/portfolio/OceanRender.png';
-import folder from '../../../assets/fileboxicons/folder.png';
-import github from '../../../assets/fileboxicons/github.png';
+import folder from '../../../assets/fileboxicons/xp/dot3ui.dll_14_2000-15.png';
+import github from '../../../assets/fileboxicons/xp/progman.exe_14_147-7.png';
 import phone from '../../../assets/gifs/phone.gif'
 import ps from '../../../assets/fileboxicons/ps.png';
 import filebox from '../../../assets/filebox.png';
@@ -23,7 +23,7 @@ const Projects = (): React.ReactElement => {
     const LINKS_IMGS = [github, folder, phone];
     const LINKS_STRINGS = ['Github', 'More about', 'Contact'];
     const LINKS_LINKS = ["https://github.com/xpewster", Path.ABOUT, Path.SUPPORT];
-    // const LINKS_STYLES = [{imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}, {imageRendering: 'pixelated' as const}];
+    const LINKS_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}];
     const LINKS_EXTERNAL = [true, false, false, true, true, true];   
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
@@ -66,7 +66,7 @@ const Projects = (): React.ReactElement => {
             <div style={{height: '20px'}}>
                 <div style={{paddingTop: '2px', position: 'relative'}} ref={ref}>
                     <div style={{left: '20px'}} onClick={() => handleClick(0)} className='fileboxlink top'><p className='fileboxlink top' style={{backgroundColor: getLinkBackgroundColor(0), color: showFilebox[0] ? 'white' : 'black'}}>Links</p></div>
-                    {showFilebox[0] && <div style={{position: 'absolute', left: '20px', top: '22px', zIndex: 10}}><Filebox imageSrcs={LINKS_IMGS} strings={LINKS_STRINGS} links={LINKS_LINKS} externals={LINKS_EXTERNAL} onClick={onFileboxClick}></Filebox></div>}
+                    {showFilebox[0] && <div style={{position: 'absolute', left: '20px', top: '22px', zIndex: 10}}><Filebox imageSrcs={LINKS_IMGS} strings={LINKS_STRINGS} links={LINKS_LINKS} externals={LINKS_EXTERNAL} styles={LINKS_STYLES} onClick={onFileboxClick}></Filebox></div>}
                 </div>
                 <img className='filebox' src={filebox}></img>
             </div>

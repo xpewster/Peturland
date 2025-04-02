@@ -10,6 +10,7 @@ export interface FileboxProps {
     styles?: React.CSSProperties[];
     externals?: boolean[];
     onClick: () => void;
+    child?: boolean;
 }
 
 const Filebox = (props: FileboxProps): React.ReactElement => {
@@ -38,6 +39,13 @@ const Filebox = (props: FileboxProps): React.ReactElement => {
     return (
         <div style={{width: '200px', backgroundColor: 'white', boxShadow: 'inset -2px -2px #716F64, inset 1px 1px #ECE9D8, inset 2px 2px #ffffff, inset 3px 3px #ECE9D8, inset -3px -3px #ACA899, inset -4px -4px #ECE9D8, inset -1px -1px #002B55'}}>
             {props.imageSrcs.map((src, i) => {
+                if (i === 0 && props.child) {
+                    return (
+                        <div key={i} style={{paddingTop: '4px'}}>
+                            {getFileboxItem(src, props.strings[i], props.links[i], props.styles?.[i], props.externals?.[i])}
+                        </div>
+                    );
+                }
                 if (i === 2) {
                     return (
                         <>
