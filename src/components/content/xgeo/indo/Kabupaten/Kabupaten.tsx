@@ -32,7 +32,7 @@ const Kabupaten = (): React.ReactElement => {
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
-            <p style={{paddingBottom: '10px'}}>Kabupaten (Regencies)</p>
+            <p style={{paddingBottom: '10px'}}>Kabupaten and Kota (Regencies)</p>
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div style={{marginBottom: '20px', paddingRight: '0px'}}>
                 <div>

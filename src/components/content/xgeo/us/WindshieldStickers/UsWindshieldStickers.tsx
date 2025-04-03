@@ -47,7 +47,7 @@ const UsWindshieldStickers = (): React.ReactElement => {
                     regionIndexArray={STATES}
                     toFindIndexToAnswerIndicesArray={REGION_INDEX_TO_STICKER_INDEX}
                     answerIndexToSrc={getStickerImage}
-                    streakKey={getStreakKey(QuizType.US_WINDSHIELD_STICKERS, [])}
+                    streakKey={getStreakKey(QuizType.US_WINDSHIELD_STICKERS, [...enableRegion, enableRandColor, enableDistort])}
                     disallowRepeats={true}
                     enableSkew={enableDistort}
                     enableRandColor={enableRandColor}

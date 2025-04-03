@@ -81,7 +81,7 @@ const UsFlags = (): React.ReactElement => {
                     regionIndexArray={STATES}
                     toFindIndexToAnswerIndicesArray={getToFindIndexToAnswerIndicesArray()}
                     answerIndexToSrc={getFlagImage}
-                    streakKey={getStreakKey(QuizType.US_STATE_FLAGS, enableRegion)}
+                    streakKey={getStreakKey(QuizType.US_STATE_FLAGS, [...enableRegion, enableDistort])}
                     disallowRepeats={true}
                     enableSkew={enableDistort}
                     enableRegions={enableRegion}

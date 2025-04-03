@@ -23,6 +23,11 @@ import folder2 from '../../../assets/fileboxicons/xp/shell32.dll_14_20-8.png';
 import sticky from '../../../assets/fileboxicons/xp/ntbackup.exe_14_102-1.png';
 import regency from '../../../assets/fileboxicons/xp/freecell.exe_14_601-4.png';
 
+import chevron from '../../../assets/fileboxicons/xp/mfc90.dll_14_17100-0.png';
+import bollard from '../../../assets/fileboxicons/xp/dot3ui.dll_14_2000-15.png';
+import guardrail from '../../../assets/fileboxicons/xp/compstui.dll_14_64002-1.png';
+import pedestrian from '../../../assets/fileboxicons/xp/msmsgs.exe_14_1-5.png';
+
 import navigatehere from '../../../assets//navigatehere.png';
 import UsStateHighways from './us/StateHighways/UsStateHighways';
 import UsAbbreviations from './us/Abbreviations/UsAbbreviations';
@@ -31,6 +36,7 @@ import BrazilPostcodes from './brazil/Postcodes/BrazilPostcodes';
 import UsWindshieldStickers from './us/WindshieldStickers/UsWindshieldStickers';
 import CompoundFilebox from '../../common/CompoundFilebox';
 import Kabupaten from './indo/Kabupaten/Kabupaten';
+import EuChevrons from './europe/chevrons/EuChevrons';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -47,9 +53,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const BR_STRINGS = ['Phone Codes', '2-Letter Abbreviations', 'Postcodes (CEP)'];
     const BR_LINKS = [Path.XGEO_BR, Path.XGEO_BR_ABBREVIATIONS, Path.XGEO_BR_POSTCODES];
 
-    const EU_IMGS = [shortcut];
-    const EU_STRINGS = ['Coming Soon'];
-    const EU_LINKS = ['/'];
+    const EU_IMGS = [chevron, bollard, guardrail, texas, pedestrian];
+    const EU_STRINGS = ['Chevrons', 'Bollards - Coming Soon', 'Guardrails - Soon', 'Flags - Soon', 'Pedestrian Crossings - Soon'];
+    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.SOON, Path.SOON, Path.SOON, Path.SOON];
+    const EU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const MONG_IMGS = [car];
     const MONG_STRINGS = ['Driving Direction'];
@@ -110,6 +117,9 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <BrazilAbbreviations />;
             case ContentType.XGEO_BR_POSTCODES:
                 return <BrazilPostcodes />;
+            case ContentType.XGEO_EU_BOLLARDS:
+            case ContentType.XGEO_EU_CHEVRONS:
+                return <EuChevrons />;
             case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
             case ContentType.XGEO_INDONESIA_KABUPATEN:
@@ -153,7 +163,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                     <div style={{left: '130px'}} onClick={() => handleClick(1)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(1), color: showFilebox[1] ? 'white' : 'black'}}>Brazil</p></div>
                     {showFilebox[1] && <div style={{position: 'absolute', left: '130px', top: '22px', zIndex: 10}}><Filebox imageSrcs={BR_IMGS} strings={BR_STRINGS} links={BR_LINKS} onClick={onFileboxClick}></Filebox></div>}
                     <div style={{left: '180px'}} onClick={() => handleClick(2)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(2), color: showFilebox[2] ? 'white' : 'black'}}>Europe</p></div>
-                    {showFilebox[2] && <div style={{position: 'absolute', left: '180px', top: '22px', zIndex: 10}}><Filebox imageSrcs={EU_IMGS} strings={EU_STRINGS} links={EU_LINKS} onClick={onFileboxClick}></Filebox></div>}
+                    {showFilebox[2] && <div style={{position: 'absolute', left: '180px', top: '22px', zIndex: 10}}><Filebox imageSrcs={EU_IMGS} strings={EU_STRINGS} links={EU_LINKS} styles={EU_STYLES} onClick={onFileboxClick}></Filebox></div>}
                     <div style={{left: '240px'}} onClick={() => handleClick(3)} className='fileboxlink top'><p className='fileboxlink top'  style={{backgroundColor: getLinkBackgroundColor(3), color: showFilebox[3] ? 'white' : 'black'}}>Other Countries</p></div>
                     {showFilebox[3] && <div style={{position: 'absolute', left: '240px', top: '22px', zIndex: 10}}>
                             <CompoundFilebox topImageSrcs={TOP_IMGS} topStrings={TOP_STRINGS} topStyles={TOP_STYLES} imageSrcs={TOP_SUB_SRCS} strings={TOP_SUB_STRINGS} links={TOP_SUB_LINKS} styles={TOP_SUB_STYLES} onClick={onFileboxClick}></CompoundFilebox>

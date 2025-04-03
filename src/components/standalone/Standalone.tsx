@@ -15,6 +15,18 @@ export const Standalone = ({
 
     const nav = useNavigate();
 
+    const handleNavigation = () => {
+        try {
+            if (window.history.state && window.history.state.idx > 0) {
+                nav(-1);
+            } else {
+                nav(Path.HOME);
+            }
+        } catch (e) {
+            nav(Path.HOME);
+        }
+    };
+
     const scrollToTop = (e: any) => {
         e.preventDefault();
         window.scrollTo({
@@ -24,7 +36,7 @@ export const Standalone = ({
     
     return <div>
         <a id="top" style={{top: '0'}}></a>
-        <Link to={Path.HOME} onClick={() => {nav(-1)}} style={{textDecoration: 'none', color: 'black'}}>
+        <Link to={Path.HOME} onClick={() => {handleNavigation()}} style={{textDecoration: 'none', color: 'black'}}>
             <img src={peturshell} alt='Logo' style={{imageRendering: 'pixelated', height: '100px'}}></img>
             <img src={back} alt='Back' style={{imageRendering: 'pixelated', height: '50px'}}></img>
         </Link>

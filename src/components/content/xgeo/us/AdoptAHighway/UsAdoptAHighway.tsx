@@ -66,7 +66,7 @@ const UsAdoptAHighway = (): React.ReactElement => {
                     toFindIndexToAnswerIndicesArray={REGION_TO_SIGN_IMAGES}
                     answerIndexToSrc={getSignImage}
                     answerIndexToRegionIndices={SIGN_TO_ANSWER_REGION_INDICES}
-                    streakKey={getStreakKey(QuizType.US_ADOPT_A_HIGHWAY, enableRegion)}
+                    streakKey={getStreakKey(QuizType.US_ADOPT_A_HIGHWAY, [...enableRegion, enableDistort])}
                     disallowRepeats={true}
                     enableSkew={enableDistort}
                     enableRegions={enableRegion}
