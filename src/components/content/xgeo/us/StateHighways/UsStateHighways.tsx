@@ -77,6 +77,7 @@ const UsStateHighways = (): React.ReactElement => {
                     showImages={SHIELD_SHOW_IMAGES}
                     answerIndexToShowIndex={SHIELD_TO_SHOW_INDICES}
                     numLastItems={10}
+                    sayWrongAnswer={true}
                 />
             </div>
         </div>

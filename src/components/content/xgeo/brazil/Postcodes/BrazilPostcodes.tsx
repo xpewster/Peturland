@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import brazil_cep from '../../../../../assets/geojsons/bcep.json';
-import {  MAP_COLOR, MAP_HOVER_COLOR, QuizType } from '../../constants';
+import {  MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, QuizType } from '../../constants';
 import { getStreakKey } from '../../helpers';
 import { REGION_INDEX_TO_POSTCODE_PREFIX_BITFLAG, POSTCODES, REGION_INDEX_TO_POSTCODE_INDEX, POSTCODE_TO_REGION_INDICES, STATE_COLORS } from './constants';
 import dots from '../../../../../assets/dots.png';
@@ -68,9 +68,9 @@ const BrazilPostcodes = (): React.ReactElement => {
         return "1px";
     }
 
-    const getGeometryStyle = (key: string) => {
+    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined) => {
         return {
-            default: { fill: getCellColor(key), stroke: enableBorders ? "#000000" : getCellColor(key), strokeWidth: enableBorders ? getStrokeWidthBEnabled(key) : getStrokeWidth(key), outline: 'none' },
+            default: { fill: (lastItemKeys?.includes(key)) ? MAP_LAST_COLOR : getCellColor(key), stroke: enableBorders ? "#000000" : getCellColor(key), strokeWidth: enableBorders ? getStrokeWidthBEnabled(key) : getStrokeWidth(key), outline: 'none' },
             hover: { fill:  enableBorders ? MAP_HOVER_COLOR : getCellColor(key), stroke: enableBorders ? "#000000" : getCellColor(key), strokeWidth: enableBorders ? getStrokeWidthBEnabled(key) : getStrokeWidth(key), outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
         };
@@ -107,6 +107,7 @@ const BrazilPostcodes = (): React.ReactElement => {
                 streakKey={getStreakKey(QuizType.BRAZIL_POSTCODES, enablePrefix)}
                 disallowRepeats={true}
                 numLastItems={0}
+                sayWrongAnswer={true}
                 mapParameters={{scale: 800, center: [-55, -15]}}
                 enableRegions={enablePrefix}
                 regionsBitFlag={REGION_INDEX_TO_POSTCODE_PREFIX_BITFLAG}

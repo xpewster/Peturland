@@ -56,6 +56,7 @@ const UsAbbreviations = (): React.ReactElement => {
                     enableRegions={enableRegion}
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
                     numLastItems={10}
+                    sayWrongAnswer={true}
                 />
             </div>
         </div>

@@ -56,6 +56,7 @@ const UsWindshieldStickers = (): React.ReactElement => {
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
                     itemHeight={75}
                     numLastItems={10}
+                    sayWrongAnswer={true}
                 />
             </div>
         </div>

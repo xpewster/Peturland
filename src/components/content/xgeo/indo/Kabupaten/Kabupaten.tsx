@@ -4,7 +4,7 @@ import dots from '../../../../../assets/dots.png';
 import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
 import kabu from '../../../../../assets/geojsons/indo_kabu5.json';
 import { getStreakKey } from '../../helpers';
-import { MAP_COLOR, MAP_HOVER_COLOR, QuizType } from '../../constants';
+import { MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, QuizType } from '../../constants';
 import { KABUPATEN, KABUPATEN_INDEX_TO_BITFLAG, REGION_INDEX_TO_KABUPATEN_INDEX } from './constants';
 
 
@@ -22,9 +22,9 @@ const Kabupaten = (): React.ReactElement => {
         return <span style={{textDecoration: 'underline', display: "inline"}}>{KABUPATEN[index]}</span>;
     }
 
-    const getGeometryStyle = (key: string) => {
+    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined) => {
         return {
-            default: { fill: MAP_COLOR, stroke: "#000000", outline: 'none', strokeWidth: '0.3px' },
+            default: { fill: (lastItemKeys?.includes(key)) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none', strokeWidth: '0.3px' },
             hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none', strokeWidth: '0.3px' },
             pressed: { fill: "green", outline: 'none' },
         };
@@ -98,6 +98,7 @@ const Kabupaten = (): React.ReactElement => {
                     enableRegions={enableRegion}
                     regionsBitFlag={KABUPATEN_INDEX_TO_BITFLAG}
                     numLastItems={0}
+                    sayWrongAnswer={true}
                     mapParameters={{scale: 800, center: [117, -3]}}
                     styleFunction={getGeometryStyle}
                 />

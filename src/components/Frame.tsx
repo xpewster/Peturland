@@ -49,6 +49,14 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_EU_BOLLARDS;
       case Path.XGEO_EU_CHEVRONS:
         return ContentType.XGEO_EU_CHEVRONS;
+      case Path.XGEO_EU_DOMAINS:
+        return ContentType.XGEO_EU_DOMAINS;
+      case Path.XGEO_EU_GUARDRAILS:
+        return ContentType.XGEO_EU_GUARDRAILS;
+      case Path.XGEO_EU_FLAGS:
+        return ContentType.XGEO_EU_FLAGS;
+      case Path.XGEO_EU_PEDESTRIAN_CROSSINGS:
+        return ContentType.XGEO_EU_PEDESTRIAN_CROSSINGS;
       case Path.XGEO_MONG:
         return ContentType.XGEO_MONG;
       case Path.XGEO_INDONESIA_KABUPATEN:

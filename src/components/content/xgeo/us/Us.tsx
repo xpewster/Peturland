@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './Us.css';
 import './../Xgeo.css';
-import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../constants';
+import { BADS, LocalStorageStreakKeys, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES, QuizType } from '../constants';
 import { getStreakKey, randomElement } from '../helpers';
 import { getRandomEnabledStateIndexFast, HOLDER_COLORS, isStateEnabled, REGISTRATION_STICKER_COLORS, STATE_NAMES, STATES, TERRITORY_NAMES } from './constants';
 import Plate from './plate/Plate';
@@ -63,6 +63,7 @@ const Us = (props: UsProps): React.ReactElement => {
 
     // const [lastPlate, setLastPlate] = useState<LAST_PLATE_INFO | undefined>(undefined);
     const [lastPlates, setLastPlates] = useState<LAST_PLATE_INFO[]>([]);
+    const [lastPlateKey, setLastPlateKey] = useState<string | undefined>(undefined);
     const [enablePPBlur, setEnablePPBlur] = useState<boolean>(false);
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
@@ -118,6 +119,7 @@ const Us = (props: UsProps): React.ReactElement => {
             }
             return newLastPlate as LAST_PLATE_INFO[];
         });
+        setLastPlateKey(`geo-${toFind}`);
     };
 
     function generateFirstFind() {
@@ -320,7 +322,13 @@ const Us = (props: UsProps): React.ReactElement => {
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
             <div style={{paddingTop: '10px'}}>
-                <MapWithInsets clickHandler={handleClick} enableRegions={enableRegion}/>
+                <MapWithInsets clickHandler={handleClick} enableRegions={enableRegion} styleFunction={(key) => {
+                    return {
+                        default: { fill: (key === lastPlateKey) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
+                        hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
+                        pressed: { fill: "green", outline: 'none' },
+                    }
+                }}/>
             </div>
             {lastPlates.length ? <div className="scrollable-content" style={{border: 'dashed 1px #808080', overflow: 'scroll', height: '250px', width: '200px', marginTop: '5px', paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plates (P.P.):</p>

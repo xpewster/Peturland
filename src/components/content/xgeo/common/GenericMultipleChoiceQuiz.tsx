@@ -323,7 +323,7 @@ const GenericMultipleChoiceQuiz = (props: GenericMultipleChoiceQuizProps): React
 
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
-            <p style={{display: 'inline'}}>{props.clickText} ({props.regionIndexArray[toFind]}) </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
+            <p style={{display: 'inline'}}>{props.clickText} ({props.regionIndexArray[toFind]}) </p><div style={{display: 'inline-block'}}><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button></div>
             <div style={{display: 'block', paddingTop: '5px', paddingBottom: '5px', paddingRight: '0px'}}>
                 {choices.map((choice, index) => {
                     return (

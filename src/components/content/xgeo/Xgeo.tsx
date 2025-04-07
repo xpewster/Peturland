@@ -22,11 +22,13 @@ import folder from '../../../assets/fileboxicons/folder.png';
 import folder2 from '../../../assets/fileboxicons/xp/shell32.dll_14_20-8.png';
 import sticky from '../../../assets/fileboxicons/xp/ntbackup.exe_14_102-1.png';
 import regency from '../../../assets/fileboxicons/xp/freecell.exe_14_601-4.png';
+import provinces from '../../../assets/fileboxicons/xp/dfrgres.dll_14_106-4.png';
 
 import chevron from '../../../assets/fileboxicons/xp/mfc90.dll_14_17100-0.png';
 import bollard from '../../../assets/fileboxicons/xp/dot3ui.dll_14_2000-15.png';
 import guardrail from '../../../assets/fileboxicons/xp/compstui.dll_14_64002-1.png';
 import pedestrian from '../../../assets/fileboxicons/xp/msmsgs.exe_14_1-5.png';
+import domain from '../../../assets/fileboxicons/ie.png';
 
 import navigatehere from '../../../assets//navigatehere.png';
 import UsStateHighways from './us/StateHighways/UsStateHighways';
@@ -37,6 +39,8 @@ import UsWindshieldStickers from './us/WindshieldStickers/UsWindshieldStickers';
 import CompoundFilebox from '../../common/CompoundFilebox';
 import Kabupaten from './indo/Kabupaten/Kabupaten';
 import EuChevrons from './europe/chevrons/EuChevrons';
+import EuDomains from './europe/domains/EuDomains';
+import EuGuardrails from './europe/guardrails/EuGuardrails';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -44,19 +48,19 @@ export interface XgeoProps {
 
 const Xgeo = (props: XgeoProps): React.ReactElement => {
 
-    const NA_IMGS = [lice, texas, shortcut, putlitter, head, sticky];
-    const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', 'Windshield Stickers'];
-    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY, Path.XGEO_US_WINDSHIELD_STICKERS];
+    const NA_IMGS = [lice, texas, shortcut, putlitter, head, sticky, phone];
+    const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', 'Windshield Stickers', 'Area Codes Coming Soon'];
+    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY, Path.XGEO_US_WINDSHIELD_STICKERS, Path.SOON];
     const NA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const BR_IMGS = [phone, shortcut, folder];
     const BR_STRINGS = ['Phone Codes', '2-Letter Abbreviations', 'Postcodes (CEP)'];
     const BR_LINKS = [Path.XGEO_BR, Path.XGEO_BR_ABBREVIATIONS, Path.XGEO_BR_POSTCODES];
 
-    const EU_IMGS = [chevron, bollard, guardrail, texas, pedestrian];
-    const EU_STRINGS = ['Chevrons', 'Bollards - Coming Soon', 'Guardrails - Soon', 'Flags - Soon', 'Pedestrian Crossings - Soon'];
-    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.SOON, Path.SOON, Path.SOON, Path.SOON];
-    const EU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const EU_IMGS = [chevron, bollard, domain, guardrail, texas, pedestrian];
+    const EU_STRINGS = ['Chevrons', 'Bollards - Coming Soon', 'Country code TLDomains', 'Guardrails', 'Flags - Soon', 'Pedestrian Crossings - Soon'];
+    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.SOON, Path.XGEO_EU_DOMAINS, Path.XGEO_EU_GUARDRAILS, Path.SOON, Path.SOON];
+    const EU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const MONG_IMGS = [car];
     const MONG_STRINGS = ['Driving Direction'];
@@ -67,14 +71,19 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const INDO_STRINGS = ['Kabupaten'];
     const INDO_LINKS = [Path.XGEO_INDONESIA_KABUPATEN];
     const INDO_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+
+    const PHILLIPINES_IMGS = [provinces];
+    const PHILLIPINES_STRINGS = ['Provinces - Coming Soon'];
+    const PHILLIPINES_LINKS = [Path.SOON];
+    const PHILLIPINES_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
     
-    const TOP_IMGS = [folder2, folder2];
-    const TOP_STRINGS = ['Mongolia', 'Indonesia'];
-    const TOP_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
-    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS];
-    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS];
-    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS];
-    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES];
+    const TOP_IMGS = [folder2, folder2, folder2];
+    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines'];
+    const TOP_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS];
+    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS];
+    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS];
+    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES];
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
     const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);
@@ -120,6 +129,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
             case ContentType.XGEO_EU_BOLLARDS:
             case ContentType.XGEO_EU_CHEVRONS:
                 return <EuChevrons />;
+            case ContentType.XGEO_EU_DOMAINS:
+                return <EuDomains />;
+            case ContentType.XGEO_EU_GUARDRAILS:
+                return <EuGuardrails />;
             case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
             case ContentType.XGEO_INDONESIA_KABUPATEN:

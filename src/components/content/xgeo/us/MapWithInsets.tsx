@@ -8,6 +8,7 @@ import { MAP_COLOR } from '../constants';
 export interface MapWithInsetsProps {
     clickHandler: (key: string) => void;
     enableRegions: boolean[];
+    styleFunction?: (key: string) => any;
 }
 
 const MapWithInsets = (props: MapWithInsetsProps) => {
@@ -93,7 +94,8 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                         key={geo.rsmKey} 
                                         geography={geo} 
                                         onClick={() => { handleClick(geo.rsmKey); }} 
-                                        style={{
+                                        style={
+                                            props.styleFunction ? props.styleFunction(geo.rsmKey) : {
                                             default: { fill: getCellColor(geo.rsmKey), stroke: "#000000"},
                                             hover: { fill: "#efd900", stroke: "#000000"},
                                             pressed: { fill: "green" },

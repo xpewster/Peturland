@@ -37,6 +37,7 @@ const BrazilAbbreviations = (): React.ReactElement => {
                     streakKey={getStreakKey(QuizType.BRAZIL_ABBREVIATIONS, enableRegion)}
                     disallowRepeats={true}
                     numLastItems={10}
+                    sayWrongAnswer={true}
                     mapParameters={{scale: 800, center: [-55, -15]}}
                 />
             </div>

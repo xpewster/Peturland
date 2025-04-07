@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './../Xgeo.css';
-import { BADS, MAP_COLOR, MAP_HOVER_COLOR, NICES } from '../constants';
+import { BADS, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
 import { randomElement } from '../helpers';
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
@@ -30,8 +30,9 @@ export interface GenericRegionSelectionQuizProps {
     showImages?: any[];
     answerIndexToShowIndex?: number[][];
     numLastItems?: number;
+    sayWrongAnswer?: boolean;
     mapParameters?: MapParameters;
-    styleFunction?: (rsmKey: string) => any;
+    styleFunction?: (rsmKey: string, lastItemKeys: string[] | undefined) => any;
 }
 
 type LastItem = [number, number, number, number[], number, number]; // [toFind, randIndex, sepia, skew, scale, hue_rotate]
@@ -65,8 +66,9 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
 
     const [message, setMessage] = useState<string>("");
     const [messageColor, setMessageColor] = useState<string>("green");
+    const [answer, setAnswer] = useState<string>("");
 
-    const [lastItems, setLastItems] = useState<LastItem[]>(Array.from({ length: props.numLastItems ?? 1 }, () => [-1, 0, 0, [0, 0, 0], 1, 0]));
+    const [lastItems, setLastItems] = useState<LastItem[]>(Array.from({ length: (!props.numLastItems || props.numLastItems === 0) ? 1 : props.numLastItems}, () => [-1, 0, 0, [0, 0, 0], 1, 0]));
     const [enablePPSkew, setEnablePPSkew] = useState<boolean>(false);
     const [nextItem, setNextItem] = useState<NextItem | null>(null);
 
@@ -119,7 +121,6 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     }
 
     const updateLastItem = () => {
-        if (props.numLastItems === 0) return;
         setLastItems((prev) => {
             const newLastItem = [...prev];
             newLastItem.unshift([lastItems[lastItems.length-1][0] === -2 ? -1 : toFind, randIndex, sepia, skew, scale, hueRotate]);
@@ -211,6 +212,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
             });
             break;
         }
+        setAnswer("");
     }
 
     useEffect(() => {
@@ -218,6 +220,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     }, []);
 
     function handleClick(key: string) {
+        let newAnswer = "";
         if (props.answerIndexToRegionIndices
                 ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]].map((val) => { return `geo-${val}`; }).includes(key)
                 : `geo-${toFind}` === key) {
@@ -236,8 +239,11 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
             updateLastItem();
             generateNewFind();
         } else {
+            const guessedToFind = Number(key.split("-")[1]);
+            newAnswer = props.answerIndexToSrc ? props.answerIndexToSrc(props.toFindIndexToAnswerIndicesArray[guessedToFind][randIndex % props.toFindIndexToAnswerIndicesArray[guessedToFind].length]) : props.answerIndexToText ? props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[guessedToFind][randIndex % props.toFindIndexToAnswerIndicesArray[guessedToFind].length]) : "[]";
             lose();
         }
+        setAnswer(newAnswer);
     }
 
     const getFilterId = (baseId: string, index: number): string => {
@@ -273,9 +279,13 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         return `(${props.answerIndexToYears?.[index]![0]}-${props.answerIndexToYears?.[index]![1]})`;
     }
 
+    const getLastItemsKeys = () => {
+        return ((props.answerIndexToRegionIndices && lastItems[0][0] >= 0) ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[lastItems[0][0]][lastItems[0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[0][0]].length]].map((val) => { return `geo-${val}`; }) : [`geo-${lastItems[0][0]}`]);
+    }
+
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
-            <p style={{display: 'inline'}}>{props.clickText} {props.answerIndexToText && getSrc(0)} </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
+            <p style={{display: 'inline'}}>{props.clickText} {props.answerIndexToText && getSrc(0)} </p><div style={{display: 'inline-block'}}><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button></div>
             {!(loading || props.answerIndexToText) && props.enableSkew ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false))? `hue-rotate(${hueRotate}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined, marginTop: '5px'}}>
                     <defs>
                         <filter id={getFilterId("combinedFilter", 2)}>
@@ -299,7 +309,9 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 </svg></div>
                 : (!(loading || props.answerIndexToText) && <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', marginTop: '5px', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false)) ? `hue-rotate(${hueRotate}deg)` : undefined}} src={getSrc()}></img>)
             }
-            {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
+            {(message !== "") && <p style={{color: messageColor}}>{message}{props.sayWrongAnswer ? <>
+                {answer && ((props.answerIndexToText) ? <p style={{display: 'inline'}}> that one's {answer}..</p> : <p style={{display: 'inline'}}> that one's <img style={{height: '50px', display: 'inline', verticalAlign: 'middle'}} src={answer}></img>..</p>)}
+            </> : <></>}</p>}
             <div style={{position: 'relative', width: '100%', paddingTop: '5px'}}>
             <ScrollingDisabler>
                 <ComposableMap 
@@ -334,8 +346,8 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                             key={geo.rsmKey} 
                                             geography={geo} 
                                             onClick={() => { handleClick(geo.rsmKey); }} 
-                                            style={props.styleFunction ? props.styleFunction(geo.rsmKey) : {
-                                                default: { fill: MAP_COLOR, stroke: "#000000", outline: 'none' },
+                                            style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys()) : {
+                                                default: { fill: getLastItemsKeys().includes(geo.rsmKey) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
                                                 hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
                                                 pressed: { fill: "green", outline: 'none' },
                                             }}
@@ -376,7 +388,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                 </svg></div>
                                 : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}} src={getSrc(1, index)}></img>
                             )}
-                            {<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
+                            {props.answerIndexToText && <span>&nbsp;</span>}{<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
                                 ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])
                                 : ''}</span>}
                             </p>
