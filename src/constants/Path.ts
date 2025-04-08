@@ -23,6 +23,8 @@ export enum Path {
     XGEO_EU_PEDESTRIAN_CROSSINGS = "/xgeo/eu/pedestrian-crossings",
     XGEO_MONG = "/xgeo/mongolia/driving-direction",
     XGEO_INDONESIA_KABUPATEN = "/xgeo/indonesia/kabupaten",
+    XGEO_PHILLIPINES_PROVINCES = "/xgeo/philippines/provinces",
+    XGEO_PHILLIPINES_REGIONS = "/xgeo/philippines/regions",
     SOON = "/coming-soon",
     CREDITS = "/credits",
     EIGHTYEIGHT = "/88x31",

@@ -945,13 +945,13 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
         [PLATE_TYPE.REGULAR, [[new_hampshire_reg, new_hampshire_blank, new_hampshire_blur, [82, 80, 14, 18], 1999]]] //
     ])],
     [US_STATE_NAMES.VERMONT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[vermont_reg, vermont_blank, vermont_blur, [100, 100, 14, 18], 1990]]] //
+        [PLATE_TYPE.REGULAR, [[vermont_reg, vermont_blank, vermont_blur, [1000,1000, 14, 18], 1990]]] //
     ])],
     [US_STATE_NAMES.NEW_YORK, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[new_york_reg, new_york_blank, new_york_blur, [100, 100, 14, 18], 2020]]], //
+        [PLATE_TYPE.REGULAR, [[new_york_reg, new_york_blank, new_york_blur, [1000,1000, 14, 18], 2020]]], //
         [PLATE_TYPE.OLD, [
-            [new_york_o0_reg, new_york_o0_blank, new_york_o0_blur, [100, 100, 14, 18], 2010, 2020], //
-            [new_york_o1_reg, new_york_o1_blank, new_york_o1_blur, [100, 100, 14, 18], 2001, 2010] //
+            [new_york_o0_reg, new_york_o0_blank, new_york_o0_blur, [1000,1000, 14, 18], 2010, 2020], //
+            [new_york_o1_reg, new_york_o1_blank, new_york_o1_blur, [1000,1000, 14, 18], 2001, 2010] //
         ]]
     ])],
     [US_STATE_NAMES.PENNSYLVANIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
@@ -1089,7 +1089,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     ])],
     [US_STATE_NAMES.NEW_JERSEY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [new_jersey_reg, new_jersey_blank, new_jersey_blur, [100, 100, 14, 18], 1993] //
+            [new_jersey_reg, new_jersey_blank, new_jersey_blur, [1000,1000, 14, 18], 1993] //
         ]]
     ])],
     [US_STATE_NAMES.CONNECTICUT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
@@ -1118,10 +1118,10 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     
     [US_STATE_NAMES.TENNESSEE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [tennessee_reg_2022, tennessee_blank_2022, tennessee_blur_2022, [100, 100, 14, 18], 2022] //
+            [tennessee_reg_2022, tennessee_blank_2022, tennessee_blur_2022, [1000,1000, 14, 18], 2022] //
         ]],
         [PLATE_TYPE.OLD, [
-            [tennessee_reg_2006, tennessee_blank_2006, tennessee_blur_2006, [100, 100, 14, 18], 2006, 2022] //
+            [tennessee_reg_2006, tennessee_blank_2006, tennessee_blur_2006, [1000,1000, 14, 18], 2006, 2022] //
         ]]
     ])],
     
@@ -1147,7 +1147,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [kansas_reg_2007, kansas_blank_2007, kansas_blur_2007, [82, 5, 14, 18], 2007] //
         ]],
         [PLATE_TYPE.OLD, [
-            [kansas_reg_2001, kansas_blank_2001, kansas_blur_2001, [100, 100, 14, 18], 2001, 2007], //
+            [kansas_reg_2001, kansas_blank_2001, kansas_blur_2001, [1000,1000, 14, 18], 2001, 2007], //
         ]]
     ])],
     
@@ -1195,41 +1195,41 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     ])],
     [US_STATE_NAMES.ARIZONA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [arizona_reg, arizona_blank, arizona_blur, [100, 100, 14, 18], 1997] //
+            [arizona_reg, arizona_blank, arizona_blur, [1000,1000, 14, 18], 1997] //
         ]]
     ])],
     [US_STATE_NAMES.NEW_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
             [new_mexico_reg, new_mexico_blank, new_mexico_blur, [82, 80, 14, 18], 1991], //
-            [new_mexico2_reg, new_mexico2_blank, new_mexico2_blur, [100, 100, 14, 18], 2010], //
-            [new_mexico3_reg, new_mexico3_blank, new_mexico3_blur, [100, 100, 14, 18], 2017], //
+            [new_mexico2_reg, new_mexico2_blank, new_mexico2_blur, [1000,1000, 14, 18], 2010], //
+            [new_mexico3_reg, new_mexico3_blank, new_mexico3_blur, [1000,1000, 14, 18], 2017], //
         ]],
         [PLATE_TYPE.OLD, [
-            [new_mexico_o0_reg, new_mexico_o0_blank, new_mexico_o0_blur, [100, 100, 14, 18], 1999, 2010] //
+            [new_mexico_o0_reg, new_mexico_o0_blank, new_mexico_o0_blur, [1000,1000, 14, 18], 1999, 2010] //
         ]]
     ])],
     [US_STATE_NAMES.TEXAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [texas_reg, texas_blank, texas_blur, [100, 100, 14, 18], 2012], //
+            [texas_reg, texas_blank, texas_blur, [1000,1000, 14, 18], 2012], //
         ]],
         [PLATE_TYPE.OLD, [
-            [texas_o0_reg, texas_o0_blank, texas_o0_blur, [100, 100, 14, 18], 2011, 2012], //
-            [texas_o1_reg, texas_o1_blank, texas_o1_blur, [100, 100, 14, 18], 2009, 2011], //
-            [texas_o2_reg, texas_o2_blank, texas_o2_blur, [100, 100, 14, 18], 1999, 2009], //
+            [texas_o0_reg, texas_o0_blank, texas_o0_blur, [1000,1000, 14, 18], 2011, 2012], //
+            [texas_o1_reg, texas_o1_blank, texas_o1_blur, [1000,1000, 14, 18], 2009, 2011], //
+            [texas_o2_reg, texas_o2_blank, texas_o2_blur, [1000,1000, 14, 18], 1999, 2009], //
         ]]
     ])],
     [US_STATE_NAMES.DISTRICT_OF_COLUMBIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [district_of_columbia_reg, district_of_columbia_blank, district_of_columbia_blur, [100, 100, 14, 18], 1998] //
+            [district_of_columbia_reg, district_of_columbia_blank, district_of_columbia_blur, [1000,1000, 14, 18], 1998] //
         ]]
     ])],
     [US_STATE_NAMES.LOUISIANA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [louisiana_reg, louisiana_blank, louisiana_blur, [100, 100, 14, 18], 2016], //
+            [louisiana_reg, louisiana_blank, louisiana_blur, [1000,1000, 14, 18], 2016], //
         ]],
         [PLATE_TYPE.OLD, [
-            [louisiana_o0_reg, louisiana_o0_blank, louisiana_o0_blur, [100, 100, 14, 18], 2014, 2016], //
-            [louisiana_o1_reg, louisiana_o1_blank, louisiana_o1_blur, [100, 100, 14, 18], 2011, 2014], //
+            [louisiana_o0_reg, louisiana_o0_blank, louisiana_o0_blur, [1000,1000, 14, 18], 2014, 2016], //
+            [louisiana_o1_reg, louisiana_o1_blank, louisiana_o1_blur, [1000,1000, 14, 18], 2011, 2014], //
         ]]
     ])],
     [US_STATE_NAMES.MISSISSIPPI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
@@ -1306,13 +1306,13 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     /* U.S. Territories */
     [TERRITORY_NAMES.PUERTO_RICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [puerto_rico_reg, puerto_rico_blank, puerto_rico_blur, [100, 100, 14, 18], 1987], //
-            [puerto_rico2_reg, puerto_rico2_blank, puerto_rico2_blur, [100, 100, 14, 18], 2007, 2023], //
+            [puerto_rico_reg, puerto_rico_blank, puerto_rico_blur, [1000,1000, 14, 18], 1987], //
+            [puerto_rico2_reg, puerto_rico2_blank, puerto_rico2_blur, [1000,1000, 14, 18], 2007, 2023], //
         ]],
     ])],
     [TERRITORY_NAMES.AMERICAN_SAMOA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [american_samoa_reg, american_samoa_blank, american_samoa_blur, [100, 100, 14, 18], 2011] //
+            [american_samoa_reg, american_samoa_blank, american_samoa_blur, [1000,1000, 14, 18], 2011] //
         ]],
     ])],
     [TERRITORY_NAMES.GUAM, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
@@ -1327,10 +1327,10 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     ])],
     [TERRITORY_NAMES.US_VIRGIN_ISLANDS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [us_virgin_islands_reg, us_virgin_islands_blank, us_virgin_islands_blur, [100, 100, 14, 18], 2016] //
+            [us_virgin_islands_reg, us_virgin_islands_blank, us_virgin_islands_blur, [1000,1000, 14, 18], 2016] //
         ]],
         [PLATE_TYPE.OLD, [
-            [us_virgin_islands_o0_reg, us_virgin_islands_o0_blank, us_virgin_islands_o0_blur, [100, 100, 14, 18], 2006, 2016] //
+            [us_virgin_islands_o0_reg, us_virgin_islands_o0_blank, us_virgin_islands_o0_blur, [1000,1000, 14, 18], 2006, 2016] //
         ]],
     ])],
 
@@ -1398,273 +1398,273 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
 
     /* Mexico */
     [MEXICO_STATE_NAMES.AGUASCALIENTES, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[aguascalientes_reg, aguascalientes_blank, aguascalientes_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[aguascalientes_reg, aguascalientes_blank, aguascalientes_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [aguascalientes_o0_reg, aguascalientes_o0_blank, aguascalientes_o0_blur, [100, 100, 14, 18], 2017, 2023],
-            [aguascalientes_o1_reg, aguascalientes_o1_blank, aguascalientes_o1_blur, [100, 100, 14, 18], 2012, 2017],
-            [aguascalientes_o2_reg, aguascalientes_o2_blank, aguascalientes_o2_blur, [100, 100, 14, 18], 2005, 2012],
+            [aguascalientes_o0_reg, aguascalientes_o0_blank, aguascalientes_o0_blur, [1000,1000, 14, 18], 2017, 2023],
+            [aguascalientes_o1_reg, aguascalientes_o1_blank, aguascalientes_o1_blur, [1000,1000, 14, 18], 2012, 2017],
+            [aguascalientes_o2_reg, aguascalientes_o2_blank, aguascalientes_o2_blur, [1000,1000, 14, 18], 2005, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.BAJA_CALIFORNIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[baja_california_reg, baja_california_blank, baja_california_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[baja_california_reg, baja_california_blank, baja_california_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [baja_california_o0_reg, baja_california_o0_blank, baja_california_o0_blur, [100, 100, 14, 18], 2020, 2022],
-            [baja_california_o1_reg, baja_california_o1_blank, baja_california_o1_blur, [100, 100, 14, 18], 2017, 2020],
-            [baja_california_o2_reg, baja_california_o2_blank, baja_california_o2_blur, [100, 100, 14, 18], 2014, 2017],
-            [baja_california_o3_reg, baja_california_o3_blank, baja_california_o3_blur, [100, 100, 14, 18], 2012, 2014],
-            [baja_california_o4_reg, baja_california_o4_blank, baja_california_o4_blur, [100, 100, 14, 18], 2010, 2012],
+            [baja_california_o0_reg, baja_california_o0_blank, baja_california_o0_blur, [1000,1000, 14, 18], 2020, 2022],
+            [baja_california_o1_reg, baja_california_o1_blank, baja_california_o1_blur, [1000,1000, 14, 18], 2017, 2020],
+            [baja_california_o2_reg, baja_california_o2_blank, baja_california_o2_blur, [1000,1000, 14, 18], 2014, 2017],
+            [baja_california_o3_reg, baja_california_o3_blank, baja_california_o3_blur, [1000,1000, 14, 18], 2012, 2014],
+            [baja_california_o4_reg, baja_california_o4_blank, baja_california_o4_blur, [1000,1000, 14, 18], 2010, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.BAJA_CALIFORNIA_SUR, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[baja_california_sur_reg, baja_california_sur_blank, baja_california_sur_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[baja_california_sur_reg, baja_california_sur_blank, baja_california_sur_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [baja_california_sur_o0_reg, baja_california_sur_o0_blank, baja_california_sur_o0_blur, [100, 100, 14, 18], 2017, 2022],
-            [baja_california_sur_o1_reg, baja_california_sur_o1_blank, baja_california_sur_o1_blur, [100, 100, 14, 18], 2006, 2017],
+            [baja_california_sur_o0_reg, baja_california_sur_o0_blank, baja_california_sur_o0_blur, [1000,1000, 14, 18], 2017, 2022],
+            [baja_california_sur_o1_reg, baja_california_sur_o1_blank, baja_california_sur_o1_blur, [1000,1000, 14, 18], 2006, 2017],
         ]],
     ])],
     [MEXICO_STATE_NAMES.CAMPECHE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[campeche_reg, campeche_blank, campeche_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[campeche_reg, campeche_blank, campeche_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [campeche_o0_reg, campeche_o0_blank, campeche_o0_blur, [100, 100, 14, 18], 2020, 2023],
-            [campeche_o1_reg, campeche_o1_blank, campeche_o1_blur, [100, 100, 14, 18], 2017, 2020],
-            [campeche_o2_reg, campeche_o2_blank, campeche_o2_blur, [100, 100, 14, 18], 2014, 2017],
-            [campeche_o3_reg, campeche_o3_blank, campeche_o3_blur, [100, 100, 14, 18], 2011, 2014],
-            [campeche_o4_reg, campeche_o4_blank, campeche_o4_blur, [100, 100, 14, 18], 2008, 2011],
+            [campeche_o0_reg, campeche_o0_blank, campeche_o0_blur, [1000,1000, 14, 18], 2020, 2023],
+            [campeche_o1_reg, campeche_o1_blank, campeche_o1_blur, [1000,1000, 14, 18], 2017, 2020],
+            [campeche_o2_reg, campeche_o2_blank, campeche_o2_blur, [1000,1000, 14, 18], 2014, 2017],
+            [campeche_o3_reg, campeche_o3_blank, campeche_o3_blur, [1000,1000, 14, 18], 2011, 2014],
+            [campeche_o4_reg, campeche_o4_blank, campeche_o4_blur, [1000,1000, 14, 18], 2008, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.CHIHUAHUA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[chihuahua_reg, chihuahua_blank, chihuahua_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[chihuahua_reg, chihuahua_blank, chihuahua_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [chihuahua_o0_reg, chihuahua_o0_blank, chihuahua_o0_blur, [100, 100, 14, 18], 2022, 2023],
-            [chihuahua_o1_reg, chihuahua_o1_blank, chihuahua_o1_blur, [100, 100, 14, 18], 2017, 2022],
-            [chihuahua_o2_reg, chihuahua_o2_blank, chihuahua_o2_blur, [100, 100, 14, 18], 2016, 2017],
-            [chihuahua_o3_reg, chihuahua_o3_blank, chihuahua_o3_blur, [100, 100, 14, 18], 2015, 2016],
-            [chihuahua_o4_reg, chihuahua_o4_blank, chihuahua_o4_blur, [100, 100, 14, 18], 2012, 2015],
-            [chihuahua_o5_reg, chihuahua_o5_blank, chihuahua_o5_blur, [100, 100, 14, 18], 2009, 2012],
+            [chihuahua_o0_reg, chihuahua_o0_blank, chihuahua_o0_blur, [1000,1000, 14, 18], 2022, 2023],
+            [chihuahua_o1_reg, chihuahua_o1_blank, chihuahua_o1_blur, [1000,1000, 14, 18], 2017, 2022],
+            [chihuahua_o2_reg, chihuahua_o2_blank, chihuahua_o2_blur, [1000,1000, 14, 18], 2016, 2017],
+            [chihuahua_o3_reg, chihuahua_o3_blank, chihuahua_o3_blur, [1000,1000, 14, 18], 2015, 2016],
+            [chihuahua_o4_reg, chihuahua_o4_blank, chihuahua_o4_blur, [1000,1000, 14, 18], 2012, 2015],
+            [chihuahua_o5_reg, chihuahua_o5_blank, chihuahua_o5_blur, [1000,1000, 14, 18], 2009, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.CIUDAD_DE_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[ciudad_de_mexico_reg, ciudad_de_mexico_blank, ciudad_de_mexico_blur, [100, 100, 14, 18], 2019]]],
+        [PLATE_TYPE.REGULAR, [[ciudad_de_mexico_reg, ciudad_de_mexico_blank, ciudad_de_mexico_blur, [1000,1000, 14, 18], 2019]]],
         [PLATE_TYPE.OLD, [
-            [ciudad_de_mexico_o0_reg, ciudad_de_mexico_o0_blank, ciudad_de_mexico_o0_blur, [100, 100, 14, 18], 2016, 2019],
+            [ciudad_de_mexico_o0_reg, ciudad_de_mexico_o0_blank, ciudad_de_mexico_o0_blur, [1000,1000, 14, 18], 2016, 2019],
         ]],
     ])],
     [MEXICO_STATE_NAMES.COAHUILA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[coahuila_reg, coahuila_blank, coahuila_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[coahuila_reg, coahuila_blank, coahuila_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [coahuila_o0_reg, coahuila_o0_blank, coahuila_o0_blur, [100, 100, 14, 18], 2019, 2022],
-            [coahuila_o1_reg, coahuila_o1_blank, coahuila_o1_blur, [100, 100, 14, 18], 2017, 2019],
-            [coahuila_o2_reg, coahuila_o2_blank, coahuila_o2_blur, [100, 100, 14, 18], 2016, 2017],
-            [coahuila_o3_reg, coahuila_o3_blank, coahuila_o3_blur, [100, 100, 14, 18], 2013, 2016],
-            [coahuila_o4_reg, coahuila_o4_blank, coahuila_o4_blur, [100, 100, 14, 18], 2010, 2013],
+            [coahuila_o0_reg, coahuila_o0_blank, coahuila_o0_blur, [1000,1000, 14, 18], 2019, 2022],
+            [coahuila_o1_reg, coahuila_o1_blank, coahuila_o1_blur, [1000,1000, 14, 18], 2017, 2019],
+            [coahuila_o2_reg, coahuila_o2_blank, coahuila_o2_blur, [1000,1000, 14, 18], 2016, 2017],
+            [coahuila_o3_reg, coahuila_o3_blank, coahuila_o3_blur, [1000,1000, 14, 18], 2013, 2016],
+            [coahuila_o4_reg, coahuila_o4_blank, coahuila_o4_blur, [1000,1000, 14, 18], 2010, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.COLIMA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[colima_reg, colima_blank, colima_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[colima_reg, colima_blank, colima_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [colima_o0_reg, colima_o0_blank, colima_o0_blur, [100, 100, 14, 18], 2017, 2022],
-            [colima_o1_reg, colima_o1_blank, colima_o1_blur, [100, 100, 14, 18], 2010, 2017],
+            [colima_o0_reg, colima_o0_blank, colima_o0_blur, [1000,1000, 14, 18], 2017, 2022],
+            [colima_o1_reg, colima_o1_blank, colima_o1_blur, [1000,1000, 14, 18], 2010, 2017],
         ]],
     ])],
     [MEXICO_STATE_NAMES.DISTRITO_FEDERAL, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[distrito_federal_reg, distrito_federal_blank, distrito_federal_blur, [100, 100, 14, 18], 2013]]],
+        [PLATE_TYPE.REGULAR, [[distrito_federal_reg, distrito_federal_blank, distrito_federal_blur, [1000,1000, 14, 18], 2013]]],
         [PLATE_TYPE.OLD, [
-            [distrito_federal_o0_reg, distrito_federal_o0_blank, distrito_federal_o0_blur, [100, 100, 14, 18], 2008, 2013],
+            [distrito_federal_o0_reg, distrito_federal_o0_blank, distrito_federal_o0_blur, [1000,1000, 14, 18], 2008, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.DURANGO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[durango_reg, durango_blank, durango_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[durango_reg, durango_blank, durango_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [durango_o0_reg, durango_o0_blank, durango_o0_blur, [100, 100, 14, 18], 2017, 2023],
-            [durango_o1_reg, durango_o1_blank, durango_o1_blur, [100, 100, 14, 18], 2009, 2017],
+            [durango_o0_reg, durango_o0_blank, durango_o0_blur, [1000,1000, 14, 18], 2017, 2023],
+            [durango_o1_reg, durango_o1_blank, durango_o1_blur, [1000,1000, 14, 18], 2009, 2017],
         ]],
     ])],
     [MEXICO_STATE_NAMES.ESTADO_DE_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[estado_de_mexico_reg, estado_de_mexico_blank, estado_de_mexico_blur, [100, 100, 14, 18], 2024]]],
+        [PLATE_TYPE.REGULAR, [[estado_de_mexico_reg, estado_de_mexico_blank, estado_de_mexico_blur, [1000,1000, 14, 18], 2024]]],
         [PLATE_TYPE.OLD, [
-            [estado_de_mexico_o0_reg, estado_de_mexico_o0_blank, estado_de_mexico_o0_blur, [100, 100, 14, 18], 2018, 2024],
-            [estado_de_mexico_o1_reg, estado_de_mexico_o1_blank, estado_de_mexico_o1_blur, [100, 100, 14, 18], 2016, 2018],
-            [estado_de_mexico_o2_reg, estado_de_mexico_o2_blank, estado_de_mexico_o2_blur, [100, 100, 14, 18], 2015, 2016],
-            [estado_de_mexico_o3_reg, estado_de_mexico_o3_blank, estado_de_mexico_o3_blur, [100, 100, 14, 18], 2009, 2015],
+            [estado_de_mexico_o0_reg, estado_de_mexico_o0_blank, estado_de_mexico_o0_blur, [1000,1000, 14, 18], 2018, 2024],
+            [estado_de_mexico_o1_reg, estado_de_mexico_o1_blank, estado_de_mexico_o1_blur, [1000,1000, 14, 18], 2016, 2018],
+            [estado_de_mexico_o2_reg, estado_de_mexico_o2_blank, estado_de_mexico_o2_blur, [1000,1000, 14, 18], 2015, 2016],
+            [estado_de_mexico_o3_reg, estado_de_mexico_o3_blank, estado_de_mexico_o3_blur, [1000,1000, 14, 18], 2009, 2015],
         ]],
     ])],
     [MEXICO_STATE_NAMES.GUANAJUATO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[guanajuato_reg, guanajuato_blank, guanajuato_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.REGULAR, [[guanajuato_reg, guanajuato_blank, guanajuato_blur, [1000,1000, 14, 18], 2020]]],
         [PLATE_TYPE.OLD, [
-            [guanajuato_o0_reg, guanajuato_o0_blank, guanajuato_o0_blur, [100, 100, 14, 18], 2017, 2020],
-            [guanajuato_o1_reg, guanajuato_o1_blank, guanajuato_o1_blur, [100, 100, 14, 18], 2016, 2017],
-            [guanajuato_o2_reg, guanajuato_o2_blank, guanajuato_o2_blur, [100, 100, 14, 18], 2008, 2016],
+            [guanajuato_o0_reg, guanajuato_o0_blank, guanajuato_o0_blur, [1000,1000, 14, 18], 2017, 2020],
+            [guanajuato_o1_reg, guanajuato_o1_blank, guanajuato_o1_blur, [1000,1000, 14, 18], 2016, 2017],
+            [guanajuato_o2_reg, guanajuato_o2_blank, guanajuato_o2_blur, [1000,1000, 14, 18], 2008, 2016],
         ]],
     ])],
     [MEXICO_STATE_NAMES.GUERRERO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[guerrero_reg, guerrero_blank, guerrero_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[guerrero_reg, guerrero_blank, guerrero_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [guerrero_o0_reg, guerrero_o0_blank, guerrero_o0_blur, [100, 100, 14, 18], 2018, 2022],
-            [guerrero_o1_reg, guerrero_o1_blank, guerrero_o1_blur, [100, 100, 14, 18], 2016, 2018],
-            [guerrero_o2_reg, guerrero_o2_blank, guerrero_o2_blur, [100, 100, 14, 18], 2015, 2016],
-            [guerrero_o3_reg, guerrero_o3_blank, guerrero_o3_blur, [100, 100, 14, 18], 2012, 2015],
-            [guerrero_o4_reg, guerrero_o4_blank, guerrero_o4_blur, [100, 100, 14, 18], 2009, 2012],
+            [guerrero_o0_reg, guerrero_o0_blank, guerrero_o0_blur, [1000,1000, 14, 18], 2018, 2022],
+            [guerrero_o1_reg, guerrero_o1_blank, guerrero_o1_blur, [1000,1000, 14, 18], 2016, 2018],
+            [guerrero_o2_reg, guerrero_o2_blank, guerrero_o2_blur, [1000,1000, 14, 18], 2015, 2016],
+            [guerrero_o3_reg, guerrero_o3_blank, guerrero_o3_blur, [1000,1000, 14, 18], 2012, 2015],
+            [guerrero_o4_reg, guerrero_o4_blank, guerrero_o4_blur, [1000,1000, 14, 18], 2009, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.HIDALGO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[hidalgo_reg, hidalgo_blank, hidalgo_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[hidalgo_reg, hidalgo_blank, hidalgo_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [hidalgo_o0_reg, hidalgo_o0_blank, hidalgo_o0_blur, [100, 100, 14, 18], 2018, 2023],
-            [hidalgo_o1_reg, hidalgo_o1_blank, hidalgo_o1_blur, [100, 100, 14, 18], 2013, 2018],
-            [hidalgo_o2_reg, hidalgo_o2_blank, hidalgo_o2_blur, [100, 100, 14, 18], 2006, 2013],
-            [hidalgo_o3_reg, hidalgo_o3_blank, hidalgo_o3_blur, [100, 100, 14, 18], 2002, 2006],
+            [hidalgo_o0_reg, hidalgo_o0_blank, hidalgo_o0_blur, [1000,1000, 14, 18], 2018, 2023],
+            [hidalgo_o1_reg, hidalgo_o1_blank, hidalgo_o1_blur, [1000,1000, 14, 18], 2013, 2018],
+            [hidalgo_o2_reg, hidalgo_o2_blank, hidalgo_o2_blur, [1000,1000, 14, 18], 2006, 2013],
+            [hidalgo_o3_reg, hidalgo_o3_blank, hidalgo_o3_blur, [1000,1000, 14, 18], 2002, 2006],
         ]],
     ])],
     [MEXICO_STATE_NAMES.JALISCO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[jalisco_reg, jalisco_blank, jalisco_blur, [100, 100, 14, 18], 2019]]],
+        [PLATE_TYPE.REGULAR, [[jalisco_reg, jalisco_blank, jalisco_blur, [1000,1000, 14, 18], 2019]]],
         [PLATE_TYPE.OLD, [
-            [jalisco_o0_reg, jalisco_o0_blank, jalisco_o0_blur, [100, 100, 14, 18], 2017, 2019],
-            [jalisco_o1_reg, jalisco_o1_blank, jalisco_o1_blur, [100, 100, 14, 18], 2011, 2017],
-            [jalisco_o2_reg, jalisco_o2_blank, jalisco_o2_blur, [100, 100, 14, 18], 2002, 2011],
+            [jalisco_o0_reg, jalisco_o0_blank, jalisco_o0_blur, [1000,1000, 14, 18], 2017, 2019],
+            [jalisco_o1_reg, jalisco_o1_blank, jalisco_o1_blur, [1000,1000, 14, 18], 2011, 2017],
+            [jalisco_o2_reg, jalisco_o2_blank, jalisco_o2_blur, [1000,1000, 14, 18], 2002, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.MICHOACAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[michoacan_reg, michoacan_blank, michoacan_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[michoacan_reg, michoacan_blank, michoacan_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [michoacan_o0_reg, michoacan_o0_blank, michoacan_o0_blur, [100, 100, 14, 18], 2019, 2022],
-            [michoacan_o1_reg, michoacan_o1_blank, michoacan_o1_blur, [100, 100, 14, 18], 2016, 2019],
-            [michoacan_o2_reg, michoacan_o2_blank, michoacan_o2_blur, [100, 100, 14, 18], 2012, 2016],
-            [michoacan_o3_reg, michoacan_o3_blank, michoacan_o3_blur, [100, 100, 14, 18], 2007, 2012],
+            [michoacan_o0_reg, michoacan_o0_blank, michoacan_o0_blur, [1000,1000, 14, 18], 2019, 2022],
+            [michoacan_o1_reg, michoacan_o1_blank, michoacan_o1_blur, [1000,1000, 14, 18], 2016, 2019],
+            [michoacan_o2_reg, michoacan_o2_blank, michoacan_o2_blur, [1000,1000, 14, 18], 2012, 2016],
+            [michoacan_o3_reg, michoacan_o3_blank, michoacan_o3_blur, [1000,1000, 14, 18], 2007, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.MORELOS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[morelos_reg, morelos_blank, morelos_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[morelos_reg, morelos_blank, morelos_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [morelos_o0_reg, morelos_o0_blank, morelos_o0_blur, [100, 100, 14, 18], 2019, 2023],
-            [morelos_o1_reg, morelos_o1_blank, morelos_o1_blur, [100, 100, 14, 18], 2013, 2019],
-            [morelos_o2_reg, morelos_o2_blank, morelos_o2_blur, [100, 100, 14, 18], 2008, 2013],
+            [morelos_o0_reg, morelos_o0_blank, morelos_o0_blur, [1000,1000, 14, 18], 2019, 2023],
+            [morelos_o1_reg, morelos_o1_blank, morelos_o1_blur, [1000,1000, 14, 18], 2013, 2019],
+            [morelos_o2_reg, morelos_o2_blank, morelos_o2_blur, [1000,1000, 14, 18], 2008, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.NAYARIT, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[nayarit_reg, nayarit_blank, nayarit_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[nayarit_reg, nayarit_blank, nayarit_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [nayarit_o0_reg, nayarit_o0_blank, nayarit_o0_blur, [100, 100, 14, 18], 2021, 2022],
-            [nayarit_o1_reg, nayarit_o1_blank, nayarit_o1_blur, [100, 100, 14, 18], 2017, 2021],
-            [nayarit_o2_reg, nayarit_o2_blank, nayarit_o2_blur, [100, 100, 14, 18], 2016, 2017],
-            [nayarit_o3_reg, nayarit_o3_blank, nayarit_o3_blur, [100, 100, 14, 18], 2013, 2016],
-            [nayarit_o4_reg, nayarit_o4_blank, nayarit_o4_blur, [100, 100, 14, 18], 2010, 2013],
+            [nayarit_o0_reg, nayarit_o0_blank, nayarit_o0_blur, [1000,1000, 14, 18], 2021, 2022],
+            [nayarit_o1_reg, nayarit_o1_blank, nayarit_o1_blur, [1000,1000, 14, 18], 2017, 2021],
+            [nayarit_o2_reg, nayarit_o2_blank, nayarit_o2_blur, [1000,1000, 14, 18], 2016, 2017],
+            [nayarit_o3_reg, nayarit_o3_blank, nayarit_o3_blur, [1000,1000, 14, 18], 2013, 2016],
+            [nayarit_o4_reg, nayarit_o4_blank, nayarit_o4_blur, [1000,1000, 14, 18], 2010, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.NUEVO_LEON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[nuevo_leon_reg, nuevo_leon_blank, nuevo_leon_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[nuevo_leon_reg, nuevo_leon_blank, nuevo_leon_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [nuevo_leon_o0_reg, nuevo_leon_o0_blank, nuevo_leon_o0_blur, [100, 100, 14, 18], 2016, 2022],
-            [nuevo_leon_o1_reg, nuevo_leon_o1_blank, nuevo_leon_o1_blur, [100, 100, 14, 18], 2011, 2016],
-            [nuevo_leon_o2_reg, nuevo_leon_o2_blank, nuevo_leon_o2_blur, [100, 100, 14, 18], 2008, 2011],
+            [nuevo_leon_o0_reg, nuevo_leon_o0_blank, nuevo_leon_o0_blur, [1000,1000, 14, 18], 2016, 2022],
+            [nuevo_leon_o1_reg, nuevo_leon_o1_blank, nuevo_leon_o1_blur, [1000,1000, 14, 18], 2011, 2016],
+            [nuevo_leon_o2_reg, nuevo_leon_o2_blank, nuevo_leon_o2_blur, [1000,1000, 14, 18], 2008, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.OAXACA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[oaxaca_reg, oaxaca_blank, oaxaca_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[oaxaca_reg, oaxaca_blank, oaxaca_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [oaxaca_o0_reg, oaxaca_o0_blank, oaxaca_o0_blur, [100, 100, 14, 18], 2018, 2023],
-            [oaxaca_o1_reg, oaxaca_o1_blank, oaxaca_o1_blur, [100, 100, 14, 18], 2013, 2018],
-            [oaxaca_o2_reg, oaxaca_o2_blank, oaxaca_o2_blur, [100, 100, 14, 18], 2009, 2013],
+            [oaxaca_o0_reg, oaxaca_o0_blank, oaxaca_o0_blur, [1000,1000, 14, 18], 2018, 2023],
+            [oaxaca_o1_reg, oaxaca_o1_blank, oaxaca_o1_blur, [1000,1000, 14, 18], 2013, 2018],
+            [oaxaca_o2_reg, oaxaca_o2_blank, oaxaca_o2_blur, [1000,1000, 14, 18], 2009, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.PUEBLA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[puebla_reg, puebla_blank, puebla_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.REGULAR, [[puebla_reg, puebla_blank, puebla_blur, [1000,1000, 14, 18], 2020]]],
         [PLATE_TYPE.OLD, [
-            [puebla_o0_reg, puebla_o0_blank, puebla_o0_blur, [100, 100, 14, 18], 2019, 2020],
-            [puebla_o1_reg, puebla_o1_blank, puebla_o1_blur, [100, 100, 14, 18], 2011, 2019],
-            [puebla_o2_reg, puebla_o2_blank, puebla_o2_blur, [100, 100, 14, 18], 2010, 2011],
+            [puebla_o0_reg, puebla_o0_blank, puebla_o0_blur, [1000,1000, 14, 18], 2019, 2020],
+            [puebla_o1_reg, puebla_o1_blank, puebla_o1_blur, [1000,1000, 14, 18], 2011, 2019],
+            [puebla_o2_reg, puebla_o2_blank, puebla_o2_blur, [1000,1000, 14, 18], 2010, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.QUERETARO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[queretaro_reg, queretaro_blank, queretaro_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[queretaro_reg, queretaro_blank, queretaro_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [queretaro_o0_reg, queretaro_o0_blank, queretaro_o0_blur, [100, 100, 14, 18], 2017, 2022],
-            [queretaro_o1_reg, queretaro_o1_blank, queretaro_o1_blur, [100, 100, 14, 18], 2008, 2017],
+            [queretaro_o0_reg, queretaro_o0_blank, queretaro_o0_blur, [1000,1000, 14, 18], 2017, 2022],
+            [queretaro_o1_reg, queretaro_o1_blank, queretaro_o1_blur, [1000,1000, 14, 18], 2008, 2017],
         ]],
     ])],
     [MEXICO_STATE_NAMES.QUINTANA_ROO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[quintana_roo_reg, quintana_roo_blank, quintana_roo_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[quintana_roo_reg, quintana_roo_blank, quintana_roo_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [quintana_roo_o0_reg, quintana_roo_o0_blank, quintana_roo_o0_blur, [100, 100, 14, 18], 2020, 2023],
-            [quintana_roo_o1_reg, quintana_roo_o1_blank, quintana_roo_o1_blur, [100, 100, 14, 18], 2017, 2020],
-            [quintana_roo_o2_reg, quintana_roo_o2_blank, quintana_roo_o2_blur, [100, 100, 14, 18], 2014, 2017],
-            [quintana_roo_o3_reg, quintana_roo_o3_blank, quintana_roo_o3_blur, [100, 100, 14, 18], 2011, 2014],
-            [quintana_roo_o4_reg, quintana_roo_o4_blank, quintana_roo_o4_blur, [100, 100, 14, 18], 2007, 2011],
+            [quintana_roo_o0_reg, quintana_roo_o0_blank, quintana_roo_o0_blur, [1000,1000, 14, 18], 2020, 2023],
+            [quintana_roo_o1_reg, quintana_roo_o1_blank, quintana_roo_o1_blur, [1000,1000, 14, 18], 2017, 2020],
+            [quintana_roo_o2_reg, quintana_roo_o2_blank, quintana_roo_o2_blur, [1000,1000, 14, 18], 2014, 2017],
+            [quintana_roo_o3_reg, quintana_roo_o3_blank, quintana_roo_o3_blur, [1000,1000, 14, 18], 2011, 2014],
+            [quintana_roo_o4_reg, quintana_roo_o4_blank, quintana_roo_o4_blur, [1000,1000, 14, 18], 2007, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.SAN_LUIS_POTOSI, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[san_luis_potosi_reg, san_luis_potosi_blank, san_luis_potosi_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[san_luis_potosi_reg, san_luis_potosi_blank, san_luis_potosi_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [san_luis_potosi_o0_reg, san_luis_potosi_o0_blank, san_luis_potosi_o0_blur, [100, 100, 14, 18], 2016, 2022],
-            [san_luis_potosi_o1_reg, san_luis_potosi_o1_blank, san_luis_potosi_o1_blur, [100, 100, 14, 18], 2013, 2016],
-            [san_luis_potosi_o2_reg, san_luis_potosi_o2_blank, san_luis_potosi_o2_blur, [100, 100, 14, 18], 2010, 2013],
+            [san_luis_potosi_o0_reg, san_luis_potosi_o0_blank, san_luis_potosi_o0_blur, [1000,1000, 14, 18], 2016, 2022],
+            [san_luis_potosi_o1_reg, san_luis_potosi_o1_blank, san_luis_potosi_o1_blur, [1000,1000, 14, 18], 2013, 2016],
+            [san_luis_potosi_o2_reg, san_luis_potosi_o2_blank, san_luis_potosi_o2_blur, [1000,1000, 14, 18], 2010, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.SINALOA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[sinaloa_reg, sinaloa_blank, sinaloa_blur, [100, 100, 14, 18], 2021]]],
+        [PLATE_TYPE.REGULAR, [[sinaloa_reg, sinaloa_blank, sinaloa_blur, [1000,1000, 14, 18], 2021]]],
         [PLATE_TYPE.OLD, [
-            [sinaloa_o0_reg, sinaloa_o0_blank, sinaloa_o0_blur, [100, 100, 14, 18], 2017, 2021],
-            [sinaloa_o1_reg, sinaloa_o1_blank, sinaloa_o1_blur, [100, 100, 14, 18], 2012, 2017],
-            [sinaloa_o2_reg, sinaloa_o2_blank, sinaloa_o2_blur, [100, 100, 14, 18], 2006, 2012],
+            [sinaloa_o0_reg, sinaloa_o0_blank, sinaloa_o0_blur, [1000,1000, 14, 18], 2017, 2021],
+            [sinaloa_o1_reg, sinaloa_o1_blank, sinaloa_o1_blur, [1000,1000, 14, 18], 2012, 2017],
+            [sinaloa_o2_reg, sinaloa_o2_blank, sinaloa_o2_blur, [1000,1000, 14, 18], 2006, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.SONORA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[sonora_reg, sonora_blank, sonora_blur, [100, 100, 14, 18], 2014]]],
+        [PLATE_TYPE.REGULAR, [[sonora_reg, sonora_blank, sonora_blur, [1000,1000, 14, 18], 2014]]],
         [PLATE_TYPE.OLD, [
-            [sonora_o0_reg, sonora_o0_blank, sonora_o0_blur, [100, 100, 14, 18], 2011, 2014],
-            [sonora_o1_reg, sonora_o1_blank, sonora_o1_blur, [100, 100, 14, 18], 2008, 2011],
+            [sonora_o0_reg, sonora_o0_blank, sonora_o0_blur, [1000,1000, 14, 18], 2011, 2014],
+            [sonora_o1_reg, sonora_o1_blank, sonora_o1_blur, [1000,1000, 14, 18], 2008, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.TABASCO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[tabasco_reg, tabasco_blank, tabasco_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.REGULAR, [[tabasco_reg, tabasco_blank, tabasco_blur, [1000,1000, 14, 18], 2020]]],
         [PLATE_TYPE.OLD, [
-            [tabasco_o0_reg, tabasco_o0_blank, tabasco_o0_blur, [100, 100, 14, 18], 2017, 2020],
-            [tabasco_o1_reg, tabasco_o1_blank, tabasco_o1_blur, [100, 100, 14, 18], 2014, 2017],
-            [tabasco_o2_reg, tabasco_o2_blank, tabasco_o2_blur, [100, 100, 14, 18], 2009, 2014],
+            [tabasco_o0_reg, tabasco_o0_blank, tabasco_o0_blur, [1000,1000, 14, 18], 2017, 2020],
+            [tabasco_o1_reg, tabasco_o1_blank, tabasco_o1_blur, [1000,1000, 14, 18], 2014, 2017],
+            [tabasco_o2_reg, tabasco_o2_blank, tabasco_o2_blur, [1000,1000, 14, 18], 2009, 2014],
         ]],
     ])],
     [MEXICO_STATE_NAMES.TAMAULIPAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[tamaulipas_reg, tamaulipas_blank, tamaulipas_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[tamaulipas_reg, tamaulipas_blank, tamaulipas_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [tamaulipas_o0_reg, tamaulipas_o0_blank, tamaulipas_o0_blur, [100, 100, 14, 18], 2022, 2023],
-            [tamaulipas_o1_reg, tamaulipas_o1_blank, tamaulipas_o1_blur, [100, 100, 14, 18], 2019, 2022],
-            [tamaulipas_o2_reg, tamaulipas_o2_blank, tamaulipas_o2_blur, [100, 100, 14, 18], 2016, 2019],
-            [tamaulipas_o3_reg, tamaulipas_o3_blank, tamaulipas_o3_blur, [100, 100, 14, 18], 2013, 2016],
-            [tamaulipas_o4_reg, tamaulipas_o4_blank, tamaulipas_o4_blur, [100, 100, 14, 18], 2010, 2013],
+            [tamaulipas_o0_reg, tamaulipas_o0_blank, tamaulipas_o0_blur, [1000,1000, 14, 18], 2022, 2023],
+            [tamaulipas_o1_reg, tamaulipas_o1_blank, tamaulipas_o1_blur, [1000,1000, 14, 18], 2019, 2022],
+            [tamaulipas_o2_reg, tamaulipas_o2_blank, tamaulipas_o2_blur, [1000,1000, 14, 18], 2016, 2019],
+            [tamaulipas_o3_reg, tamaulipas_o3_blank, tamaulipas_o3_blur, [1000,1000, 14, 18], 2013, 2016],
+            [tamaulipas_o4_reg, tamaulipas_o4_blank, tamaulipas_o4_blur, [1000,1000, 14, 18], 2010, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.TLAXCALA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[tlaxcala_reg, tlaxcala_blank, tlaxcala_blur, [100, 100, 14, 18], 2023]]],
+        [PLATE_TYPE.REGULAR, [[tlaxcala_reg, tlaxcala_blank, tlaxcala_blur, [1000,1000, 14, 18], 2023]]],
         [PLATE_TYPE.OLD, [
-            [tlaxcala_o0_reg, tlaxcala_o0_blank, tlaxcala_o0_blur, [100, 100, 14, 18], 2020, 2023],
-            [tlaxcala_o1_reg, tlaxcala_o1_blank, tlaxcala_o1_blur, [100, 100, 14, 18], 2017, 2020],
-            [tlaxcala_o2_reg, tlaxcala_o2_blank, tlaxcala_o2_blur, [100, 100, 14, 18], 2015, 2017],
-            [tlaxcala_o3_reg, tlaxcala_o3_blank, tlaxcala_o3_blur, [100, 100, 14, 18], 2012, 2015],
-            [tlaxcala_o4_reg, tlaxcala_o4_blank, tlaxcala_o4_blur, [100, 100, 14, 18], 2006, 2012],
+            [tlaxcala_o0_reg, tlaxcala_o0_blank, tlaxcala_o0_blur, [1000,1000, 14, 18], 2020, 2023],
+            [tlaxcala_o1_reg, tlaxcala_o1_blank, tlaxcala_o1_blur, [1000,1000, 14, 18], 2017, 2020],
+            [tlaxcala_o2_reg, tlaxcala_o2_blank, tlaxcala_o2_blur, [1000,1000, 14, 18], 2015, 2017],
+            [tlaxcala_o3_reg, tlaxcala_o3_blank, tlaxcala_o3_blur, [1000,1000, 14, 18], 2012, 2015],
+            [tlaxcala_o4_reg, tlaxcala_o4_blank, tlaxcala_o4_blur, [1000,1000, 14, 18], 2006, 2012],
         ]],
     ])],
     [MEXICO_STATE_NAMES.VERACRUZ, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
 
-        [PLATE_TYPE.REGULAR, [[veracruz_reg, veracruz_blank, veracruz_blur, [100, 100, 14, 18], 2019]]],
+        [PLATE_TYPE.REGULAR, [[veracruz_reg, veracruz_blank, veracruz_blur, [1000,1000, 14, 18], 2019]]],
         [PLATE_TYPE.OLD, [
-            [veracruz_o0_reg, veracruz_o0_blank, veracruz_o0_blur, [100, 100, 14, 18], 2017, 2019],
-            [veracruz_o1_reg, veracruz_o1_blank, veracruz_o1_blur, [100, 100, 14, 18], 2011, 2017],
-            [veracruz_o2_reg, veracruz_o2_blank, veracruz_o2_blur, [100, 100, 14, 18], 2008, 2011],
+            [veracruz_o0_reg, veracruz_o0_blank, veracruz_o0_blur, [1000,1000, 14, 18], 2017, 2019],
+            [veracruz_o1_reg, veracruz_o1_blank, veracruz_o1_blur, [1000,1000, 14, 18], 2011, 2017],
+            [veracruz_o2_reg, veracruz_o2_blank, veracruz_o2_blur, [1000,1000, 14, 18], 2008, 2011],
         ]],
     ])],
     [MEXICO_STATE_NAMES.YUCATAN, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[yucatan_reg, yucatan_blank, yucatan_blur, [100, 100, 14, 18], 2020]]],
+        [PLATE_TYPE.REGULAR, [[yucatan_reg, yucatan_blank, yucatan_blur, [1000,1000, 14, 18], 2020]]],
         [PLATE_TYPE.OLD, [
-            [yucatan_o0_reg, yucatan_o0_blank, yucatan_o0_blur, [100, 100, 14, 18], 2017, 2020],
-            [yucatan_o1_reg, yucatan_o1_blank, yucatan_o1_blur, [100, 100, 14, 18], 2013, 2017],
-            [yucatan_o2_reg, yucatan_o2_blank, yucatan_o2_blur, [100, 100, 14, 18], 2009, 2013],
+            [yucatan_o0_reg, yucatan_o0_blank, yucatan_o0_blur, [1000,1000, 14, 18], 2017, 2020],
+            [yucatan_o1_reg, yucatan_o1_blank, yucatan_o1_blur, [1000,1000, 14, 18], 2013, 2017],
+            [yucatan_o2_reg, yucatan_o2_blank, yucatan_o2_blur, [1000,1000, 14, 18], 2009, 2013],
         ]],
     ])],
     [MEXICO_STATE_NAMES.ZACATECAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[zacatecas_reg, zacatecas_blank, zacatecas_blur, [100, 100, 14, 18], 2022]]],
+        [PLATE_TYPE.REGULAR, [[zacatecas_reg, zacatecas_blank, zacatecas_blur, [1000,1000, 14, 18], 2022]]],
         [PLATE_TYPE.OLD, [
-            [zacatecas_o0_reg, zacatecas_o0_blank, zacatecas_o0_blur, [100, 100, 14, 18], 2017, 2022],
-            [zacatecas_o1_reg, zacatecas_o1_blank, zacatecas_o1_blur, [100, 100, 14, 18], 2011, 2017],
-            [zacatecas_o2_reg, zacatecas_o2_blank, zacatecas_o2_blur, [100, 100, 14, 18], 2008, 2011],
+            [zacatecas_o0_reg, zacatecas_o0_blank, zacatecas_o0_blur, [1000,1000, 14, 18], 2017, 2022],
+            [zacatecas_o1_reg, zacatecas_o1_blank, zacatecas_o1_blur, [1000,1000, 14, 18], 2011, 2017],
+            [zacatecas_o2_reg, zacatecas_o2_blank, zacatecas_o2_blur, [1000,1000, 14, 18], 2008, 2011],
         ]],
     ])]
 

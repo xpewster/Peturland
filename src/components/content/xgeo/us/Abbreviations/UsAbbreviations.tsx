@@ -28,7 +28,7 @@ const UsAbbreviations = (): React.ReactElement => {
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
-            <p style={{paddingBottom: '10px'}}>2/3/4-Letter Abbreviations</p>
+            <p style={{paddingBottom: '10px'}}>2-Letter Abbreviations</p>
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div style={{paddingBottom: '5px', paddingRight: '0px'}}>
                 <div>

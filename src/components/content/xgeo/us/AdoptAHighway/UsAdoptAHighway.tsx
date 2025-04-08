@@ -74,7 +74,6 @@ const UsAdoptAHighway = (): React.ReactElement => {
                     itemHeight={150}
                     dashedBorder={true}
                     minRandScale={0.1}
-                    sayWrongAnswer={true}
                 />
             </div>
         </div>

@@ -89,7 +89,6 @@ const UsFlags = (): React.ReactElement => {
                     answerIndexToYears={US_FLAGS_TO_YEARS}
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
                     numLastItems={5}
-                    sayWrongAnswer={true}
                     itemHeight={150}
                 />
             </div>

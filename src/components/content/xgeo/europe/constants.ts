@@ -50,55 +50,55 @@
     */
 
 export const COUNTRIES = [
-    "Albania",
-    "Bosnia and Herzegovina",
-    "Bulgaria",
-    "Cyprus",
-    "Denmark",
-    "Ireland",
-    "Estonia",
-    "Austria",
-    "Czech Republic",
-    "Finland",
-    "France",
-    "Georgia",
-    "Germany",
-    "Greece",
-    "Croatia",
-    "Hungary",
-    "Iceland",
-    "Italy",
-    "Latvia",
-    "Belarus",
-    "Lithuania",
-    "Slovakia",
-    "Liechtenstein",
-    "North Macedonia",
-    "Malta",
-    "Belgium",
-    "Faroe Islands",
-    "Andorra",
-    "Luxembourg",
-    "Monaco",
-    "Montenegro",
-    "Netherlands",
-    "Norway",
-    "Poland",
-    "Portugal",
-    "Romania",
-    "Moldova",
-    "Slovenia",
-    "Spain",
-    "Sweden",
-    "Switzerland",
-    "Turkey",
-    "United Kingdom",
-    "Ukraine",
-    "San Marino",
-    "Serbia",
-    "Holy See (Vatican City)",
-    "Russia",
-]
+    "Albania",              // 0
+    "Bosnia and Herzegovina", // 1
+    "Bulgaria",             // 2
+    "Cyprus",               // 3
+    "Denmark",              // 4
+    "Ireland",              // 5
+    "Estonia",              // 6
+    "Austria",              // 7
+    "Czech Republic",       // 8
+    "Finland",              // 9
+    "France",               // 10
+    "Georgia",              // 11
+    "Germany",              // 12
+    "Greece",               // 13
+    "Croatia",              // 14
+    "Hungary",              // 15
+    "Iceland",              // 16
+    "Italy",                // 17
+    "Latvia",               // 18
+    "Belarus",              // 19
+    "Lithuania",            // 20
+    "Slovakia",             // 21
+    "Liechtenstein",        // 22
+    "North Macedonia",      // 23
+    "Malta",                // 24
+    "Belgium",              // 25
+    "Faroe Islands",        // 26
+    "Andorra",              // 27
+    "Luxembourg",           // 28
+    "Monaco",               // 29
+    "Montenegro",           // 30
+    "Netherlands",          // 31
+    "Norway",               // 32
+    "Poland",               // 33
+    "Portugal",             // 34
+    "Romania",              // 35
+    "Moldova",              // 36
+    "Slovenia",             // 37
+    "Spain",                // 38
+    "Sweden",               // 39
+    "Switzerland",          // 40
+    "Turkey",               // 41
+    "United Kingdom",       // 42
+    "Ukraine",              // 43
+    "San Marino",           // 44
+    "Serbia",               // 45
+    "Holy See (Vatican City)", // 46
+    "Russia",               // 47
+];
 
 //0x1 = west
 //0x2 = scandinavia

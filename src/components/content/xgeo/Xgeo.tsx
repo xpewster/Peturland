@@ -23,6 +23,7 @@ import folder2 from '../../../assets/fileboxicons/xp/shell32.dll_14_20-8.png';
 import sticky from '../../../assets/fileboxicons/xp/ntbackup.exe_14_102-1.png';
 import regency from '../../../assets/fileboxicons/xp/freecell.exe_14_601-4.png';
 import provinces from '../../../assets/fileboxicons/xp/dfrgres.dll_14_106-4.png';
+import regions from '../../../assets/fileboxicons/xp/icwconn1.exe_14_200-2.png';
 
 import chevron from '../../../assets/fileboxicons/xp/mfc90.dll_14_17100-0.png';
 import bollard from '../../../assets/fileboxicons/xp/dot3ui.dll_14_2000-15.png';
@@ -41,6 +42,9 @@ import Kabupaten from './indo/Kabupaten/Kabupaten';
 import EuChevrons from './europe/chevrons/EuChevrons';
 import EuDomains from './europe/domains/EuDomains';
 import EuGuardrails from './europe/guardrails/EuGuardrails';
+import FiloProvinces from './phillipines/provinces/FiloProvinces';
+import FiloRegions from './phillipines/regions/FiloRegions';
+import EuPedestrians from './europe/ped/EuPedestrians';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -58,8 +62,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const BR_LINKS = [Path.XGEO_BR, Path.XGEO_BR_ABBREVIATIONS, Path.XGEO_BR_POSTCODES];
 
     const EU_IMGS = [chevron, bollard, domain, guardrail, texas, pedestrian];
-    const EU_STRINGS = ['Chevrons', 'Bollards - Coming Soon', 'Country code TLDomains', 'Guardrails', 'Flags - Soon', 'Pedestrian Crossings - Soon'];
-    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.SOON, Path.XGEO_EU_DOMAINS, Path.XGEO_EU_GUARDRAILS, Path.SOON, Path.SOON];
+    const EU_STRINGS = ['Chevrons', 'Bollards - Coming Soon', 'Country code TLDomains', 'Guardrails', 'Flags - Soon', 'Pedestrian Crossings'];
+    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.SOON, Path.XGEO_EU_DOMAINS, Path.XGEO_EU_GUARDRAILS, Path.SOON, Path.XGEO_EU_PEDESTRIAN_CROSSINGS];
     const EU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const MONG_IMGS = [car];
@@ -72,10 +76,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const INDO_LINKS = [Path.XGEO_INDONESIA_KABUPATEN];
     const INDO_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
-    const PHILLIPINES_IMGS = [provinces];
-    const PHILLIPINES_STRINGS = ['Provinces - Coming Soon'];
-    const PHILLIPINES_LINKS = [Path.SOON];
-    const PHILLIPINES_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const PHILLIPINES_IMGS = [provinces, regions];
+    const PHILLIPINES_STRINGS = ['Provinces', 'Regions'];
+    const PHILLIPINES_LINKS = [Path.XGEO_PHILLIPINES_PROVINCES, Path.XGEO_PHILLIPINES_REGIONS];
+    const PHILLIPINES_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
     
     const TOP_IMGS = [folder2, folder2, folder2];
     const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines'];
@@ -133,10 +137,16 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <EuDomains />;
             case ContentType.XGEO_EU_GUARDRAILS:
                 return <EuGuardrails />;
+            case ContentType.XGEO_EU_PEDESTRIAN_CROSSINGS:
+                return <EuPedestrians />;
             case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
             case ContentType.XGEO_INDONESIA_KABUPATEN:
                 return <Kabupaten />;
+            case ContentType.XGEO_PHILLIPINES_PROVINCES:
+                return <FiloProvinces />;
+            case ContentType.XGEO_PHILLIPINES_REGIONS:
+                return <FiloRegions />;
         }
     };
 

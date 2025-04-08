@@ -45,6 +45,10 @@ export const getContentSize = (type: ContentType) => {
             return 850;
         case ContentType.XGEO_MONG:
             return 900;
+        case ContentType.XGEO_PHILLIPINES_PROVINCES:
+            return 850;
+        case ContentType.XGEO_PHILLIPINES_REGIONS:
+            return 750;
         case ContentType.SOON:
             return 700;
         default:

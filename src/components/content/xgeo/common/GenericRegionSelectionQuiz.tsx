@@ -185,6 +185,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     function generateNewFind(skipCurrentUpdate?: boolean) {
         let tries = 0;
         const currentOrFutureToFind = nextItem ? nextItem.newt : toFind;
+        const currentOrFutureIndex = nextItem ? nextItem.index : randIndex;
         if (!nextItem) {
             generateFirstFind();
         }
@@ -198,6 +199,10 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 setLoading(false);
             }
             const newIndex = (Math.floor(Math.random() * 100));
+            if (props.disallowRepeats && props.answerIndexToRegionIndices?.[props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind][currentOrFutureIndex % props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind].length]].includes(newt)) {
+                tries++;
+                continue;
+            }
             if (props.answerIndexToSrc) {
                 preloadImage(props.answerIndexToSrc(props.toFindIndexToAnswerIndicesArray[newt][newIndex % props.toFindIndexToAnswerIndicesArray[newt].length]));
             }
@@ -310,7 +315,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 : (!(loading || props.answerIndexToText) && <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', marginTop: '5px', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false)) ? `hue-rotate(${hueRotate}deg)` : undefined}} src={getSrc()}></img>)
             }
             {(message !== "") && <p style={{color: messageColor}}>{message}{props.sayWrongAnswer ? <>
-                {answer && ((props.answerIndexToText) ? <p style={{display: 'inline'}}> that one's {answer}..</p> : <p style={{display: 'inline'}}> that one's <img style={{height: '50px', display: 'inline', verticalAlign: 'middle'}} src={answer}></img>..</p>)}
+                {answer && ((props.answerIndexToText) ? <p style={{display: 'inline'}}> that one's {answer}..</p> : <p style={{display: 'inline'}}> that one's <img style={{height: `${(props.itemHeight ?? 75)/3}px`, display: 'inline', verticalAlign: 'middle'}} src={answer}></img>..</p>)}
             </> : <></>}</p>}
             <div style={{position: 'relative', width: '100%', paddingTop: '5px'}}>
             <ScrollingDisabler>

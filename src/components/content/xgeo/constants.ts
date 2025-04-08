@@ -22,6 +22,8 @@ export enum QuizType {
     MONG_DRIVING_DIRECTION,
     MONG_CAR_META,
     INDONESIA_KABUPATEN,
+    PHILLIPINES_PROVINCES,
+    PHILLIPINES_REGIONS,
 }
 
 export enum LocalStorageStreakKeys {
@@ -45,6 +47,8 @@ export enum LocalStorageStreakKeys {
     MONG_DRIVING_DIRECTION = "mongolia_driving_direction_bestStreak",
     MONG_CAR_META = "mongolia_car_meta_bestStreak",
     INDONESIA_KABUPATEN = "indonesia_kabupaten_bestStreak",
+    PHILLIPINES_PROVINCES = "phillipines_provinces_bestStreak",
+    PHILLIPINES_REGIONS = "phillipines_regions_bestStreak",
 }
 
 export const MAP_COLOR = "#FF5533";

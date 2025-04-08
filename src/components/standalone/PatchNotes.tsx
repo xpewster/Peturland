@@ -13,6 +13,7 @@ export const PatchNotes = (): React.ReactElement => {
         ['03-29-2025', <></>, "Attention fellow webmasters--I've created a new WhatsInTheSky widget you can use, check out the home page~"],
         ['04-01-2025', <></>, "I added over 100 new objects to the in the sky widget! Not an april fools joke I promise!! (how would that be a joke anyways..)"], 
         ['04-02-2025', <></>, "Two new xgeo games! Obsessed with these XP icons... the games are Indo kabupatens and EU chevrons! We getting real nerdy now... :cool:"],
+        ['04-07-2025', <></>, "Happy April 7th!! Hells yes!!! Bunch of new geo games. Also experimenting with a low-res option for the license plates game."],
     ];
 
     return <Standalone>

@@ -45,6 +45,7 @@ const Us = (props: UsProps): React.ReactElement => {
     const [enableBlur, setEnableBlur] = useState<boolean>(true);
     const [enableSkew, setEnableSkew] = useState<boolean>(false);
     const [enableRandBlur, setEnableRandBlur] = useState<number>(10);
+    const [enableLowRes, setEnableLowRes] = useState<boolean>(false);
     const [enableVanity, setEnableVanity] = useState<boolean>(false);
     const [enableOld, setEnableOld] = useState<boolean>(true);
 
@@ -78,7 +79,7 @@ const Us = (props: UsProps): React.ReactElement => {
     /* ----------------- */
 
     const generateNewRandBlur = (): number => {
-        return Math.random()*20+10;
+        return Math.random()*40+10;
     };
 
     const generateRandomParameters = (): void => {
@@ -87,7 +88,7 @@ const Us = (props: UsProps): React.ReactElement => {
         setRSC2(randomElement(REGISTRATION_STICKER_COLORS));
         setHC(randomElement(HOLDER_COLORS));
         setRandomSepia(Math.random() * 0.2);
-        setRandomBrightness(Math.random() * 0.15 + 0.85);
+        setRandomBrightness(Math.random() * 0.1 + 0.9);
         setRandomSkew([Math.random()*20-10, Math.random()*160-80]);
         setRandomScale(Math.random()*0.5+0.5);
     };
@@ -261,6 +262,8 @@ const Us = (props: UsProps): React.ReactElement => {
                 setHC(randomElement(HOLDER_COLORS));
                 setEnableRRSC(!enableRRSC);
                 break;
+            case 6:
+                setEnableLowRes(!enableLowRes);
         }
     }
 
@@ -280,7 +283,8 @@ const Us = (props: UsProps): React.ReactElement => {
                 <div>
                     Blur plate<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableBlur}></input>
                     Use random skew<input type="checkbox" onChange={() => { setStreak(0); changeSetting(1); }} checked={enableSkew}></input>
-                    Use random blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!!enableRandBlur}></input>
+                    Use rand blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!!enableRandBlur}></input>
+                    Low res<input type="checkbox" onChange={() => {changeSetting(6)}} checked={enableLowRes}></input>
                     Random registration sticker/holder color<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
                 </div>
             </div>
@@ -316,6 +320,7 @@ const Us = (props: UsProps): React.ReactElement => {
                         brightness={enableRandBlur ? randomBrightness : 1}
                         skew={enableSkew ? randomSkew : undefined}
                         scale={enableSkew ? randomScale : 1}
+                        lowRes={enableLowRes}
                         index2={index2}
                     />}
                 </div>
@@ -332,7 +337,7 @@ const Us = (props: UsProps): React.ReactElement => {
             </div>
             {lastPlates.length ? <div className="scrollable-content" style={{border: 'dashed 1px #808080', overflow: 'scroll', height: '250px', width: '200px', marginTop: '5px', paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plates (P.P.):</p>
-                <span>Blur<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
+                <span>Distort<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
                 {lastPlates.map((lastPlate, index) => 
                     <Plate
                         state={lastPlate.state}
@@ -346,6 +351,7 @@ const Us = (props: UsProps): React.ReactElement => {
                         brightness={lastPlate.brightness}
                         skew={lastPlate.skew}
                         scale={lastPlate.scale}
+                        lowRes={enableLowRes}
                         index2={lastPlate.index2}
                         showYears
                         show={!enablePPBlur}

@@ -14,3 +14,11 @@
     border-width: 0;
     border-top: dotted 1px;
 }
+
+.downsampled-image {
+    position: absolute;
+    top: 0px;
+    left: 0px; 
+    z-index: 10;
+    filter: blur(0.7px);
+}

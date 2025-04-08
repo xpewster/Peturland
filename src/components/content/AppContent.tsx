@@ -43,6 +43,8 @@ const AppContent = ({
             case ContentType.XGEO_EU_PEDESTRIAN_CROSSINGS:
             case ContentType.XGEO_MONG:
             case ContentType.XGEO_INDONESIA_KABUPATEN:
+            case ContentType.XGEO_PHILLIPINES_PROVINCES:
+            case ContentType.XGEO_PHILLIPINES_REGIONS:
                 return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:
                 return <Soon />;    

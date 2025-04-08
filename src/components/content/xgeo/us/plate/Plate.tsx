@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { STATE_NAMES, TERRITORY_NAMES } from '../constants';
 import { PLATE_STATE, PLATE_TUPLE, PLATE_TYPE, PLATES } from './constants';
 import { preloadImage } from '../../../../common/preloadImage';
+import { toPng } from 'html-to-image';
 
 export interface PlateProps {
     state?: STATE_NAMES;
@@ -20,12 +21,17 @@ export interface PlateProps {
     svgFilterIndex?: number;
     skew?: number[];
     scale?: number;
+    lowRes?: boolean;
 }
 
 const Plate = (props: PlateProps): React.ReactElement => {
     const [plate, setPlate] = useState<PLATE_TUPLE | undefined>(undefined);
     const sepia = props.sepia ?? 0;
     const index2 = props.index2 ?? 0;
+
+    const canvasRef = useRef<HTMLDivElement>(null);
+    const lastDownsampledImageRef = useRef<HTMLImageElement | null>(null);
+    const DOWNSCALE_FACTOR = 4;
 
     const preloadPlate = (tuple: PLATE_TUPLE) => {
         preloadImage(tuple[0]);
@@ -47,12 +53,6 @@ const Plate = (props: PlateProps): React.ReactElement => {
             return baseId;
         }
         return `${baseId}${props.svgFilterIndex}`;
-    };
-
-    const getFilterUrls = (): string => {
-        return props.rsc ? ((plate && plate[3].length === 8) ? `url(#${getFilterId('rs')}) url(#${getFilterId('rs2')}) url(#${getFilterId('matrix-sepia')}) url(#${getFilterId('gblur')})`
-            : `url(#${getFilterId('rs')}) url(#${getFilterId('matrix-sepia')}) url(#${getFilterId('gblur')}`)
-            : `url(#${getFilterId('matrix-sepia')}) url(#${getFilterId('gblur')})`;
     };
 
     const getSrc = (): string => {
@@ -88,7 +88,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
     }
 
     const getBlurredPlate = useMemo(() => {
-        return <div style={{filter: `brightness(${props.brightness ?? 1})`}}>
+        return <div style={{filter: `brightness(${props.brightness ?? 1}) saturate(${Math.max(((props.brightness ?? 1)-0.9) * 10 + 0.4, 1)})`}}>
             <svg viewBox='0 0 150 75'>
                 <defs>
                     <filter id={getFilterId("combinedFilter")} x="-50%" y="-50%" width="200%" height="200%">
@@ -98,7 +98,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                             width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
                             height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
                             floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
-                            floodOpacity={props.rsc === 'clear' ? '0' : "0.5"}
+                            floodOpacity={(props.rsc === 'clear' || props.rsc === undefined) ? '0' : "0.4"}
                         />
                         <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
                         {plate && plate[3].length === 8 && (
@@ -109,7 +109,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                     width={`${plate ? plate[3][2] : 0}%`}
                                     height={`${plate ? plate[3][3] : 0}%`}
                                     floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
-                                    floodOpacity={props.rsc2 === 'clear' ? '0' : "0.5"}
+                                    floodOpacity={(props.rsc2 === 'clear' || props.rsc2 === undefined) ? '0' : "0.4"}
                                 />
                                 <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
                             </>
@@ -139,6 +139,13 @@ const Plate = (props: PlateProps): React.ReactElement => {
                             floodOpacity={(props.hc && props.hc !== 'clear') ? '1' : "0"}
                         />
                         <feBlend in="hc2" in2="blendedHc1" mode="normal" result="blendedHc2" />
+                        {/* Begin pixelation filter */}
+                        {/* <feFlood x="1" y="1" height="2" width="2"/>
+                        <feComposite width="4" height="4"/>
+                        <feTile result="tile"/>
+                        <feComposite in="blendedHc2" in2="tile" operator="in"/>
+                        <feMorphology operator="dilate" radius="1" result="pixelated"/> */}
+                        {/* End pixelation filter */}
                         <feGaussianBlur in="blendedHc2" stdDeviation={(props.blur ?? 0) * (props.skew ? (1.0/1.414) : 1) / 1.5} edgeMode="duplicate" /> {/* (Math.abs(props.skew?.[1] ?? 0)/90 + 1)*/}
                     </filter>
                 </defs>
@@ -154,9 +161,113 @@ const Plate = (props: PlateProps): React.ReactElement => {
         </div>
     }, [plate, props.blur, props.rsc, props.rsc2, props.hc, sepia, index2, props.skew, props.scale]);
 
+    function createDownsampledImage(element: any, scaleFactor: number) {
+        // Get the original dimensions
+        const rect = element.getBoundingClientRect();
+        const width = rect.width;
+        const height = rect.height;
+
+        console.log('downsize');
+        
+        // Step 1: Capture the element with html-to-image (this preserves SVG filters)
+        return toPng(element, {
+            cacheBust: true,
+            imagePlaceholder: Date.now().toString(), // Force new capture each time
+            skipFonts: true, // Can help with performance
+          })
+          .then((dataUrl: any) => {
+            // Create an image from the data URL
+
+            console.log("Data URL hash:", dataUrl.length, dataUrl.substring(0, 100));
+            const img = new Image();
+            return new Promise(resolve => {
+              img.onload = () => resolve(img);
+              img.src = dataUrl;
+            });
+          })
+          .then((img: any) => {
+            // Step 2: Create a canvas for processing
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            canvas.width = width;
+            canvas.height = height;
+            
+            // Step 3: Create a temporary smaller canvas for downsampling
+            const tempCanvas = document.createElement('canvas');
+            const tempCtx = tempCanvas.getContext('2d');
+            
+            // Calculate downsampled dimensions
+            const smallWidth = Math.max(1, Math.floor(width / scaleFactor));
+            const smallHeight = Math.max(1, Math.floor(height / scaleFactor));
+            tempCanvas.width = smallWidth;
+            tempCanvas.height = smallHeight;
+            
+            // Step 4: Draw the original image to the small canvas (downsampling)
+            tempCtx?.drawImage(img, 0, 0, width, height, 0, 0, smallWidth, smallHeight);
+            
+            // Step 5: Draw the small canvas back to the original-sized canvas
+            // with image smoothing disabled to create the pixelated effect
+            if (ctx) { 
+                ctx.imageSmoothingEnabled = false; // Disable image smoothing
+                ctx.drawImage(tempCanvas, 0, 0, smallWidth, smallHeight, 0, 0, width, height);
+            }
+            
+            // Step 6: Create the final image
+            const resultImg = new Image();
+            resultImg.src = canvas.toDataURL();
+            resultImg.width = width;
+            resultImg.height = height;
+            resultImg.style.width = width + 'px';
+            resultImg.style.height = height + 'px';
+            
+            // Optional: Add a class for styling
+            resultImg.className = 'downsampled-image';
+            
+            // Step 7: Replace the original element
+            if (element.parentNode) {
+                // element.style.display = 'none'; // Hide the original element
+                element.parentNode.insertBefore(resultImg, element);
+
+                // Remove the previous result if it exists
+                if (lastDownsampledImageRef.current && lastDownsampledImageRef.current.parentNode) {
+                    lastDownsampledImageRef.current.parentNode.removeChild(lastDownsampledImageRef.current);
+                }
+                
+                // Update our reference to the most recent result
+                lastDownsampledImageRef.current = resultImg;
+            }
+            
+            return resultImg;
+          })
+          .catch((error: any) => {
+            console.error('Error creating downsampled image:', error);
+            return element; // Return original element if there's an error
+          });
+      }
+
+    useEffect(() => {
+        const processCanvas = async () => {
+            if (canvasRef.current) {
+                const canvas = canvasRef.current;
+                const result = createDownsampledImage(canvas, DOWNSCALE_FACTOR);
+            }
+        };
+        if (props.lowRes) {
+            processCanvas();
+        }
+    }, [plate, props.blur, props.rsc, props.rsc2, props.hc, sepia, index2, props.skew, props.scale, props.lowRes]);
+
+    useEffect(() => {
+        if (!props.lowRes) {
+            if (lastDownsampledImageRef.current && lastDownsampledImageRef.current.parentNode) {
+                lastDownsampledImageRef.current.parentNode.removeChild(lastDownsampledImageRef.current);
+            }
+        }
+    }, [props.lowRes]);
+
     return (
         <div className='plate'>
-            {props.blur && !props.show ?
+            {(props.blur || props.skew) && !props.show ?
                 <div style={{
                     perspective: '800px',
                     width: '150px',
@@ -188,28 +299,37 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                 />
                         </svg>
                     </div>
-                    <div style={{
+                    <div ref={canvasRef} style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
                         width: '100%',
                         height: '100%',
-                        zIndex: 2,
-                        filter: props.skew ? `blur(${props.blur / (1.414 * 1.5)}px)` : 'none',
+                        zIndex: 4,
                     }}>
-                        {getBlurredPlate}
+                        <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            zIndex: 2,
+                            filter: props.skew ? `blur(${(props.blur ?? 0) / (1.414 * 1.5)}px)` : 'none',
+                        }}>
+                            {getBlurredPlate}
+                        </div>
+                        {(props.skew && props.blur) ? <div style={{
+                            position: 'absolute',
+                            top: 0,
+                            left: 0,
+                            width: '100%',
+                            height: '100%',
+                            zIndex: 1,
+                            opacity: 0.4,
+                        }}>
+                            {getBlurredPlate}
+                        </div> : <></>}
                     </div>
-                    {props.skew && <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        width: '100%',
-                        height: '100%',
-                        zIndex: 1,
-                        opacity: 0.4,
-                    }}>
-                        {getBlurredPlate}
-                    </div>}
                     {/* Skew indicator lines */}
                     {props.skew && <div style={{
                         position: 'absolute',
