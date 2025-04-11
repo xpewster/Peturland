@@ -45,7 +45,7 @@ export const PROVINCES = [
 	"Zamboanga del Norte",
 	"Zamboanga del Sur",
 	"Zamboanga Sibugay",
-	"City of Isabela (not a province)",
+	"City of Isabela",
 	"Bukidnon",
 	"Camiguin",
 	"Lanao del Norte",

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './../Xgeo.css';
 import { BADS, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
 import { randomElement } from '../helpers';
@@ -155,17 +155,19 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         return candidateIndices[Math.floor(Math.random() * candidateIndices.length)];
     };
 
-    const isStateEnabled = (enableRegion: boolean[], index: number): boolean => {
-        if (!props.regionsBitFlag) return true;
+    const isStateEnabled = useMemo(() => {
+        return (enableRegion: boolean[], index: number): boolean => {
+            if (!props.regionsBitFlag) return true;
 
-        const enabledRegionBitFlag = enableRegion.reduce((acc, enabled, index) => {
-        return enabled ? acc | REGION_INDEX_TO_BIT[index] : acc;
-        }, 0);
-        
-        if (enabledRegionBitFlag === 0) return false;
+            const enabledRegionBitFlag = enableRegion.reduce((acc, enabled, index) => {
+            return enabled ? acc | REGION_INDEX_TO_BIT[index] : acc;
+            }, 0);
+            
+            if (enabledRegionBitFlag === 0) return false;
 
-        return !!(props.regionsBitFlag[index] & enabledRegionBitFlag);
-    };
+            return !!(props.regionsBitFlag[index] & enabledRegionBitFlag);
+        };
+    }, [props.regionsBitFlag]);
     
     function generateFirstFind() {
         let tries = 0;
@@ -199,7 +201,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 setLoading(false);
             }
             const newIndex = (Math.floor(Math.random() * 100));
-            if (props.disallowRepeats && props.answerIndexToRegionIndices?.[props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind][currentOrFutureIndex % props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind].length]].includes(newt)) {
+            if (props.disallowRepeats && props.answerIndexToRegionIndices?.[props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind][currentOrFutureIndex % props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind].length]]?.includes(newt)) {
                 tries++;
                 continue;
             }
@@ -219,6 +221,14 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         }
         setAnswer("");
     }
+
+    useEffect(() => {
+        if (!props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]) {
+            generateFirstFind();
+        } else if (nextItem?.newt && !props.toFindIndexToAnswerIndicesArray[nextItem?.newt][nextItem?.index % props.toFindIndexToAnswerIndicesArray[nextItem?.newt].length]) {
+            setNextItem(null);
+        }
+    }, [props.toFindIndexToAnswerIndicesArray.toString(), props.answerIndexToRegionIndices?.toString()]);
 
     useEffect(() => {
         generateNewFind();
@@ -284,9 +294,17 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         return `(${props.answerIndexToYears?.[index]![0]}-${props.answerIndexToYears?.[index]![1]})`;
     }
 
-    const getLastItemsKeys = () => {
+    const getLastItemsKeys = useMemo(() => {
         return ((props.answerIndexToRegionIndices && lastItems[0][0] >= 0) ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[lastItems[0][0]][lastItems[0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[0][0]].length]].map((val) => { return `geo-${val}`; }) : [`geo-${lastItems[0][0]}`]);
-    }
+    }, [props.answerIndexToRegionIndices?.toString(), lastItems[0][0], lastItems[0][1]]);
+
+    const defaultStyleFunction = (key: string) => {
+        return {
+            default: { fill: getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
+            hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
+            pressed: { fill: "green", outline: 'none' },
+        }
+    };
 
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
@@ -315,7 +333,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                 : (!(loading || props.answerIndexToText) && <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', marginTop: '5px', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false)) ? `hue-rotate(${hueRotate}deg)` : undefined}} src={getSrc()}></img>)
             }
             {(message !== "") && <p style={{color: messageColor}}>{message}{props.sayWrongAnswer ? <>
-                {answer && ((props.answerIndexToText) ? <p style={{display: 'inline'}}> that one's {answer}..</p> : <p style={{display: 'inline'}}> that one's <img style={{height: `${(props.itemHeight ?? 75)/3}px`, display: 'inline', verticalAlign: 'middle'}} src={answer}></img>..</p>)}
+                {answer && ((props.answerIndexToText) ? <span style={{display: 'inline'}}> that one's {answer}..</span> : <span style={{display: 'inline'}}> that one's <img style={{height: `${(props.itemHeight ?? 75)/3}px`, display: 'inline', verticalAlign: 'middle'}} src={answer}></img>..</span>)}
             </> : <></>}</p>}
             <div style={{position: 'relative', width: '100%', paddingTop: '5px'}}>
             <ScrollingDisabler>
@@ -351,11 +369,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                             key={geo.rsmKey} 
                                             geography={geo} 
                                             onClick={() => { handleClick(geo.rsmKey); }} 
-                                            style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys()) : {
-                                                default: { fill: getLastItemsKeys().includes(geo.rsmKey) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
-                                                hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
-                                                pressed: { fill: "green", outline: 'none' },
-                                            }}
+                                            style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys) : defaultStyleFunction(geo.rsmKey)}
                                         />
                                     ))
                             }

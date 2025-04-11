@@ -43,6 +43,10 @@ export const getContentSize = (type: ContentType) => {
             return 1100;
         case ContentType.XGEO_EU_DOMAINS:
             return 850;
+        case ContentType.XGEO_EU_FLAGS:
+            return 900;
+        case ContentType.XGEO_EU_BOLLARDS:
+            return 1040;
         case ContentType.XGEO_MONG:
             return 900;
         case ContentType.XGEO_PHILLIPINES_PROVINCES:

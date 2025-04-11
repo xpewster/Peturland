@@ -45,6 +45,8 @@ import EuGuardrails from './europe/guardrails/EuGuardrails';
 import FiloProvinces from './phillipines/provinces/FiloProvinces';
 import FiloRegions from './phillipines/regions/FiloRegions';
 import EuPedestrians from './europe/ped/EuPedestrians';
+import EuFlags from './europe/flags/EuFlags';
+import EuBollards from './europe/bollards/EuBollards';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -62,8 +64,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const BR_LINKS = [Path.XGEO_BR, Path.XGEO_BR_ABBREVIATIONS, Path.XGEO_BR_POSTCODES];
 
     const EU_IMGS = [chevron, bollard, domain, guardrail, texas, pedestrian];
-    const EU_STRINGS = ['Chevrons', 'Bollards - Coming Soon', 'Country code TLDomains', 'Guardrails', 'Flags - Soon', 'Pedestrian Crossings'];
-    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.SOON, Path.XGEO_EU_DOMAINS, Path.XGEO_EU_GUARDRAILS, Path.SOON, Path.XGEO_EU_PEDESTRIAN_CROSSINGS];
+    const EU_STRINGS = ['Chevrons', 'Bollards', 'Country code TLDomains', 'Guardrails', 'Flags', 'Pedestrian Crossings'];
+    const EU_LINKS = [Path.XGEO_EU_CHEVRONS, Path.XGEO_EU_BOLLARDS, Path.XGEO_EU_DOMAINS, Path.XGEO_EU_GUARDRAILS, Path.XGEO_EU_FLAGS, Path.XGEO_EU_PEDESTRIAN_CROSSINGS];
     const EU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const MONG_IMGS = [car];
@@ -131,10 +133,13 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
             case ContentType.XGEO_BR_POSTCODES:
                 return <BrazilPostcodes />;
             case ContentType.XGEO_EU_BOLLARDS:
+                return <EuBollards />;
             case ContentType.XGEO_EU_CHEVRONS:
                 return <EuChevrons />;
             case ContentType.XGEO_EU_DOMAINS:
                 return <EuDomains />;
+            case ContentType.XGEO_EU_FLAGS:
+                return <EuFlags />;
             case ContentType.XGEO_EU_GUARDRAILS:
                 return <EuGuardrails />;
             case ContentType.XGEO_EU_PEDESTRIAN_CROSSINGS:

@@ -79,7 +79,7 @@ const Us = (props: UsProps): React.ReactElement => {
     /* ----------------- */
 
     const generateNewRandBlur = (): number => {
-        return Math.random()*40+10;
+        return Math.random()*30+10;
     };
 
     const generateRandomParameters = (): void => {

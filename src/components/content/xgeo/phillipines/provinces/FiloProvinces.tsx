@@ -11,6 +11,7 @@ import { PROVINCE_BITFLAG, PROVINCES, REGION_INDEX_TO_PROVINCE_INDEX } from './c
 const FiloProvinces = (): React.ReactElement => {
 
     const [enableRegion, setEnableRegion] = useState<boolean[]>(Array(18).fill(true));
+    const [allEnable, setAllEnable] = useState<boolean>(true);
 
     /* ----------------- */
 
@@ -33,7 +34,7 @@ const FiloProvinces = (): React.ReactElement => {
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
-            <p style={{paddingBottom: '10px'}}>Filo Provinces</p>
+            <p style={{paddingBottom: '10px'}}>Filo primary-level subdivisions</p>
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div style={{marginBottom: '20px', paddingRight: '0px'}}>
                 <div>
@@ -62,6 +63,9 @@ const FiloProvinces = (): React.ReactElement => {
                     Davao Region<input type="checkbox" onChange={() => {handleCheck(10)}} checked={enableRegion[10]}></input>
                 </div>
                 <img style={{position: 'absolute', left: '-2px', top: '256px'}} src={dots}></img>
+                <div style={{paddingTop: '12px'}}>
+                    <button onClick={() => {setAllEnable(!allEnable); setEnableRegion(Array(34).fill(!allEnable));}}>{allEnable ? 'Unselect All' : 'Select All'}</button>
+                </div>
             </div>
             <div style={{paddingTop: '10px'}}>
                 <GenericRegionSelectionQuiz

@@ -11,6 +11,7 @@ import { KABUPATEN, KABUPATEN_INDEX_TO_BITFLAG, REGION_INDEX_TO_KABUPATEN_INDEX 
 const Kabupaten = (): React.ReactElement => {
 
     const [enableRegion, setEnableRegion] = useState<boolean[]>(Array(34).fill(true));
+    const [allEnable, setAllEnable] = useState<boolean>(true);
 
     /* ----------------- */
 
@@ -85,6 +86,9 @@ const Kabupaten = (): React.ReactElement => {
                     Papua<input type="checkbox" onChange={() => {handleCheck(31)}} checked={enableRegion[31]}></input>
                 </div>
                 <img style={{position: 'absolute', left: '-2px', top: '386px'}} src={dots}></img>
+                <div style={{paddingTop: '12px'}}>
+                    <button onClick={() => {setAllEnable(!allEnable); setEnableRegion(Array(34).fill(!allEnable));}}>{allEnable ? 'Unselect All' : 'Select All'}</button>
+                </div>
             </div>
             <div style={{paddingTop: '10px'}}>
                 <GenericRegionSelectionQuiz

@@ -1,3 +1,4 @@
+import { r } from "react-router/dist/development/fog-of-war-Cm1iXIp7";
 import { LocalStorageStreakKeys, QuizType } from "./constants";
 import { REGION_INDEX_TO_BIT } from "./us/constants";
 
@@ -26,6 +27,18 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
             return LocalStorageStreakKeys.NA_TREE_SPECIES + enabledRegionBits;
         case QuizType.NA_ABBREVIATIONS:
             return LocalStorageStreakKeys.NA_ABBREVIATIONS + enabledRegionBits;
+        case QuizType.EU_BOLLARDS:
+            return LocalStorageStreakKeys.EU_BOLLARDS + enabledRegionBits;
+        case QuizType.EU_PEDESTRIAN_CROSSINGS:
+            return LocalStorageStreakKeys.EU_PEDESTRIAN_CROSSINGS + enabledRegionBits;
+        case QuizType.EU_CHEVRONS:
+            return LocalStorageStreakKeys.EU_CHEVRONS + enabledRegionBits;
+        case QuizType.EU_DOMAINS:
+            return LocalStorageStreakKeys.EU_DOMAINS + enabledRegionBits;
+        case QuizType.EU_FLAGS:
+            return LocalStorageStreakKeys.EU_FLAGS + enabledRegionBits;
+        case QuizType.EU_GUARDRAILS:
+            return LocalStorageStreakKeys.EU_GUARDRAILS + enabledRegionBits;
         case QuizType.BRAZIL_AREA_CODES:
             return LocalStorageStreakKeys.BRAZIL_AREA_CODES + enabledRegionBits;
         case QuizType.BRAZIL_ABBREVIATIONS:
@@ -36,6 +49,12 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
             return LocalStorageStreakKeys.MONG_DRIVING_DIRECTION + enabledRegionBits;
         case QuizType.MONG_CAR_META:
             return LocalStorageStreakKeys.MONG_CAR_META + enabledRegionBits;
+        case QuizType.INDONESIA_KABUPATEN:
+            return LocalStorageStreakKeys.INDONESIA_KABUPATEN + enabledRegionBits;
+        case QuizType.PHILLIPINES_PROVINCES:
+            return LocalStorageStreakKeys.PHILLIPINES_PROVINCES + enabledRegionBits;
+        case QuizType.PHILLIPINES_REGIONS:
+            return LocalStorageStreakKeys.PHILLIPINES_REGIONS + enabledRegionBits;
         default:
             return "default" + enabledRegionBits;
     }

@@ -32,6 +32,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
     const canvasRef = useRef<HTMLDivElement>(null);
     const lastDownsampledImageRef = useRef<HTMLImageElement | null>(null);
     const DOWNSCALE_FACTOR = 4;
+    const [errorMessage, setErrorMessage] = useState<string | null>(null);
 
     const preloadPlate = (tuple: PLATE_TUPLE) => {
         preloadImage(tuple[0]);
@@ -166,19 +167,15 @@ const Plate = (props: PlateProps): React.ReactElement => {
         const rect = element.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
-
-        console.log('downsize');
         
         // Step 1: Capture the element with html-to-image (this preserves SVG filters)
         return toPng(element, {
-            cacheBust: true,
-            imagePlaceholder: Date.now().toString(), // Force new capture each time
             skipFonts: true, // Can help with performance
           })
           .then((dataUrl: any) => {
             // Create an image from the data URL
 
-            console.log("Data URL hash:", dataUrl.length, dataUrl.substring(0, 100));
+            // console.log("Data URL hash:", dataUrl.length, dataUrl.substring(0, 100));
             const img = new Image();
             return new Promise(resolve => {
               img.onload = () => resolve(img);
@@ -241,6 +238,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
           })
           .catch((error: any) => {
             console.error('Error creating downsampled image:', error);
+            setErrorMessage('Error creating downsampled image: ' + error.message);
             return element; // Return original element if there's an error
           });
       }
@@ -255,7 +253,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
         if (props.lowRes) {
             processCanvas();
         }
-    }, [plate, props.blur, props.rsc, props.rsc2, props.hc, sepia, index2, props.skew, props.scale, props.lowRes]);
+    }, [plate, props.blur, props.rsc, props.rsc2, props.hc, sepia, index2, props.skew, props.scale, props.show, props.lowRes]);
 
     useEffect(() => {
         if (!props.lowRes) {
@@ -266,7 +264,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
     }, [props.lowRes]);
 
     return (
-        <div className='plate'>
+        <div className='plate' style={{position: 'relative'}}>
             {(props.blur || props.skew) && !props.show ?
                 <div style={{
                     perspective: '800px',
@@ -403,6 +401,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                     }
                 </> : <></>
             }
+            {(props.lowRes && errorMessage) && <p style={{color: 'red', position: 'absolute', top: '40px', left: '155px'}}>{errorMessage}</p>}
         </div>
         
     )

@@ -65,6 +65,7 @@ const EuPedestrians = (): React.ReactElement => {
                     regionsBitFlag={COUNTRY_TO_REGION_BITFLAG}
                     numLastItems={5}
                     itemHeight={75}
+                    enableSkew={enableDistort}
                     minRandScale={0.2}
                     mapParameters={{scale: 600, center: [10, 55]}}
                 />
