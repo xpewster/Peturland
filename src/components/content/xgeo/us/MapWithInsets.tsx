@@ -2,20 +2,25 @@ import React, { useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
 import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
-import { isStateEnabled } from './constants';
+import { isStateEnabled, isStateEnabledCustomBitflag } from './constants';
 import { MAP_COLOR } from '../constants';
+import { MapParameters } from '../common/GenericRegionSelectionQuiz';
 
 export interface MapWithInsetsProps {
+    mapJsonSrc?: string;
     clickHandler: (key: string) => void;
     enableRegions: boolean[];
     styleFunction?: (key: string) => any;
+    mapParameters?: MapParameters;
+    regionBitflags?: number[];
+    insetEnableIndex?: number;
 }
 
 const MapWithInsets = (props: MapWithInsetsProps) => {
     // Use the same position state for the main map
     const [position, setPosition] = useState({
-        coordinates: [-105, 36],
-        zoom: 1
+        coordinates: props.mapParameters?.center ?? [-105, 36],
+        zoom: props.mapParameters?.zoom ?? 1
     });
     const [position2, setPosition2] = useState({
         coordinates: [145.7, 15.2], // Centered on NMI
@@ -43,20 +48,23 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
     };
 
     const filterFunction = (geo: any) => {
-        if (geo.properties.NAME === "Northern Mariana Islands" || geo.properties.NAME === "Guam" || geo.properties.NAME === "American Samoa") {
-            return false;
-        } else if (!props.enableRegions[7]) {
-            if (geo.properties.NAME === "Puerto Rico" || geo.properties.NAME === "U.S. Virgin Islands") {
+        if (!props.regionBitflags) {
+            if (geo.properties.NAME === "Northern Mariana Islands" || geo.properties.NAME === "Guam" || geo.properties.NAME === "American Samoa") {
                 return false;
+            } else if (!props.enableRegions[7]) {
+                if (geo.properties.NAME === "Puerto Rico" || geo.properties.NAME === "U.S. Virgin Islands") {
+                    return false;
+                }
             }
+            if (!props.enableRegions[5] && getKeyNum(geo.rsmKey) >= 84 && getKeyNum(geo.rsmKey) <= 97) {
+                return false; // canada
+            }
+            if (!props.enableRegions[6] && getKeyNum(geo.rsmKey) >= 52 && getKeyNum(geo.rsmKey) <= 83) {
+                return false; // mexico
+            }
+            return isStateEnabled(props.enableRegions, getKeyNum(geo.rsmKey));
         }
-        if (!props.enableRegions[5] && getKeyNum(geo.rsmKey) >= 84 && getKeyNum(geo.rsmKey) <= 97) {
-            return false; // canada
-        }
-        if (!props.enableRegions[6] && getKeyNum(geo.rsmKey) >= 52 && getKeyNum(geo.rsmKey) <= 83) {
-            return false; // mexico
-        }
-        return isStateEnabled(props.enableRegions, getKeyNum(geo.rsmKey));
+        return isStateEnabledCustomBitflag(props.enableRegions, getKeyNum(geo.rsmKey), props.regionBitflags!);
     }
 
     return (
@@ -85,7 +93,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                         [1200, 1000]
                     ]}
                 >
-                    <Geographies geography={usa}>
+                    <Geographies geography={props.mapJsonSrc ?? usa}>
                         {({ geographies }) => 
                             geographies
                                 .filter(filterFunction)
@@ -106,7 +114,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                     </Geographies>
                 </ZoomableGroup>
             </ComposableMap>
-        {props.enableRegions[7] &&
+        {props.enableRegions[props.insetEnableIndex ?? 7] &&
             // Guam/NMI Inset
             <>
             <div style={{
@@ -161,7 +169,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                             [1000, 700]
                         ]}
                     >
-                    <Geographies geography={usa}>
+                    <Geographies geography={props.mapJsonSrc ?? usa}>
                         {({ geographies }) => 
                             geographies
                                 .filter(geo => geo.properties.NAME === "Northern Mariana Islands" || geo.properties.NAME === "Guam")
@@ -171,8 +179,8 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                         geography={geo} 
                                         onClick={() => { handleClick(geo.rsmKey); }} 
                                         style={{
-                                            default: { fill: getCellColor(geo.rsmKey), stroke: "#000000"},
-                                            hover: { fill: "#efd900", stroke: "#000000"},
+                                            default: { fill: getCellColor(geo.rsmKey), stroke: "#000000", strokeWidth: '3px'},
+                                            hover: { fill: "#efd900", stroke: "#000000", strokeWidth: '3px'},
                                             pressed: { fill: "green" },
                                         }}
                                     />
@@ -211,7 +219,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                     }}
                     style={{ width: "100%", height: "100%" }}
                 >
-                    <Geographies geography={usa}>
+                    <Geographies geography={props.mapJsonSrc ?? usa}>
                         {({ geographies }) => 
                             geographies
                                 .filter(geo => geo.properties.NAME === "American Samoa")
@@ -221,8 +229,8 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                         geography={geo} 
                                         onClick={() => { handleClick(geo.rsmKey); }} 
                                         style={{
-                                            default: { fill: getCellColor(geo.rsmKey), stroke: "#000000"},
-                                            hover: { fill: "#efd900", stroke: "#000000"},
+                                            default: { fill: getCellColor(geo.rsmKey), stroke: "#000000", strokeWidth: '5px'},
+                                            hover: { fill: "#efd900", stroke: "#000000", strokeWidth: '5px'},
                                             pressed: { fill: "green" },
                                         }}
                                     />

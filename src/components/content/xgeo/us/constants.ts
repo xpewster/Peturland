@@ -268,5 +268,15 @@ export const isStateEnabled = (enableRegion: boolean[], index: number): boolean 
   return !!(STATE_TO_REGION_BITFLAG[index] & enabledRegionBitFlag);
 };
 
+export const isStateEnabledCustomBitflag = (enableRegion: boolean[], index: number, bitflag: number[]): boolean => {
+  const enabledRegionBitFlag = enableRegion.reduce((acc, enabled, index) => {
+    return enabled ? acc | REGION_INDEX_TO_BIT[index] : acc;
+  }, 0);
+  
+  if (enabledRegionBitFlag === 0) return false;
+
+  return !!(bitflag[index] & enabledRegionBitFlag);
+};
+
 export const REGISTRATION_STICKER_COLORS = ['red', '#00e383', 'blue', 'orange', 'yellow', 'white', 'clear'];
 export const HOLDER_COLORS = ['black', 'silver', 'pink', '#001538', '#380e00', 'clear', 'clear', 'clear', 'clear', 'clear', 'clear', 'clear', 'clear'];

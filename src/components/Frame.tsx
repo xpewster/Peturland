@@ -37,6 +37,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_US_WINDSHIELD_STICKERS;
       case Path.XGEO_NA_ABBREVIATIONS:
         return ContentType.XGEO_NA_ABBREVIATIONS;
+      case Path.XGEO_NA_AREA_CODES:
+        return ContentType.XGEO_NA_AREA_CODES;
       case Path.XGEO_BR:
         return ContentType.XGEO_BR;
       case Path.XGEO_BR_ABBREVIATIONS:

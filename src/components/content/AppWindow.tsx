@@ -33,6 +33,8 @@ export const getContentSize = (type: ContentType) => {
             return 900;
         case ContentType.XGEO_NA_ABBREVIATIONS:
             return 820;
+        case ContentType.XGEO_NA_AREA_CODES:
+            return 1120;
         case ContentType.XGEO_BR:
             return 1000;
         case ContentType.XGEO_BR_ABBREVIATIONS:

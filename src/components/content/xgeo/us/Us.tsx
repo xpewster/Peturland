@@ -45,7 +45,7 @@ const Us = (props: UsProps): React.ReactElement => {
     const [enableBlur, setEnableBlur] = useState<boolean>(true);
     const [enableSkew, setEnableSkew] = useState<boolean>(false);
     const [enableRandBlur, setEnableRandBlur] = useState<number>(10);
-    const [enableLowRes, setEnableLowRes] = useState<boolean>(false);
+    const [enableLowRes, setEnableLowRes] = useState<boolean>(true);
     const [enableVanity, setEnableVanity] = useState<boolean>(false);
     const [enableOld, setEnableOld] = useState<boolean>(true);
 

@@ -47,6 +47,7 @@ import FiloRegions from './phillipines/regions/FiloRegions';
 import EuPedestrians from './europe/ped/EuPedestrians';
 import EuFlags from './europe/flags/EuFlags';
 import EuBollards from './europe/bollards/EuBollards';
+import Nanp from './us/AreaCodes/Nanp';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -55,8 +56,8 @@ export interface XgeoProps {
 const Xgeo = (props: XgeoProps): React.ReactElement => {
 
     const NA_IMGS = [lice, texas, shortcut, putlitter, head, sticky, phone];
-    const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', 'Windshield Stickers', 'Area Codes Coming Soon'];
-    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY, Path.XGEO_US_WINDSHIELD_STICKERS, Path.SOON];
+    const NA_STRINGS = ['License Plates', 'State Flags', 'Abbreviations', 'Adopt-A-Highway', 'State Highway', 'Windshield Stickers', 'Area Codes'];
+    const NA_LINKS = [Path.XGEO_US, Path.XGEO_US_STATE_FLAGS, Path.XGEO_NA_ABBREVIATIONS, Path.XGEO_US_ADOPT_A_HIGHWAY, Path.XGEO_US_STATE_HIGHWAY, Path.XGEO_US_WINDSHIELD_STICKERS, Path.XGEO_NA_AREA_CODES];
     const NA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const BR_IMGS = [phone, shortcut, folder];
@@ -126,6 +127,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <UsWindshieldStickers/>;
             case ContentType.XGEO_NA_ABBREVIATIONS:
                 return <UsAbbreviations />;
+            case ContentType.XGEO_NA_AREA_CODES:
+                return <Nanp />;
             case ContentType.XGEO_BR:
                 return <Brazil />;
             case ContentType.XGEO_BR_ABBREVIATIONS:
