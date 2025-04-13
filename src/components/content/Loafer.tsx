@@ -159,7 +159,7 @@ const Loafer = () => {
                     ))
                 )}
             </div>
-            <a href='https://catagolue.hatsya.com/object/xq7_3nw17862z6952/b3s23' target="_blank" rel="noopener noreferrer">What's this?</a>
+            <a className='p-dos' style={{color: '#3030ff'}} href='https://catagolue.hatsya.com/object/xq7_3nw17862z6952/b3s23' target="_blank" rel="noopener noreferrer">What's this?</a>
             <button
                 style={{
                     float: 'right',

@@ -99,7 +99,7 @@ const Nanp = (): React.ReactElement => {
                 <div onScroll={(event) => { event.preventDefault(); }}>
                     <ZoomableImage src={showCanada ? canadacheat : uscheat} divProps={{border: 'dashed 1px black', width: '100%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(8px)'}}/>
                 </div>
-                From <a href='https://www.allareacodes.com/' target="_blank" rel="noopener noreferrer">Plonkit</a>
+                From <a href='https://www.allareacodes.com/' target="_blank" rel="noopener noreferrer">AllAreaCodes</a>
             </div>
         </div>
     );

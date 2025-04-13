@@ -2,6 +2,7 @@ import React from "react";
 import Standalone from "./Standalone"
 import { Link } from "react-router";
 import { Path } from "../../constants/Path";
+import { AvailableFonts } from "../dso/InTheSky";
 
 export const GetInTheSky = (): React.ReactElement => {
 
@@ -12,6 +13,7 @@ export const GetInTheSky = (): React.ReactElement => {
     const [bgColor, setBgColor] = React.useState<string | undefined>(undefined);
     const [textColor, setTextColor] = React.useState<string>('5c5c5c');
     const [width, setWidth] = React.useState<number>(130);
+    const [objectFont, setObjectFont] = React.useState<string>(AvailableFonts.BASIIC);
 
     const [code, setCode] = React.useState<string>(`<iframe src="https://peturland.com/InTheSky?hemisphere=north" width="130px" height="195px" style="border: none; overflow: hidden;"></iframe>`);
 
@@ -29,9 +31,12 @@ export const GetInTheSky = (): React.ReactElement => {
         if (width) {
             newSrc += `&width=${width}`;
         }
+        if (objectFont !== AvailableFonts.BASIIC) {
+            newSrc += `&objectFont=${objectFont}`;
+        }
         setSrc(newSrc);
         setCode(`<iframe src="https://peturland.com${newSrc}" width="${width}px" height="${Math.ceil(195 * (width/130))}px" style="border: none; overflow: hidden;"></iframe>`);
-    }, [hemisphere, date, bgColor, textColor, width]);
+    }, [hemisphere, date, bgColor, textColor, width, objectFont]);
     
     return <Standalone>
         <div style={{paddingLeft: '10px'}}>
@@ -106,6 +111,18 @@ export const GetInTheSky = (): React.ReactElement => {
                     style={{width: '100px', height: '30px', padding: '0', cursor: 'pointer', verticalAlign: 'middle', fontFamily: 'basiic'}} 
                     title="Width"
                 ></input>
+            </p>
+            </div>
+            <div style={{border: 'dashed 1px darkgoldenrod', padding: '10px', display: 'inline', marginRight: '5px'}}>
+            <p style={{display: 'inline', }}>Font: <select
+                    value={objectFont} 
+                    onChange={(e) => setObjectFont(e.target.value)} 
+                    style={{fontFamily: objectFont, fontSmooth: 'never', WebkitFontSmoothing: 'none', width: '100px', height: '30px', padding: '0', cursor: 'pointer', verticalAlign: 'middle'}} 
+                    title="Select Font"
+                >
+                    <option style={{fontFamily: 'basiic'}} value={AvailableFonts.BASIIC}>Basiic</option>
+                    <option style={{fontFamily: 'DOS'}} value={AvailableFonts.DOS}>DOS</option>
+                </select>
             </p>
             </div>
             <hr className="standalonehr"/>

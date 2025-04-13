@@ -1,6 +1,6 @@
 // EmbeddableWidget.tsx
 import React, { useEffect } from 'react';
-import InTheSky from './InTheSky';
+import InTheSky, { AvailableFonts } from './InTheSky';
 
 const EmbeddableWidget: React.FC = () => {
   // Parse URL parameters
@@ -10,6 +10,7 @@ const EmbeddableWidget: React.FC = () => {
   const bgColor = urlParams.get('bgColor') || undefined;
   const textColor = urlParams.get('textColor') || undefined;
   const width = urlParams.get('width') ? parseInt(urlParams.get('width')!) : 130;
+  const objectFont = urlParams.get('objectFont') || AvailableFonts.BASIIC;
 
   // Send size to parent for iframe resizing
   useEffect(() => {
@@ -37,6 +38,7 @@ const EmbeddableWidget: React.FC = () => {
         bgColor={bgColor}
         textColor={textColor}
         width={width}
+        objectFont={objectFont}
       />
     </div>
   );

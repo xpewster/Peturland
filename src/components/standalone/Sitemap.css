@@ -1,0 +1,25 @@
+.tree {
+    font-family: monospace;
+    line-height: 1.5;
+}
+.tree ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+.tree li {
+    margin: 0;
+    padding: 0 0 0 20px;
+    position: relative;
+}
+.tree li::before {
+    content: "|--";
+    position: absolute;
+    left: 0;
+}
+.tree > ul > li::before {
+    content: "";
+}
+.tree li:last-child::after {
+    content: "";
+}

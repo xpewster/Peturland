@@ -114,13 +114,13 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
         switch(props.contentType) {
             default:
             case ContentType.XGEO_US:
-                return <Us quizType={QuizType.US_LICENSE_PLATES}/>;
+                return <Us />;
             case ContentType.XGEO_US_ADOPT_A_HIGHWAY:
                 return <UsAdoptAHighway />;
             case ContentType.XGEO_US_STATE_HIGHWAY:
                 return <UsStateHighways/>;
             case ContentType.XGEO_US_COUNTY_SECONDARY_HIGHWAY:
-                return <Us quizType={QuizType.US_COUNTY_SECONDARY_HIGHWAY}/>;
+                return <Us />;
             case ContentType.XGEO_US_STATE_FLAGS:
                 return <UsFlags/>;
             case ContentType.XGEO_US_WINDSHIELD_STICKERS:

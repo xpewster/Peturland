@@ -19,6 +19,7 @@ export interface GenericMapMarkerQuizProps {
     regionToCoordinateAnswerPairsMap: Map<string, CoordinateAnswerPair[]>;
     answerIndex: number;
     getHintFromAnswerArray?: (answerArray: string[]) => any;
+    hintText?: string;
     quizType: QuizType;
     disallowRepeats?: boolean;
 }
@@ -105,6 +106,17 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
         });
     }, [currentRegion]);
 
+    const getClickText = () => {
+        let hint;
+        if (props.getHintFromAnswerArray) {
+            hint = props.getHintFromAnswerArray(props.regionToCoordinateAnswerPairsMap.get(currentRegion)![toFind][1]);
+            if (hint) {
+                return <p style={{display: 'inline'}}>{props.clickText} for {props.hintText}: {hint}</p>;
+            }
+        }
+        return <p style={{display: 'inline'}}>{props.clickText}</p>;
+    }
+
     useEffect(() => {
         setMapMarkerSrc(mapmarkerlight);
         setTimeout(() => {
@@ -130,7 +142,7 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
                 </div>
                 <img style={{position: 'absolute', left: '-2px', top: props.showGeoWarning ? '201px' : '163px'}} src={dots}></img>
             <div style={{padding: 0, margin: 0, width: '100%'}}>
-                <p style={{display: 'inline'}}>{props.clickText}</p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button>
+                {getClickText()} <button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button>
                 <div style={{paddingTop: '10px', paddingBottom: '5px'}}>
                 {props.selectorType === SelectorType.COMPASS ? <CompassSelector onDirectionSelected={handleClick} diagonal={DIAGONAL_DIRECTIONS.includes(props.regionToCoordinateAnswerPairsMap.get(currentRegion)![toFind][1][0])}/> : <></>}
                 </div>

@@ -13,6 +13,8 @@ import { Chatbox } from './content/chatbox/Chatbox';
 import BarBar from './content/BarBar';
 import underconstruction from '../assets/88x31/construction.gif';
 import AppContent from './content/AppContent';
+import { Link } from 'react-router';
+import { Path } from '../constants/Path';
 
 export interface ContentProps {
   contentType?: ContentType;
@@ -65,12 +67,19 @@ const Content = (props: ContentProps): React.ReactElement => {
     return () => window.removeEventListener('resize', updateSize);
   }, []);
 
+  const scrollToTop = (e: any) => {
+      e.preventDefault();
+      window.scrollTo({
+          top: 0,
+      });
+  };
+
   return (
     <div className="cbox">
         <p style={{textAlign: 'left', paddingLeft: '10px'}}>Hi! Welcome to my website. WIP!!</p>
         <img className='sidebar' style={{width: '100%', paddingTop: '0px', paddingBottom: '5px', paddingLeft: '0px'}} src={stars}></img>
         <hr className='barlinedashed'></hr>
-        <div style={{width: '100%', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`}}>
+        <div style={{width: '100%', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`, marginBottom: '10px'}}>
           <div className='sidebar'>
             <Sidebar />
             <Loafer />
@@ -91,16 +100,17 @@ const Content = (props: ContentProps): React.ReactElement => {
               </div>
             </div>
           </div>
-          <div style={{marginLeft: '30px', float: 'left', width: '465px', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`, paddingBottom: '10px'}}>
+          <div style={{marginLeft: '30px', float: 'left', width: '465px', height: `${getContentSize(props.contentType ?? ContentType.HOME) + 450}px`}}>
             {[ContentType.HOME].includes(props.contentType ?? ContentType.HOME) ? <AppContent contentType={props.contentType ?? ContentType.HOME} /> : <AppWindow contentType={props.contentType ?? ContentType.HOME}/>}
             <Chatbox />
           </div>
           <Rightbar />
         </div>
-        <p style={{textAlign: 'center'}}>(C) Peturland 2025 <img src={underconstruction} /></p>
+        <div style={{textAlign: 'center', fontSize: '12px', display: 'block', width: '100%'}}><Link className='staticA' to={Path.SITEMAP}>Sitemap</Link> | <Link className='staticA' to={Path.SUPPORT}>Web Support</Link> | <Link className='staticA' to={Path.SUPPORT}>Report a Bug</Link> | <Link className='staticA' to={Path.ANNOUNCEMENTS}>Last Updated: April 2025</Link></div>
+        <p style={{textAlign: 'center'}}>(C) Peturland 2025 <img src={underconstruction} /></p><a style={{position: 'absolute', right: '20px', display: 'inline-block', bottom: '-5px', height: '20px', fontFamily: 'ibm_vga'}} className='staticA' onClick={scrollToTop} href='/'>^</a>
         <div style={{position: 'fixed', bottom: '-10px', left: '0px', width: '200px', pointerEvents: 'none'}}> 
           <img src={coco} alt='Save Old Homes' style={{width: '100%', pointerEvents: 'none'}}></img>
-          <p style={{position: 'absolute', bottom: '10px', right: '50px', fontFamily: 'RomanceA', fontSmooth: 'never', color: 'white', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>Coco says to save old homes!</p>
+          <p className='p-dos' style={{position: 'absolute', bottom: '10px', right: '50px', fontSmooth: 'never', color: 'white', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>Coco says to save old homes!</p>
         </div>
     </div>
   );

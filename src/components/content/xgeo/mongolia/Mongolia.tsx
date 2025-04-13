@@ -2,17 +2,27 @@ import React, { useEffect, useState } from 'react';
 import './../Xgeo.css';
 import fareast from '../../../../assets/maps/mong_fareast.png';
 import farwest from '../../../../assets/maps/mong_farwest.png';
-import { FAR_EAST_COORDINATE_ANSWER_PAIRS } from './constants';
+import ulaan from '../../../../assets/maps/mong_ulaan.png';
+import central_west from '../../../../assets/maps/mong_centralwest.png';
+import central_forests from '../../../../assets/maps/mong_centralforests.png';
+import south from '../../../../assets/maps/mong_south.png';
+import { CARS, FAR_EAST_COORDINATE_ANSWER_PAIRS } from './constants';
 import GenericMapMarkerQuiz from '../common/GenericMapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../common/constants';
 import { QuizType } from '../constants';
 import car from '../../../../assets/fileboxicons/car.png';
+import grey_tent from '../../../../assets/cars/grey_tent.png';
+import blue_tent from '../../../../assets/cars/blue_tent.png';
+import sticker_car from '../../../../assets/cars/sticker_car.png';
+import red_mirrors from '../../../../assets/cars/red_mirrors.png';
 
 export interface MongoliaProps {
     quizType: QuizType;
 }
 
 const Mongolia = (props: MongoliaProps): React.ReactElement => {
+
+    const CAR_IMAGE_DIMENSION = 75;
 
     const getQuizTitle = (): React.ReactElement => {
         switch(props.quizType) {
@@ -26,31 +36,42 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
     const getClickText = (): string => {
         switch(props.quizType) {
             case QuizType.MONG_DRIVING_DIRECTION:
-                return "Click on the driving direction for this road and car ";
+                return "Click on the driving direction for this road!";
             default:
                 return "Not yet supported";
         }
     };
 
-    const REGIONS = ["Far east", "Central forests", "Ulaan-Erdenet", "Far west", "South", "Central west"];
+    const REGIONS = ["Far east", "Central forests", "Around Ulaan", "Far west", "South", "Central west"];
 
     const MONGOLIA_REGION_TO_MAP_SRC_MAP = new Map<string, string>([
         ["Far east", fareast],
-        ["Central forests", fareast],
-        ["Ulaan-Erdenet", fareast],
+        ["Central forests", central_forests],
+        ["Around Ulaan", ulaan],
         ["Far west", farwest],
-        ["South", fareast],
-        ["Central west", fareast],
+        ["South", south],
+        ["Central west", central_west],
     ]);
 
     const REGION_TO_COORDINATE_ANSWER_PAIRS_MAP = new Map<string, CoordinateAnswerPair[]>([
         ["Far east", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["Central forests", FAR_EAST_COORDINATE_ANSWER_PAIRS],
-        ["Ulaan-Erdenet", FAR_EAST_COORDINATE_ANSWER_PAIRS],
+        ["Around Ulaan", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["Far west", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["South", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["Central west", FAR_EAST_COORDINATE_ANSWER_PAIRS],
-    ])
+    ]);
+
+    const CAR_TO_IMG_MAP = new Map<string, React.ReactElement>([
+        [CARS.GREY_TENT, <img src={grey_tent} alt="Grey tent" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.BLUE_TENT, <img src={blue_tent} alt="Blue tent" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.STICKER_CAR, <img src={sticker_car} alt="Sticker car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.RED_MIRRORS, <img src={red_mirrors} alt="Red mirrors" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+    ]);
+
+    const getHint = (answerArray: string[]): React.ReactElement | undefined => {
+        return CAR_TO_IMG_MAP.get(answerArray[1]);
+    };
 
 
     return (
@@ -62,6 +83,8 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
             selectorType={SelectorType.COMPASS}
             regionToCoordinateAnswerPairsMap={REGION_TO_COORDINATE_ANSWER_PAIRS_MAP}
             answerIndex={0}
+            getHintFromAnswerArray={getHint}
+            hintText="car"
             quizType={QuizType.MONG_DRIVING_DIRECTION}
             disallowRepeats={true} 
             showGeoWarning={true}

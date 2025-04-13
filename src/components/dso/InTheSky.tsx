@@ -1,9 +1,14 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import getVisibleObjectsForDate, { getConstellationName, getObjectTypeName } from './astro';
 import { getDsoImage } from './images';
 import './InTheSky.css';
 
 import media from '../../assets/dso/media.png'; 
+
+export enum AvailableFonts {
+  BASIIC = 'basiic',
+  DOS = 'DOS',
+}
 
 interface InTheSkyProps {
   hemisphere: 'north' | 'south';
@@ -11,6 +16,7 @@ interface InTheSkyProps {
   bgColor?: string;
   textColor?: string;
   width?: number;
+  objectFont?: string;
 }
 
 const InTheSky: React.FC<InTheSkyProps> = ({
@@ -19,9 +25,15 @@ const InTheSky: React.FC<InTheSkyProps> = ({
   bgColor,
   textColor = '5c5c5c',
   width = 130,
+  objectFont = AvailableFonts.DOS,
 }) => {
     const canvasRef = useRef<HTMLCanvasElement>(null);
     const height = 195 * (width/130); // Adjust height based on width for scaling
+
+    const [fontsLoaded, setFontsLoaded] = useState({
+      basiic: false,
+      dos: false
+    });
 
     const drawObjectImage = (ctx: CanvasRenderingContext2D, dsoId: string, x: number, y: number, onComplete: Function) => {
       const imageSrc = getDsoImage(dsoId);
@@ -97,6 +109,24 @@ const InTheSky: React.FC<InTheSkyProps> = ({
         return dsoName;
     };
 
+    const getObjectFont = (stringLength: number): string => {
+      if (objectFont === AvailableFonts.DOS) {
+        if (stringLength > 17) {
+            return `${Math.floor(12 * (width/130))}px DOS, basiic, monospace`;
+        } else if (stringLength > 14) {
+            return `${Math.floor(16 * (width/130))}px DOS, basiic, monospace`;
+        } else {
+            return `${Math.floor(18 * (width/130))}px DOS, basiic, monospace`;
+        }
+      }
+      if (stringLength > 17) {
+          return `${Math.floor(11 * (width/130))}px basiic`;
+      } else if (stringLength > 14) {
+        return `${Math.floor(14 * (width/130))}px basiic`;
+      }
+      return `${Math.floor(16 * (width/130))}px basiic`;
+    }
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -104,11 +134,13 @@ const InTheSky: React.FC<InTheSkyProps> = ({
     const ctx = canvas.getContext('2d');
     if (!ctx) return;
 
+    ctx.clearRect(0, 0, width, height);
+
     const visibilityData = getVisibleObjectsForDate(date);
     const object = hemisphere === 'south' ? visibilityData.south : visibilityData.north;
 
     document.fonts.ready.then(() => {
-
+      
         // Draw background
         if (bgColor) {
             ctx.fillStyle = `#${bgColor}`;
@@ -129,29 +161,43 @@ const InTheSky: React.FC<InTheSkyProps> = ({
         if (object) {
         // Draw text
         ctx.fillStyle = `#${textColor}`;
-        ctx.font = `${Math.floor(10 * (width/130))}px basiic`;
+        ctx.font = `${Math.floor(10 * (width/130))}px basiic, monospace`;
         ctx.textAlign = 'center';
         ctx.fillText(`In the ${hemisphere.toLowerCase()}ern sky tonight`, width/2, 12 * (width/130));
-        if (getCommonName(object.name).length > 17) {
-            ctx.font = `${Math.floor(11 * (width/130))}px basiic`;
-        } else if (getCommonName(object.name).length > 14) {
-            ctx.font = `${Math.floor(14 * (width/130))}px basiic`;
-        } else {
-            ctx.font = `${Math.floor(16 * (width/130))}px basiic`;
-        }
+        ctx.font = getObjectFont(getCommonName(object.name).length);
         ctx.fillText(getCommonName(object.name), width/2, 160 * (width/130));
-        ctx.font = `${Math.floor(12 * (width/130))}px basiic`;
+        ctx.font = `${Math.floor(12 * (width/130))}px basiic, monospace`;
         ctx.fillText(`(${getObjectTypeName(object.type)})`, width/2, 175 * (width/130));
         ctx.fillText(`in ${getConstellationName(object.constellation)}`, width/2, 188 * (width/130));
         // ctx.fillText(`RA: ${object.ra_hms} | Dec: ${object.dec_dms}`, 20, 140);
         } else {
         // No object found
         ctx.fillStyle = `#${textColor}`;
-        ctx.font = 'bold 20px basiic';
+        ctx.font = 'bold 20px DOS';
         ctx.fillText(`ERROR: No visible object found for ${date}`, 20, 100);
         }
     });
-  }, [hemisphere, date, bgColor, textColor, width, height]);
+  }, [fontsLoaded, hemisphere, date, bgColor, textColor, width, height]);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      const basiicLoaded = document.fonts.check('12px basiic');
+      const dosLoaded = document.fonts.check('12px DOS');
+
+      setFontsLoaded(prev => {
+        if (prev.basiic !== basiicLoaded || (prev.dos !== dosLoaded && objectFont === AvailableFonts.DOS)) {
+          return { basiic: basiicLoaded, dos: dosLoaded };
+        }
+        return prev;
+      });
+      
+      if (basiicLoaded && dosLoaded) {
+        clearInterval(interval);
+      }
+    }, 100);
+    
+    return () => clearInterval(interval);
+  }, []);
 
   return <canvas ref={canvasRef} width={width} height={height} />;
 };

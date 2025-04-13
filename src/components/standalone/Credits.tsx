@@ -2,14 +2,15 @@ import Standalone from "./Standalone"
 
 export const Credits = (): React.ReactElement => {
 
-    const credits = [
+    const credits: [string, string, string | React.ReactElement][] = [
         ['max_jpg', 'https://www.fiverr.com/max_jpg', 'the left sidebar buttons'],
         ['Dakedres', 'https://gist.github.com/Dakedres', 'the Windows 98 styled sidebar css'],
         ['The 88x31 Gif Collection', 'https://cyber.dabamos.de/88x31/index4.html', 'some of the 88x31s'],
         ['gifcities', 'https://gifcities.org/', 'the animated gifs used in the site'],
         ['99gifshop', 'https://99gifshop.com/', 'more animated gifs used in the site'],
         ['cinni', 'https://cinni.net/font', 'the basiic font'],
-        ['neet-chan', 'https://neet-chan.tumblr.com/', 'the neet girl picture']
+        ['neet-chan', 'https://neet-chan.tumblr.com/', 'the neet girl picture'],
+        ['int10h', 'https://int10h.org/oldschool-pc-fonts/', <span className="p-dos">the DOS font</span>],
     ]
     
     return <Standalone>

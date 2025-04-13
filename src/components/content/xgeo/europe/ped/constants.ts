@@ -97,42 +97,42 @@ export const COUNTRY_INDEX_TO_CROSSING_INDEX = [
     [0],   // Estonia
     [31],  // Austria
     [11],  // Czech Republic
-    [14],  // Finland
+    [14, 37],  // Finland
     [15],  // France
-    [2],  // Georgia - no matching crossing found
+    [2],  // Georgia 
     [12],  // Germany
-    [33],  // Greece (using gr)
-    [16],  // Croatia - no matching crossing found
+    [33, 34],  // Greece
+    [10],  // Croatia
     [16],  // Hungary
     [5],   // Iceland
     [6],   // Italy
     [19],  // Latvia
-    [2],  // Belarus - no matching crossing found
+    [2],  // Belarus
     [1],   // Lithuania
     [25],  // Slovakia
-    [29],  // Liechtenstein - no matching crossing found
-    [23],  // North Macedonia - no matching crossing found
-    [6],  // Malta - no matching crossing found
+    [29],  // Liechtenstein 
+    [23],  // North Macedonia 
+    [6],  // Malta 
     [32],  // Belgium
-    [],  // Faroe Islands - no matching crossing found
-    [30],  // Andorra - no matching crossing found
+    [],  // Faroe Islands 
+    [30],  // Andorra 
     [18],  // Luxembourg
-    [],  // Monaco - no matching crossing found
-    [23],  // Montenegro - no matching crossing found
+    [],  // Monaco 
+    [23],  // Montenegro 
     [21],  // Netherlands
     [7],   // Norway
     [35],  // Poland
     [22],  // Portugal
     [23],  // Romania
     [20],  // Moldova
-    [26],  // Slovenia (assuming sv is Slovenia)
+    [26],  // Slovenia 
     [30],  // Spain
-    [8],   // Sweden (using swe)
+    [8, 9],   // Sweden
     [29],  // Switzerland
-    [27],  // Turkey (using tr)
-    [],  // United Kingdom - no matching crossing found
+    [27, 38],  // Turkey 
+    [],  // United Kingdom 
     [3],   // Ukraine
-    [6],  // San Marino - no matching crossing found
+    [6],  // San Marino 
     [24],  // Serbia
     [],  // Holy See (Vatican City
     [2],   // Russia
@@ -145,7 +145,7 @@ export const CROSSING_INDEX_TO_REGION_INDICES = [
     [20, 47, 19, 43, 11], // ua
     [2], // bul
     [16], // is
-    [17, 24, 44, 10], // it
+    [17, 24, 44, 35, 0, 23, 30, 24, 37, 41, 45], // it
     [32], // no
     [39], // swe
     [39], // swe1
@@ -154,7 +154,7 @@ export const CROSSING_INDEX_TO_REGION_INDICES = [
     [21, 12, 28], // de
     [4], // dk
     [9], // fi
-    [17, 24, 44, 10], // fr
+    [10], // fr
     [15], // hung
     [5], // ie
     [21, 12, 28], // lux
@@ -162,11 +162,11 @@ export const CROSSING_INDEX_TO_REGION_INDICES = [
     [36], // mol
     [31], // nl
     [34], // pt
-    [35, 0, 23, 30, 24, 37, 41, 45], // ro
-    [35, 0, 23, 30, 24, 37, 41, 45], // serb
+    [17, 24, 44, 35, 0, 23, 30, 24, 37, 41, 45], // ro
+    [17, 24, 44, 35, 0, 23, 30, 24, 37, 41, 45], // serb
     [21, 12, 28], // sk
-    [35, 0, 23, 30, 24, 37, 41, 45], // sv
-    [35, 0, 23, 30, 24, 37, 41, 45], // tr
+    [17, 24, 44, 35, 0, 23, 30, 24, 37, 41, 45], // sv
+    [17, 24, 44, 35, 0, 23, 30, 24, 37, 41, 45], // tr
     [41], // tr2
     [40, 22], // ch
     [38, 27], // sp

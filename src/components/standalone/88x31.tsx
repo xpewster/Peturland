@@ -27,7 +27,6 @@ export const EightyEight = (): React.ReactElement => {
 
 	const list: [string, string | null][] = [
 		[source, "https://en.wikipedia.org/wiki/Source_(game_engine)"],
-		[catagolue, "https://catagolue.hatsya.com/home"],
 		[hostyellow, null],
 		[npp, "https://notepad-plus-plus.org/"],
 		[tt, "https://www.toontownrewritten.com/"],
@@ -41,6 +40,7 @@ export const EightyEight = (): React.ReactElement => {
 		[ostans, "https://www.ostan-collections.net/wiki/index.php/List_of_OS-tans"],
 		[sayNo, "https://yesterweb.org/no-to-web3/"],
 		[winxp, "https://en.wikipedia.org/wiki/Windows_XP"],
+		[catagolue, "https://catagolue.hatsya.com/home"],
 		[seafare, "https://seafare.neocities.org/"],
 		[retrobar, "https://github.com/dremin/RetroBar"],
 	]

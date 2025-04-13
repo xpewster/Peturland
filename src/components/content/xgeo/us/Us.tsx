@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './Us.css';
 import './../Xgeo.css';
 import { BADS, LocalStorageStreakKeys, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES, QuizType } from '../constants';
@@ -11,10 +11,8 @@ import mexico from '../../../../assets/mexico.gif';
 import { PLATE_TUPLE, PLATE_TYPE, PLATES } from './plate/constants';
 import { preloadImage } from '../../../common/preloadImage';
 import MapWithInsets from './MapWithInsets';
+import { isMobile } from 'react-device-detect';
 
-export interface UsProps {
-    quizType: QuizType;
-}
 
 type LAST_PLATE_INFO = {
     state: STATE_NAMES,
@@ -37,8 +35,8 @@ type NEXT_PLATE_INFO = {
     vanityOrOldIndex: number,
 };
 
-const Us = (props: UsProps): React.ReactElement => {
-    const [toFind, setToFind] = useState<number>(37); // phone code to find
+const Us = (): React.ReactElement => {
+    const [toFind, setToFind] = useState<number>(37); 
     const [message, setMessage] = useState<string>("");
     const [messageColor, setMessageColor] = useState<string>("green");
     const [enableRegion, setEnableRegion] = useState<boolean[]>([true, true, true, true, true, false, false, false]);
@@ -62,12 +60,9 @@ const Us = (props: UsProps): React.ReactElement => {
     const [index2, setIndex2] = useState<number>(Math.floor(Math.random() * 1000));
     const [currentType, setCurrentType] = useState<PLATE_TYPE>(PLATE_TYPE.REGULAR);
 
-    // const [lastPlate, setLastPlate] = useState<LAST_PLATE_INFO | undefined>(undefined);
     const [lastPlates, setLastPlates] = useState<LAST_PLATE_INFO[]>([]);
     const [lastPlateKey, setLastPlateKey] = useState<string | undefined>(undefined);
     const [enablePPBlur, setEnablePPBlur] = useState<boolean>(false);
-
-    const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
 
     const [streak, setStreak] = useState<number>(0);
     const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, [...enableRegion, false])) ? Number(localStorage.getItem(getStreakKey(QuizType.US_LICENSE_PLATES, [...enableRegion, false]))) : 0);
@@ -76,7 +71,26 @@ const Us = (props: UsProps): React.ReactElement => {
 
     const [loading, setLoading] = useState<boolean>(true);
 
+    const [isMobileDebug, setIsMobileDebug] = useState<boolean>(false);
+    const [showDebugCheckbox, setShowDebugCheckbox] = useState<boolean>(isMobile);
+
     /* ----------------- */
+
+    useEffect(() => {
+        const handleKeyDown = (event: any) => {
+            if (event.shiftKey && event.altKey && event.keyCode === 68) {
+                event.preventDefault();
+                setShowDebugCheckbox(!showDebugCheckbox);
+                console.log('Debug mode enabled!');
+            }
+        };
+
+        document.addEventListener('keydown', handleKeyDown);
+
+        return () => {
+            document.removeEventListener('keydown', handleKeyDown);
+        };
+    }, []);
 
     const generateNewRandBlur = (): number => {
         return Math.random()*30+10;
@@ -91,6 +105,7 @@ const Us = (props: UsProps): React.ReactElement => {
         setRandomBrightness(Math.random() * 0.1 + 0.9);
         setRandomSkew([Math.random()*20-10, Math.random()*160-80]);
         setRandomScale(Math.random()*0.5+0.5);
+        setIndex2(Math.floor(Math.random() * 1000));
     };
 
     const getStreakIndicatorArray = (): boolean[] => {
@@ -177,7 +192,7 @@ const Us = (props: UsProps): React.ReactElement => {
                     generateRandomParameters();
                     setToFind(nextPlate!.newt);
                     setCurrentType(nextPlate!.type);
-                    setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);
+                    setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);  
                 }
                 setNextPlate({
                     newt: newt,
@@ -339,6 +354,7 @@ const Us = (props: UsProps): React.ReactElement => {
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plates (P.P.):</p>
                 <span>Distort<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
                 {lastPlates.map((lastPlate, index) => 
+                    <div>
                     <Plate
                         state={lastPlate.state}
                         type={lastPlate.type}
@@ -357,9 +373,29 @@ const Us = (props: UsProps): React.ReactElement => {
                         show={!enablePPBlur}
                         svgFilterIndex={1 + index}
                     />
+                    {
+                        isMobileDebug && <p style={{color: 'red', width: '200px', display: 'inline'}}>{`
+                            state: ${lastPlate.state}
+                            type: ${lastPlate.type}
+                            tuple: ${lastPlate.tuple}
+                            blur: ${lastPlate.blur}
+                            rsc: ${lastPlate.rsc}
+                            rsc2: ${lastPlate.rsc2}
+                            hc: ${lastPlate.hc}
+                            sepia: ${lastPlate.sepia}
+                            brightness: ${lastPlate.brightness}
+                            skew: ${lastPlate.skew}
+                            scale: ${lastPlate.scale}
+                            index2: ${lastPlate.index2}
+                        `}</p>
+                    }
+                    </div>
                 )}
             </div> : <></>
             }
+            {showDebugCheckbox && <div style={{position: 'absolute', bottom: '10px', right: '10px'}}>
+                <input type='checkbox' onChange={() => {setIsMobileDebug(!isMobileDebug);}} checked={isMobileDebug}></input>Debug mode (mobile only)
+            </div>}
         </div>
     );
 };

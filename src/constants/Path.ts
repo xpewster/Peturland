@@ -36,4 +36,5 @@ export enum Path {
     TRAVEL_LOG = "/travel-log",
     IN_THE_SKY = "/InTheSky", 
     GET_IN_THE_SKY = "/get-in-the-sky",
+    SITEMAP = "/sitemap",
 }

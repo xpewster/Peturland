@@ -34,9 +34,16 @@
 }
 
 .rightbarlink {
+    font-family: DOS, basiic, sans-serif;
     display: block;
     color: darkgoldenrod;
+    text-decoration-color: darkgoldenrod;
     margin-bottom: 17px;
+}
+
+.rightbarlink:visited {
+    color: darkgoldenrod;
+    text-decoration-color: darkgoldenrod;
 }
 
 .rbarbox {
@@ -148,4 +155,8 @@
 .standalonehr {
     opacity: 0.5;
     width: 99%;
+}
+
+.staticA:visited {
+    color: blue;
 }
