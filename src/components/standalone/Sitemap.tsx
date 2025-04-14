@@ -9,7 +9,7 @@ const Sitemap = () => {
         <ul>
           <li><Link to={Path.HOME}>Home</Link></li>
           <li><Link to={Path.ABOUT}>About Me</Link></li>
-          <li><Link to={Path.PROJECTS}>Resume</Link></li>
+          <li><Link to={Path.PROJECTS}>Portfolio</Link></li>
           <li><Link to={Path.TRAVEL_LOG}>Travel Log</Link></li>
           <li><Link to={Path.GET_IN_THE_SKY}>Get In The Sky</Link></li>
           <li><Link to={Path.EIGHTYEIGHT}>88x31</Link></li>
@@ -19,7 +19,7 @@ const Sitemap = () => {
           <li><Link to={Path.VISITORS}>Visitors</Link></li>
           <li><Link to={Path.SUPPORT}>Support</Link></li>
           <li>
-            <Link to={Path.XGEO}>XGeo Main</Link>
+            <Link to={Path.XGEO}>xgeo</Link>
             <ul>
               <li>
                 North America
@@ -46,7 +46,6 @@ const Sitemap = () => {
               <li>
                 Europe
                 <ul>
-                  <li><Link to={Path.XGEO_EU}>Europe Main</Link></li>
                   <li><Link to={Path.XGEO_EU_BOLLARDS}>Bollards</Link></li>
                   <li><Link to={Path.XGEO_EU_CHEVRONS}>Chevrons</Link></li>
                   <li><Link to={Path.XGEO_EU_DOMAINS}>Domains</Link></li>

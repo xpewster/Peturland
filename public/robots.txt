@@ -1,3 +1,44 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow: /home
+Allow: /about-me
+Allow: /resume
+Allow: /xgeo
+Allow: /xgeo/na/license-plates
+Allow: /xgeo/na/adopt-a-highway
+Allow: /xgeo/na/state-highway
+Allow: /xgeo/na/county-secondary-highway
+Allow: /xgeo/na/state-flags
+Allow: /xgeo/na/windshield-stickers
+Allow: /xgeo/na/abbreviations
+Allow: /xgeo/na/area-codes
+Allow: /xgeo/na/tree-species
+Allow: /xgeo/br/phone-codes
+Allow: /xgeo/br/abbreviations
+Allow: /xgeo/br/postcodes
+Allow: /xgeo/eu
+Allow: /xgeo/eu/bollards
+Allow: /xgeo/eu/chevrons
+Allow: /xgeo/eu/domains
+Allow: /xgeo/eu/guardrails
+Allow: /xgeo/eu/flags
+Allow: /xgeo/eu/pedestrian-crossings
+Allow: /xgeo/mongolia/driving-direction
+Allow: /xgeo/indonesia/kabupaten
+Allow: /xgeo/philippines/provinces
+Allow: /xgeo/philippines/regions
+Allow: /credits
+Allow: /88x31
+Allow: /patch-notes
+Allow: /travel-log
+Allow: /get-in-the-sky
+
+# Disallowed pages
+Disallow: /coming-soon
+Disallow: /digicam
+Disallow: /visitors
+Disallow: /support
+Disallow: /InTheSky
+
+# Sitemap
+Sitemap: https://peturland.com/sitemap.xml

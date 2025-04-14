@@ -41,6 +41,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
     }
 
     const choosePlate = (tuple: PLATE_TUPLE, state: PLATE_STATE): string => {
+        console.log("Choosing plate:", tuple, state);
         if (tuple !== plate) {
             setPlate(tuple);
             preloadPlate(tuple);
@@ -93,13 +94,13 @@ const Plate = (props: PlateProps): React.ReactElement => {
             <svg viewBox='0 0 150 75'>
                 <defs>
                     <filter id={getFilterId("combinedFilter")} x="-50%" y="-50%" width="200%" height="200%">
-                        <feFlood result="rs"
+                        {(plate && plate[3][0] !== 1000) ? <><feFlood result="rs"
                             x={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][4] : plate[3][0]) : plate[3][0]) : 0}%`}
                             y={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][5] : plate[3][1]) : plate[3][1]) : 0}%`}
                             width={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][2] : plate[3][2]) : plate[3][2]) : 0}%`}
                             height={`${plate ? (plate[3].length >= 6 ? (index2 % 2 === 0 ? plate[3][3] : plate[3][3]) : plate[3][3]) : 0}%`}
                             floodColor={(props.rsc && props.rsc !== 'clear') ? props.rsc : 'red'}
-                            floodOpacity={(props.rsc === 'clear' || props.rsc === undefined) ? '0' : "0.4"}
+                            floodOpacity={(props.rsc === 'clear' || props.rsc === undefined) ? '0' : "0.3"}
                         />
                         <feBlend in="rs" in2="SourceGraphic" mode="normal" result="blendedRs1" />
                         {plate && plate[3].length === 8 && (
@@ -110,17 +111,17 @@ const Plate = (props: PlateProps): React.ReactElement => {
                                     width={`${plate ? plate[3][2] : 0}%`}
                                     height={`${plate ? plate[3][3] : 0}%`}
                                     floodColor={(props.rsc2 && props.rsc2 !== 'clear') ? props.rsc2 : 'white'}
-                                    floodOpacity={(props.rsc2 === 'clear' || props.rsc2 === undefined) ? '0' : "0.4"}
+                                    floodOpacity={(props.rsc2 === 'clear' || props.rsc2 === undefined) ? '0' : "0.3"}
                                 />
                                 <feBlend in="rs2" in2="blendedRs1" mode="normal" result="blendedRs2" />
                             </>
-                        )}
+                        )}</> : <></>}
                         <feColorMatrix type="matrix"
                             values={`${(0.393 + 0.607 * (1 - sepia))} ${(0.769 - 0.769 * (1 - sepia))} ${(0.189 - 0.189 * (1 - sepia))} 0 0
                                     ${(0.349 - 0.349 * (1 - sepia))} ${(0.686 + 0.314 * (1 - sepia))} ${(0.168 - 0.168 * (1 - sepia))} 0 0
                                     ${(0.272 - 0.272 * (1 - sepia))} ${(0.534 - 0.534 * (1 - sepia))} ${(0.131 + 0.869 * (1 - sepia))} 0 0
                                     0 0 0 1 0`}
-                            in={plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1"}
+                            in={(plate && plate[3][0] !== 1000) ? (plate && plate[3].length === 8 ? "blendedRs2" : "blendedRs1") : "SourceGraphic"}
                             result="sepia" />
                         <feFlood result="hc"
                             x={'20%'}

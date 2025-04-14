@@ -114,6 +114,8 @@ const InTheSky: React.FC<InTheSkyProps> = ({
         if (stringLength > 17) {
             return `${Math.floor(12 * (width/130))}px DOS, basiic, monospace`;
         } else if (stringLength > 14) {
+            return `${Math.floor(15 * (width/130))}px DOS, basiic, monospace`;
+        } else if (stringLength > 12) {
             return `${Math.floor(16 * (width/130))}px DOS, basiic, monospace`;
         } else {
             return `${Math.floor(18 * (width/130))}px DOS, basiic, monospace`;
