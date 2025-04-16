@@ -41,7 +41,6 @@ const Plate = (props: PlateProps): React.ReactElement => {
     }
 
     const choosePlate = (tuple: PLATE_TUPLE, state: PLATE_STATE): string => {
-        console.log("Choosing plate:", tuple, state);
         if (tuple !== plate) {
             setPlate(tuple);
             preloadPlate(tuple);
@@ -90,7 +89,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
     }
 
     const getBlurredPlate = useMemo(() => {
-        return <div style={{filter: `brightness(${props.brightness ?? 1}) saturate(${Math.max(((props.brightness ?? 1)-0.9) * 10 + 0.4, 1)})`}}>
+        return <div style={{filter: `brightness(${props.brightness ?? 1}) saturate(${Math.max(((props.brightness ?? 1)-0.9) * 5 + 0.7, 1)})`}}>
             <svg viewBox='0 0 150 75'>
                 <defs>
                     <filter id={getFilterId("combinedFilter")} x="-50%" y="-50%" width="200%" height="200%">

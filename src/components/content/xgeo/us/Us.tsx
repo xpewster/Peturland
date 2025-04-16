@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './Us.css';
 import './../Xgeo.css';
 import { BADS, LocalStorageStreakKeys, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES, QuizType } from '../constants';
@@ -43,7 +43,7 @@ const Us = (): React.ReactElement => {
     const [enableBlur, setEnableBlur] = useState<boolean>(true);
     const [enableSkew, setEnableSkew] = useState<boolean>(false);
     const [enableRandBlur, setEnableRandBlur] = useState<number>(10);
-    const [enableLowRes, setEnableLowRes] = useState<boolean>(true);
+    const [enableLowRes, setEnableLowRes] = useState<boolean>(!isMobile);
     const [enableVanity, setEnableVanity] = useState<boolean>(false);
     const [enableOld, setEnableOld] = useState<boolean>(true);
 
@@ -286,6 +286,43 @@ const Us = (): React.ReactElement => {
         generateNewFind();
     }, []);
 
+    const currentPlate = useMemo(() => {
+        if (loading) return null;
+        
+        return (
+            <Plate
+                state={STATES[toFind]}
+                type={currentType}
+                vanityOrOldIndex={vanityOrOldIndex}
+                show={false}
+                blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0}
+                rsc={enableRRSC ? rsc : undefined}
+                rsc2={enableRRSC ? rsc2 : undefined}
+                hc={enableRRSC ? hc : undefined}
+                sepia={enableRandBlur ? randomSepia : 0}
+                brightness={enableRandBlur ? randomBrightness : 1}
+                skew={enableSkew ? randomSkew : undefined}
+                scale={enableSkew ? randomScale : 1}
+                lowRes={enableLowRes}
+                index2={index2}
+            />
+        );
+    }, [
+        toFind, currentType, vanityOrOldIndex, 
+        enableBlur, enableRandBlur, rsc, rsc2, hc, 
+        randomSepia, randomBrightness, randomSkew, 
+        randomScale, enableLowRes, index2, enableRRSC, 
+        enableSkew, loading
+    ]);
+
+    const mapStyleFunction = useCallback((key: string) => {
+        return {
+            default: { fill: (key === lastPlateKey) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
+            hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
+            pressed: { fill: "green", outline: 'none' },
+        };
+    }, [lastPlateKey]);
+
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
             <p style={{paddingBottom: '10px'}}>US license plates</p>
@@ -299,7 +336,7 @@ const Us = (): React.ReactElement => {
                     Blur plate<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableBlur}></input>
                     Use random skew<input type="checkbox" onChange={() => { setStreak(0); changeSetting(1); }} checked={enableSkew}></input>
                     Use rand blur<input type="checkbox" onChange={() => {changeSetting(2)}} checked={!!enableRandBlur}></input>
-                    Low res<input type="checkbox" onChange={() => {changeSetting(6)}} checked={enableLowRes}></input>
+                    Low res<input type="checkbox" onChange={() => {changeSetting(6)}} checked={enableLowRes} disabled={isMobile && !isMobileDebug}></input>
                     Random registration sticker/holder color<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableRRSC}></input>
                 </div>
             </div>
@@ -322,33 +359,12 @@ const Us = (): React.ReactElement => {
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>Click on the right state! </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
                 <div style={{display: 'block', width: '150px', height: '75px', marginTop: '5px', border: "dashed 1px black"}}>
-                    {!loading && <Plate
-                        state={STATES[toFind]}
-                        type={currentType}
-                        vanityOrOldIndex={vanityOrOldIndex}
-                        show={false}
-                        blur={enableBlur ? (enableRandBlur ? enableRandBlur : 15) : 0}
-                        rsc={enableRRSC ? rsc : undefined}
-                        rsc2={enableRRSC ? rsc2 : undefined}
-                        hc={enableRRSC ? hc : undefined}
-                        sepia={enableRandBlur ? randomSepia : 0}
-                        brightness={enableRandBlur ? randomBrightness : 1}
-                        skew={enableSkew ? randomSkew : undefined}
-                        scale={enableSkew ? randomScale : 1}
-                        lowRes={enableLowRes}
-                        index2={index2}
-                    />}
+                    {currentPlate}
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
             </div>
             <div style={{paddingTop: '10px'}}>
-                <MapWithInsets clickHandler={handleClick} enableRegions={enableRegion} styleFunction={(key) => {
-                    return {
-                        default: { fill: (key === lastPlateKey) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
-                        hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
-                        pressed: { fill: "green", outline: 'none' },
-                    }
-                }}/>
+                <MapWithInsets clickHandler={handleClick} enableRegions={enableRegion} styleFunction={mapStyleFunction}/>
             </div>
             {lastPlates.length ? <div className="scrollable-content" style={{border: 'dashed 1px #808080', overflow: 'scroll', height: '250px', width: '200px', marginTop: '5px', paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plates (P.P.):</p>

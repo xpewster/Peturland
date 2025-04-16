@@ -25,6 +25,8 @@ export enum QuizType {
     INDONESIA_KABUPATEN,
     PHILLIPINES_PROVINCES,
     PHILLIPINES_REGIONS,
+    NIGERIA_STATES,
+    KENYA_COUNTIES,
 }
 
 export enum LocalStorageStreakKeys {
@@ -51,6 +53,8 @@ export enum LocalStorageStreakKeys {
     INDONESIA_KABUPATEN = "indonesia_kabupaten_bestStreak",
     PHILLIPINES_PROVINCES = "phillipines_provinces_bestStreak",
     PHILLIPINES_REGIONS = "phillipines_regions_bestStreak",
+    NIGERIA_STATES = "nigeria_states_bestStreak",
+    KENYA_STATES = "kenya_states_bestStreak",
 }
 
 export const MAP_COLOR = "#FF5533";

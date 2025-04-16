@@ -49,6 +49,7 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
     useEffect(() => {
         setStreak(0);
         setBestStreak(localStorage.getItem(getStreakKey(props.quizType, getStreakSuffix())) ? Number(localStorage.getItem(getStreakKey(props.quizType, getStreakSuffix()))) : 0);
+        setMessage("");
     }, [getStreakKey(props.quizType, getStreakSuffix())]);
 
     function generateNewFind() {
@@ -93,6 +94,7 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
 
     function handleCheck(index: number) {
         setCurrentRegion(props.enableRegions[index]);
+        setToFind(0); // stop out of bounds errors
     }
 
     const getRegionSelectionElements = useCallback(() => {
@@ -123,6 +125,10 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
             setMapMarkerSrc(mapmarker);
         }, 500);
     }, [toFind]);
+
+    useEffect(() => {
+        generateNewFind();
+    }, [currentRegion]);
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>

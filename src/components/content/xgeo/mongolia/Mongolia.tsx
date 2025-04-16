@@ -3,10 +3,11 @@ import './../Xgeo.css';
 import fareast from '../../../../assets/maps/mong_fareast.png';
 import farwest from '../../../../assets/maps/mong_farwest.png';
 import ulaan from '../../../../assets/maps/mong_ulaan.png';
+import western_ranges from '../../../../assets/maps/mong_westranges.png';
 import central_west from '../../../../assets/maps/mong_centralwest.png';
 import central_forests from '../../../../assets/maps/mong_centralforests.png';
 import south from '../../../../assets/maps/mong_south.png';
-import { CARS, FAR_EAST_COORDINATE_ANSWER_PAIRS } from './constants';
+import { CARS, CENTRAL_WEST_COORDINATE_ANSWER_PAIRS, FAR_EAST_COORDINATE_ANSWER_PAIRS, MIDWEST_COORDINATE_ANSWER_PAIRS, NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS } from './constants';
 import GenericMapMarkerQuiz from '../common/GenericMapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../common/constants';
 import { QuizType } from '../constants';
@@ -15,6 +16,9 @@ import grey_tent from '../../../../assets/cars/grey_tent.png';
 import blue_tent from '../../../../assets/cars/blue_tent.png';
 import sticker_car from '../../../../assets/cars/sticker_car.png';
 import red_mirrors from '../../../../assets/cars/red_mirrors.png';
+import gen4_grey from '../../../../assets/cars/gen4_grey.png';
+import west_car from '../../../../assets/cars/west_car.png';
+import camo_car from '../../../../assets/cars/camo_car.png';
 
 export interface MongoliaProps {
     quizType: QuizType;
@@ -42,24 +46,26 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
         }
     };
 
-    const REGIONS = ["Far east", "Central forests", "Around Ulaan", "Far west", "South", "Central west"];
+    const REGIONS = ["Far east", "North Central", "Around Ulaan", "Far west", "South", "Central west", "Midwest"];
 
     const MONGOLIA_REGION_TO_MAP_SRC_MAP = new Map<string, string>([
         ["Far east", fareast],
-        ["Central forests", central_forests],
+        ["North Central", central_forests],
         ["Around Ulaan", ulaan],
         ["Far west", farwest],
         ["South", south],
         ["Central west", central_west],
+        ["Midwest", western_ranges],
     ]);
 
     const REGION_TO_COORDINATE_ANSWER_PAIRS_MAP = new Map<string, CoordinateAnswerPair[]>([
         ["Far east", FAR_EAST_COORDINATE_ANSWER_PAIRS],
-        ["Central forests", FAR_EAST_COORDINATE_ANSWER_PAIRS],
+        ["North Central", NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS],
         ["Around Ulaan", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["Far west", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["South", FAR_EAST_COORDINATE_ANSWER_PAIRS],
-        ["Central west", FAR_EAST_COORDINATE_ANSWER_PAIRS],
+        ["Central west", CENTRAL_WEST_COORDINATE_ANSWER_PAIRS],
+        ["Midwest", MIDWEST_COORDINATE_ANSWER_PAIRS],
     ]);
 
     const CAR_TO_IMG_MAP = new Map<string, React.ReactElement>([
@@ -67,6 +73,9 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
         [CARS.BLUE_TENT, <img src={blue_tent} alt="Blue tent" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
         [CARS.STICKER_CAR, <img src={sticker_car} alt="Sticker car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
         [CARS.RED_MIRRORS, <img src={red_mirrors} alt="Red mirrors" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.GEN4_GREY, <img src={gen4_grey} alt="Gen 4 grey" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.WEST_CAR, <img src={west_car} alt="West car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.CAMO_CAR, <img src={camo_car} alt="Camo car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
     ]);
 
     const getHint = (answerArray: string[]): React.ReactElement | undefined => {

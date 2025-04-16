@@ -48,6 +48,7 @@ import EuPedestrians from './europe/ped/EuPedestrians';
 import EuFlags from './europe/flags/EuFlags';
 import EuBollards from './europe/bollards/EuBollards';
 import Nanp from './us/AreaCodes/Nanp';
+import NigeriaStates from './nigeria/states/NigeriaStates';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -84,13 +85,18 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const PHILLIPINES_LINKS = [Path.XGEO_PHILLIPINES_PROVINCES, Path.XGEO_PHILLIPINES_REGIONS];
     const PHILLIPINES_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
     
-    const TOP_IMGS = [folder2, folder2, folder2];
-    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines'];
-    const TOP_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
-    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS];
-    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS];
-    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS];
-    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES];
+    const NIGERIA_IMGS = [provinces];
+    const NIGERIA_STRINGS = ['States'];
+    const NIGERIA_LINKS = [Path.XGEO_NIGERIA_STATES];
+    const NIGERIA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+
+    const TOP_IMGS = [folder2, folder2, folder2, folder2];
+    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Nigeria'];
+    const TOP_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS, NIGERIA_IMGS];
+    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS, NIGERIA_STRINGS];
+    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS, NIGERIA_LINKS];
+    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES, NIGERIA_STYLES];
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
     const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);
@@ -155,6 +161,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <FiloProvinces />;
             case ContentType.XGEO_PHILLIPINES_REGIONS:
                 return <FiloRegions />;
+            case ContentType.XGEO_NIGERIA_STATES:
+                return <NigeriaStates />;
         }
     };
 

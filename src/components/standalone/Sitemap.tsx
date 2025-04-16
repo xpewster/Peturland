@@ -61,6 +61,8 @@ const Sitemap = () => {
                   <li><Link to={Path.XGEO_INDONESIA_KABUPATEN}>Indonesia Kabupaten</Link></li>
                   <li><Link to={Path.XGEO_PHILLIPINES_PROVINCES}>Philippines Provinces</Link></li>
                   <li><Link to={Path.XGEO_PHILLIPINES_REGIONS}>Philippines Regions</Link></li>
+                  <li><Link to={Path.XGEO_NIGERIA_STATES}>Nigeria States</Link></li>
+                  <li><Link to={Path.XGEO_KENYA_COUNTIES}>Kenya Counties</Link></li>
                 </ul>
               </li>
             </ul>

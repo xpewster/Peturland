@@ -46,6 +46,8 @@ const AppContent = ({
             case ContentType.XGEO_INDONESIA_KABUPATEN:
             case ContentType.XGEO_PHILLIPINES_PROVINCES:
             case ContentType.XGEO_PHILLIPINES_REGIONS:
+            case ContentType.XGEO_NIGERIA_STATES:
+            case ContentType.XGEO_KENYA_COUNTIES:
                 return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:
                 return <Soon />;    

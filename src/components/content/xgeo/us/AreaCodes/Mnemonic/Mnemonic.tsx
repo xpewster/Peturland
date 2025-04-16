@@ -18,6 +18,7 @@ const Mnemonic = () => {
             case MnemonicSystem.MAJOR_SYSTEM:
                 return (
                     <table>
+                        <tbody>
                         <tr>
                             <th>Number</th>
                             <td>0</td>
@@ -44,11 +45,13 @@ const Mnemonic = () => {
                             <td>f/v</td>
                             <td>p/b</td>
                         </tr>
+                        </tbody>
                     </table>
                 );
             case MnemonicSystem.BEN_SYSTEM:
                 return (
                     <table>
+                        <tbody>
                         <tr>
                             <th>Number</th>
                             <td>0</td>
@@ -101,11 +104,13 @@ const Mnemonic = () => {
                             <td>f/th</td>
                             <td>b</td>
                         </tr>
+                        </tbody>
                     </table>
                 );
             case MnemonicSystem.BNDFGPRKSM:
                 return (
                     <table>
+                        <tbody>
                         <tr>
                             <th>Number</th>
                             <td>0</td>
@@ -158,6 +163,7 @@ const Mnemonic = () => {
                             <td>s</td>
                             <td>m</td>
                         </tr>
+                        </tbody>
                     </table>
                 );
         }

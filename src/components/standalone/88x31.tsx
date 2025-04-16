@@ -21,6 +21,8 @@ import cool from '../../assets/fileboxicons/cool.gif';
 import seafare from '../../assets/88x31/seafare.png';
 import retrobar from '../../assets/88x31/retrobar.png'; 
 
+import daiko from '../../assets/88x31/link_malta.gif';
+
 // make: peturland, retrobar 88x31s
 
 export const EightyEight = (): React.ReactElement => {
@@ -41,8 +43,12 @@ export const EightyEight = (): React.ReactElement => {
 		[sayNo, "https://yesterweb.org/no-to-web3/"],
 		[winxp, "https://en.wikipedia.org/wiki/Windows_XP"],
 		[catagolue, "https://catagolue.hatsya.com/home"],
-		[seafare, "https://seafare.neocities.org/"],
 		[retrobar, "https://github.com/dremin/RetroBar"],
+	]
+
+	const sites: [string, string | null][] = [
+		[daiko, "https://daikonet.neocities.org/home"],
+		[seafare, "https://seafare.neocities.org/"],
 	]
 
 	return <Standalone>
@@ -55,6 +61,15 @@ export const EightyEight = (): React.ReactElement => {
 				<a href="https://peturland.com/home" target="_blank" rel="noopener noreferrer"><img src={peturland_outline} style={{margin: '5px'}}/></a>
 			</div>
 			<hr className="standalonehr"/>
+			<p>Fellow territories</p>
+			{
+				sites.map((src, i) => {
+					return src[1] ? <a href={src[1]} target="_blank" rel="noopener noreferrer">
+						<img className="rbarbox" src={src[0]} />
+						</a> : <img className="rbarbox" src={src[0]} />;
+				})
+			}
+			<hr className="standalonehr" style={{marginBottom: '20px'}}/>
 			{
 				list.map((src, i) => {
 					return src[1] ? <a href={src[1]} target="_blank" rel="noopener noreferrer">
