@@ -314,7 +314,6 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     }
 
     const getLastItemsKeys = useMemo(() => {
-        console.log("getLastItemsKeys", lastItems[0][0], lastItems[0][1], (props.answerIndexToRegionIndices && lastItems[0][0] >= 0) ? props.toFindIndexToAnswerIndicesArray[lastItems[0][0]][lastItems[0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[0][0]].length] : 0);
         return ((props.answerIndexToRegionIndices && lastItems[0][0] >= 0) ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[lastItems[0][0]][lastItems[0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[0][0]].length]].map((val) => { return `geo-${val}`; }) : [`geo-${lastItems[0][0]}`]);
     }, [props.answerIndexToRegionIndices?.toString(), lastItems[0][0], lastItems[0][1]]);
 

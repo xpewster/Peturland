@@ -4540,7 +4540,7 @@ const DSO_DETAILS = {
   "M16": {
     "id": "M16",
     "name": "Eagle Nebula",
-    "type": "Open Cluster",
+    "type": "Emission Nebula",
     "constellation": "Ser",
     "ra_deg": 274.68791666666664,
     "dec_deg": -13.791944444444445,
@@ -4560,7 +4560,7 @@ const DSO_DETAILS = {
   "M20": {
     "id": "M20",
     "name": "Trifid Nebula",
-    "type": "Open Cluster",
+    "type": "Emission Nebula",
     "constellation": "Sgr",
     "ra_deg": 270.675,
     "dec_deg": -22.971666666666664,

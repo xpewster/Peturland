@@ -7,7 +7,7 @@ import western_ranges from '../../../../assets/maps/mong_westranges.png';
 import central_west from '../../../../assets/maps/mong_centralwest.png';
 import central_forests from '../../../../assets/maps/mong_centralforests.png';
 import south from '../../../../assets/maps/mong_south.png';
-import { CARS, CENTRAL_WEST_COORDINATE_ANSWER_PAIRS, FAR_EAST_COORDINATE_ANSWER_PAIRS, MIDWEST_COORDINATE_ANSWER_PAIRS, NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS } from './constants';
+import { AROUND_ULAAN_COORDINATE_ANSWER_PAIRS, CARS, CENTRAL_WEST_COORDINATE_ANSWER_PAIRS, FAR_EAST_COORDINATE_ANSWER_PAIRS, FAR_WEST_COORDINATE_ANSWER_PAIRS, MIDWEST_COORDINATE_ANSWER_PAIRS, NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS, SOUTH_COORDINATE_ANSWER_PAIRS } from './constants';
 import GenericMapMarkerQuiz from '../common/GenericMapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../common/constants';
 import { QuizType } from '../constants';
@@ -19,6 +19,7 @@ import red_mirrors from '../../../../assets/cars/red_mirrors.png';
 import gen4_grey from '../../../../assets/cars/gen4_grey.png';
 import west_car from '../../../../assets/cars/west_car.png';
 import camo_car from '../../../../assets/cars/camo_car.png';
+import depressed_car from '../../../../assets/cars/depressed_tent.png';
 
 export interface MongoliaProps {
     quizType: QuizType;
@@ -31,7 +32,7 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
     const getQuizTitle = (): React.ReactElement => {
         switch(props.quizType) {
             case QuizType.MONG_DRIVING_DIRECTION:
-                return <span><img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> Mongolia driving directions <img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> WIP!</span>;
+                return <span><img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> Mongolia driving directions <img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /></span>;
             default:
                 return  <span>Mongolia quiz</span>;
         }
@@ -61,9 +62,9 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
     const REGION_TO_COORDINATE_ANSWER_PAIRS_MAP = new Map<string, CoordinateAnswerPair[]>([
         ["Far east", FAR_EAST_COORDINATE_ANSWER_PAIRS],
         ["North Central", NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS],
-        ["Around Ulaan", FAR_EAST_COORDINATE_ANSWER_PAIRS],
-        ["Far west", FAR_EAST_COORDINATE_ANSWER_PAIRS],
-        ["South", FAR_EAST_COORDINATE_ANSWER_PAIRS],
+        ["Around Ulaan", AROUND_ULAAN_COORDINATE_ANSWER_PAIRS],
+        ["Far west", FAR_WEST_COORDINATE_ANSWER_PAIRS],
+        ["South", SOUTH_COORDINATE_ANSWER_PAIRS],
         ["Central west", CENTRAL_WEST_COORDINATE_ANSWER_PAIRS],
         ["Midwest", MIDWEST_COORDINATE_ANSWER_PAIRS],
     ]);
@@ -76,6 +77,7 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
         [CARS.GEN4_GREY, <img src={gen4_grey} alt="Gen 4 grey" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
         [CARS.WEST_CAR, <img src={west_car} alt="West car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
         [CARS.CAMO_CAR, <img src={camo_car} alt="Camo car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
+        [CARS.DEPRESSED_CAR, <img src={depressed_car} alt="Depressed car" style={{width: `${CAR_IMAGE_DIMENSION}px`, height: `${CAR_IMAGE_DIMENSION}px`, display: 'block'}} />],
     ]);
 
     const getHint = (answerArray: string[]): React.ReactElement | undefined => {

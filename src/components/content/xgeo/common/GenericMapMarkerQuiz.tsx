@@ -93,6 +93,7 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
     }
 
     function handleCheck(index: number) {
+        console.log(index)
         setCurrentRegion(props.enableRegions[index]);
         setToFind(0); // stop out of bounds errors
     }
@@ -101,9 +102,9 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
         return props.enableRegions.map((region, i) => {
             const isSelected = props.enableRegions[i] === currentRegion;
             return (
-                <div key={i} style={{display: 'inline'}}>
+                <>
                     {region}<input type="checkbox" onChange={() => {handleCheck(i)}} checked={isSelected} disabled={isSelected}></input>
-                </div>
+                </>
             );
         });
     }, [currentRegion]);
@@ -137,9 +138,9 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
                 {props.showGeoWarning ?
                     <>
                         <div>
-                            This quiz is only applicable for Geoguessr/Google Streetview!
+                            This particular quiz is only applicable for Geoguessr/Google Streetview!
                         </div>
-                        <img style={{position: 'absolute', left: '-2px', top: '153px', paddingBottom: '8px'}} src={dots}></img>
+                        <img style={{position: 'absolute', left: '-2px', top: '153px'}} src={dots}></img>
                     </>
                     : <></>
                 }
