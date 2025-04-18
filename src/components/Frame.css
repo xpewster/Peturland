@@ -58,8 +58,9 @@ p {
     width: 26%;
     top: 100px;
     right: 130px;
-    z-index: 3;
+    z-index: 17;
     image-rendering: pixelated;
+    pointer-events: none;
 }
 
 .dragon {

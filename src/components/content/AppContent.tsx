@@ -23,6 +23,7 @@ const AppContent = ({
                 return <Projects />;
             case ContentType.XGEO:
                 return <Xgeo />;
+            case ContentType.XGEO_SOON:
             case ContentType.XGEO_US:
             case ContentType.XGEO_US_ADOPT_A_HIGHWAY:
             case ContentType.XGEO_US_STATE_HIGHWAY:
@@ -43,11 +44,18 @@ const AppContent = ({
             case ContentType.XGEO_EU_FLAGS:
             case ContentType.XGEO_EU_PEDESTRIAN_CROSSINGS:
             case ContentType.XGEO_MONG:
+            case ContentType.XGEO_MONG_CAR_META:
             case ContentType.XGEO_INDONESIA_KABUPATEN:
             case ContentType.XGEO_PHILLIPINES_PROVINCES:
             case ContentType.XGEO_PHILLIPINES_REGIONS:
             case ContentType.XGEO_NIGERIA_STATES:
             case ContentType.XGEO_KENYA_COUNTIES:
+            case ContentType.XGEO_AUSTRALIA_PLATES:
+            case ContentType.XGEO_ZA_PLATES:
+            case ContentType.XGEO_JP_AREACODES:
+            case ContentType.XGEO_JP_PREFECTURES:
+            case ContentType.XGEO_JP_POLE_PLATES:
+            case ContentType.XGEO_JP_POLE_REFLECTORS:
                 return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:
                 return <Soon />;    

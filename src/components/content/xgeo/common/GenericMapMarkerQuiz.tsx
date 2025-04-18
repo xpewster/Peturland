@@ -93,7 +93,6 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
     }
 
     function handleCheck(index: number) {
-        console.log(index)
         setCurrentRegion(props.enableRegions[index]);
         setToFind(0); // stop out of bounds errors
     }

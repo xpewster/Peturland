@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
-import brazil from '../../../../../assets/geojsons/brazil-states.json';
+import brazil from '../../../../../assets/geojsons/brazil-states2.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { BRAZIL_STATES } from '../constants';

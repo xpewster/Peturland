@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps"
-import brazil_phone_codes from '../../../../assets/geojsons/brazil_phone_codes.json';
+import brazil_phone_codes from '../../../../assets/geojsons/brazil_phone_codes2.json';
 import './../Xgeo.css';
 import { BADS, LocalStorageStreakKeys, MAP_COLOR, NICES, QuizType } from '../constants';
 import { getStreakKey, randomElement } from '../helpers';

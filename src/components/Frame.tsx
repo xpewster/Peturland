@@ -61,6 +61,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_EU_PEDESTRIAN_CROSSINGS;
       case Path.XGEO_MONG:
         return ContentType.XGEO_MONG;
+      case Path.XGEO_MONG_CAR_META:
+        return ContentType.XGEO_MONG_CAR_META;
       case Path.XGEO_INDONESIA_KABUPATEN:
         return ContentType.XGEO_INDONESIA_KABUPATEN;
       case Path.XGEO_PHILLIPINES_PROVINCES:
@@ -71,6 +73,20 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_NIGERIA_STATES;
       case Path.XGEO_KENYA_COUNTIES:
         return ContentType.XGEO_KENYA_COUNTIES;
+      case Path.XGEO_AUSTRALIA_PLATES:
+        return ContentType.XGEO_AUSTRALIA_PLATES;
+      case Path.XGEO_ZA_PLATES:
+        return ContentType.XGEO_ZA_PLATES;
+      case Path.XGEO_JP_AREACODES:
+        return ContentType.XGEO_JP_AREACODES;
+      case Path.XGEO_JP_PREFECTURES:
+        return ContentType.XGEO_JP_PREFECTURES;
+      case Path.XGEO_JP_POLE_PLATES:
+        return ContentType.XGEO_JP_POLE_PLATES;
+      case Path.XGEO_JP_POLE_REFLECTORS:
+        return ContentType.XGEO_JP_POLE_REFLECTORS;
+      case Path.XGEO_JP_POLE_ATTACHMENTS:
+        return ContentType.XGEO_JP_POLE_ATTACHMENTS;
       case Path.SOON:
         return ContentType.SOON;
     }

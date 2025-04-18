@@ -1,5 +1,5 @@
 const CACHE_SIZE = 21;
-const CACHE2_SIZE = 20;
+const CACHE2_SIZE = 30;
 const imageCache = new Map<string, HTMLImageElement>();
 const imageCache2 = new Map<string, HTMLImageElement>();
 

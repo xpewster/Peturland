@@ -4,7 +4,7 @@ import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import canada from '../../../../../assets/canadamf.gif';
 import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
-import nanp from '../../../../../assets/geojsons/nanp.json';
+import nanp from '../../../../../assets/geojsons/nanp2.json';
 import uscheat from '../../../../../assets/maps/us-area-code-map.png';
 import canadacheat from '../../../../../assets/maps/canada-area-code-map.png';
 import { getStreakKey } from '../../helpers';

@@ -27,6 +27,13 @@ export enum QuizType {
     PHILLIPINES_REGIONS,
     NIGERIA_STATES,
     KENYA_COUNTIES,
+    AUSTRALIA_PLATES,
+    SOUTH_AFRICA_PLATES,
+    JAPAN_AREACODES,
+    JAPAN_PREFECTURES,
+    JAPAN_POLE_PLATES,
+    JAPAN_POLE_REFLECTORS,
+    JAPAN_POLE_ATTACHMENTS,
 }
 
 export enum LocalStorageStreakKeys {
@@ -54,7 +61,14 @@ export enum LocalStorageStreakKeys {
     PHILLIPINES_PROVINCES = "phillipines_provinces_bestStreak",
     PHILLIPINES_REGIONS = "phillipines_regions_bestStreak",
     NIGERIA_STATES = "nigeria_states_bestStreak",
-    KENYA_STATES = "kenya_states_bestStreak",
+    KENYA_COUNTIES = "kenya_states_bestStreak",
+    AUSTRALIA_PLATES = "australia_plates_bestStreak",
+    SOUTH_AFRICA_PLATES = "south_africa_plates_bestStreak",
+    JAPAN_AREACODES = "japan_areacodes_bestStreak",
+    JAPAN_PREFECTURES = "japan_prefectures_bestStreak",
+    JAPAN_POLE_PLATES = "japan_pole_plates_bestStreak",
+    JAPAN_POLE_REFLECTORS = "japan_pole_reflectors_bestStreak",
+    JAPAN_POLE_ATTACHMENTS = "japan_pole_attachments_bestStreak",
 }
 
 export const MAP_COLOR = "#FF5533";

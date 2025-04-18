@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import dots from '../../../../../assets/dots.png';
-import europe from '../../../../../assets/geojsons/europe.json';
+import europe from '../../../../../assets/geojsons/europe2.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';

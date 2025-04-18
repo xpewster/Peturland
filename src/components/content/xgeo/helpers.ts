@@ -57,6 +57,24 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
             return LocalStorageStreakKeys.PHILLIPINES_PROVINCES + enabledRegionBits;
         case QuizType.PHILLIPINES_REGIONS:
             return LocalStorageStreakKeys.PHILLIPINES_REGIONS + enabledRegionBits;
+        case QuizType.NIGERIA_STATES:
+            return LocalStorageStreakKeys.NIGERIA_STATES + enabledRegionBits;
+        case QuizType.KENYA_COUNTIES:
+            return LocalStorageStreakKeys.KENYA_COUNTIES + enabledRegionBits;
+        case QuizType.AUSTRALIA_PLATES:
+            return LocalStorageStreakKeys.AUSTRALIA_PLATES + enabledRegionBits;
+        case QuizType.SOUTH_AFRICA_PLATES:
+            return LocalStorageStreakKeys.SOUTH_AFRICA_PLATES + enabledRegionBits;
+        case QuizType.JAPAN_AREACODES:
+            return LocalStorageStreakKeys.JAPAN_AREACODES + enabledRegionBits;
+        case QuizType.JAPAN_PREFECTURES:
+            return LocalStorageStreakKeys.JAPAN_PREFECTURES + enabledRegionBits;
+        case QuizType.JAPAN_POLE_PLATES:
+            return LocalStorageStreakKeys.JAPAN_POLE_PLATES + enabledRegionBits;
+        case QuizType.JAPAN_POLE_REFLECTORS:
+            return LocalStorageStreakKeys.JAPAN_POLE_REFLECTORS + enabledRegionBits;
+        case QuizType.JAPAN_POLE_ATTACHMENTS:
+            return LocalStorageStreakKeys.JAPAN_POLE_ATTACHMENTS + enabledRegionBits;
         default:
             return "default" + enabledRegionBits;
     }

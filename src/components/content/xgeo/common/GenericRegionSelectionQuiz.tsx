@@ -37,6 +37,7 @@ export interface GenericRegionSelectionQuizProps {
     styleFunction?: (rsmKey: string, lastItemKeys: string[] | undefined) => any;
     useMapWithInsets?: boolean;
     insetEnableIndex?: number;
+    regionIsAnswer?: boolean;
 }
 
 type LastItem = [number, number, number, number[], number, number]; // [toFind, randIndex, sepia, skew, scale, hue_rotate]
@@ -437,7 +438,7 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                 </svg></div>
                                 : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}} src={getSrc(1, index)}></img>
                             )}
-                            {props.answerIndexToText && <span>&nbsp;</span>}{<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
+                            {props.answerIndexToText && <span>&nbsp;</span>}{<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{!props.regionIsAnswer && props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
                                 ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])
                                 : ''}</span>}
                             </p>

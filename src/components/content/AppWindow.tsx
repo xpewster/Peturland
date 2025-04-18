@@ -19,6 +19,8 @@ export const getContentSize = (type: ContentType) => {
             return 1800;
         case ContentType.XGEO:
             return 1000;
+        case ContentType.XGEO_SOON:
+            return 600;
         case ContentType.XGEO_US:
             return 1010;
         case ContentType.XGEO_US_STATE_FLAGS:
@@ -49,18 +51,32 @@ export const getContentSize = (type: ContentType) => {
             return 900;
         case ContentType.XGEO_EU_BOLLARDS:
             return 1040;
+        case ContentType.XGEO_EU_GUARDRAILS:
+            return 1000;
         case ContentType.XGEO_MONG:
             return 900;
+        case ContentType.XGEO_INDONESIA_KABUPATEN:
+            return 1000;
         case ContentType.XGEO_PHILLIPINES_PROVINCES:
             return 850;
         case ContentType.XGEO_PHILLIPINES_REGIONS:
             return 750;
         case ContentType.XGEO_NIGERIA_STATES:
             return 700;
+        case ContentType.XGEO_KENYA_COUNTIES:
+            return 700;
+        case ContentType.XGEO_AUSTRALIA_PLATES:
+            return 700;
+        case ContentType.XGEO_ZA_PLATES:
+            return 700;
+        case ContentType.XGEO_JP_AREACODES:
+            return 800;
+        case ContentType.XGEO_JP_PREFECTURES:
+            return 850;
         case ContentType.SOON:
             return 700;
         default:
-            return 1000;
+            return 650;
     }
 }
 
