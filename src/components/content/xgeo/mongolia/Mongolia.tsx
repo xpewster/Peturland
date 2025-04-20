@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import './../Xgeo.css';
+import React from 'react';
 import fareast from '../../../../assets/maps/mong_fareast.png';
 import farwest from '../../../../assets/maps/mong_farwest.png';
 import ulaan from '../../../../assets/maps/mong_ulaan.png';
@@ -7,7 +6,7 @@ import western_ranges from '../../../../assets/maps/mong_westranges.png';
 import central_west from '../../../../assets/maps/mong_centralwest.png';
 import central_forests from '../../../../assets/maps/mong_centralforests.png';
 import south from '../../../../assets/maps/mong_south.png';
-import { AROUND_ULAAN_COORDINATE_ANSWER_PAIRS, CARS, CENTRAL_WEST_COORDINATE_ANSWER_PAIRS, FAR_EAST_COORDINATE_ANSWER_PAIRS, FAR_WEST_COORDINATE_ANSWER_PAIRS, MIDWEST_COORDINATE_ANSWER_PAIRS, NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS, SOUTH_COORDINATE_ANSWER_PAIRS } from './constants';
+import { AROUND_ULAAN_COORDINATE_ANSWER_PAIRS, CARS, CENTRAL_WEST_COORDINATE_ANSWER_PAIRS, FAR_EAST_COORDINATE_ANSWER_PAIRS, FAR_WEST_COORDINATE_ANSWER_PAIRS, MIDWEST_COORDINATE_ANSWER_PAIRS, NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS, REGIONS, SOUTH_COORDINATE_ANSWER_PAIRS } from './constants';
 import GenericMapMarkerQuiz from '../common/GenericMapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../common/constants';
 import { QuizType } from '../constants';
@@ -46,8 +45,6 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
                 return "Not yet supported";
         }
     };
-
-    const REGIONS = ["Far east", "North Central", "Around Ulaan", "Far west", "South", "Central west", "Midwest"];
 
     const MONGOLIA_REGION_TO_MAP_SRC_MAP = new Map<string, string>([
         ["Far east", fareast],
@@ -90,6 +87,7 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
             quizTitle={getQuizTitle()}
             regionToMapSrcMap={MONGOLIA_REGION_TO_MAP_SRC_MAP}
             enableRegions={REGIONS} 
+            enableRegionsRows={2}
             clickText={getClickText()}
             selectorType={SelectorType.COMPASS}
             regionToCoordinateAnswerPairsMap={REGION_TO_COORDINATE_ANSWER_PAIRS_MAP}

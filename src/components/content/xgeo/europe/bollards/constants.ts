@@ -22,21 +22,14 @@ import fr4 from '../../../../../assets/bollards/nonwhitebody/fr4.png'; //
 import ge from '../../../../../assets/bollards/red/ge.png'; //
 import de from '../../../../../assets/bollards/white/de-ch-se.png'; //
 import gr from '../../../../../assets/bollards/red/gr.png'; //
-import hr from '../../../../../assets/bollards/red/hr-bg-mk2.png'; //
-import hu from '../../../../../assets/bollards/red/hu-bg2.png'; //
 import hu2 from '../../../../../assets/bollards/blue/hu2.png'; //
 import is from '../../../../../assets/bollards/nonwhitebody/is.png'; //
-import it from '../../../../../assets/bollards/blacktop/it-al-sm.png'; //
 import lv from '../../../../../assets/bollards/white/lv.png'; //
 import lv2 from '../../../../../assets/bollards/yellow/lv2.png'; //
 // import by from '../../../../../assets/bollards/by.png';
 import lt from '../../../../../assets/bollards/orange/lt.png'; //
-import sk from '../../../../../assets/bollards/orange/cz-sk.png'; //
-import sk2 from '../../../../../assets/bollards/nonwhitebody/cz2-sk2.png'; //
-import sk3 from '../../../../../assets/bollards/nonwhitebody/cz3-sk3.png'; //
 import li from '../../../../../assets/bollards/white/li.png'; //
 import mk from '../../../../../assets/bollards/blacktop/mk.png'; //
-import mk2 from '../../../../../assets/bollards/red/hr-bg-mk2.png'; //
 import mk3 from '../../../../../assets/bollards/red/mk3.png'; //
 // import mt from '../../../../../assets/bollards/mt.png';
 import be from '../../../../../assets/bollards/yellow/be.png'; //
@@ -45,7 +38,6 @@ import ad from '../../../../../assets/bollards/orange/ad-es2.png'; //
 import lu from '../../../../../assets/bollards/white/lu.png'; //
 // import mc from '../../../../../assets/bollards/mc.png';
 import me from '../../../../../assets/bollards/blacktop/me.png'; //
-import me2 from '../../../../../assets/bollards/blacktop/si-ba-me2.png'; //
 import nl from '../../../../../assets/bollards/red/nl.png'; //
 import nl2 from '../../../../../assets/bollards/red/nl2.png'; //
 import no from '../../../../../assets/bollards/white/no.png'; //
@@ -53,28 +45,18 @@ import pl from '../../../../../assets/bollards/red/pl-ua3.png'; //
 import pl2 from '../../../../../assets/bollards/red/pl2.png'; //
 import pt from '../../../../../assets/bollards/white/pt.png'; //
 import ro from '../../../../../assets/bollards/red/ro-md.png'; // ro rare
-import md from '../../../../../assets/bollards/red/ro-md.png'; //
-import si from '../../../../../assets/bollards/blacktop/si-ba-me2.png'; //
 import es from '../../../../../assets/bollards/yellow/es.png'; //
-import es2 from '../../../../../assets/bollards/orange/ad-es2.png'; //
-import se from '../../../../../assets/bollards/white/de-ch-se.png'; //
-import se2 from '../../../../../assets/bollards/white/se2-fi.png'; //
-import se3 from '../../../../../assets/bollards/white/se3-fi2.png'; //
 import se4 from '../../../../../assets/bollards/yellow/se4.png'; //
-import ch from '../../../../../assets/bollards/white/de-ch-se.png'; //
 import ch2 from '../../../../../assets/bollards/white/ch2.png'; //
 import tr from '../../../../../assets/bollards/red/tr.png'; //
 import gb from '../../../../../assets/bollards/blacktop/uk.png'; //
 import ua from '../../../../../assets/bollards/red/ua.png'; //
 import ua2 from '../../../../../assets/bollards/red/ua2-ru3.png'; //
-import ua3 from '../../../../../assets/bollards/red/pl-ua3.png'; //
-import sm from '../../../../../assets/bollards/blacktop/it-al-sm.png'; //
 import rs from '../../../../../assets/bollards/red/rs.png'; //
 import rs2 from '../../../../../assets/bollards/red/rs2.png'; //
 // import va from '../../../../../assets/bollards/va.png';
 import ru from '../../../../../assets/bollards/blacktop/ru.png'; //
 import ru2 from '../../../../../assets/bollards/red/ru2.png'; //
-import ru3 from '../../../../../assets/bollards/red/ua2-ru3.png'; //
 
 export const BOLLARDS = [
     al,    // 0
@@ -100,27 +82,27 @@ export const BOLLARDS = [
     ge,    // 20
     de,    // 21
     gr,    // 22
-    hr,    // 23
-    hu,    // 24
+    bg,    // 23
+    bg2,    // 24
     hu2,   // 25
     is,    // 26
-    it,    // 27
+    al,    // 27
     lv,    // 28
     lv2,   // 29
     lt,    // 30
-    sk,    // 31
-    sk2,   // 32
-    sk3,   // 33
+    cz,    // 31
+    cz2,   // 32
+    cz3,   // 33
     li,    // 34
     mk,    // 35
-    mk2,   // 36
+    bg,   // 36
     mk3,   // 37
     be,    // 38
     fo,    // 39
     ad,    // 40
     lu,    // 41
     me,    // 42
-    me2,   // 43
+    ba,   // 43
     nl,    // 44
     nl2,   // 45
     no,    // 46
@@ -128,27 +110,27 @@ export const BOLLARDS = [
     pl2,   // 48
     pt,    // 49
     ro,    // 50
-    md,    // 51
-    si,    // 52
+    ro,    // 51
+    ba,    // 52
     es,    // 53
-    es2,   // 54
-    se,    // 55
-    se2,   // 56
-    se3,   // 57
+    ad,   // 54
+    de,    // 55
+    fi,   // 56
+    fi2,   // 57
     se4,   // 58
-    ch,    // 59
+    de,    // 59
     ch2,   // 60
     tr,    // 61
     gb,    // 62
     ua,    // 63
     ua2,   // 64
-    ua3,   // 65
-    sm,    // 66
+    pl,   // 65
+    al,    // 66
     rs,    // 67
     rs2,   // 68
     ru,    // 69
     ru2,   // 70
-    ru3,    // 71
+    ua2,    // 71
     bg3,   // 72
 ];
 

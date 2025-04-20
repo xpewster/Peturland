@@ -37,7 +37,7 @@ const ScrollingDisabler = (props: any): React.ReactElement => {
     }, []);
 
     return (
-        <div ref={divRef} onWheel={handleWheel}>
+        <div ref={divRef} onWheel={handleWheel} style={{zIndex: 1000}}>
             {props.children}
         </div>
     )

@@ -1,5 +1,7 @@
 import { CoordinateAnswerPair } from "../common/constants";
 
+export const REGIONS = ["Far east", "North Central", "Around Ulaan", "Far west", "South", "Central west", "Midwest"];
+
 export enum CARS {
     GREY_TENT = "grey_tent",
     BLUE_TENT = "blue_tent",
@@ -127,26 +129,26 @@ export const MIDWEST_COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
 ];
 
 export const NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
-    [[251, 208], ["east", CARS.BLUE_TENT]],
-    [[141, 187], ["east", CARS.BLUE_TENT]],
-    [[354, 213], ["east", CARS.BLUE_TENT]],
-    [[346, 266], ["south", CARS.BLUE_TENT]],
-    [[310, 330], ["southwest", CARS.BLUE_TENT]],
-    [[302, 370], ["southeast", CARS.BLUE_TENT]],
-    [[283, 400], ["south", CARS.BLUE_TENT]],
-    [[295, 461], ["northeast", CARS.BLUE_TENT]],
-    [[322, 428], ["southwest", CARS.BLUE_TENT]],
-    [[328, 426], ["northeast", CARS.BLUE_TENT]],
-    [[284, 464], ["east", CARS.BLUE_TENT]],
-    [[276, 463], ["west", CARS.BLUE_TENT]],
-    [[266, 459], ["southeast", CARS.BLUE_TENT]],
-    [[249, 454], ["west", CARS.BLUE_TENT]],
-    [[197, 479], ["southwest", CARS.BLUE_TENT]],
-    [[161, 523], ["south", CARS.BLUE_TENT]],
-    [[137, 543], ["west", CARS.BLUE_TENT]],
-    [[363, 199], ["northwest", CARS.BLUE_TENT]],
-    [[353, 168], ["west", CARS.BLUE_TENT]],
-    [[386, 207], ["east", CARS.BLUE_TENT]]
+    [[251, 208], ["east"]],
+    [[141, 187], ["east"]],
+    [[354, 213], ["east"]],
+    [[346, 266], ["south"]],
+    [[310, 330], ["southwest"]],
+    [[302, 370], ["southeast"]],
+    [[283, 400], ["south"]],
+    [[295, 461], ["northeast"]],
+    [[322, 428], ["southwest"]],
+    [[328, 426], ["northeast"]],
+    [[284, 464], ["east"]],
+    [[276, 463], ["west"]],
+    [[266, 459], ["southeast"]],
+    [[249, 454], ["west"]],
+    [[197, 479], ["southwest"]],
+    [[161, 523], ["south"]],
+    [[137, 543], ["west"]],
+    [[363, 199], ["northwest"]],
+    [[353, 168], ["west"]],
+    [[386, 207], ["east"]]
 ];
 
 export const CENTRAL_WEST_COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [

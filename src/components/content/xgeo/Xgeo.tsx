@@ -59,6 +59,7 @@ import XgeoSoon from './XgeoSoon';
 import JpAreaCodes from './japan/AreaCodes/JpAreaCodes';
 import KenyaCounties from './kenya/counties/KenyaCounties';
 import JpPrefectures from './japan/Prefectures/JpPrefectures';
+import MongoliaCarMeta from './mongolia/CarMeta/MongoliaCarMeta';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -177,6 +178,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <EuPedestrians />;
             case ContentType.XGEO_MONG:
                 return <Mongolia quizType={QuizType.MONG_DRIVING_DIRECTION} />;
+            case ContentType.XGEO_MONG_CAR_META:
+                return <MongoliaCarMeta />;
             case ContentType.XGEO_INDONESIA_KABUPATEN:
                 return <Kabupaten />;
             case ContentType.XGEO_PHILLIPINES_PROVINCES:

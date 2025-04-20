@@ -6,12 +6,14 @@ import { QuizType } from '../../constants';
 import { COUNTRIES, COUNTRY_TO_REGION_BITFLAG } from '../constants';
 import { COUNTRY_INDEX_TO_BOLLARDS_INDEX, BOLLARD_INDEX_TO_COUNTRY_INDICES, BOLLARDS, COUNTRY_INDEX_TO_COMMON_BOLLARDS_INDEX, BOLLARD_INDEX_TO_COMMON_COUNTRY_INDICES } from './constants';
 import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';
 
 
 const EuBollards = (): React.ReactElement => {
 
     const [enableRegion, setEnableRegion] = useState<boolean[]>([true, true, true, true, true, false, false, false]);
     const [enableCommonOnly, setEnableCommonOnly] = useState<boolean>(false);
+    const [enableMC, setEnableMC] = useState<boolean>(false);
 
     /* ----------------- */
 
@@ -52,6 +54,7 @@ const EuBollards = (): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div>
                 <div>
+                    Multiple choice<input type="checkbox" onChange={() => {setEnableMC(!enableMC)}} checked={enableMC}></input>
                     Common only<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableCommonOnly}></input>
                 </div>
             </div>
@@ -67,7 +70,21 @@ const EuBollards = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '166px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                {enableMC ? <GenericMultipleChoiceQuiz
+                    mapJsonSrc={europe}
+                    clickText={'Click on the right bollard!'}
+                    regionIndexArray={COUNTRIES}
+                    answerIndexToSrc={getSignImage}
+                    regionIndexToAnswerIndicesArray={getToFindIndexToAnswerIndicesArray()}
+                    streakKey={getStreakKey(QuizType.EU_BOLLARDS, [...enableRegion])}
+                    disallowRepeats={true}
+                    enableRegions={enableRegion}
+                    regionsBitFlag={COUNTRY_TO_REGION_BITFLAG}
+                    numLastItems={5}
+                    itemHeight={150}
+                    numChoices={4}
+                    mapParameters={{scale: 600, center: [10, 55]}}
+                /> : <GenericRegionSelectionQuiz
                     mapJsonSrc={europe}
                     clickText={'Click on the right country!'}
                     regionIndexArray={COUNTRIES}
@@ -83,6 +100,7 @@ const EuBollards = (): React.ReactElement => {
                     minRandScale={0.2}
                     mapParameters={{scale: 600, center: [10, 55]}}
                 />
+}
             </div>
         </div>
     );

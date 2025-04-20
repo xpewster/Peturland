@@ -1,4 +1,4 @@
-export type CoordinateAnswerPair = [[number, number], string[]];
+export type CoordinateAnswerPair = [[number, number], any[]];
 
 export enum SelectorType {
     COMPASS,
