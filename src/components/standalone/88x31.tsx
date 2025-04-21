@@ -72,8 +72,8 @@ export const EightyEight = (): React.ReactElement => {
 			{
 				sites.map((src, i) => {
 					return src[1] ? <a href={src[1]} target="_blank" rel="noopener noreferrer">
-						<img className="rbarbox" style={{outline: '0px', marginRight: '5px'}} src={src[0]} />
-						</a> : <img className="rbarbox" style={{outline: '0px', marginRight: '5px'}} src={src[0]} />;
+						<img className="rbarbox" style={{outline: '0px', marginRight: '5px', width: '88px', height: '31px'}} src={src[0]} />
+						</a> : <img className="rbarbox" style={{outline: '0px', marginRight: '5px', width: '88px', height: '31px'}} src={src[0]} />;
 				})
 			}
 			<hr className="standalonehr" style={{marginBottom: '20px'}}/>
