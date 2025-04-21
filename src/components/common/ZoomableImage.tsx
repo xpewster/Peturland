@@ -23,6 +23,7 @@ const ZoomableImage = (props: ZoomableImageProps): React.ReactElement => {
     }
 
     const onStop = (e: any) => {
+        // console.log("ZoomableImage onStop", e.state.positionX, e.state.positionY, e.state.scale);
         if (props.setPos) {
             props.setPos([e.state.positionX, e.state.positionY]);
         }

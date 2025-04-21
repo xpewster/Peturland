@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import fareast from '../../../../assets/maps/mong_fareast.png';
 import farwest from '../../../../assets/maps/mong_farwest.png';
 import ulaan from '../../../../assets/maps/mong_ulaan.png';
@@ -19,6 +19,7 @@ import gen4_grey from '../../../../assets/cars/gen4_grey.png';
 import west_car from '../../../../assets/cars/west_car.png';
 import camo_car from '../../../../assets/cars/camo_car.png';
 import depressed_car from '../../../../assets/cars/depressed_tent.png';
+import dots from '../../../../assets/dots.png';
 
 export interface MongoliaProps {
     quizType: QuizType;
@@ -27,23 +28,17 @@ export interface MongoliaProps {
 const Mongolia = (props: MongoliaProps): React.ReactElement => {
 
     const CAR_IMAGE_DIMENSION = 75;
+    
+    const [currentRegion, setCurrentRegion] = useState<number>(0);
+    
+    /* ----------------- */
 
-    const getQuizTitle = (): React.ReactElement => {
-        switch(props.quizType) {
-            case QuizType.MONG_DRIVING_DIRECTION:
-                return <span><img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> Mongolia driving directions <img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /></span>;
-            default:
-                return  <span>Mongolia quiz</span>;
-        }
-    };
+    function handleCheck(index: number) {
+        setCurrentRegion(index);
+    }
 
     const getClickText = (): string => {
-        switch(props.quizType) {
-            case QuizType.MONG_DRIVING_DIRECTION:
-                return "Click on the driving direction for this road!";
-            default:
-                return "Not yet supported";
-        }
+        return "Click on the driving direction for this road!";
     };
 
     const MONGOLIA_REGION_TO_MAP_SRC_MAP = new Map<string, string>([
@@ -81,23 +76,48 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
         return CAR_TO_IMG_MAP.get(answerArray[1]);
     };
 
+    const getMapSrc = (): string => {
+        return MONGOLIA_REGION_TO_MAP_SRC_MAP.get(REGIONS[currentRegion])!;
+    };
+
+    const getCoordinateAnswerPairs = (): CoordinateAnswerPair[] => {
+        return REGION_TO_COORDINATE_ANSWER_PAIRS_MAP.get(REGIONS[currentRegion])!;
+    };
+
 
     return (
-        <GenericMapMarkerQuiz
-            quizTitle={getQuizTitle()}
-            regionToMapSrcMap={MONGOLIA_REGION_TO_MAP_SRC_MAP}
-            enableRegions={REGIONS} 
-            enableRegionsRows={2}
-            clickText={getClickText()}
-            selectorType={SelectorType.COMPASS}
-            regionToCoordinateAnswerPairsMap={REGION_TO_COORDINATE_ANSWER_PAIRS_MAP}
-            answerIndex={0}
-            getHintFromAnswerArray={getHint}
-            hintText="car"
-            quizType={QuizType.MONG_DRIVING_DIRECTION}
-            disallowRepeats={true} 
-            showGeoWarning={true}
-        />
+        <div>
+            <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
+                <p style={{paddingBottom: '12px'}}><span><img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /> Mongolia driving directions <img src={car} style={{verticalAlign: 'middle', paddingBottom: '4px'}} /></span></p>
+                <img style={{position: 'absolute', left: '-2px', top: '111px'}} src={dots}></img>
+                <div>
+                    <p style={{marginBottom: '8px'}}>This particular quiz is only applicable for Geoguessr/Google Streetview!</p>
+                </div>
+                <img style={{position: 'absolute', left: '-2px', top: '153px'}} src={dots}></img>
+                <div style={{marginBottom: '10px', paddingRight: '0px'}}>
+                    {REGIONS[0]}<input type="checkbox" disabled={currentRegion === 0} onChange={() => {handleCheck(0)}} checked={currentRegion === 0}></input>
+                    {REGIONS[1]}<input type="checkbox" disabled={currentRegion === 1} onChange={() => {handleCheck(1)}} checked={currentRegion === 1}></input>
+                    {REGIONS[2]}<input type="checkbox" disabled={currentRegion === 2} onChange={() => {handleCheck(2)}} checked={currentRegion === 2}></input>
+                    {REGIONS[3]}<input type="checkbox" disabled={currentRegion === 3} onChange={() => {handleCheck(3)}} checked={currentRegion === 3}></input>
+                    {REGIONS[4]}<input type="checkbox" disabled={currentRegion === 4} onChange={() => {handleCheck(4)}} checked={currentRegion === 4}></input>
+                    {REGIONS[5]}<input type="checkbox" disabled={currentRegion === 5} onChange={() => {handleCheck(5)}} checked={currentRegion === 5}></input>
+                    {REGIONS[6]}<input type="checkbox" disabled={currentRegion === 6} onChange={() => {handleCheck(6)}} checked={currentRegion === 6}></input>
+                </div>
+                <img style={{position: 'absolute', left: '-2px', top: '201px'}} src={dots}></img>
+            </div>
+            <GenericMapMarkerQuiz
+                mapSrc={getMapSrc()}
+                clickText={getClickText()}
+                selectorType={SelectorType.COMPASS}
+                coordinateAnswerPairs={getCoordinateAnswerPairs()}
+                answerIndex={0}
+                getHintFromAnswerArray={getHint}
+                hintText="car"
+                quizType={QuizType.MONG_DRIVING_DIRECTION}
+                disallowRepeats={true} 
+                streakSuffix={`_${REGIONS[currentRegion]}`}
+            />
+        </div>
     );
 };
 

@@ -20,8 +20,11 @@ import peturland_outline from '../../assets/88x31/peturland_outline.png';
 import cool from '../../assets/fileboxicons/cool.gif';
 import seafare from '../../assets/88x31/seafare.png';
 import retrobar from '../../assets/88x31/retrobar.png'; 
+import bielzin from '../../assets/88x31/bielzinbutton.png';
+import humanfinny from '../../assets/88x31/humanfinny.jpg';
 
 import daiko from '../../assets/88x31/link_malta.gif';
+import { shuffle } from "../content/xgeo/helpers";
 
 // make: peturland, retrobar 88x31s
 
@@ -49,7 +52,11 @@ export const EightyEight = (): React.ReactElement => {
 	const sites: [string, string | null][] = [
 		[daiko, "https://daikonet.neocities.org/home"],
 		[seafare, "https://seafare.neocities.org/"],
-	]
+		[bielzin, "https://bielzin.neocities.org/"],
+		[humanfinny, "https://humanfinny.neocities.org/"],
+	];
+
+	shuffle(sites);
 
 	return <Standalone>
 		<div style={{paddingLeft: '10px', paddingRight: '10px'}}>
@@ -65,8 +72,8 @@ export const EightyEight = (): React.ReactElement => {
 			{
 				sites.map((src, i) => {
 					return src[1] ? <a href={src[1]} target="_blank" rel="noopener noreferrer">
-						<img className="rbarbox" src={src[0]} />
-						</a> : <img className="rbarbox" src={src[0]} />;
+						<img className="rbarbox" style={{outline: '0px', marginRight: '5px'}} src={src[0]} />
+						</a> : <img className="rbarbox" style={{outline: '0px', marginRight: '5px'}} src={src[0]} />;
 				})
 			}
 			<hr className="standalonehr" style={{marginBottom: '20px'}}/>
