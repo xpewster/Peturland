@@ -56,7 +56,7 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_MONG:
             return 1000;
         case ContentType.XGEO_MONG_CAR_META:
-            return 1000;
+            return 1200;
         case ContentType.XGEO_INDONESIA_KABUPATEN:
             return 1000;
         case ContentType.XGEO_PHILLIPINES_PROVINCES:

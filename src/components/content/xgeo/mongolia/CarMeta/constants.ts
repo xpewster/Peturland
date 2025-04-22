@@ -1,5 +1,6 @@
 import { CoordinateAnswerPair } from "../../common/constants";
 import mongolia from '../../../../../assets/maps/mongolia.png';
+import ulaan from '../../../../../assets/maps/mong_ulaan2.png';
 
 import grey_tent from '../../../../../assets/cars/grey_tent.png';
 import blue_tent from '../../../../../assets/cars/blue_tent.png';
@@ -40,6 +41,7 @@ import inverted_tent from '../../../../../assets/cars/meta/inverted_tent.png';
 import curved_straps from '../../../../../assets/cars/meta/curved_straps.png';
 import multicolored_tent from '../../../../../assets/cars/meta/multicolored_tent.png';
 import left_no_straps from '../../../../../assets/cars/meta/left_no_strap.png';
+import depressed_snow from '../../../../../assets/cars/meta/camo_snow.png';
 
 export const CAR_LABELS = [
     "Grey tent (Gen 3)", // 0
@@ -81,7 +83,13 @@ export const CAR_LABELS = [
     "Curved straps (Gen 3)", // 36
     "Multicolored tent (Gen 3)", // 37
     "Hooks car with no left straight hook (Gen 3)", // 38
+    "Snowy car (Gen 3)", // 39
 ]
+
+export const GEN3_CAR_INDICES = [
+    0, 1, 3, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+    32, 33, 34, 35, 36, 37, 38, 39,
+];
 
 export const CAR_SRCS = [
     grey_tent, // 0
@@ -123,6 +131,7 @@ export const CAR_SRCS = [
     curved_straps, // 36
     multicolored_tent, // 37
     left_no_straps, // 38
+    depressed_snow, // 39
 ];
 
 export const COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
@@ -335,12 +344,83 @@ export const COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
     [[288, 103], [[1, 16]]],
 ];
 
+export const ULAAN_COORDINATE_ANSWER_PAIRS: CoordinateAnswerPair[] = [
+    [[170, 423], [[2, 8]]],
+    [[138, 412], [2]],
+    [[115, 383], [2]],
+    [[184, 407], [[2, 1, 8]]],
+    [[196, 411], [2]],
+    [[206, 410], [8]],
+    [[239, 407], [[7, 2]]],
+    [[260, 418], [2]],
+    [[264, 414], [2]],
+    [[295, 403], [7]],
+    [[308, 383], [2]],
+    [[331, 377], [2]],
+    [[220, 378], [7]],
+    [[216, 372], [7]],
+    [[224, 366], [7]],
+    [[190, 378], [2]],
+    [[174, 372], [[7, 2, 1]]],
+    [[161, 357], [2]],
+    [[139, 363], [[7, 2, 1]]],
+    [[121, 356], [2]],
+    [[108, 351], [13]],
+    [[101, 348], [2]],
+    [[135, 338], [[13, 2, 7]]],
+    [[82, 335], [[0, 13, 2]]],
+    [[51, 370], [2]],
+    [[85, 336], [2]],
+    [[159, 335], [[7, 2]]],
+    [[149, 321], [[13, 2]]],
+    [[97, 332], [[13, 2, 7]]],
+    [[119, 320], [2]],
+    [[131, 313], [2]],
+    [[53, 247], [2]],
+    [[56, 267], [2]],
+    [[81, 182], [[8, 2]]],
+    [[128, 100], [[8, 2]]],
+    [[176, 47], [8]],
+    [[147, 181], [2]],
+    [[186, 151], [2]],
+    [[190, 170], [[13, 2]]],
+    [[113, 270], [2]],
+    [[123, 257], [[2, 39]]],
+    [[127, 223], [39]],
+    [[151, 228], [2]],
+    [[162, 229], [2]],
+    [[227, 200], [[13, 2]]],
+    [[213, 215], [[13, 2]]],
+    [[236, 204], [2]],
+    [[310, 211], [7]],
+    [[277, 249], [13]],
+    [[283, 301], [7]],
+    [[290, 310], [7]],
+    [[275, 311], [[13, 2, 7]]],
+    [[300, 338], [[13, 2, 7]]],
+    [[277, 338], [13]],
+    [[248, 300], [[8, 13, 2]]],
+    [[256, 306], [2]],
+    [[247, 304], [[8, 13]]],
+    [[245, 338], [[7, 13]]],
+    [[374, 328], [[13, 2, 7]]],
+    [[393, 259], [[13, 2]]],
+    [[383, 240], [13]],
+    [[394, 371], [8]],
+    [[412, 399], [8]],
+];
+
 export const REGION_TO_COORDINATE_ANSWER_PAIRS_MAP = new Map<string, CoordinateAnswerPair[]>([
-    ["Around Ulaan", COORDINATE_ANSWER_PAIRS],
+    ["Around Ulaan", ULAAN_COORDINATE_ANSWER_PAIRS],
     ["Everything else", COORDINATE_ANSWER_PAIRS],
 ]);
 
 export const MONGOLIA_REGION_TO_MAP_SRC_MAP = new Map<string, string>([
-    ["Around Ulaan", mongolia],
+    ["Around Ulaan", ulaan],
     ["Everything else", mongolia],
+]);
+
+export const MONGOLIA_REGION_TO_441_HEIGHT_MAP = new Map<string, number>([
+    ["Around Ulaan", 440],
+    ["Everything else", 242],
 ]);

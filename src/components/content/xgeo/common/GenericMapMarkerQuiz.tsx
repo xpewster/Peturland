@@ -85,6 +85,9 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
     }, [getStreakKey(props.quizType, []) + props.streakSuffix]);
 
     const debugLog = (_toFind: number) => {
+        if (!props.coordinateAnswerPairs[_toFind]) {
+            return;
+        }
         console.log(`coordX: ${props.coordinateAnswerPairs[_toFind][0][0]}, coordY: ${props.coordinateAnswerPairs[_toFind][0][1]}, answer: ${props.coordinateAnswerPairs[_toFind][1][props.answerIndex]}`);
     }
 
@@ -108,6 +111,9 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
             if (oldToFind === newt && props.disallowRepeats) {
                 tries++;
                 continue;
+            }
+            if (!props.coordinateAnswerPairs[newt]) {
+                return;
             }
             setToFind(newt);
             foundNewt = newt;
