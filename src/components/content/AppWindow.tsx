@@ -75,6 +75,10 @@ export const getContentSize = (type: ContentType) => {
             return 800;
         case ContentType.XGEO_JP_PREFECTURES:
             return 850;
+        case ContentType.XGEO_JP_POLE_PLATES:
+            return 1250;
+        case ContentType.XGEO_JP_POLE_REFLECTORS:
+            return 1250;
         case ContentType.SOON:
             return 700;
         default:

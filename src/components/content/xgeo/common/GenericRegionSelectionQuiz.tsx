@@ -38,6 +38,7 @@ export interface GenericRegionSelectionQuizProps {
     useMapWithInsets?: boolean;
     insetEnableIndex?: number;
     regionIsAnswer?: boolean;
+    highlightGroups?: number[][];
 }
 
 type LastItem = [number, number, number, number[], number, number]; // [toFind, randIndex, sepia, skew, scale, hue_rotate]
@@ -85,6 +86,8 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
         coordinates: props.mapParameters?.center ?? [-105, 36],
         zoom: props.mapParameters?.zoom ?? 1,
     });
+
+    const [hoveredElement, setHoveredElement] = useState<number | null>(null);
 
     useEffect(() => {
         setStreak(0);
@@ -319,8 +322,10 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     }, [props.answerIndexToRegionIndices?.toString(), lastItems[0][0], lastItems[0][1]]);
 
     const defaultStyleFunction = (key: string) => {
+        const regionIndex = Number(key.split("-")[1]);
         return {
-            default: { fill: getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
+            default: { fill: (hoveredElement && props.highlightGroups?.[hoveredElement]?.includes(regionIndex)) ? MAP_HOVER_COLOR
+                : (getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR), stroke: "#000000", outline: 'none' },
             hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
         }
@@ -391,6 +396,8 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
                                                 geography={geo} 
                                                 onClick={() => { handleClick(geo.rsmKey); }} 
                                                 style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys) : defaultStyleFunction(geo.rsmKey)}
+                                                onMouseEnter={() => { setHoveredElement(Number(geo.rsmKey.split("-")[1])); }}
+                                                onMouseLeave={() => { setHoveredElement(null); }}
                                             />
                                         ))
                                 }

@@ -56,6 +56,8 @@ const AppContent = ({
             case ContentType.XGEO_JP_PREFECTURES:
             case ContentType.XGEO_JP_POLE_PLATES:
             case ContentType.XGEO_JP_POLE_REFLECTORS:
+            case ContentType.XGEO_JP_POLE_ATTACHMENTS:
+            case ContentType.XGEO_JP_KANJI:
                 return <Xgeo contentType={contentType}/>;
             case ContentType.SOON:
                 return <Soon />;    

@@ -37,5 +37,6 @@ export enum ContentType {
     XGEO_JP_POLE_PLATES,
     XGEO_JP_POLE_REFLECTORS,
     XGEO_JP_POLE_ATTACHMENTS,
+    XGEO_JP_KANJI,
     SOON,
 }

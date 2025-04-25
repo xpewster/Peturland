@@ -75,6 +75,8 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
             return LocalStorageStreakKeys.JAPAN_POLE_REFLECTORS + enabledRegionBits;
         case QuizType.JAPAN_POLE_ATTACHMENTS:
             return LocalStorageStreakKeys.JAPAN_POLE_ATTACHMENTS + enabledRegionBits;
+        case QuizType.JAPAN_KANJI:
+            return LocalStorageStreakKeys.JAPAN_KANJI + enabledRegionBits;
         default:
             return "default" + enabledRegionBits;
     }

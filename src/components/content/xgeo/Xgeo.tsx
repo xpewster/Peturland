@@ -27,6 +27,7 @@ import regions from '../../../assets/fileboxicons/xp/icwconn1.exe_14_200-2.png';
 import counties from '../../../assets/fileboxicons/xp/compstui.dll_14_64030-1.png';
 import jp_0 from '../../../assets/fileboxicons/xp/cintlgnt.ime_14_256-0.png';
 import jp_1 from '../../../assets/fileboxicons/xp/dayi.ime_14_256_1028-2.png';
+import jp_2 from '../../../assets/fileboxicons/xp/romanime.ime_14_256_1028-2.png';
 import pole from '../../../assets/fileboxicons/xp/sprb040D.dll_14_2000_1037-2.png';
 import attachments from '../../../assets/fileboxicons/xp/smtpsnap.dll_14_8611_1045-1.png';
 import direction from '../../../assets/fileboxicons/xp/explorer.exe_14_251.png';
@@ -60,6 +61,8 @@ import JpAreaCodes from './japan/AreaCodes/JpAreaCodes';
 import KenyaCounties from './kenya/counties/KenyaCounties';
 import JpPrefectures from './japan/Prefectures/JpPrefectures';
 import MongoliaCarMeta from './mongolia/CarMeta/MongoliaCarMeta';
+import JpPolePlates from './japan/PolePlates/JpPolePlates';
+import JpPoleReflectors from './japan/PoleReflectors/JpReflectors';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -101,10 +104,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const NIGERIA_LINKS = [Path.XGEO_NIGERIA_STATES];
     const NIGERIA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
-    const JP_IMGS = [phone, jp_0, jp_1, pole, attachments];
-    const JP_STRINGS = ['Area Codes', 'Prefectures', 'Pole Plates', 'Pole Reflectors', 'Pole Attachments'];
-    const JP_LINKS = [Path.XGEO_JP_AREACODES, Path.XGEO_JP_PREFECTURES, Path.XGEO_JP_POLE_PLATES, Path.XGEO_JP_POLE_REFLECTORS, Path.XGEO_JP_POLE_ATTACHMENTS];
-    const JP_STYLES = [{paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const JP_IMGS = [phone, jp_0, jp_2, jp_1, pole, attachments];
+    const JP_STRINGS = ['Area Codes', 'Prefectures', 'Kanji', 'Pole Plates', 'Pole Reflectors', 'Pole Attachments'];
+    const JP_LINKS = [Path.XGEO_JP_AREACODES, Path.XGEO_JP_PREFECTURES, Path.XGEO_JP_KANJI, Path.XGEO_JP_POLE_PLATES, Path.XGEO_JP_POLE_REFLECTORS, Path.XGEO_JP_POLE_ATTACHMENTS];
+    const JP_STYLES = [{paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}];
 
     const KENYA_IMGS = [counties];
     const KENYA_STRINGS = ['Counties'];
@@ -194,6 +197,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <JpAreaCodes />;
             case ContentType.XGEO_JP_PREFECTURES:
                 return <JpPrefectures />;
+            case ContentType.XGEO_JP_POLE_PLATES:
+                return <JpPolePlates />;
+            case ContentType.XGEO_JP_POLE_REFLECTORS:
+                return <JpPoleReflectors />;
             default:
                 return <XgeoSoon />;
         }
