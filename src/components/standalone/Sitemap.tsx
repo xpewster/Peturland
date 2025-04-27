@@ -55,6 +55,17 @@ const Sitemap = () => {
                 </ul>
               </li>
               <li>
+                Japan
+                <ul>
+                  <li><Link to={Path.XGEO_JP_AREACODES}>Area Codes</Link></li>
+                  <li><Link to={Path.XGEO_JP_PREFECTURES}>Prefectures</Link></li>
+                  <li><Link to={Path.XGEO_JP_POLE_PLATES}>Pole Plates</Link></li>
+                  <li><Link to={Path.XGEO_JP_POLE_REFLECTORS}>Pole Reflectors</Link></li>
+                  <li><Link to={Path.XGEO_JP_POLE_ATTACHMENTS}>Pole Attachments</Link></li>
+                  <li><Link to={Path.XGEO_JP_KANJI}>Kanji</Link></li>
+                </ul>
+              </li>
+              <li>
                 Other countries
                 <ul>
                   <li><Link to={Path.XGEO_MONG}>Mongolia Driving Direction</Link></li>
@@ -63,6 +74,9 @@ const Sitemap = () => {
                   <li><Link to={Path.XGEO_PHILLIPINES_REGIONS}>Philippines Regions</Link></li>
                   <li><Link to={Path.XGEO_NIGERIA_STATES}>Nigeria States</Link></li>
                   <li><Link to={Path.XGEO_KENYA_COUNTIES}>Kenya Counties</Link></li>
+                  <li><Link to={Path.XGEO_AUSTRALIA_PLATES}>Australia Plates</Link></li>
+                  <li><Link to={Path.XGEO_ZA_PLATES}>South Africa Plates</Link></li>
+                  <li><Link to={Path.XGEO_ZA_PROVINCES}>South Africa Provinces</Link></li>
                 </ul>
               </li>
             </ul>
@@ -71,7 +85,7 @@ const Sitemap = () => {
         </div>
         
         <hr />
-        <p style={{paddingLeft: '10px'}}>© Peturland.com - Last Updated: April 2025</p>
+        <p style={{paddingLeft: '10px'}}>© Peturland.com - Last Updated: April 27 2025</p>
     </div>
     );
 };

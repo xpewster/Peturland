@@ -93,6 +93,30 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://peturland.com/xgeo/japan/area-codes</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/japan/prefectures</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/japan/pole-plates</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/japan/pole-reflectors</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/japan/pole-attachments</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/japan/kanji</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://peturland.com/xgeo/mongolia/driving-direction</loc>
     <priority>0.6</priority>
   </url>
@@ -106,6 +130,26 @@
   </url>
   <url>
     <loc>https://peturland.com/xgeo/philippines/regions</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/nigeria/states</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/kenya/counties</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/australia/plates</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/south-africa/plates</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/south-africa/provinces</loc>
     <priority>0.6</priority>
   </url>
   <url>
