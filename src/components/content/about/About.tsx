@@ -119,7 +119,7 @@ const About = (): React.ReactElement => {
                                 <li><b>Video games (right now)</b>: CS:GO, GeoGuessr, ARAMs</li>
                                 <li><b>Video games (childhood)</b>: ToonTown, Tales of Pirates, Halo 3, XGen Stick Arena: Ballistick</li>
                                 <li><b>Movies</b>: Princess Mononoke, Dredd, The Princess Bride, </li>
-                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, Kaiba, Mushishi, Solo Leveling, any Miyazaki movie, Spy Family</li>
+                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, Mushishi, Kaiba, Solo Leveling, Initial D, Spy Family</li>
                                 <li><b>TV Shows</b>: HotD, Fallout, The Witcher</li>
                                 <li><b>OSTs</b>: Wind waker, FF13, Mononoke-hime, In This Corner of the World, Interstellar, 86</li>
                                 <li><b>Bands/artists</b>: Mass of the Fermenting Dregs, Tricot, Gracie Abrams, The Strokes, Hideki Naganuma</li>

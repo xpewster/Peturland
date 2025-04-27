@@ -7,6 +7,7 @@ import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { PREFECTURES, PREFECTURES_KANJI, REGION_INDEX_TO_PREFECTURE_INDEX } from './constants';
 import { JAPAN_PREFECTURES_BITFLAG } from '../constants';
+import totoro from '../../../../../assets/gifs/Totoro.gif';
 
 
 
@@ -99,6 +100,7 @@ const JpPrefectures = (): React.ReactElement => {
                     regionIsAnswer={true}
                 />
             </div>
+            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

@@ -63,6 +63,9 @@ import JpPrefectures from './japan/Prefectures/JpPrefectures';
 import MongoliaCarMeta from './mongolia/CarMeta/MongoliaCarMeta';
 import JpPolePlates from './japan/PolePlates/JpPolePlates';
 import JpPoleReflectors from './japan/PoleReflectors/JpReflectors';
+import JpPoleAttachments from './japan/JpAttachments/JpAttachments';
+import Kanji from './japan/Kanji/Kanji';
+import AustraliaPlates from './australia/Plates/AustraliaPlates';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -114,13 +117,23 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const KENYA_LINKS = [Path.XGEO_KENYA_COUNTIES];
     const KENYA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
-    const TOP_IMGS = [folder2, folder2, folder2, folder2, folder2];
-    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Nigeria', 'Kenya'];
-    const TOP_STYLES = Array(5).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
-    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS, NIGERIA_IMGS, KENYA_IMGS];
-    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS, NIGERIA_STRINGS, KENYA_STRINGS];
-    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS, NIGERIA_LINKS, KENYA_LINKS];
-    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES, NIGERIA_STYLES, KENYA_STYLES];
+    const AU_IMGS = [lice];
+    const AU_STRINGS = ['Number Plates'];
+    const AU_LINKS = [Path.XGEO_AUSTRALIA_PLATES];
+    const AU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+
+    const ZA_IMGS = [lice];
+    const ZA_STRINGS = ['Number Plates'];
+    const ZA_LINKS = [Path.XGEO_ZA_PLATES];
+    const ZA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+
+    const TOP_IMGS = [folder2, folder2, folder2, folder2, folder2, folder2, folder2];
+    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Nigeria', 'Kenya', 'Australia', 'South Africa'];
+    const TOP_STYLES = Array(7).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
+    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS, NIGERIA_IMGS, KENYA_IMGS, AU_IMGS, ZA_IMGS];
+    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS, NIGERIA_STRINGS, KENYA_STRINGS, AU_STRINGS, ZA_STRINGS];
+    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS, NIGERIA_LINKS, KENYA_LINKS, AU_LINKS, ZA_LINKS];
+    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES, NIGERIA_STYLES, KENYA_STYLES, AU_STYLES, ZA_STYLES];
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
     const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);
@@ -193,6 +206,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <NigeriaStates />;
             case ContentType.XGEO_KENYA_COUNTIES:
                 return <KenyaCounties />;
+            case ContentType.XGEO_AUSTRALIA_PLATES:
+                return <AustraliaPlates />;
             case ContentType.XGEO_JP_AREACODES:
                 return <JpAreaCodes />;
             case ContentType.XGEO_JP_PREFECTURES:
@@ -201,6 +216,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <JpPolePlates />;
             case ContentType.XGEO_JP_POLE_REFLECTORS:
                 return <JpPoleReflectors />;
+            case ContentType.XGEO_JP_POLE_ATTACHMENTS:
+                return <JpPoleAttachments />;
+            case ContentType.XGEO_JP_KANJI:
+                return <Kanji />;
             default:
                 return <XgeoSoon />;
         }

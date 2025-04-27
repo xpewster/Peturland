@@ -9,6 +9,7 @@ import { HIGHLIGHT_GROUPS, REFLECTOR_INDEX_TO_PREFECTURE_INDICES, REFLECTORS, RE
 import { JAPAN_PREFECTURES_BITFLAG } from '../constants';
 import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';
 import { PREFECTURES } from '../Prefectures/constants';
+import totoro from '../../../../../assets/gifs/Totoro.gif';
 
 
 
@@ -81,6 +82,7 @@ const JpPoleReflectors = (): React.ReactElement => {
             }
             </div>
             <p>Credit to <a href='https://www.plonkit.net/japan' target="_blank" rel="noopener noreferrer">Plonkit</a> for the images</p>
+            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

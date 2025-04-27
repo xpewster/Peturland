@@ -68,9 +68,9 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_KENYA_COUNTIES:
             return 700;
         case ContentType.XGEO_AUSTRALIA_PLATES:
-            return 700;
+            return 1010;
         case ContentType.XGEO_ZA_PLATES:
-            return 700;
+            return 1010;
         case ContentType.XGEO_JP_AREACODES:
             return 800;
         case ContentType.XGEO_JP_PREFECTURES:
@@ -79,6 +79,8 @@ export const getContentSize = (type: ContentType) => {
             return 1250;
         case ContentType.XGEO_JP_POLE_REFLECTORS:
             return 1250;
+        case ContentType.XGEO_JP_POLE_ATTACHMENTS:
+            return 1050;
         case ContentType.SOON:
             return 700;
         default:

@@ -98,6 +98,56 @@ export const PREFECTURES_KANJI = [
     "沖縄県"   // Okinawa
 ];
 
+export const PREFECTURE_REGIONS = [
+    "Hokkaido",      // Hokkaido
+    "Tohoku",        // Aomori
+    "Tohoku",        // Iwate
+    "Tohoku",        // Miyagi
+    "Tohoku",        // Akita
+    "Tohoku",        // Yamagata
+    "Tohoku",        // Fukushima
+    "Kanto",         // Ibaraki
+    "Kanto",         // Tochigi
+    "Kanto",         // Gunma
+    "Kanto",         // Saitama
+    "Kanto",         // Chiba
+    "Kanto",         // Tokyo
+    "Kanto",         // Kanagawa
+    "Hokuriku",      // Niigata
+    "Hokuriku",      // Toyama
+    "Hokuriku",      // Ishikawa
+    "Hokuriku",      // Fukui
+    "Chubu",         // Yamanashi
+    "Chubu",         // Nagano
+    "Chubu",         // Gifu
+    "Chubu",         // Shizuoka
+    "Chubu",         // Aichi
+    "Kansai/Chubu",        // Mie
+    "Kansai",        // Shiga
+    "Kansai",        // Kyoto
+    "Kansai",        // Osaka
+    "Kansai",        // Hyogo
+    "Kansai",        // Nara
+    "Kansai",        // Wakayama
+    "Chugoku",       // Tottori
+    "Chugoku",       // Shimane
+    "Chugoku",       // Okayama
+    "Chugoku",       // Hiroshima
+    "Chugoku",       // Yamaguchi
+    "Shikoku",       // Tokushima
+    "Shikoku",       // Kagawa
+    "Shikoku",       // Ehime
+    "Shikoku",       // Kochi
+    "Kyushu",        // Fukuoka
+    "Kyushu",        // Saga
+    "Kyushu",        // Nagasaki
+    "Kyushu",        // Kumamoto
+    "Kyushu",        // Oita
+    "Kyushu",        // Miyazaki
+    "Kyushu",        // Kagoshima
+    "Okinawa"        // Okinawa
+];
+
 export const REGIONS_KANJI = [
     "北海道",  // Hokkaido
     "東北",    // Tohoku

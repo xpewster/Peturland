@@ -1,11 +1,13 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { STATE_NAMES, TERRITORY_NAMES } from '../constants';
-import { PLATE_STATE, PLATE_TUPLE, PLATE_TYPE, PLATES } from './constants';
+import { PLATE_STATE, PLATE_TUPLE, PLATE_TYPE } from './constants';
 import { preloadImage } from '../../../../common/preloadImage';
 import { toPng } from 'html-to-image';
 
 export interface PlateProps {
-    state?: STATE_NAMES;
+    platesLibrary: Map<string, Map<PLATE_TYPE, PLATE_TUPLE[]>>;
+    width: number;
+    height: number;
+    region?: string;
     type?: PLATE_TYPE;
     vanityOrOldIndex?: number;
     index2?: number;
@@ -69,7 +71,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
             return choosePlate(props.tuple, state);
         }
 
-        const state_plates = PLATES.get(props.state!)!;
+        const state_plates = props.platesLibrary.get(props.region!)!;
 
         switch(props.type) {
             default:
@@ -90,7 +92,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
 
     const getBlurredPlate = useMemo(() => {
         return <div style={{filter: `brightness(${props.brightness ?? 1}) saturate(${Math.max(((props.brightness ?? 1)-0.9) * 5 + 0.7, 1)})`}}>
-            <svg viewBox='0 0 150 75'>
+            <svg viewBox={`0 0 ${props.width} ${props.height}`}>
                 <defs>
                     <filter id={getFilterId("combinedFilter")} x="-50%" y="-50%" width="200%" height="200%">
                         {(plate && plate[3][0] !== 1000) ? <><feFlood result="rs"
@@ -150,7 +152,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         <feGaussianBlur in="blendedHc2" stdDeviation={(props.blur ?? 0) * (props.skew ? (1.0/1.414) : 1) / 1.5} edgeMode="duplicate" /> {/* (Math.abs(props.skew?.[1] ?? 0)/90 + 1)*/}
                     </filter>
                 </defs>
-                <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width="150px" height="75px"
+                <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width={`${props.width}px`} height={`${props.height}px`}
                     style={{
                         transformStyle: 'preserve-3d',
                         transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
@@ -163,17 +165,14 @@ const Plate = (props: PlateProps): React.ReactElement => {
     }, [plate, props.blur, props.rsc, props.rsc2, props.hc, sepia, index2, props.skew, props.scale]);
 
     function createDownsampledImage(element: any, scaleFactor: number) {
-        // Get the original dimensions
         const rect = element.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
-        
-        // Step 1: Capture the element with html-to-image (this preserves SVG filters)
+
         return toPng(element, {
             skipFonts: true, // Can help with performance
           })
           .then((dataUrl: any) => {
-            // Create an image from the data URL
 
             // console.log("Data URL hash:", dataUrl.length, dataUrl.substring(0, 100));
             const img = new Image();
@@ -183,33 +182,26 @@ const Plate = (props: PlateProps): React.ReactElement => {
             });
           })
           .then((img: any) => {
-            // Step 2: Create a canvas for processing
             const canvas = document.createElement('canvas');
             const ctx = canvas.getContext('2d');
             canvas.width = width;
             canvas.height = height;
-            
-            // Step 3: Create a temporary smaller canvas for downsampling
+
             const tempCanvas = document.createElement('canvas');
             const tempCtx = tempCanvas.getContext('2d');
-            
-            // Calculate downsampled dimensions
+
             const smallWidth = Math.max(1, Math.floor(width / scaleFactor));
             const smallHeight = Math.max(1, Math.floor(height / scaleFactor));
             tempCanvas.width = smallWidth;
             tempCanvas.height = smallHeight;
-            
-            // Step 4: Draw the original image to the small canvas (downsampling)
+
             tempCtx?.drawImage(img, 0, 0, width, height, 0, 0, smallWidth, smallHeight);
-            
-            // Step 5: Draw the small canvas back to the original-sized canvas
-            // with image smoothing disabled to create the pixelated effect
+
             if (ctx) { 
                 ctx.imageSmoothingEnabled = false; // Disable image smoothing
                 ctx.drawImage(tempCanvas, 0, 0, smallWidth, smallHeight, 0, 0, width, height);
             }
-            
-            // Step 6: Create the final image
+
             const resultImg = new Image();
             resultImg.src = canvas.toDataURL();
             resultImg.width = width;
@@ -217,20 +209,15 @@ const Plate = (props: PlateProps): React.ReactElement => {
             resultImg.style.width = width + 'px';
             resultImg.style.height = height + 'px';
             
-            // Optional: Add a class for styling
             resultImg.className = 'downsampled-image';
-            
-            // Step 7: Replace the original element
+
             if (element.parentNode) {
-                // element.style.display = 'none'; // Hide the original element
                 element.parentNode.insertBefore(resultImg, element);
 
-                // Remove the previous result if it exists
                 if (lastDownsampledImageRef.current && lastDownsampledImageRef.current.parentNode) {
                     lastDownsampledImageRef.current.parentNode.removeChild(lastDownsampledImageRef.current);
                 }
-                
-                // Update our reference to the most recent result
+
                 lastDownsampledImageRef.current = resultImg;
             }
             
@@ -268,8 +255,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
             {(props.blur || props.skew) && !props.show ?
                 <div style={{
                     perspective: '800px',
-                    width: '150px',
-                    height: '75px',
+                    width: `${props.width}px`,
+                    height: `${props.height}px`,
                     position: 'relative',
                     overflow: 'hidden',
                   }}>
@@ -281,7 +268,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         height: '100%',
                         zIndex: 5,
                     }}>
-                        <svg viewBox='0 0 150 75'>
+                        <svg viewBox={`0 0 ${props.width} ${props.height}`}>
                             <defs>
                                 <filter id={getFilterId("turb")}>
                                     <feTurbulence
@@ -338,14 +325,14 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         zIndex: 3,
                         pointerEvents: 'none', 
                     }}>
-                        <svg viewBox='0 0 150 75' style={{
+                        <svg viewBox={`0 0 ${props.width} ${props.height}`} style={{
                             width: '100%',
                             height: '100%',
                             overflow: 'visible',
                         }}>
                         <line 
                             x1="-50" y1="0" 
-                            x2="200" y2="0"
+                            x2={`${props.width + 50}`} y2="0"
                             stroke="gray" 
                             strokeWidth="1" 
                             strokeDasharray="5,5"
@@ -355,8 +342,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
                             }}
                         />
                         <line 
-                            x1="-50" y1="75" 
-                            x2="200" y2="75"
+                            x1="-50" y1={`${props.height}` }
+                            x2={`${props.width + 50}`} y2={`${props.height}` }
                             stroke="gray" 
                             strokeWidth="1" 
                             strokeDasharray="5,5"
@@ -367,7 +354,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         />
                         <line 
                             x1="0" y1="-25" 
-                            x2="0" y2="100"
+                            x2="0" y2={`${props.height + 25}` }
                             stroke="gray" 
                             strokeWidth="3" 
                             strokeDasharray="5,5"
@@ -377,8 +364,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
                             }}
                         />
                         <line 
-                            x1="150" y1="-25" 
-                            x2="150" y2="100"
+                            x1={`${props.width}`} y1="-25" 
+                            x2={`${props.width}`} y2={`${props.height + 25}` }
                             stroke="gray" 
                             strokeWidth="3" 
                             strokeDasharray="5,5"
@@ -390,11 +377,11 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         </svg>
                     </div>}
                 </div>
-                : <img className='plate' style={{paddingBottom: 0}} src={getSrc()}></img>
+                : <img className='plate' style={{paddingBottom: 0, width: `${props.width}px`, height:  `${props.height}px`}} src={getSrc()}></img>
             }
             {(props.showYears && plate) ?
                 <>
-                    <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{props.state?.toString() + (props.type === PLATE_TYPE.VANITY ? " (Special)" : "")}</p>
+                    <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{props.region?.toString() + (props.type === PLATE_TYPE.VANITY ? " (Special)" : "")}</p>
                     {(plate.length === 5 ?
                         <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-Present)`}</p>
                         : <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-${plate[5]})`}</p>)

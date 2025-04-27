@@ -6,6 +6,7 @@ import jpa from '../../../../../assets/geojsons/jp_areacodes.json';
 import { getStreakKey } from '../../helpers';
 import { AREA_CODES, JAPAN_REGIONS_BITFLAG, REGION_INDEX_TO_PREFECTURE_INDEX } from './constants';
 import { QuizType } from '../../constants';
+import totoro from '../../../../../assets/gifs/Totoro.gif';
 
 
 
@@ -57,6 +58,7 @@ const JpAreaCodes = (): React.ReactElement => {
                 />
             </div>
             <p>Thanks to <a href='https://super-duper.fr/' target='_blank' rel='noreferrer'>super-duper.fr</a> for the map json!</p>
+            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };
