@@ -32,6 +32,7 @@ export enum Path {
     XGEO_KENYA_COUNTIES = "/xgeo/kenya/counties",
     XGEO_AUSTRALIA_PLATES = "/xgeo/australia/plates",
     XGEO_ZA_PLATES = "/xgeo/south-africa/plates",
+    XGEO_ZA_PROVINCES = "/xgeo/south-africa/provinces",
     XGEO_JP_AREACODES = "/xgeo/japan/area-codes",
     XGEO_JP_PREFECTURES = "/xgeo/japan/prefectures",
     XGEO_JP_POLE_PLATES = "/xgeo/japan/pole-plates",

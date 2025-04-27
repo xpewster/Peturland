@@ -4,7 +4,7 @@ import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import canada from '../../../../../assets/canadamf.gif';
 import mexico from '../../../../../assets/mexico.gif';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import usa from '../../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -45,7 +45,7 @@ const UsAbbreviations = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '166px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={usa}
                     clickText={'Click on the right state/prov.!'}
                     regionIndexArray={STATES}

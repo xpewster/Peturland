@@ -1,13 +1,13 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import jp from '../../../../../assets/geojsons/prefectures.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { HIGHLIGHT_GROUPS, REFLECTOR_INDEX_TO_PREFECTURE_INDICES, REFLECTORS, REGION_INDEX_TO_REFLECTOR_INDEX } from './constants';
 import { JAPAN_PREFECTURES_BITFLAG } from '../constants';
-import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';
+import MultipleChoiceQuiz from '../../common/MultipleChoiceQuiz';
 import { PREFECTURES } from '../Prefectures/constants';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
 
@@ -47,7 +47,7 @@ const JpPoleReflectors = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-            {enableMC ?  <GenericMultipleChoiceQuiz
+            {enableMC ?  <MultipleChoiceQuiz
                     mapJsonSrc={jp}
                     clickText={'Click on the right reflector!'}
                     regionIndexArray={PREFECTURES}
@@ -62,7 +62,7 @@ const JpPoleReflectors = (): React.ReactElement => {
                     itemHeight={150}
                     mapParameters={{scale: 1600, center: [138, 38]}}
             />
-            : <GenericRegionSelectionQuiz
+            : <RegionSelectionQuiz
                     mapJsonSrc={jp}
                     clickText={'Click on the right region!'}
                     regionIndexArray={PREFECTURES}
@@ -82,7 +82,7 @@ const JpPoleReflectors = (): React.ReactElement => {
             }
             </div>
             <p>Credit to <a href='https://www.plonkit.net/japan' target="_blank" rel="noopener noreferrer">Plonkit</a> for the images</p>
-            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
+            <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import kenya from '../../../../../assets/geojsons/kenya2.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -36,13 +36,13 @@ const KenyaCounties = (): React.ReactElement => {
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             </div>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={kenya}
                     clickText={'Click on the right county!'}
                     regionIndexArray={COUNTIES}
                     toFindIndexToAnswerIndicesArray={REGION_INDEX_TO_COUNTY_INDEX}
                     answerIndexToText={getText}
-                    streakKey={getStreakKey(QuizType.JAPAN_AREACODES, enableRegion)}
+                    streakKey={getStreakKey(QuizType.KENYA_COUNTIES, enableRegion)}
                     disallowRepeats={true}
                     enableRegions={enableRegion}
                     regionsBitFlag={KENYA_REGIONS_BITFLAG}

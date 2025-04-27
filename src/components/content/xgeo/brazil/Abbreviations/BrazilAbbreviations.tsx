@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import brazil from '../../../../../assets/geojsons/brazil-states2.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -28,7 +28,7 @@ const BrazilAbbreviations = (): React.ReactElement => {
             <p style={{paddingBottom: '10px'}}>2-Letter Abbreviations</p>
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={brazil}
                     clickText={'Click on the right state!'}
                     regionIndexArray={BRAZIL_STATES}

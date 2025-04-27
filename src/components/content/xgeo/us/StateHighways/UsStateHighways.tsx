@@ -3,7 +3,7 @@ import './../Us.css';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import canada from '../../../../../assets/canadamf.gif';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import usa from '../../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -59,7 +59,7 @@ const UsStateHighways = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '196px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={usa}
                     clickText={'Click on the right state! (Lowest numbered highway shield shown)'}
                     regionIndexArray={STATES}

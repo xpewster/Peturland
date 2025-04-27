@@ -4,7 +4,7 @@ import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { isStateEnabled, isStateEnabledCustomBitflag } from './constants';
 import { MAP_COLOR } from '../constants';
-import { MapParameters } from '../common/GenericRegionSelectionQuiz';
+import { MapParameters } from '../common/RegionSelectionQuiz';
 
 export interface MapWithInsetsProps {
     mapJsonSrc?: string;

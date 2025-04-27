@@ -5,7 +5,7 @@ import { QuizType } from '../../constants';
 import { getStreakKey } from '../../helpers';
 import dots from '../../../../../assets/dots.png';
 import { isMobile } from 'react-device-detect';
-import GenericLicensePlatesQuiz from '../../common/GenericLicensePlatesQuiz';
+import LicensePlatesQuiz from '../../common/LicensePlatesQuiz';
 import aus from '../../../../../assets/geojsons/aus.json';
 import { PLATES, STATE_TO_REGION_BITFLAG, STATES } from './constants';
 import auskangaroo from '../../../../../assets/gifs/auskangaroo.gif';
@@ -83,7 +83,7 @@ const AustraliaPlates = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '206px'}} src={dots}></img>
             <div style={{marginTop: '20px'}}>
-                <GenericLicensePlatesQuiz
+                <LicensePlatesQuiz
                     mapJsonSrc={aus}
                     clickText={'Click on the right state!'}
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
@@ -92,8 +92,8 @@ const AustraliaPlates = (): React.ReactElement => {
                     enableVanity={enableVanity}
                     regionIndexArray={STATES}
                     platesLibrary={PLATES}
-                    plateWidth={180}
-                    plateHeight={65}
+                    defaultPlateWidth={180}
+                    defaultPlateHeight={65}
                     enableBlur={enableBlur}
                     enableSkew={enableSkew}
                     enableRandBlur={enableRandBlur}

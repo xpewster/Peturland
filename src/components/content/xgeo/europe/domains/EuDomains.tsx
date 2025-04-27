@@ -4,7 +4,7 @@ import europe from '../../../../../assets/geojsons/europe2.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { COUNTRIES, COUNTRY_TO_REGION_BITFLAG } from '../constants';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import { COUNTRY_INDEX_TO_DOMAIN_INDEX, DOMAINS } from './constants';
 
 
@@ -38,7 +38,7 @@ const EuDomains = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={europe}
                     clickText={'Click on the right country!'}
                     regionIndexArray={COUNTRIES}

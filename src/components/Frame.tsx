@@ -77,6 +77,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_AUSTRALIA_PLATES;
       case Path.XGEO_ZA_PLATES:
         return ContentType.XGEO_ZA_PLATES;
+      case Path.XGEO_ZA_PROVINCES:
+        return ContentType.XGEO_ZA_PROVINCES;
       case Path.XGEO_JP_AREACODES:
         return ContentType.XGEO_JP_AREACODES;
       case Path.XGEO_JP_PREFECTURES:

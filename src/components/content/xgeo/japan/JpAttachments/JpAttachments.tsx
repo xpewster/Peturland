@@ -1,14 +1,15 @@
 import React, { useMemo, useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import jp from '../../../../../assets/geojsons/prefectures.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { ATTACHMENT_INDEX_TO_PREFECTURE_INDEX, ATTACHMENTS, HIGHLIGHT_GROUPS, PREFECTURE_INDEX_TO_ATTACHMENT_INDEX } from './constants';
 import { JAPAN_PREFECTURES_BITFLAG } from '../constants';
-import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';
+import MultipleChoiceQuiz from '../../common/MultipleChoiceQuiz';
 import { PREFECTURE_REGIONS, PREFECTURES } from '../Prefectures/constants';
+import totoro from '../../../../../assets/gifs/Totoro.gif';
 
 
 
@@ -68,7 +69,7 @@ const JpPoleAttachments = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={jp}
                     clickText={'Click on the right region!'}
                     regionIndexArray={PREFECTURE_REGIONS}
@@ -87,6 +88,7 @@ const JpPoleAttachments = (): React.ReactElement => {
                 />
             </div>
             <p>Credit to <a href='https://www.plonkit.net/japan' target="_blank" rel="noopener noreferrer">Plonkit</a> and <a href='https://docs.google.com/document/d/14rmfw7gU5L_4S43ED1ixEamZ1acZ0P0DWnYntVIc2F8/edit?tab=t.0' target="_blank" rel="noopener noreferrer">@dazainlh</a> for the images</p>
+            <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

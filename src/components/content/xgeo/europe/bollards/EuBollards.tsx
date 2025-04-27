@@ -5,8 +5,8 @@ import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { COUNTRIES, COUNTRY_TO_REGION_BITFLAG } from '../constants';
 import { COUNTRY_INDEX_TO_BOLLARDS_INDEX, BOLLARD_INDEX_TO_COUNTRY_INDICES, BOLLARDS, COUNTRY_INDEX_TO_COMMON_BOLLARDS_INDEX, BOLLARD_INDEX_TO_COMMON_COUNTRY_INDICES } from './constants';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
-import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
+import MultipleChoiceQuiz from '../../common/MultipleChoiceQuiz';
 
 
 const EuBollards = (): React.ReactElement => {
@@ -70,7 +70,7 @@ const EuBollards = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '166px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                {enableMC ? <GenericMultipleChoiceQuiz
+                {enableMC ? <MultipleChoiceQuiz
                     mapJsonSrc={europe}
                     clickText={'Click on the right bollard!'}
                     regionIndexArray={COUNTRIES}
@@ -84,7 +84,7 @@ const EuBollards = (): React.ReactElement => {
                     itemHeight={150}
                     numChoices={4}
                     mapParameters={{scale: 600, center: [10, 55]}}
-                /> : <GenericRegionSelectionQuiz
+                /> : <RegionSelectionQuiz
                     mapJsonSrc={europe}
                     clickText={'Click on the right country!'}
                     regionIndexArray={COUNTRIES}

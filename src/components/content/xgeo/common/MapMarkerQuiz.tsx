@@ -20,7 +20,7 @@ export interface MultipleChoiceConfig {
     choicesZoomable?: boolean;
 }
 
-export interface GenericMapMarkerQuizProps {
+export interface MapMarkerQuizProps {
     mapSrc: string;
     streakSuffix: string; 
     clickText: string;
@@ -37,7 +37,7 @@ export interface GenericMapMarkerQuizProps {
     map441Height?: number;
 }
 
-const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElement => {
+const MapMarkerQuiz = (props: MapMarkerQuizProps): React.ReactElement => {
 
     const MAPMARKER_SPRITE_DIMENSIONS = [25, 30];
     const DIAGONAL_DIRECTIONS = ['northeast', 'southeast', 'southwest', 'northwest'];
@@ -312,4 +312,4 @@ const GenericMapMarkerQuiz = (props: GenericMapMarkerQuizProps): React.ReactElem
     );
 };
 
-export default GenericMapMarkerQuiz;
+export default MapMarkerQuiz;

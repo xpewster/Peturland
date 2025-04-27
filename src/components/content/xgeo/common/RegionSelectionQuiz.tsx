@@ -7,7 +7,7 @@ import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { preloadImage } from '../../../common/preloadImage';
 import MapWithInsets from '../us/MapWithInsets';
 
-export interface GenericRegionSelectionQuizProps {
+export interface RegionSelectionQuizProps {
     mapJsonSrc: any;
     clickText: string;
     regionIndexArray: string[];
@@ -60,7 +60,7 @@ export interface MapParameters {
     ];
 }
 
-const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): React.ReactElement => {
+const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElement => {
 
     const [toFind, setToFind] = useState<number>(props.toFindIndexToAnswerIndicesArray.findIndex((val) => val.length > 0) ?? 1);
     const [randIndex, setRandIndex] = useState<number>(Math.floor(Math.random() * 100));
@@ -460,4 +460,4 @@ const GenericRegionSelectionQuiz = (props: GenericRegionSelectionQuizProps): Rea
     return <></>
 };
 
-export default GenericRegionSelectionQuiz;
+export default RegionSelectionQuiz;

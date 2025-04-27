@@ -5,7 +5,7 @@ import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { COUNTRIES, COUNTRY_TO_REGION_BITFLAG } from '../constants';
 import { COUNTRY_INDEX_TO_CROSSING_INDEX, CROSSING_INDEX_TO_REGION_INDICES, PEDESTRIAN_CROSSINGS } from './constants';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 
 
 const EuPedestrians = (): React.ReactElement => {
@@ -52,7 +52,7 @@ const EuPedestrians = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '166px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={europe}
                     clickText={'Click on the right country!'}
                     regionIndexArray={COUNTRIES}

@@ -9,7 +9,7 @@ import canada from '../../../../assets/canadamf.gif';
 import mexico from '../../../../assets/mexico.gif';
 import { PLATES } from './plate/constants';
 import { isMobile } from 'react-device-detect';
-import GenericLicensePlatesQuiz from '../common/GenericLicensePlatesQuiz';
+import LicensePlatesQuiz from '../common/LicensePlatesQuiz';
 import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 
 
@@ -94,7 +94,7 @@ const Us = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '234px'}} src={dots}></img>
             <div style={{}}>
-                <GenericLicensePlatesQuiz
+                <LicensePlatesQuiz
                     mapJsonSrc={usa}
                     useMapWithInsets={true}
                     clickText={'Click on the right state!'}
@@ -104,8 +104,8 @@ const Us = (): React.ReactElement => {
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
                     regionIndexArray={STATES}
                     platesLibrary={PLATES}
-                    plateWidth={150}
-                    plateHeight={75}
+                    defaultPlateWidth={150}
+                    defaultPlateHeight={75}
                     enableBlur={enableBlur}
                     enableSkew={enableSkew}
                     enableRandBlur={enableRandBlur}

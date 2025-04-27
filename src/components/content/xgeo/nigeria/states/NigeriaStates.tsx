@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import nigeria from '../../../../../assets/geojsons/nigeria.json';
 import { getStreakKey } from '../../helpers';
 import { MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, QuizType } from '../../constants';
@@ -35,7 +35,7 @@ const NigeriaStates = (): React.ReactElement => {
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             </div>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={nigeria}
                     clickText={'Click on the right state!'}
                     regionIndexArray={STATES}

@@ -935,7 +935,7 @@ export enum PLATE_STATE {
 }
 
 export type RECT_COORDS = [number, number, number, number, number?, number?, number?, number?]; // 0_x, 0_y, width, height, 0_x2?, 0_y2?, 1_x?, 1_y?
-export type PLATE_TUPLE = [string, string, string, RECT_COORDS, number, number?]; // reg, blank, blur, RECT_COORDS, startYear, endYear?
+export type PLATE_TUPLE = [string, string, string, RECT_COORDS, number, number?, [number, number]?]; // reg, blank, blur, RECT_COORDS, startYear, endYear?, [width, height]
 
 export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     [US_STATE_NAMES.MAINE, new Map<PLATE_TYPE, PLATE_TUPLE[]>([

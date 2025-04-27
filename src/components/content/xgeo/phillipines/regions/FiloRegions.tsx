@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import regs from '../../../../../assets/geojsons/phl_regs.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -35,7 +35,7 @@ const FiloRegions = (): React.ReactElement => {
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             </div>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={regs}
                     clickText={'Click on the right region!'}
                     regionIndexArray={REGIONS}

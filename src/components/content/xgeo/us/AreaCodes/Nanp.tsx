@@ -3,7 +3,7 @@ import './../Us.css';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import canada from '../../../../../assets/canadamf.gif';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import nanp from '../../../../../assets/geojsons/nanp2.json';
 import uscheat from '../../../../../assets/maps/us-area-code-map.png';
 import canadacheat from '../../../../../assets/maps/canada-area-code-map.png';
@@ -66,7 +66,7 @@ const Nanp = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '166px'}} src={dots}></img>
             <div style={{paddingTop: '10px', marginBottom: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={nanp}
                     clickText={'Click on the right state/prov.!'}
                     regionIndexArray={STATES}

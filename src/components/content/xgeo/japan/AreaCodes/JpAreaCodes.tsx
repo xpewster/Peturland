@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import jpa from '../../../../../assets/geojsons/jp_areacodes.json';
 import { getStreakKey } from '../../helpers';
 import { AREA_CODES, JAPAN_REGIONS_BITFLAG, REGION_INDEX_TO_PREFECTURE_INDEX } from './constants';
@@ -42,7 +42,7 @@ const JpAreaCodes = (): React.ReactElement => {
                 <img style={{position: 'absolute', left: '-2px', top: '156px'}} src={dots}></img>
             </div>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={jpa}
                     clickText={'Click on the right area!'}
                     regionIndexArray={AREA_CODES}
@@ -58,7 +58,7 @@ const JpAreaCodes = (): React.ReactElement => {
                 />
             </div>
             <p>Thanks to <a href='https://super-duper.fr/' target='_blank' rel='noreferrer'>super-duper.fr</a> for the map json!</p>
-            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
+            <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

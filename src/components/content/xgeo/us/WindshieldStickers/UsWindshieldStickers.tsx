@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import usa from '../../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -41,7 +41,7 @@ const UsWindshieldStickers = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={usa}
                     clickText={'Click on the right state!'}
                     regionIndexArray={STATES}

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import jp from '../../../../../assets/geojsons/prefectures.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
@@ -84,7 +84,7 @@ const JpPrefectures = (): React.ReactElement => {
                 <img style={{position: 'absolute', left: '-2px', top: '186px'}} src={dots}></img>
             </div>
             <div style={{paddingTop: '10px'}}>
-                <GenericRegionSelectionQuiz
+                <RegionSelectionQuiz
                     mapJsonSrc={jp}
                     clickText={'Click on the right prefecture!'}
                     regionIndexArray={PREFECTURES}
@@ -100,7 +100,7 @@ const JpPrefectures = (): React.ReactElement => {
                     regionIsAnswer={true}
                 />
             </div>
-            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
+            <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

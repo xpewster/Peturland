@@ -89,32 +89,32 @@ export const STATE_TO_REGION_BITFLAG = [
 
 export const PLATES = new Map<string, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     [AUSTRALIA_STATES.TASMANIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[tasmania_reg, tasmania_blank, tasmania_blur, [1000,1000, 7, 7], 2008]]],
-        [PLATE_TYPE.OLD, [[tasmania_o0_reg, tasmania_o0_blank, tasmania_o0_blur, [1000,1000, 7, 7], 1999, 2008]]],
+        [PLATE_TYPE.REGULAR, [[tasmania_reg, tasmania_blank, tasmania_blur, [1000,1000, 7, 7], 2008, undefined, [180, 65]]]],
+        [PLATE_TYPE.OLD, [[tasmania_o0_reg, tasmania_o0_blank, tasmania_o0_blur, [1000,1000, 7, 7], 1999, 2008, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.VICTORIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[victoria_reg, victoria_blank, victoria_blur, [1000,1000, 7, 7], 2016]]],
-        [PLATE_TYPE.OLD, [[victoria_o0_reg, victoria_o0_blank, victoria_o0_blur, [1000,1000, 7, 7], 2000, 2016]]],
+        [PLATE_TYPE.REGULAR, [[victoria_reg, victoria_blank, victoria_blur, [1000,1000, 7, 7], 2016, undefined, [180, 65]]]],
+        [PLATE_TYPE.OLD, [[victoria_o0_reg, victoria_o0_blank, victoria_o0_blur, [1000,1000, 7, 7], 2000, 2016, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.AUSTRALIAN_CAPITAL_TERRITORY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[act_reg, act_blank, act_blur, [1000,1000, 7, 7], 2013]]],
-        [PLATE_TYPE.OLD, [[act_o0_reg, act_o0_blank, act_o0_blur, [1000,1000, 7, 7], 2007, 2013]]],
+        [PLATE_TYPE.REGULAR, [[act_reg, act_blank, act_blur, [1000,1000, 7, 7], 2013, undefined, [180, 65]]]],
+        [PLATE_TYPE.OLD, [[act_o0_reg, act_o0_blank, act_o0_blur, [1000,1000, 7, 7], 2007, 2013, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.NEW_SOUTH_WALES, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[nsw_reg, nsw_blank, nsw_blur, [1000,1000, 7, 7], 1996]]],
-        [PLATE_TYPE.VANITY, [[nsw_slimline_reg, nsw_slimline_blank, nsw_slimline_blur, [1000,1000, 7, 7], 1996]]],
-        [PLATE_TYPE.OLD, [[nsw_reg, nsw_blank, nsw_blur, [1000,1000, 7, 7], 1996]]],
+        [PLATE_TYPE.REGULAR, [[nsw_reg, nsw_blank, nsw_blur, [1000,1000, 7, 7], 1996, undefined, [180, 65]]]],
+        [PLATE_TYPE.VANITY, [[nsw_slimline_reg, nsw_slimline_blank, nsw_slimline_blur, [1000,1000, 7, 7], 1996, undefined, [180, 52]]]],
+        [PLATE_TYPE.OLD, [[nsw_reg, nsw_blank, nsw_blur, [1000,1000, 7, 7], 1996, undefined, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.QUEENSLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[queensland_reg, queensland_blank, queensland_blur, [1000,1000, 7, 7], 2001]]],
+        [PLATE_TYPE.REGULAR, [[queensland_reg, queensland_blank, queensland_blur, [1000,1000, 7, 7], 2001, undefined, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.SOUTH_AUSTRALIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[sa_reg, sa_blank, sa_blur, [1000,1000, 7, 7], 2009]]],
+        [PLATE_TYPE.REGULAR, [[sa_reg, sa_blank, sa_blur, [1000,1000, 7, 7], 2009, undefined, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.NORTHERN_TERRITORY, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[nt_reg, nt_blank, nt_blur, [1000,1000, 7, 7], 1979]]],
+        [PLATE_TYPE.REGULAR, [[nt_reg, nt_blank, nt_blur, [1000,1000, 7, 7], 1979, undefined, [180, 65]]]],
     ])],
     [AUSTRALIA_STATES.WESTERN_AUSTRALIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
-        [PLATE_TYPE.REGULAR, [[wa_reg, wa_blank, wa_blur, [1000,1000, 7, 7], 1997]]],
+        [PLATE_TYPE.REGULAR, [[wa_reg, wa_blank, wa_blur, [1000,1000, 7, 7], 1997, undefined, [180, 65]]]],
     ])],
 ]);

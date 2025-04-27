@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import GenericMapMarkerQuiz from '../../common/GenericMapMarkerQuiz';
+import MapMarkerQuiz from '../../common/MapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../../common/constants';
 import { QuizType } from '../../constants';
 import { CAR_LABELS, CAR_SRCS, GEN3_CAR_INDICES, MONGOLIA_REGION_TO_441_HEIGHT_MAP, MONGOLIA_REGION_TO_MAP_SRC_MAP, REGION_TO_COORDINATE_ANSWER_PAIRS_MAP } from './constants';
@@ -102,7 +102,7 @@ const MongoliaCarMeta = (): React.ReactElement => {
                 </div>
                 <img style={{position: 'absolute', left: '-2px', top: '211px'}} src={dots}></img>
             </div>
-            <GenericMapMarkerQuiz
+            <MapMarkerQuiz
                 mapSrc={getMapSrc()}
                 clickText={getClickText()}
                 selectorType={SelectorType.MULTIPLE_CHOICE}

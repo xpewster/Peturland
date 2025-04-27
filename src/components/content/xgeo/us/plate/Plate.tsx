@@ -5,8 +5,7 @@ import { toPng } from 'html-to-image';
 
 export interface PlateProps {
     platesLibrary: Map<string, Map<PLATE_TYPE, PLATE_TUPLE[]>>;
-    width: number;
-    height: number;
+    defaultPlateDimensions?: [number, number];
     region?: string;
     type?: PLATE_TYPE;
     vanityOrOldIndex?: number;
@@ -90,9 +89,23 @@ const Plate = (props: PlateProps): React.ReactElement => {
         }
     }
 
+    const getWidth = (): number => {
+        if (plate) {
+            return plate[6]?.[0] ?? props.defaultPlateDimensions?.[0] ?? 150;
+        }
+        return props.defaultPlateDimensions?.[0] ?? 150;
+    }
+
+    const getHeight = (): number => {
+        if (plate) {
+            return plate[6]?.[1] ?? props.defaultPlateDimensions?.[1] ?? 75;
+        }
+        return props.defaultPlateDimensions?.[1] ?? 75;
+    }
+
     const getBlurredPlate = useMemo(() => {
         return <div style={{filter: `brightness(${props.brightness ?? 1}) saturate(${Math.max(((props.brightness ?? 1)-0.9) * 5 + 0.7, 1)})`}}>
-            <svg viewBox={`0 0 ${props.width} ${props.height}`}>
+            <svg viewBox={`0 0 ${getWidth()} ${getHeight()}`}>
                 <defs>
                     <filter id={getFilterId("combinedFilter")} x="-50%" y="-50%" width="200%" height="200%">
                         {(plate && plate[3][0] !== 1000) ? <><feFlood result="rs"
@@ -152,7 +165,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         <feGaussianBlur in="blendedHc2" stdDeviation={(props.blur ?? 0) * (props.skew ? (1.0/1.414) : 1) / 1.5} edgeMode="duplicate" /> {/* (Math.abs(props.skew?.[1] ?? 0)/90 + 1)*/}
                     </filter>
                 </defs>
-                <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width={`${props.width}px`} height={`${props.height}px`}
+                <image href={getSrc()} xlinkHref={getSrc()} x="0" y="0" width={`${getWidth()}px`} height={`${getHeight()}px`} preserveAspectRatio='none'
                     style={{
                         transformStyle: 'preserve-3d',
                         transform: `rotateX(${props.skew?.[0] ?? 0}deg) rotateY(${props.skew?.[1] ?? 0}deg) scale(${props.scale ?? 1})`,
@@ -255,8 +268,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
             {(props.blur || props.skew) && !props.show ?
                 <div style={{
                     perspective: '800px',
-                    width: `${props.width}px`,
-                    height: `${props.height}px`,
+                    width: `${getWidth()}px`,
+                    height: `${getHeight()}px`,
                     position: 'relative',
                     overflow: 'hidden',
                   }}>
@@ -268,7 +281,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         height: '100%',
                         zIndex: 5,
                     }}>
-                        <svg viewBox={`0 0 ${props.width} ${props.height}`}>
+                        <svg viewBox={`0 0 ${getWidth()} ${getHeight()}`}>
                             <defs>
                                 <filter id={getFilterId("turb")}>
                                     <feTurbulence
@@ -325,14 +338,14 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         zIndex: 3,
                         pointerEvents: 'none', 
                     }}>
-                        <svg viewBox={`0 0 ${props.width} ${props.height}`} style={{
+                        <svg viewBox={`0 0 ${getWidth()} ${getHeight()}`} style={{
                             width: '100%',
                             height: '100%',
                             overflow: 'visible',
                         }}>
                         <line 
                             x1="-50" y1="0" 
-                            x2={`${props.width + 50}`} y2="0"
+                            x2={`${getWidth() + 50}`} y2="0"
                             stroke="gray" 
                             strokeWidth="1" 
                             strokeDasharray="5,5"
@@ -342,8 +355,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
                             }}
                         />
                         <line 
-                            x1="-50" y1={`${props.height}` }
-                            x2={`${props.width + 50}`} y2={`${props.height}` }
+                            x1="-50" y1={`${getHeight()}` }
+                            x2={`${getWidth() + 50}`} y2={`${getHeight()}` }
                             stroke="gray" 
                             strokeWidth="1" 
                             strokeDasharray="5,5"
@@ -354,7 +367,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         />
                         <line 
                             x1="0" y1="-25" 
-                            x2="0" y2={`${props.height + 25}` }
+                            x2="0" y2={`${getHeight() + 25}` }
                             stroke="gray" 
                             strokeWidth="3" 
                             strokeDasharray="5,5"
@@ -364,8 +377,8 @@ const Plate = (props: PlateProps): React.ReactElement => {
                             }}
                         />
                         <line 
-                            x1={`${props.width}`} y1="-25" 
-                            x2={`${props.width}`} y2={`${props.height + 25}` }
+                            x1={`${getWidth()}`} y1="-25" 
+                            x2={`${getWidth()}`} y2={`${getHeight() + 25}` }
                             stroke="gray" 
                             strokeWidth="3" 
                             strokeDasharray="5,5"
@@ -377,12 +390,12 @@ const Plate = (props: PlateProps): React.ReactElement => {
                         </svg>
                     </div>}
                 </div>
-                : <img className='plate' style={{paddingBottom: 0, width: `${props.width}px`, height:  `${props.height}px`}} src={getSrc()}></img>
+                : <img className='plate' style={{paddingBottom: 0, width: `${getWidth()}px`, height:  `${getHeight()}px`}} src={getSrc()}></img>
             }
             {(props.showYears && plate) ?
                 <>
                     <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{props.region?.toString() + (props.type === PLATE_TYPE.VANITY ? " (Special)" : "")}</p>
-                    {(plate.length === 5 ?
+                    {((plate.length === 5 || !plate[5]) ?
                         <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-Present)`}</p>
                         : <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-${plate[5]})`}</p>)
                     }

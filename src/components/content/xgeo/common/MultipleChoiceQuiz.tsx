@@ -6,7 +6,7 @@ import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simp
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { preloadImage } from '../../../common/preloadImage';
 
-export interface GenericMultipleChoiceQuizProps {
+export interface MultipleChoiceQuizProps {
     mapJsonSrc: any;
     clickText: string;
     regionIndexArray: string[];
@@ -54,7 +54,7 @@ type Choice = {
     answerIndex: number;
 }
 
-const GenericMultipleChoiceQuiz = (props: GenericMultipleChoiceQuizProps): React.ReactElement => {
+const MultipleChoiceQuiz = (props: MultipleChoiceQuizProps): React.ReactElement => {
 
     const [toFind, setToFind] = useState<number>(props.regionIndexToAnswerIndicesArray.findIndex((val) => val.length > 0) ?? 1);
     const [randIndex, setRandIndex] = useState<number>(Math.floor(Math.random() * 100));
@@ -454,4 +454,4 @@ const GenericMultipleChoiceQuiz = (props: GenericMultipleChoiceQuizProps): React
     return <></>
 };
 
-export default GenericMultipleChoiceQuiz;
+export default MultipleChoiceQuiz;

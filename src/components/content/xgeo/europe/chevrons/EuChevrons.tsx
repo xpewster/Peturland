@@ -3,7 +3,7 @@ import dots from '../../../../../assets/dots.png';
 import europe from '../../../../../assets/geojsons/europe2.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
-import GenericMultipleChoiceQuiz from '../../common/GenericMultipleChoiceQuiz';
+import MultipleChoiceQuiz from '../../common/MultipleChoiceQuiz';
 import { COUNTRIES, COUNTRY_TO_REGION_BITFLAG } from '../constants';
 import { CHEVRONS, COUNTRY_TO_CHEVRONS, COUNTRY_TO_COMMON_CHEVRONS } from './constants';
 
@@ -63,7 +63,7 @@ const EuChevrons = (): React.ReactElement => {
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '166px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
-                <GenericMultipleChoiceQuiz
+                <MultipleChoiceQuiz
                     mapJsonSrc={europe}
                     clickText={'Click on the right chevron!'}
                     regionIndexArray={COUNTRIES}

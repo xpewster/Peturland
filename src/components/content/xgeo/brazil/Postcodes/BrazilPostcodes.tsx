@@ -7,7 +7,7 @@ import dots from '../../../../../assets/dots.png';
 import brazilcheat from '../../../../../assets/maps/cepcodes.png';
 import ZoomableImage from '../../../../common/ZoomableImage';
 import ScrollingDisabler from '../../../../common/ScrollingDisabler';
-import GenericRegionSelectionQuiz from '../../common/GenericRegionSelectionQuiz';
+import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 
 const BrazilPostcodes = (): React.ReactElement => {
     const [enablePrefix, setEnablePrefix] = useState<boolean[]>(Array(10).fill(true));
@@ -97,7 +97,7 @@ const BrazilPostcodes = (): React.ReactElement => {
                 9<input type="checkbox" onChange={() => {handleCheck(9)}} checked={enablePrefix[9]}></input>
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '175px'}} src={dots}></img>
-            <GenericRegionSelectionQuiz
+            <RegionSelectionQuiz
                 mapJsonSrc={brazil_cep}
                 clickText={'Click on the right postcode region!'}
                 regionIndexArray={POSTCODES}

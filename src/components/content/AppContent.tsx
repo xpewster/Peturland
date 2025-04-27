@@ -52,6 +52,7 @@ const AppContent = ({
             case ContentType.XGEO_KENYA_COUNTIES:
             case ContentType.XGEO_AUSTRALIA_PLATES:
             case ContentType.XGEO_ZA_PLATES:
+            case ContentType.XGEO_ZA_PROVINCES:
             case ContentType.XGEO_JP_AREACODES:
             case ContentType.XGEO_JP_PREFECTURES:
             case ContentType.XGEO_JP_POLE_PLATES:

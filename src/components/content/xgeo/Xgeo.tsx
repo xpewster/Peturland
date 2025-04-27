@@ -66,6 +66,8 @@ import JpPoleReflectors from './japan/PoleReflectors/JpReflectors';
 import JpPoleAttachments from './japan/JpAttachments/JpAttachments';
 import Kanji from './japan/Kanji/Kanji';
 import AustraliaPlates from './australia/Plates/AustraliaPlates';
+import ZaPlates from './za/Plates/ZaPlates';
+import ZaProvinces from './za/Provinces/ZaProvinces';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -122,10 +124,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const AU_LINKS = [Path.XGEO_AUSTRALIA_PLATES];
     const AU_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
-    const ZA_IMGS = [lice];
-    const ZA_STRINGS = ['Number Plates'];
-    const ZA_LINKS = [Path.XGEO_ZA_PLATES];
-    const ZA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const ZA_IMGS = [lice, provinces];
+    const ZA_STRINGS = ['Number Plates', 'Provinces'];
+    const ZA_LINKS = [Path.XGEO_ZA_PLATES, Path.XGEO_ZA_PROVINCES];
+    const ZA_STYLES = Array(2).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
 
     const TOP_IMGS = [folder2, folder2, folder2, folder2, folder2, folder2, folder2];
     const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Nigeria', 'Kenya', 'Australia', 'South Africa'];
@@ -208,6 +210,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <KenyaCounties />;
             case ContentType.XGEO_AUSTRALIA_PLATES:
                 return <AustraliaPlates />;
+            case ContentType.XGEO_ZA_PLATES:
+                return <ZaPlates />;
+            case ContentType.XGEO_ZA_PROVINCES:
+                return <ZaProvinces />;
             case ContentType.XGEO_JP_AREACODES:
                 return <JpAreaCodes />;
             case ContentType.XGEO_JP_PREFECTURES:

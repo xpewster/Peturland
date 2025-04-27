@@ -7,7 +7,7 @@ import central_west from '../../../../assets/maps/mong_centralwest.png';
 import central_forests from '../../../../assets/maps/mong_centralforests.png';
 import south from '../../../../assets/maps/mong_south.png';
 import { AROUND_ULAAN_COORDINATE_ANSWER_PAIRS, CARS, CENTRAL_WEST_COORDINATE_ANSWER_PAIRS, FAR_EAST_COORDINATE_ANSWER_PAIRS, FAR_WEST_COORDINATE_ANSWER_PAIRS, MIDWEST_COORDINATE_ANSWER_PAIRS, NORTH_CENTRAL_COORDINATE_ANSWER_PAIRS, REGIONS, SOUTH_COORDINATE_ANSWER_PAIRS } from './constants';
-import GenericMapMarkerQuiz from '../common/GenericMapMarkerQuiz';
+import MapMarkerQuiz from '../common/MapMarkerQuiz';
 import { CoordinateAnswerPair, SelectorType } from '../common/constants';
 import { QuizType } from '../constants';
 import car from '../../../../assets/fileboxicons/car.png';
@@ -105,7 +105,7 @@ const Mongolia = (props: MongoliaProps): React.ReactElement => {
                 </div>
                 <img style={{position: 'absolute', left: '-2px', top: '201px'}} src={dots}></img>
             </div>
-            <GenericMapMarkerQuiz
+            <MapMarkerQuiz
                 mapSrc={getMapSrc()}
                 clickText={getClickText()}
                 selectorType={SelectorType.COMPASS}

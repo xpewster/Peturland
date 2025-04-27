@@ -231,7 +231,7 @@ const Kanji = (): React.ReactElement => {
                     })}
                 </ul>
             </div>
-            <img style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
+            <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );
 };

@@ -70,7 +70,7 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_AUSTRALIA_PLATES:
             return 1010;
         case ContentType.XGEO_ZA_PLATES:
-            return 1010;
+            return 950;
         case ContentType.XGEO_JP_AREACODES:
             return 800;
         case ContentType.XGEO_JP_PREFECTURES:

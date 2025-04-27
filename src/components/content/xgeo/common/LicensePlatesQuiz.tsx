@@ -11,7 +11,7 @@ import Plate from '../us/plate/Plate';
 import MapWithInsets from '../us/MapWithInsets';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simple-maps';
-import { MapParameters } from './GenericRegionSelectionQuiz';
+import { MapParameters } from './RegionSelectionQuiz';
 
 
 type LAST_PLATE_INFO = {
@@ -35,7 +35,7 @@ type NEXT_PLATE_INFO = {
     vanityOrOldIndex: number,
 };
 
-export interface GenericLicensePlatesQuizProps {
+export interface LicensePlatesQuizProps {
     mapJsonSrc: any;
     useMapWithInsets?: boolean;
     mapParameters?: MapParameters;
@@ -47,8 +47,8 @@ export interface GenericLicensePlatesQuizProps {
     regionsBitFlag?: number[];
     regionIndexArray: string[],
     platesLibrary: Map<string, Map<PLATE_TYPE, PLATE_TUPLE[]>>;
-    plateWidth: number;
-    plateHeight: number;
+    defaultPlateWidth: number;
+    defaultPlateHeight: number;
     enableBlur?: boolean;
     enableSkew?: boolean;
     enableRandBlur?: boolean;
@@ -57,7 +57,7 @@ export interface GenericLicensePlatesQuizProps {
     streakKey: string;
 }
 
-const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.ReactElement => {
+const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement => {
     const [toFind, setToFind] = useState<number>(0); 
     const [message, setMessage] = useState<string>("");
     const [messageColor, setMessageColor] = useState<string>("green");
@@ -70,6 +70,9 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
     const [randomBrightness, setRandomBrightness] = useState<number>(1.0);
     const [randomSkew, setRandomSkew] = useState<number[]>([0, 0]);
     const [randomScale, setRandomScale] = useState<number>(1.0);
+
+    const [currentPlateWidth, setCurrentPlateWidth] = useState<number>(props.defaultPlateWidth);
+    const [currentPlateHeight, setCurrentPlateHeight] = useState<number>(props.defaultPlateHeight);
 
     const [vanityOrOldIndex, setVanityOrOldIndex] = useState<number>(Math.floor(Math.random() * 100));
     const [index2, setIndex2] = useState<number>(Math.floor(Math.random() * 1000));
@@ -229,6 +232,8 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
                 setToFind(newt);
                 setCurrentType(newType);
                 setVanityOrOldIndex(newVanityOrOldIndex);
+                setCurrentPlateWidth(props.platesLibrary.get(props.regionIndexArray[newt])!.get(newType)![newVanityOrOldIndex % props.platesLibrary.get(props.regionIndexArray[newt])!.get(newType)!.length][6]?.[0] ?? props.defaultPlateWidth);
+                setCurrentPlateHeight(props.platesLibrary.get(props.regionIndexArray[newt])!.get(newType)![newVanityOrOldIndex % props.platesLibrary.get(props.regionIndexArray[newt])!.get(newType)!.length][6]?.[1] ?? props.defaultPlateHeight);
                 break;
             }
             tries++;
@@ -265,12 +270,15 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
                     setToFind(nextPlate!.newt);
                     setCurrentType(nextPlate!.type);
                     setVanityOrOldIndex(nextPlate!.vanityOrOldIndex);  
+                    setCurrentPlateWidth(props.platesLibrary.get(props.regionIndexArray[nextPlate!.newt])!.get(nextPlate!.type)![nextPlate!.vanityOrOldIndex % props.platesLibrary.get(props.regionIndexArray[nextPlate!.newt])!.get(nextPlate!.type)!.length][6]?.[0] ?? props.defaultPlateWidth);
+                    setCurrentPlateHeight(props.platesLibrary.get(props.regionIndexArray[nextPlate!.newt])!.get(nextPlate!.type)![nextPlate!.vanityOrOldIndex % props.platesLibrary.get(props.regionIndexArray[nextPlate!.newt])!.get(nextPlate!.type)!.length][6]?.[1] ?? props.defaultPlateHeight);
                 }
                 setNextPlate({
                     newt: newt,
                     type: newType,
                     vanityOrOldIndex: newVanityOrOldIndex,
                 });
+                
                 break;
             }
             tries++;
@@ -342,8 +350,7 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
         return (
             <Plate
                 platesLibrary={props.platesLibrary}
-                width={props.plateWidth}
-                height={props.plateHeight}
+                defaultPlateDimensions={[props.defaultPlateWidth, props.defaultPlateHeight]}
                 region={props.regionIndexArray[toFind]}
                 type={currentType}
                 vanityOrOldIndex={vanityOrOldIndex}
@@ -380,7 +387,7 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
         <div style={{height: '100%'}}>
             <div style={{paddingTop: '6px'}}>
                 <p style={{display: 'inline'}}>{props.clickText} </p><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button>
-                <div style={{display: 'block', width: `${props.plateWidth}px`, height: `${props.plateHeight}px`, marginTop: '5px', border: "dashed 1px black"}}>
+                <div style={{display: 'block', width: `${currentPlateWidth}px`, height: `${currentPlateHeight}px`, marginTop: '5px', border: "dashed 1px black"}}>
                     {currentPlate}
                 </div>
                 {(message !== "") && <p style={{color: messageColor}}>{message}</p>}
@@ -434,15 +441,14 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
                 </ComposableMap>
             </ScrollingDisabler>}
             </div>
-            {lastPlates.length ? <div className="scrollable-content" style={{border: 'dashed 1px #808080', overflow: 'scroll', height: '250px', width: '200px', marginTop: '5px', paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
+            {lastPlates.length ? <div className="scrollable-content" style={{border: 'dashed 1px #808080', overflow: 'scroll', height: '250px', width: `${props.defaultPlateWidth + 50}px`, marginTop: '5px', paddingBottom: '5px', paddingLeft: '5px', paddingRight: '5px'}}>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>Previous plates (P.P.):</p>
                 <span>Distort<input type='checkbox' onChange={() => {setEnablePPBlur(!enablePPBlur);}} checked={enablePPBlur}></input></span>
                 {lastPlates.map((lastPlate, index) => 
-                    <div>
+                    <div style={{paddingBottom: '5px'}}>
                     <Plate
                         platesLibrary={props.platesLibrary}
-                        width={props.plateWidth}
-                        height={props.plateHeight}
+                        defaultPlateDimensions={[props.defaultPlateWidth, props.defaultPlateHeight]}
                         region={lastPlate.region}
                         type={lastPlate.type}
                         tuple={lastPlate.tuple}
@@ -487,4 +493,4 @@ const GenericLicensePlatesQuiz = (props: GenericLicensePlatesQuizProps): React.R
     );
 };
 
-export default GenericLicensePlatesQuiz;
+export default LicensePlatesQuiz;
