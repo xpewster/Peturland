@@ -3,7 +3,7 @@ export const Support = (): React.ReactElement => {
 
 	return <Standalone>
 		<div style={{paddingLeft: '10px', paddingRight: '10px'}}>
-			{'Add me on discord @xpewster for any requests or bug reports. Or just to conversate! 8]'}
+			{'Add me on discord @xpewster for any requests or bug reports. Or just to talk! =)'}
 		</div>
 	</Standalone>;
 }

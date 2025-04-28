@@ -15,7 +15,7 @@ export const PatchNotes = (): React.ReactElement => {
         ['04-02-2025', <></>, "Two new xgeo games! Obsessed with these XP icons... the games are Indo kabupatens and EU chevrons! We getting real nerdy now... :cool:"],
         ['04-07-2025', <></>, "Happy April 7th!! Hells yes!!! Bunch of new geo games. Also experimenting with a low-res option for the license plates game."],
         ['04-11-2025', <></>, "Just finished the most neglected-tropical-disease-inducing quiz yet.. NANP aka NA area codes! It was super annoying to map out, hope you enjoy!"],
-        ['04-12-2025', <></>, "Added some final touches. Might pause the updates for a bit..real jobs suck!"],
+        ['04-12-2025', <></>, "Added some final touches. Might pause the updates for a bit..real jobs am i right?"],
     ];
 
     return <Standalone>

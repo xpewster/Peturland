@@ -18,10 +18,12 @@ import winxp from '../../assets/88x31/winxp.gif';
 import peturland from '../../assets/88x31/peturland.png';
 import peturland_outline from '../../assets/88x31/peturland_outline.png';
 import cool from '../../assets/fileboxicons/cool.gif';
-import seafare from '../../assets/88x31/seafare.png';
 import retrobar from '../../assets/88x31/retrobar.png'; 
+
+import seafare from '../../assets/88x31/seafare.png';
 import bielzin from '../../assets/88x31/bielzinbutton.png';
 import humanfinny from '../../assets/88x31/humanfinny.jpg';
+import fearoffun from '../../assets/88x31/fearoffun-2.gif';
 
 import daiko from '../../assets/88x31/link_malta.gif';
 import { shuffle } from "../content/xgeo/helpers";
@@ -54,6 +56,7 @@ export const EightyEight = (): React.ReactElement => {
 		[seafare, "https://seafare.neocities.org/"],
 		[bielzin, "https://bielzin.neocities.org/"],
 		[humanfinny, "https://humanfinny.neocities.org/"],
+		[fearoffun, "https://fearoffun.neocities.org/"],
 	];
 
 	shuffle(sites);

@@ -176,7 +176,7 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
     };
 
     const generateRandomParameters = (): void => {
-        setRandBlur(props.enableRandBlur ? generateNewRandBlur() : 10);
+        setRandBlur(props.enableRandBlur ? generateNewRandBlur() : 15);
         setRSC(randomElement(REGISTRATION_STICKER_COLORS));
         setRSC2(randomElement(REGISTRATION_STICKER_COLORS));
         setHC(randomElement(HOLDER_COLORS));
@@ -294,7 +294,7 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
     }, [JSON.stringify(props.enableRegions), props.enableSkew]);
 
     useEffect(() => {
-        setRandBlur(props.enableRandBlur ? generateNewRandBlur() : 10);
+        setRandBlur(props.enableRandBlur ? generateNewRandBlur() : 15);
     }, [props.enableRandBlur]);
 
     useEffect(() => {
