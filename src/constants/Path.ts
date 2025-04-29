@@ -39,6 +39,7 @@ export enum Path {
     XGEO_JP_POLE_REFLECTORS = "/xgeo/japan/pole-reflectors",
     XGEO_JP_POLE_ATTACHMENTS = "/xgeo/japan/pole-attachments",
     XGEO_JP_KANJI = "/xgeo/japan/kanji",
+    XGEO_JP_REGIONS = "/xgeo/japan/regions",
     SOON = "/coming-soon",
     CREDITS = "/credits",
     EIGHTYEIGHT = "/88x31",

@@ -80,7 +80,7 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_JP_POLE_REFLECTORS:
             return 1250;
         case ContentType.XGEO_JP_POLE_ATTACHMENTS:
-            return 1050;
+            return 1100;
         case ContentType.SOON:
             return 700;
         default:

@@ -58,3 +58,30 @@ export const JAPAN_PREFECTURES_BITFLAG = [
     0x80,   // Kagoshima - Kyushu region
     0x80,   // Okinawa - Okinawa region
 ];
+
+export const JAPAN_REGIONS = [
+    "Shikoku",
+    "Chugoku",
+    "Kyushu",
+    "Chubu",
+    "Hokuriku",
+    "Kansai",
+    "Kanto",
+    "Tohoku",
+    "Hokkaido",
+    "Okinawa",
+];
+
+export const JAPAN_REGIONS_BITFLAG = [
+    0x1,    // Shikoku - Shikoku region
+    0x2,    // Chugoku - Chugoku region
+    0x4,    // Kyushu - Kyushu region
+    0x8,    // Chubu - Chubu region
+    0x10,   // Hokuriku - Hokuriku region
+    0x20,   // Kansai - Kansai region
+    0x40,   // Kanto - Kanto region
+    0x80,   // Tohoku - Tohoku region
+    0x100,  // Hokkaido - Hokkaido region
+    0x200,  // Okinawa - Okinawa region
+];
+    

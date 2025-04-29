@@ -3,10 +3,11 @@ import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import jp from '../../../../../assets/geojsons/prefectures.json';
+import jp_regions from '../../../../../assets/geojsons/jp_regions.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
-import { HIGHLIGHT_GROUPS, PLATE_INDEX_TO_REGION_INDICES, PLATES, REGION_INDEX_TO_PLATE_INDEX } from './constants';
-import { JAPAN_PREFECTURES_BITFLAG } from '../constants';
+import { PLATES, REGION_INDEX_TO_PLATE_INDEX, REGION_INDEX_TO_PLATE_INDEX_2 } from './constants';
+import { JAPAN_PREFECTURES_BITFLAG, JAPAN_REGIONS_BITFLAG } from '../constants';
 import MultipleChoiceQuiz from '../../common/MultipleChoiceQuiz';
 import { PREFECTURES } from '../Prefectures/constants';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
@@ -28,10 +29,6 @@ const JpPolePlates = (): React.ReactElement => {
         }
     }
 
-    function handleCheck(index: number) {
-        const newEnableRegion = enableRegion.map((val, i) => {if (i === index) { return !val; } else { return val; }}); setEnableRegion(newEnableRegion);
-    }
-
     const getPlateImageSrc = (index: number): string => {
         return PLATES[index];
     }
@@ -42,18 +39,18 @@ const JpPolePlates = (): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div>
                 <div>
-                    Multiple choice<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableMC}></input>
+                    Multiple choice with prefectures<input type="checkbox" onChange={() => {changeSetting(0)}} checked={enableMC}></input>
                 </div>
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
             {enableMC ?  <MultipleChoiceQuiz
                     mapJsonSrc={jp}
-                    clickText={'Click on the right plate!'}
+                    clickText={'Click on the right plate for this prefecture!'}
                     regionIndexArray={PREFECTURES}
                     regionIndexToAnswerIndicesArray={REGION_INDEX_TO_PLATE_INDEX}
                     answerIndexToSrc={getPlateImageSrc}
-                    streakKey={getStreakKey(QuizType.JAPAN_POLE_PLATES, enableRegion)}
+                    streakKey={getStreakKey(QuizType.JAPAN_POLE_PLATES, [...enableRegion, true])}
                     disallowRepeats={true}
                     enableRegions={enableRegion}
                     regionsBitFlag={JAPAN_PREFECTURES_BITFLAG}
@@ -63,24 +60,23 @@ const JpPolePlates = (): React.ReactElement => {
                     mapParameters={{scale: 1600, center: [138, 38]}}
             />
             : <RegionSelectionQuiz
-                    mapJsonSrc={jp}
+                    mapJsonSrc={jp_regions}
                     clickText={'Click on the right region!'}
                     regionIndexArray={PREFECTURES}
-                    toFindIndexToAnswerIndicesArray={REGION_INDEX_TO_PLATE_INDEX}
-                    answerIndexToRegionIndices={PLATE_INDEX_TO_REGION_INDICES}
+                    toFindIndexToAnswerIndicesArray={REGION_INDEX_TO_PLATE_INDEX_2}
                     answerIndexToSrc={getPlateImageSrc}
-                    streakKey={getStreakKey(QuizType.JAPAN_POLE_PLATES, enableRegion)}
+                    streakKey={getStreakKey(QuizType.JAPAN_POLE_PLATES, [...enableRegion, true])}
                     disallowRepeats={true}
                     enableRegions={enableRegion}
-                    regionsBitFlag={JAPAN_PREFECTURES_BITFLAG}
+                    regionsBitFlag={JAPAN_REGIONS_BITFLAG}
                     numLastItems={5}
                     itemHeight={150}
                     mapParameters={{scale: 1600, center: [138, 38]}}
-                    highlightGroups={HIGHLIGHT_GROUPS}
                     dashedBorder={true}
                 />
             }
             </div>
+            {!enableMC && <p><i>Note: Yaminashi and Shizuoka prefectures often use Kanto infrastructure and Mie often uses Chubu infrastructure.</i></p>}
             <p>Credit to <a href='https://www.plonkit.net/japan' target="_blank" rel="noopener noreferrer">Plonkit</a> for the images</p>
             <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>

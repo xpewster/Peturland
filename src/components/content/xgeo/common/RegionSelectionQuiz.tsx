@@ -39,6 +39,7 @@ export interface RegionSelectionQuizProps {
     insetEnableIndex?: number;
     regionIsAnswer?: boolean;
     highlightGroups?: number[][];
+    multiselect?: boolean;
 }
 
 type LastItem = [number, number, number, number[], number, number]; // [toFind, randIndex, sepia, skew, scale, hue_rotate]
@@ -88,6 +89,8 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
     });
 
     const [hoveredElement, setHoveredElement] = useState<number | null>(null);
+
+    const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
 
     useEffect(() => {
         setStreak(0);
@@ -244,6 +247,15 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
     }, []);
 
     function handleClick(key: string) {
+        if (props.multiselect) {
+            if (selectedRegions.includes(key)) {
+                setSelectedRegions(selectedRegions.filter((val) => val !== key));
+            } else {
+                setSelectedRegions([...selectedRegions, key]);
+            }
+            return;
+        }
+
         let newAnswer: any = "";
         if (props.answerIndexToRegionIndices
                 ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]].map((val) => { return `geo-${val}`; }).includes(key)
@@ -282,6 +294,40 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
             lose();
         }
         setAnswer(newAnswer);
+    }
+
+    const handleMultiSubmit = () => {
+        let correct = true;
+        const correctRegionIndices = props.answerIndexToRegionIndices ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]].map((val) => { return `geo-${val}`; }) : [`geo-${toFind}`];
+        for (let i = 0; i < selectedRegions.length; i++) {
+            if (!correctRegionIndices.includes(selectedRegions[i])) {
+                correct = false;
+                break;
+            }
+        }
+        if (correctRegionIndices.length !== selectedRegions.length) {
+            correct = false;
+        }
+        if (correct) {
+            let newMessage;
+            do {
+                newMessage = randomElement(NICES)
+            } while (newMessage === message)
+            setStreak(streak + 1);
+            if (streak + 1 > bestStreak) {
+                setBestStreak(streak + 1);
+                localStorage.setItem(props.streakKey, (streak + 1).toString());
+            }
+            newMessage += ` Streak: ${streak + 1}, Best Streak: ${streak + 1 > bestStreak ? streak + 1 : bestStreak}`;
+            setMessage(newMessage);
+            setMessageColor("green");
+            setSelectedRegions([]);
+            updateLastItem();
+            generateNewFind();
+        } else {
+            lose();
+            setSelectedRegions([]);
+        }
     }
 
     const getFilterId = (baseId: string, index: number): string => {
@@ -323,8 +369,10 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
 
     const defaultStyleFunction = (key: string) => {
         const regionIndex = Number(key.split("-")[1]);
+        const groupHovered = (hoveredElement && props.highlightGroups?.[hoveredElement]?.includes(regionIndex));
+        const selected = selectedRegions.includes(key);
         return {
-            default: { fill: (hoveredElement && props.highlightGroups?.[hoveredElement]?.includes(regionIndex)) ? MAP_HOVER_COLOR
+            default: { fill: (groupHovered || selected) ? MAP_HOVER_COLOR
                 : (getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR), stroke: "#000000", outline: 'none' },
             hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
@@ -334,6 +382,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
             <p style={{display: 'inline'}}>{props.clickText} {props.answerIndexToText && getSrc(0)} </p><div style={{display: 'inline-block'}}><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button></div>
+            {props.multiselect && <div style={{display: 'block', paddingTop: '10px'}}><button style={{display: 'inline'}} onClick={handleMultiSubmit}>Submit</button> <p style={{display: 'inline'}}>{`${selectedRegions.length} regions selected!`}</p></div>}
             {!(loading || props.answerIndexToText) && props.enableSkew ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]] ?? false))? `hue-rotate(${hueRotate}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined, marginTop: '5px'}}>
                     <defs>
                         <filter id={getFilterId("combinedFilter", 2)}>

@@ -2,13 +2,11 @@ import React, { useMemo, useState } from 'react';
 import './../../Xgeo.css';
 import dots from '../../../../../assets/dots.png';
 import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
-import jp from '../../../../../assets/geojsons/prefectures.json';
+import jp_regions from '../../../../../assets/geojsons/jp_regions.json';
 import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
-import { ATTACHMENT_INDEX_TO_PREFECTURE_INDEX, ATTACHMENTS, HIGHLIGHT_GROUPS, PREFECTURE_INDEX_TO_ATTACHMENT_INDEX } from './constants';
-import { JAPAN_PREFECTURES_BITFLAG } from '../constants';
-import MultipleChoiceQuiz from '../../common/MultipleChoiceQuiz';
-import { PREFECTURE_REGIONS, PREFECTURES } from '../Prefectures/constants';
+import { ATTACHMENTS, REGION_INDEX_TO_ATTACHMENT_INDEX } from './constants';
+import { JAPAN_REGIONS, JAPAN_REGIONS_BITFLAG } from '../constants';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
 
 
@@ -37,7 +35,7 @@ const JpPoleAttachments = (): React.ReactElement => {
     }
 
     const filteredList = useMemo(() => {
-        return PREFECTURE_INDEX_TO_ATTACHMENT_INDEX.map((attachmentIndices: number[]) => {
+        return REGION_INDEX_TO_ATTACHMENT_INDEX.map((attachmentIndices: number[]) => {
             return attachmentIndices.filter((index: number) => {
                 if (enableMiscellaneousAttachments && index >= 0 && index <= 4) {
                     return true;
@@ -70,23 +68,22 @@ const JpPoleAttachments = (): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{paddingTop: '10px'}}>
                 <RegionSelectionQuiz
-                    mapJsonSrc={jp}
+                    mapJsonSrc={jp_regions}
                     clickText={'Click on the right region!'}
-                    regionIndexArray={PREFECTURE_REGIONS}
+                    regionIndexArray={JAPAN_REGIONS}
                     toFindIndexToAnswerIndicesArray={filteredList}
-                    answerIndexToRegionIndices={ATTACHMENT_INDEX_TO_PREFECTURE_INDEX}
                     answerIndexToSrc={getAttachmentImageSrc}
                     streakKey={getStreakKey(QuizType.JAPAN_POLE_ATTACHMENTS, [enableMiscellaneousAttachments, enableTransformers, enablePoletops])}
                     disallowRepeats={true}
                     enableRegions={enableRegion}
-                    regionsBitFlag={JAPAN_PREFECTURES_BITFLAG}
+                    regionsBitFlag={JAPAN_REGIONS_BITFLAG}
                     numLastItems={5}
                     itemHeight={150}
                     mapParameters={{scale: 1600, center: [138, 38]}}
-                    highlightGroups={HIGHLIGHT_GROUPS}
                     dashedBorder={true}
                 />
             </div>
+            <p><i>Note: Yaminashi and Shizuoka prefectures often use Kanto infrastructure and Mie often uses Chubu infrastructure.</i></p>
             <p>Credit to <a href='https://www.plonkit.net/japan' target="_blank" rel="noopener noreferrer">Plonkit</a> and <a href='https://docs.google.com/document/d/14rmfw7gU5L_4S43ED1ixEamZ1acZ0P0DWnYntVIc2F8/edit?tab=t.0' target="_blank" rel="noopener noreferrer">@dazainlh</a> for the images</p>
             <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>

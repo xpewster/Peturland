@@ -91,6 +91,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_JP_POLE_ATTACHMENTS;
       case Path.XGEO_JP_KANJI:
         return ContentType.XGEO_JP_KANJI;
+      case Path.XGEO_JP_REGIONS:
+        return ContentType.XGEO_JP_REGIONS;
       case Path.SOON:
         return ContentType.SOON;
     }

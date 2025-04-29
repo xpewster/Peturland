@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import './../Xgeo.css';
 import { BADS, MAP_COLOR, MAP_HOVER_COLOR, NICES } from '../constants';
 import { randomElement, shuffle } from '../helpers';
@@ -159,18 +159,20 @@ const MultipleChoiceQuiz = (props: MultipleChoiceQuizProps): React.ReactElement 
         return candidateIndices[Math.floor(Math.random() * candidateIndices.length)];
     };
 
-    const isStateEnabled = (enableRegion: boolean[], index: number): boolean => {
-        if (!props.regionsBitFlag) return true;
+    const isStateEnabled = useMemo(() => {
+        return (enableRegion: boolean[], index: number): boolean => {
+            if (!props.regionsBitFlag) return true;
 
-        const enabledRegionBitFlag = enableRegion.reduce((acc, enabled, index) => {
-        return enabled ? acc | REGION_INDEX_TO_BIT[index] : acc;
-        }, 0);
+            const enabledRegionBitFlag = enableRegion.reduce((acc, enabled, index) => {
+            return enabled ? acc | REGION_INDEX_TO_BIT[index] : acc;
+            }, 0);
+            
+            if (enabledRegionBitFlag === 0) return false;
+
+            return !!(props.regionsBitFlag[index] & enabledRegionBitFlag);
+        };
+    }, [props.regionsBitFlag]);
         
-        if (enabledRegionBitFlag === 0) return false;
-
-        return !!(props.regionsBitFlag[index] & enabledRegionBitFlag);
-    };
-    
     function generateFirstFind() {
         let tries = 0;
         let newChoices: Choice[] = [];
@@ -323,7 +325,7 @@ const MultipleChoiceQuiz = (props: MultipleChoiceQuizProps): React.ReactElement 
 
     return (
         <div style={{padding: 0, margin: 0, width: '100%'}}>
-            <p style={{display: 'inline'}}>{props.clickText} ({props.regionIndexArray[toFind]}) </p><div style={{display: 'inline-block'}}><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button></div>
+            <p style={{display: 'inline'}}>{props.clickText} <u>({props.regionIndexArray[toFind]})</u> </p><div style={{display: 'inline-block'}}><button onClick={() => { setStreak(0); generateNewFind(); }}>Regenerate</button> <button onClick={giveUp}>Give up</button></div>
             <div style={{display: 'block', paddingTop: '5px', paddingBottom: '5px', paddingRight: '0px'}}>
                 {choices.map((choice, index) => {
                     return (

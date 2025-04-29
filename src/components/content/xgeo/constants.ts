@@ -36,6 +36,7 @@ export enum QuizType {
     JAPAN_POLE_REFLECTORS,
     JAPAN_POLE_ATTACHMENTS,
     JAPAN_KANJI,
+    JAPAN_REGIONS,
 }
 
 export enum LocalStorageStreakKeys {
@@ -73,6 +74,7 @@ export enum LocalStorageStreakKeys {
     JAPAN_POLE_REFLECTORS = "japan_pole_reflectors_bestStreak",
     JAPAN_POLE_ATTACHMENTS = "japan_pole_attachments_bestStreak",
     JAPAN_KANJI = "japan_kanji_bestStreak",
+    JAPAN_REGIONS = "japan_regions_bestStreak",
 }
 
 export const MAP_COLOR = "#FF5533";

@@ -3,6 +3,7 @@ import attachment_kansai_0 from '../../../../../assets/jp/attachments/kansai_0.p
 import attachment_kansai_1 from '../../../../../assets/jp/attachments/kansai_1.png';
 import attachment_shikoku_0 from '../../../../../assets/jp/attachments/shikoku_0.png';
 import attachment_shikoku_1 from '../../../../../assets/jp/attachments/shikoku_1.png';
+import attachment_hokkaido_0 from '../../../../../assets/jp/attachments/hokkaido_0.png';
 
 import poletop_chubu_0 from '../../../../../assets/jp/poletops/chubu_0.png';
 import poletop_chubu_1 from '../../../../../assets/jp/poletops/chubu_1.png';
@@ -91,7 +92,22 @@ export const ATTACHMENTS = [
     transformer_tokyo_1,
     transformer_tokyo_2,
     transformer_tokyo_3,
+    attachment_hokkaido_0,
 ];
+
+export const REGION_INDEX_TO_ATTACHMENT_INDEX = [
+    [3, 4, 14, 34, 35, 36],  // Shikoku
+    [0, 8, 19, 20, 21, 22, 23, 14, 15], // Chugoku
+    [31, 32], // Kyushu
+    [5, 6, 7, 16, 17, 18], // Chubu
+    [9, 10, 27], // Hokuriku
+    [1, 2, 11, 12, 28, 29, 30], // Kansai
+    [13, 40, 41, 42, 43, 15], // Kanto
+    [37, 38, 39],   // Tohoku
+    [24, 25, 26, 44],  // Hokkaido
+    [33, 15],  // Okinawa
+];
+
 export const PREFECTURE_INDEX_TO_ATTACHMENT_INDEX = [
     [24, 25, 26],                             // Hokkaido
     [37, 38, 39],                             // Aomori (Tohoku)

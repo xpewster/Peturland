@@ -24,6 +24,19 @@ export const PLATES = [
     kanto_2,
 ];
 
+export const REGION_INDEX_TO_PLATE_INDEX_2 = [
+    [7], // Shikoku - shikoku plate
+    [6], // Chugoku - chugoku plate
+    [8], // Kyushu - kyushu plate
+    [3], // Chubu - chubu plate
+    [4], // Hokuriku - hokuriku plate
+    [5], // Kansai - kansai plate
+    [2, 10], // Kanto - kanto and kanto_2 plate
+    [1], // Tohoku - tohoku plate
+    [0], // Hokkaido - hokkaido plate
+    [9], // Okinawa - okinawa plate
+];
+
 export const REGION_INDEX_TO_PLATE_INDEX = [
     [0],  // Hokkaido -> hokkaido
     [1],  // Aomori -> tohoku
@@ -39,14 +52,14 @@ export const REGION_INDEX_TO_PLATE_INDEX = [
     [2, 10],  // Chiba -> kanto
     [2, 10],  // Tokyo -> kanto
     [2, 10],  // Kanagawa -> kanto
-    [4, 1],  // Niigata -> hokuriku
+    [1],  // Niigata -> hokuriku
     [4],  // Toyama -> hokuriku
     [4],  // Ishikawa -> hokuriku
     [4],  // Fukui -> hokuriku
     [3],  // Yamanashi -> chubu
-    [3, 4],  // Nagano -> chubu
+    [3],  // Nagano -> chubu
     [3],  // Gifu -> chubu
-    [3],  // Shizuoka -> chubu
+    [3, 2, 10],  // Shizuoka -> chubu
     [3],  // Aichi -> chubu
     [5, 3],  // Mie -> kansai
     [5],  // Shiga -> kansai
@@ -77,15 +90,15 @@ export const REGION_INDEX_TO_PLATE_INDEX = [
 export const PLATE_INDEX_TO_REGION_INDICES = [
     [0],                           // Hokkaido -> only Hokkaido prefecture
     [1, 2, 3, 4, 5, 6, 14],            // Tohoku -> Aomori, Iwate, Miyagi, Akita, Yamagata, Fukushima
-    [7, 8, 9, 10, 11, 12, 13],     // Kanto -> Ibaraki, Tochigi, Gunma, Saitama, Chiba, Tokyo, Kanagawa
+    [7, 8, 9, 10, 11, 12, 13, 21],     // Kanto -> Ibaraki, Tochigi, Gunma, Saitama, Chiba, Tokyo, Kanagawa
     [23, 18, 19, 20, 21, 22],          // Chubu -> Yamanashi, Nagano, Gifu, Shizuoka, Aichi
-    [14, 15, 16, 17, 19],              // Hokuriku -> Niigata, Toyama, Ishikawa, Fukui
+    [15, 16, 17],              // Hokuriku -> Niigata, Toyama, Ishikawa, Fukui
     [23, 24, 25, 26, 27, 28, 29],  // Kansai -> Mie, Shiga, Kyoto, Osaka, Hyogo, Nara, Wakayama
     [30, 31, 32, 33, 34],          // Chugoku -> Tottori, Shimane, Okayama, Hiroshima, Yamaguchi
     [35, 36, 37, 38],              // Shikoku -> Tokushima, Kagawa, Ehime, Kochi
     [39, 40, 41, 42, 43, 44, 45],  // Kyushu -> Fukuoka, Saga, Nagasaki, Kumamoto, Oita, Miyazaki, Kagoshima
     [46],                          // Okinawa -> only Okinawa prefecture
-    [7, 8, 9, 10, 11, 12, 13],     // Kanto -> Ibaraki, Tochigi, Gunma, Saitama, Chiba, Tokyo, Kanagawa
+    [7, 8, 9, 10, 11, 12, 13, 21],     // Kanto -> Ibaraki, Tochigi, Gunma, Saitama, Chiba, Tokyo, Kanagawa
 ];
 
 export const HIGHLIGHT_GROUPS = [

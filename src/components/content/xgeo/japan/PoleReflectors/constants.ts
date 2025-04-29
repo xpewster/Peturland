@@ -18,6 +18,20 @@ export const REFLECTORS = [
     kyushu,
 ];
 
+export const REGION_INDEX_TO_REFLECTOR_INDEX_2 = [
+    [6],         // Shikoku - shikoku reflector
+    [5],         // Chugoku - chugoku reflector
+    [7],         // Kyushu - kyushu reflector
+    [3],         // Chubu - chubu reflector
+    [2],         // Hokuriku - hokuriku reflector
+    [4],         // Kansai - kansai reflector
+    [],         // Kanto - no special reflector
+    [0, 1],      // Tohoku - tohoku and tohoku_2 reflector
+    [],         // Hokkaido - no reflector
+    [7],         // Okinawa - kyushu reflector
+];
+
+
 export const REGION_INDEX_TO_REFLECTOR_INDEX = [
     [],          // Hokkaido - no reflector
     [0, 1],      // Aomori - tohoku and tohoku_2

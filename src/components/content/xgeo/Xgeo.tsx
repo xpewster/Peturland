@@ -68,6 +68,7 @@ import Kanji from './japan/Kanji/Kanji';
 import AustraliaPlates from './australia/Plates/AustraliaPlates';
 import ZaPlates from './za/Plates/ZaPlates';
 import ZaProvinces from './za/Provinces/ZaProvinces';
+import JpRegions from './japan/Regions/JpRegions';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -109,10 +110,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const NIGERIA_LINKS = [Path.XGEO_NIGERIA_STATES];
     const NIGERIA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
-    const JP_IMGS = [phone, jp_0, jp_2, jp_1, pole, attachments];
-    const JP_STRINGS = ['Area Codes', 'Prefectures', 'Kanji', 'Pole Plates', 'Pole Reflectors', 'Pole Attachments'];
-    const JP_LINKS = [Path.XGEO_JP_AREACODES, Path.XGEO_JP_PREFECTURES, Path.XGEO_JP_KANJI, Path.XGEO_JP_POLE_PLATES, Path.XGEO_JP_POLE_REFLECTORS, Path.XGEO_JP_POLE_ATTACHMENTS];
-    const JP_STYLES = [{paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}];
+    const JP_IMGS = [phone, jp_0, jp_2, jp_1, pole, attachments, jp_0];
+    const JP_STRINGS = ['Area Codes', 'Prefectures', 'Kanji', 'Pole Plates', 'Pole Reflectors', 'Pole Attachments', 'Regions'];
+    const JP_LINKS = [Path.XGEO_JP_AREACODES, Path.XGEO_JP_PREFECTURES, Path.XGEO_JP_KANJI, Path.XGEO_JP_POLE_PLATES, Path.XGEO_JP_POLE_REFLECTORS, Path.XGEO_JP_POLE_ATTACHMENTS, Path.XGEO_JP_REGIONS];
+    const JP_STYLES = [{paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}];
 
     const KENYA_IMGS = [counties];
     const KENYA_STRINGS = ['Counties'];
@@ -226,6 +227,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <JpPoleAttachments />;
             case ContentType.XGEO_JP_KANJI:
                 return <Kanji />;
+            case ContentType.XGEO_JP_REGIONS:
+                return <JpRegions />;
             default:
                 return <XgeoSoon />;
         }
