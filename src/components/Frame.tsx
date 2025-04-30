@@ -69,6 +69,8 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_PHILLIPINES_PROVINCES;
       case Path.XGEO_PHILLIPINES_REGIONS:
         return ContentType.XGEO_PHILLIPINES_REGIONS;
+      case Path.XGEO_VIETNAM_PROVINCES:
+        return ContentType.XGEO_VIETNAM_PROVINCES;
       case Path.XGEO_NIGERIA_STATES:
         return ContentType.XGEO_NIGERIA_STATES;
       case Path.XGEO_KENYA_COUNTIES:

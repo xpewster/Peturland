@@ -63,6 +63,7 @@ const Sitemap = () => {
                   <li><Link to={Path.XGEO_JP_POLE_REFLECTORS}>Pole Reflectors</Link></li>
                   <li><Link to={Path.XGEO_JP_POLE_ATTACHMENTS}>Pole Attachments</Link></li>
                   <li><Link to={Path.XGEO_JP_KANJI}>Kanji</Link></li>
+                  <li><Link to={Path.XGEO_JP_REGIONS}>Regions</Link></li>
                 </ul>
               </li>
               <li>

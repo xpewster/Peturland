@@ -28,6 +28,7 @@ export enum Path {
     XGEO_INDONESIA_KABUPATEN = "/xgeo/indonesia/kabupaten",
     XGEO_PHILLIPINES_PROVINCES = "/xgeo/philippines/provinces",
     XGEO_PHILLIPINES_REGIONS = "/xgeo/philippines/regions",
+    XGEO_VIETNAM_PROVINCES = "/xgeo/vietnam/provinces",
     XGEO_NIGERIA_STATES = "/xgeo/nigeria/states",
     XGEO_KENYA_COUNTIES = "/xgeo/kenya/counties",
     XGEO_AUSTRALIA_PLATES = "/xgeo/australia/plates",

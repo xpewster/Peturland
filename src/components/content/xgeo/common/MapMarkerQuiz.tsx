@@ -10,6 +10,7 @@ import { CoordinateAnswerPair, SelectorType } from './constants';
 import ZoomableImage from '../../../common/ZoomableImage';
 import { clamp, get } from 'lodash';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
+import { f } from 'react-router/dist/development/fog-of-war-Cm1iXIp7';
 
 export interface MultipleChoiceConfig {
     numChoices: number;
@@ -78,12 +79,6 @@ const MapMarkerQuiz = (props: MapMarkerQuizProps): React.ReactElement => {
 
     const [mapMarkerSrc, setMapMarkerSrc] = useState<string>(mapmarkerlight);
 
-    useEffect(() => {
-        setStreak(0);
-        setBestStreak(localStorage.getItem(getStreakKey(props.quizType, []) + props.streakSuffix) ? Number(localStorage.getItem(getStreakKey(props.quizType, []) + props.streakSuffix)) : 0);
-        setMessage("");
-    }, [getStreakKey(props.quizType, []) + props.streakSuffix]);
-
     const debugLog = (_toFind: number) => {
         if (!props.coordinateAnswerPairs[_toFind]) {
             return;
@@ -113,6 +108,7 @@ const MapMarkerQuiz = (props: MapMarkerQuizProps): React.ReactElement => {
                 continue;
             }
             if (!props.coordinateAnswerPairs[newt]) {
+                setChoices([]);
                 return;
             }
             setToFind(newt);
@@ -287,8 +283,16 @@ const MapMarkerQuiz = (props: MapMarkerQuizProps): React.ReactElement => {
     }, [toFind]);
 
     useEffect(() => {
+        setStreak(0);
+        setBestStreak(localStorage.getItem(getStreakKey(props.quizType, []) + props.streakSuffix) ? Number(localStorage.getItem(getStreakKey(props.quizType, []) + props.streakSuffix)) : 0);
+        setMessage("");
         generateNewFind();
     }, [props.streakSuffix]);
+
+    useEffect(() => {
+        setCurrentZoomPos([0, 0]);
+        setCurrentZoomScale(1);
+    }, [props.mapSrc]);
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>

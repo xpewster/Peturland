@@ -69,6 +69,7 @@ import AustraliaPlates from './australia/Plates/AustraliaPlates';
 import ZaPlates from './za/Plates/ZaPlates';
 import ZaProvinces from './za/Provinces/ZaProvinces';
 import JpRegions from './japan/Regions/JpRegions';
+import VnProvinces from './vietnam/Provinces/VnProvinces';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -104,6 +105,11 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const PHILLIPINES_STRINGS = ['Provinces', 'Regions'];
     const PHILLIPINES_LINKS = [Path.XGEO_PHILLIPINES_PROVINCES, Path.XGEO_PHILLIPINES_REGIONS];
     const PHILLIPINES_STYLES = Array(2).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
+
+    const VN_IMGS = [provinces];
+    const VN_STRINGS = ['Provinces'];
+    const VN_LINKS = [Path.XGEO_VIETNAM_PROVINCES];
+    const VN_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
     
     const NIGERIA_IMGS = [provinces];
     const NIGERIA_STRINGS = ['States'];
@@ -130,13 +136,13 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const ZA_LINKS = [Path.XGEO_ZA_PLATES, Path.XGEO_ZA_PROVINCES];
     const ZA_STYLES = Array(2).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
 
-    const TOP_IMGS = [folder2, folder2, folder2, folder2, folder2, folder2, folder2];
-    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Nigeria', 'Kenya', 'Australia', 'South Africa'];
-    const TOP_STYLES = Array(7).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
-    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS, NIGERIA_IMGS, KENYA_IMGS, AU_IMGS, ZA_IMGS];
-    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS, NIGERIA_STRINGS, KENYA_STRINGS, AU_STRINGS, ZA_STRINGS];
-    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS, NIGERIA_LINKS, KENYA_LINKS, AU_LINKS, ZA_LINKS];
-    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES, NIGERIA_STYLES, KENYA_STYLES, AU_STYLES, ZA_STYLES];
+    const TOP_IMGS = [folder2, folder2, folder2, folder2, folder2, folder2, folder2, folder2];
+    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Vietnam', 'Nigeria', 'Kenya', 'Australia', 'South Africa'];
+    const TOP_STYLES = Array(8).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
+    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS, VN_IMGS, NIGERIA_IMGS, KENYA_IMGS, AU_IMGS, ZA_IMGS];
+    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS, VN_STRINGS, NIGERIA_STRINGS, KENYA_STRINGS, AU_STRINGS, ZA_STRINGS];
+    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS, VN_LINKS, NIGERIA_LINKS, KENYA_LINKS, AU_LINKS, ZA_LINKS];
+    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES, VN_STYLES, NIGERIA_STYLES, KENYA_STYLES, AU_STYLES, ZA_STYLES];
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
     const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);
@@ -205,6 +211,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <FiloProvinces />;
             case ContentType.XGEO_PHILLIPINES_REGIONS:
                 return <FiloRegions />;
+            case ContentType.XGEO_VIETNAM_PROVINCES:
+                return <VnProvinces />;
             case ContentType.XGEO_NIGERIA_STATES:
                 return <NigeriaStates />;
             case ContentType.XGEO_KENYA_COUNTIES:
