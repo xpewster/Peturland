@@ -7,7 +7,7 @@ import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { REGION_INDEX_TO_PROVINCE_INDEX } from './constants';
 import { PROVINCES, VIETNAM_REGIONS_BITFLAG } from '../constants';
-import totoro from '../../../../../assets/gifs/Totoro.gif';
+import pho from '../../../../../assets/gifs/pho.gif';
 
 
 
@@ -65,7 +65,8 @@ const VnProvinces = (): React.ReactElement => {
                     mapParameters={{scale: 1600, center: [105.5, 14.5]}}
                 />
             </div>
-            <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
+            <p style={{position: 'absolute', bottom: '20px', right: '150px', fontFamily: 'Comic Sans MS' }}>It's pronounced pho, not pho!</p>
+            <img alt='Pho' style={{position: 'absolute', bottom: '20px', right: '20px', pointerEvents: 'none', opacity: '0.9'}} src={pho}></img>
         </div>
     );
 };

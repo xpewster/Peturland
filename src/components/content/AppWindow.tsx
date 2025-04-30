@@ -64,7 +64,7 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.XGEO_PHILLIPINES_REGIONS:
             return 750;
         case ContentType.XGEO_VIETNAM_PROVINCES:
-            return 850;
+            return 880;
         case ContentType.XGEO_NIGERIA_STATES:
             return 700;
         case ContentType.XGEO_KENYA_COUNTIES:

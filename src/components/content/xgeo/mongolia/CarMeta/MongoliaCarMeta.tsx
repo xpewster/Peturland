@@ -126,10 +126,10 @@ const MongoliaCarMeta = (): React.ReactElement => {
                     {REGIONS[1]}<input type="checkbox" disabled={currentRegion === 1} onChange={() => {handleCheck(1)}} checked={currentRegion === 1}></input>
                     {
                         currentRegion === 1 ?
-                            <>
+                            <div style={{display: 'inline', border: '1px solid gray', paddingTop: '1px'}}>
                                 &nbsp;East<input type="checkbox" onChange={() => {changeSetting(2)}} checked={enableEast}></input>
                                 West<input type="checkbox" onChange={() => {changeSetting(3)}} checked={enableWest}></input>
-                            </> : <></>
+                            </div> : <></>
                     }
                 </div>
                 <img style={{position: 'absolute', left: '-2px', top: '211px'}} src={dots}></img>
