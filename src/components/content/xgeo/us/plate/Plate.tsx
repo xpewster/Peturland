@@ -395,6 +395,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
             {(props.showYears && plate) ?
                 <>
                     <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{props.region?.toString() + (props.type === PLATE_TYPE.VANITY ? " (Special)" : "")}</p>
+                    {(plate.length >= 8 && props.type === PLATE_TYPE.VANITY) ? <p style={{margin: 'auto', textAlign: 'center', fontFamily: 'Comic Sans MS', fontSize: '14px'}}>{plate[7]}</p> : <></>}
                     {((plate.length === 5 || !plate[5]) ?
                         <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-Present)`}</p>
                         : <p className='p-old' style={{margin: 'auto', textAlign: 'center'}}>{`(${plate[4]}-${plate[5]})`}</p>)

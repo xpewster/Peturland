@@ -76,6 +76,7 @@ const UsAdoptAHighway = (): React.ReactElement => {
                     minRandScale={0.1}
                 />
             </div>
+            <p>Credit to <a href='https://www.plonkit.net/united-states' target="_blank" rel="noopener noreferrer">Plonkit</a> for the images</p>
         </div>
     );
 };

@@ -5180,7 +5180,7 @@ const DSO_DETAILS = {
   "NGC7000": {
     "id": "NGC7000",
     "name": "North American Nebula",
-    "type": "Cluster of Stars",
+    "type": "Emission Nebula",
     "constellation": "Cyg",
     "ra_deg": 314.69583333333327,
     "dec_deg": 44.330000000000005,
@@ -5190,7 +5190,7 @@ const DSO_DETAILS = {
   "NGC6960": {
     "id": "NGC6960",
     "name": "Veil Nebula",
-    "type": "Interstellar Medium Object",
+    "type": "Supernova Remnant",
     "constellation": "Cyg",
     "ra_deg": 311.4083333333333,
     "dec_deg": 30.708333333333332,
@@ -6180,7 +6180,7 @@ const DSO_DETAILS = {
   "NGC6188": {
     "id": "NGC6188",
     "name": "Firebird Nebula",
-    "type": "Interstellar Medium Object",
+    "type": "Emission Nebula",
     "constellation": "Ara",
     "ra_deg": 250.0,
     "dec_deg": -48.5,
@@ -6380,7 +6380,7 @@ const DSO_DETAILS = {
   "NGC6888": {
     "id": "NGC6888",
     "name": "Crescent Nebula",
-    "type": "Interstellar Medium Object",
+    "type": "Emission Nebula",
     "constellation": "Cyg",
     "ra_deg": 303.04999999999995,
     "dec_deg": 38.333333333333336,

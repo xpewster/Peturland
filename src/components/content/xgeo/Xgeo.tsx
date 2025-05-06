@@ -137,12 +137,12 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const ZA_STYLES = Array(2).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
 
     const TOP_IMGS = [folder2, folder2, folder2, folder2, folder2, folder2, folder2, folder2];
-    const TOP_STRINGS = ['Mongolia', 'Indonesia', 'Phillipines', 'Vietnam', 'Nigeria', 'Kenya', 'Australia', 'South Africa'];
-    const TOP_STYLES = Array(8).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
-    const TOP_SUB_SRCS = [MONG_IMGS, INDO_IMGS, PHILLIPINES_IMGS, VN_IMGS, NIGERIA_IMGS, KENYA_IMGS, AU_IMGS, ZA_IMGS];
-    const TOP_SUB_STRINGS = [MONG_STRINGS, INDO_STRINGS, PHILLIPINES_STRINGS, VN_STRINGS, NIGERIA_STRINGS, KENYA_STRINGS, AU_STRINGS, ZA_STRINGS];
-    const TOP_SUB_LINKS = [MONG_LINKS, INDO_LINKS, PHILLIPINES_LINKS, VN_LINKS, NIGERIA_LINKS, KENYA_LINKS, AU_LINKS, ZA_LINKS];
-    const TOP_SUB_STYLES = [MONG_STYLES, INDO_STYLES, PHILLIPINES_STYLES, VN_STYLES, NIGERIA_STYLES, KENYA_STYLES, AU_STYLES, ZA_STYLES];
+    const TOP_STRINGS = ['Australia', 'Indonesia', 'Kenya', 'Mongolia', 'Nigeria', 'Phillipines', 'South Africa', 'Vietnam'];
+    const TOP_STYLES = Array(8).fill({width: '16px', height: '16px', paddingLeft: '4px', paddingTop: '3px'});
+    const TOP_SUB_SRCS = [AU_IMGS, INDO_IMGS, KENYA_IMGS, MONG_IMGS, NIGERIA_IMGS, PHILLIPINES_IMGS, ZA_IMGS, VN_IMGS];
+    const TOP_SUB_STRINGS = [AU_STRINGS, INDO_STRINGS, KENYA_STRINGS, MONG_STRINGS, NIGERIA_STRINGS, PHILLIPINES_STRINGS, ZA_STRINGS, VN_STRINGS];
+    const TOP_SUB_LINKS = [AU_LINKS, INDO_LINKS, KENYA_LINKS, MONG_LINKS, NIGERIA_LINKS, PHILLIPINES_LINKS, ZA_LINKS, VN_LINKS];
+    const TOP_SUB_STYLES = [AU_STYLES, INDO_STYLES, KENYA_STYLES, MONG_STYLES, NIGERIA_STYLES, PHILLIPINES_STYLES, ZA_STYLES, VN_STYLES];
 
     const [showFilebox, setShowFilebox] = useState<boolean[]>([false, false, false, false, false]);
     const [showNavigateHere, setShowNavigateHere] = useState<boolean>(true);

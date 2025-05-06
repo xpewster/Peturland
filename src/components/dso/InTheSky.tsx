@@ -111,8 +111,10 @@ const InTheSky: React.FC<InTheSkyProps> = ({
 
     const getObjectFont = (stringLength: number): string => {
       if (objectFont === AvailableFonts.DOS) {
-        if (stringLength > 24) {
+        if (stringLength > 23) {
           return `${Math.floor(10 * (width/130))}px DOS, basiic, monospace`;
+        } else if (stringLength > 20) {
+          return `${Math.floor(11 * (width/130))}px DOS, basiic, monospace`;
         } else if (stringLength > 17) {
             return `${Math.floor(12 * (width/130))}px DOS, basiic, monospace`;
         } else if (stringLength > 14) {
