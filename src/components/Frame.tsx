@@ -6,12 +6,15 @@ import './Frame.css';
 import Content from './Content';
 import { Path } from '../constants/Path';
 import { ContentType } from '../constants/ContentType';
+import { useNavigate } from 'react-router';
 
 export interface FrameProps {
   path?: string;
 }
 
 const Frame = (props: FrameProps): React.ReactElement => {
+
+  const nav = useNavigate();
 
   const getContentType = () => {
     switch(props.path) {
@@ -106,6 +109,7 @@ const Frame = (props: FrameProps): React.ReactElement => {
       <div className="box">
           <img className="box-header" alt='Header' src={header}/>
           <img className="petur" alt='Petur' src={petur}/>
+          <div style={{position: 'absolute', top: '10px', right: '10px', width: '27%', height: '120px', cursor: 'pointer'}} onClick={() => { nav(Path.HOME); }}/>
           <img className="dragon" src={dragon}/>
           
           <Content contentType={getContentType()}></Content>
