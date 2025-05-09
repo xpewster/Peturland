@@ -4,6 +4,7 @@ import { getStreakKey, randomElement, shuffle } from '../../helpers';
 import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../../constants';
 import { KANJI } from './constants';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
+import { find } from 'lodash';
 
 
 
@@ -75,7 +76,15 @@ const Kanji = (): React.ReactElement => {
     //     });
     // }, [enableDirections, enablePhysicalAdjectives, enableColors, enableUrbanDescriptors, enableNaturalFeatures, enableOther]);
 
-    
+    const validateFind = (find: number) => {
+        if (find < 11 && !enableDirections) { return false; }
+        if (find >= 11 && find < 21 && !enablePhysicalAdjectives) { return false; }
+        if (find >= 21 && find < 30 && !enableColors) { return false; }
+        if (find >= 30 && find < 40 && !enableUrbanDescriptors) { return false; }
+        if (find >= 40 && find < 63 && !enableNaturalFeatures) { return false; }
+        if (find >= 63 && !enableOther) { return false; }
+        return true;
+    };
 
     const generateNewFind = () => {
         let newFind = 0;
@@ -83,27 +92,16 @@ const Kanji = (): React.ReactElement => {
         while (!found) {
             newFind = Math.floor(Math.random() * KANJI.length);
             if (newFind === toFind) { continue;}
-            if (newFind < 11 && !enableDirections) { continue; }
-            if (newFind >= 11 && newFind < 21 && !enablePhysicalAdjectives) { continue; }
-            if (newFind >= 21 && newFind < 30 && !enableColors) { continue; }
-            if (newFind >= 30 && newFind < 40 && !enableUrbanDescriptors) { continue; }
-            if (newFind >= 40 && newFind < 63 && !enableNaturalFeatures) { continue; }
-            if (newFind >= 63 && !enableOther) { continue; }
+            if (!validateFind(newFind)) { continue; }
             found = true;
         }
         let newChoices: string[] = [KANJI[newFind][mode + 1][Math.floor(Math.random() * 100) % KANJI[newFind][mode + 1].length]];
         for (let i = 0; i < NUM_CHOICES - 1; i++) {
             let choice = Math.floor(Math.random() * KANJI.length);
             const randomIndex = Math.floor(Math.random() * 100);
-            while (choice === newFind || newChoices.includes(KANJI[choice][mode + 1][randomIndex % KANJI[choice][mode + 1].length])) {
+            while (choice === newFind || newChoices.includes(KANJI[choice][mode + 1][randomIndex % KANJI[choice][mode + 1].length]) || !validateFind(choice)) {
                 choice = Math.floor(Math.random() * KANJI.length);
             }
-            if (choice < 11 && !enableDirections) { continue; }
-            if (choice >= 11 && choice < 21 && !enablePhysicalAdjectives) { continue; }
-            if (choice >= 21 && choice < 30 && !enableColors) { continue; }
-            if (choice >= 30 && choice < 40 && !enableUrbanDescriptors) { continue; }
-            if (choice >= 40 && choice < 63 && !enableNaturalFeatures) { continue; }
-            if (choice >= 63 && !enableOther) { continue; }
             newChoices.push(KANJI[choice][mode + 1][randomIndex % KANJI[choice][mode + 1].length]);
         }
         shuffle(newChoices);
@@ -178,14 +176,14 @@ const Kanji = (): React.ReactElement => {
         return false;
       }
 
-    const onAnswerSubmit = (answer?: string) => {
+    const onAnswerSubmit = (answer?: string, exact?: boolean) => {
         let answerValue = answer ? answer : inputValue.trim().toLowerCase();
         if (answerValue === '') {
             setMessage("Enter your answer! ⎛⎝>⏝⏝<⎛⎝");
             setMessageColor("orange");
             return;
         }
-        if (isCloseMatch(KANJI[toFind][mode + 1] as string[], answerValue)) {
+        if (isCloseMatch(KANJI[toFind][mode + 1] as string[], answerValue, exact ? 0 : 1)) {
             let newMessage;
             do {
                 newMessage = randomElement(NICES)
@@ -206,7 +204,7 @@ const Kanji = (): React.ReactElement => {
     }
 
     const handleClick = (index: number) => {
-        onAnswerSubmit(choices[index]);
+        onAnswerSubmit(choices[index], true);
     }
 
     useEffect(() => {
