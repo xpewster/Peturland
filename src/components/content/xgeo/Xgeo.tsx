@@ -117,7 +117,7 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const NIGERIA_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const JP_IMGS = [phone, jp_0, jp_2, jp_1, pole, attachments, jp_0];
-    const JP_STRINGS = ['Area Codes', 'Prefectures', 'Kanji', 'Pole Plates', 'Pole Reflectors', 'Pole Attachments', 'Regions'];
+    const JP_STRINGS = ['Area Codes', 'Prefectures', 'Kanji in Place Names', 'Pole Plates', 'Pole Reflectors', 'Pole Attachments', 'Regions'];
     const JP_LINKS = [Path.XGEO_JP_AREACODES, Path.XGEO_JP_PREFECTURES, Path.XGEO_JP_KANJI, Path.XGEO_JP_POLE_PLATES, Path.XGEO_JP_POLE_REFLECTORS, Path.XGEO_JP_POLE_ATTACHMENTS, Path.XGEO_JP_REGIONS];
     const JP_STYLES = [{paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}, {}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}, {}];
 

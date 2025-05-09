@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import dots from '../../../../../assets/dots.png';
-import { getStreakKey, randomElement } from '../../helpers';
+import { getStreakKey, randomElement, shuffle } from '../../helpers';
 import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../../constants';
 import { KANJI } from './constants';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
@@ -10,6 +10,7 @@ import totoro from '../../../../../assets/gifs/Totoro.gif';
 const Kanji = (): React.ReactElement => {
 
     const [mode, setMode] = useState<number>(0); // 0 = furigana, 1 = meaning
+    const [multipleChoice, setMultipleChoice] = useState<boolean>(false);
 
     const [enableDirections, setEnableDirections] = useState<boolean>(true);
     const [enablePhysicalAdjectives, setEnablePhysicalAdjectives] = useState<boolean>(true);
@@ -23,6 +24,9 @@ const Kanji = (): React.ReactElement => {
     const [toFind, setToFind] = useState<number>(Math.floor(Math.random() * KANJI.length));
     const [message, setMessage] = useState<string>('');
     const [messageColor, setMessageColor] = useState<string>("green");
+    const [choices, setChoices] = useState<string[]>([]);
+
+    const NUM_CHOICES = 4;
 
     const getStreakKey = () => {
         return LocalStorageStreakKeys.JAPAN_KANJI + `_${mode}_${enableDirections ? 1 : 0}_${enablePhysicalAdjectives ? 1 : 0}_${enableColors ? 1 : 0}_${enableUrbanDescriptors ? 1 : 0}_${enableNaturalFeatures ? 1 : 0}_${enableOther ? 1 : 0}`;
@@ -32,6 +36,7 @@ const Kanji = (): React.ReactElement => {
     const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey()) ? Number(getStreakKey()) : 0);
 
     const [lastItems, setLastItems] = useState<number[]>([]);
+    const [blurLastItems, setBlurLastItems] = useState<boolean>(false);
 
     /* ----------------- */
 
@@ -86,6 +91,23 @@ const Kanji = (): React.ReactElement => {
             if (newFind >= 63 && !enableOther) { continue; }
             found = true;
         }
+        let newChoices: string[] = [KANJI[newFind][mode + 1][Math.floor(Math.random() * 100) % KANJI[newFind][mode + 1].length]];
+        for (let i = 0; i < NUM_CHOICES - 1; i++) {
+            let choice = Math.floor(Math.random() * KANJI.length);
+            const randomIndex = Math.floor(Math.random() * 100);
+            while (choice === newFind || newChoices.includes(KANJI[choice][mode + 1][randomIndex % KANJI[choice][mode + 1].length])) {
+                choice = Math.floor(Math.random() * KANJI.length);
+            }
+            if (choice < 11 && !enableDirections) { continue; }
+            if (choice >= 11 && choice < 21 && !enablePhysicalAdjectives) { continue; }
+            if (choice >= 21 && choice < 30 && !enableColors) { continue; }
+            if (choice >= 30 && choice < 40 && !enableUrbanDescriptors) { continue; }
+            if (choice >= 40 && choice < 63 && !enableNaturalFeatures) { continue; }
+            if (choice >= 63 && !enableOther) { continue; }
+            newChoices.push(KANJI[choice][mode + 1][randomIndex % KANJI[choice][mode + 1].length]);
+        }
+        shuffle(newChoices);
+        setChoices(newChoices);
         setToFind(newFind);
     }
 
@@ -156,13 +178,14 @@ const Kanji = (): React.ReactElement => {
         return false;
       }
 
-    const onAnswerSubmit = () => {
-        if (inputValue.trim() === '') {
+    const onAnswerSubmit = (answer?: string) => {
+        let answerValue = answer ? answer : inputValue.trim().toLowerCase();
+        if (answerValue === '') {
             setMessage("Enter your answer! ⎛⎝>⏝⏝<⎛⎝");
             setMessageColor("orange");
             return;
         }
-        if (isCloseMatch(KANJI[toFind][mode + 1] as string[], inputValue.trim().toLowerCase())) {
+        if (isCloseMatch(KANJI[toFind][mode + 1] as string[], answerValue)) {
             let newMessage;
             do {
                 newMessage = randomElement(NICES)
@@ -182,6 +205,10 @@ const Kanji = (): React.ReactElement => {
         }
     }
 
+    const handleClick = (index: number) => {
+        onAnswerSubmit(choices[index]);
+    }
+
     useEffect(() => {
         generateNewFind();
         setStreak(0);
@@ -191,11 +218,12 @@ const Kanji = (): React.ReactElement => {
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
-            <p style={{paddingBottom: '10px'}}>Kanji</p>
+            <p style={{paddingBottom: '10px'}}>Kanji used in place names</p>
             <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
             <div>
                 Furigana<input type="radio" onChange={() => {setMode(0); setInputValue('');}} checked={mode === 0}></input>
                 Meaning<input type="radio" onChange={() => {setMode(1); setInputValue('');}} checked={mode === 1}></input>
+                <span style={{float: 'right'}} >Multiple choice<input type="checkbox" onChange={() => {setMultipleChoice(!multipleChoice); setInputValue('');}} checked={multipleChoice}></input></span>
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
             <div style={{marginTop: '10px', marginBottom: '20px'}}>
@@ -207,29 +235,49 @@ const Kanji = (): React.ReactElement => {
                 Other<input type="checkbox" onChange={() => {changeSetting(5)}} checked={enableOther}></input>
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '186px'}} src={dots}></img>
-            <div style={{paddingTop: '10px'}}>
-                <form onSubmit={(e) => {
-                    e.preventDefault();
-                    onAnswerSubmit();
-                }}>
-                    <input type='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)}></input>
-                    <input type='submit' value='Submit'></input>
-                    <input type='button' value='Skip' onClick={(event) => { giveUp(); }}></input>
-                </form>
-                {(message !== '') && <p style={{color: messageColor}}>{message}</p>}
+            {multipleChoice ? <div>
                 <p className='p-old'><span style={{textDecoration: 'underline'}}>Kanji:</span> {KANJI[toFind][0]}</p>
+                <p>{`Click on the right ${mode === 0 ? 'furigana' : 'meaning'}!`} <input type='button' value='Skip' onClick={(event) => { giveUp(); }}></input></p>
+                {choices.map((choice, index) => {
+                    return (
+                        <div style={{display: 'inline-block', width: '40%', margin: '10px', cursor: 'pointer'}} onClick={() => {handleClick(index);}} >
+                            <p style={{display: 'inline'}}>{['A.', 'B.', 'C.', 'D.', 'E.', 'F.'][index]}</p>
+                            <p style={{display: 'inline', marginLeft: '10px'}}>{choice}</p>
+                        </div>
+                    );
+                })}
+                {(message !== '') && <p style={{color: messageColor}}>{message}</p>}
             </div>
-            <div style={{border: '1px dashed grey', padding: '5px', height: lastItems.length > 0 ? 'auto' : '286px'}}>
-                <p style={{margin: '0px', textDecoration: 'underline'}}>Previous Kanji: </p>
-                <ul style={{margin: '0px', paddingInlineStart: '0px'}}>
-                    {lastItems.reverse().map((item, index) => {
-                        return (
-                            <li key={index} style={{listStyleType: 'none'}}>
-                                <span className='p-old'>{KANJI[item][0]}: {(KANJI[item][1] as string[]).join(',')}: {(KANJI[item][2] as string[]).join(',')}</span>
-                            </li>
-                        );
-                    })}
-                </ul>
+            : <div>
+                <div style={{paddingTop: '10px'}}>
+                    <form onSubmit={(e) => {
+                        e.preventDefault();
+                        onAnswerSubmit();
+                    }}>
+                        <input type='text' value={inputValue} onChange={(e) => setInputValue(e.target.value)}></input>
+                        <input type='submit' value='Submit'></input>
+                        <input type='button' value='Skip' onClick={(event) => { giveUp(); }}></input>
+                    </form>
+                    {(message !== '') && <p style={{color: messageColor}}>{message}</p>}
+                    <p className='p-old'><span style={{textDecoration: 'underline'}}>Kanji:</span> {KANJI[toFind][0]}</p>
+                </div>
+            </div>
+            }
+            <div className='scrollable-content' style={{border: '1px dashed grey', padding: '5px', width: '410px', height: lastItems.length > 0 ? (lastItems.length <= 12 ? 'auto' : '236px') : '236px'}}>
+                <p style={{margin: '0px', textDecoration: 'underline'}}>Previous Kanji: <span style={{float: 'right'}}>
+                    Hide <input type="checkbox" onChange={() => {setBlurLastItems(!blurLastItems)}} checked={blurLastItems}></input>
+                </span></p>
+                <div style={{filter: blurLastItems ? 'blur(5px)' : 'none'}}>
+                    <ul style={{margin: '0px', paddingInlineStart: '0px'}}>
+                        {lastItems.map((item, index) => {
+                            return (
+                                <li key={index} style={{listStyleType: 'none'}}>
+                                    <span className='p-old'>{KANJI[item][0]}: {(KANJI[item][1] as string[]).join(',')}: {(KANJI[item][2] as string[]).join(',')}</span>
+                                </li>
+                            );
+                        })}
+                    </ul>
+                </div>
             </div>
             <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
