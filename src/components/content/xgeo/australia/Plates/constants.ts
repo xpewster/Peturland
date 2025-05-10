@@ -1,5 +1,20 @@
 import { PLATE_TUPLE, PLATE_TYPE } from "../../us/plate/constants";
 
+import norfolk_island_reg from '../../../../../assets/plates/_australia/norfolk_island/reg1961.png';
+import norfolk_island_blank from '../../../../../assets/plates/_australia/norfolk_island/blank1961.png';
+import norfolk_island_blur from '../../../../../assets/plates/_australia/norfolk_island/blur1961.png';
+
+import cocos_keeling_islands_reg from '../../../../../assets/plates/_australia/cocos_keeling_islands/reg2000.png';
+import cocos_keeling_islands_blank from '../../../../../assets/plates/_australia/cocos_keeling_islands/blank2000.png';
+import cocos_keeling_islands_blur from '../../../../../assets/plates/_australia/cocos_keeling_islands/blur2000.png';
+
+import christmas_island_reg from '../../../../../assets/plates/_australia/christmas_island/reg2003.png';
+import christmas_island_blank from '../../../../../assets/plates/_australia/christmas_island/blank2003.png';
+import christmas_island_blur from '../../../../../assets/plates/_australia/christmas_island/blur2003.png';
+import christmas_island_o0_reg from '../../../../../assets/plates/_australia/christmas_island/reg1972.png';
+import christmas_island_o0_blank from '../../../../../assets/plates/_australia/christmas_island/blank1972.png';
+import christmas_island_o0_blur from '../../../../../assets/plates/_australia/christmas_island/blur1972.png';
+
 import tasmania_reg from '../../../../../assets/plates/_australia/tasmania/reg2008.png';
 import tasmania_blank from '../../../../../assets/plates/_australia/tasmania/blank2008.png';
 import tasmania_blur from '../../../../../assets/plates/_australia/tasmania/blur2008.png';
@@ -88,6 +103,16 @@ export const STATE_TO_REGION_BITFLAG = [
 ];
 
 export const PLATES = new Map<string, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
+    [AUSTRALIA_STATES.NORFOLK_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[norfolk_island_reg, norfolk_island_blank, norfolk_island_blur, [1000,1000, 7, 7], 1961, undefined, [127, 65]]]],
+    ])],
+    [AUSTRALIA_STATES.COCOS_ISLANDS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[cocos_keeling_islands_reg, cocos_keeling_islands_blank, cocos_keeling_islands_blur, [1000,1000, 7, 7], 2000, undefined, [180, 65]]]],
+    ])],
+    [AUSTRALIA_STATES.CHRISTMAS_ISLAND, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
+        [PLATE_TYPE.REGULAR, [[christmas_island_reg, christmas_island_blank, christmas_island_blur, [1000,1000, 7, 7], 2003, undefined, [180, 65]]]],
+        [PLATE_TYPE.OLD, [[christmas_island_o0_reg, christmas_island_o0_blank, christmas_island_o0_blur, [1000,1000, 7, 7], 1972, 2003, [120, 65]]]],
+    ])],
     [AUSTRALIA_STATES.TASMANIA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[tasmania_reg, tasmania_blank, tasmania_blur, [1000,1000, 7, 7], 2008, undefined, [180, 65]]]],
         [PLATE_TYPE.OLD, [[tasmania_o0_reg, tasmania_o0_blank, tasmania_o0_blur, [1000,1000, 7, 7], 1999, 2008, [180, 65]]]],

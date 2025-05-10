@@ -78,7 +78,7 @@ const AustraliaPlates = (): React.ReactElement => {
             <img style={{position: 'absolute', left: '-2px', top: '176px'}} src={dots}></img>
             <div style={{paddingTop: '10px', paddingBottom: '5px', paddingRight: '0px'}}>
                 <div>
-                    Island Territories<input type="checkbox" disabled onChange={() => {handleCheck(1)}} checked={enableRegion[1]}></input>
+                    Island Territories<input type="checkbox" onChange={() => {handleCheck(1)}} checked={enableRegion[1]}></input>
                 </div> 
             </div>
             <img style={{position: 'absolute', left: '-2px', top: '206px'}} src={dots}></img>
