@@ -475,6 +475,9 @@ import washington_sp0_blur from '../../../../../assets/plates/_us_special/washin
 import oregon_sp0_reg from '../../../../../assets/plates/_us_special/oregon/reg2002.png';
 import oregon_sp0_blank from '../../../../../assets/plates/_us_special/oregon/blank2002.png';
 import oregon_sp0_blur from '../../../../../assets/plates/_us_special/oregon/blur2002.png';
+import oregon_sp1_reg from '../../../../../assets/plates/_us_special/oregon/reg2022.png';
+import oregon_sp1_blank from '../../../../../assets/plates/_us_special/oregon/blank2022.png';
+import oregon_sp1_blur from '../../../../../assets/plates/_us_special/oregon/blur2022.png';
 import nevada_sp0_reg from '../../../../../assets/plates/_us_special/nevada/reg2013.png';
 import nevada_sp0_blank from '../../../../../assets/plates/_us_special/nevada/blank2013.png';
 import nevada_sp0_blur from '../../../../../assets/plates/_us_special/nevada/blur2013.png';
@@ -1134,7 +1137,10 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     ])],
     [US_STATE_NAMES.OREGON, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [[oregon_reg, oregon_blank, oregon_blur, [82, 80, 14, 18, 82, 80, 5, 80], 1989]]], //
-        [PLATE_TYPE.VANITY, [[oregon_sp0_reg, oregon_sp0_blank, oregon_sp0_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2002, undefined, undefined, "Crater Lake"]]],
+        [PLATE_TYPE.VANITY, [
+            [oregon_sp0_reg, oregon_sp0_blank, oregon_sp0_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2002, 2022, undefined, "Crater Lake"],
+            [oregon_sp1_reg, oregon_sp1_blank, oregon_sp1_blur, [82, 80, 14, 18, 82, 80, 5, 80], 2022, undefined, undefined, "Crater Lake"], //
+        ]],
     ])],
     [US_STATE_NAMES.WYOMING, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
@@ -1261,7 +1267,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [arkansas_reg_2006, arkansas_blank_2006, arkansas_blur_2006, [82, 5, 14, 18], 2006] //
         ]],
         [PLATE_TYPE.VANITY, [
-            [arkansas_sp0_reg, arkansas_sp0_blank, arkansas_sp0_blur, [82, 5, 14, 18], 1994, undefined, undefined, "Razorbacks"], //
+            [arkansas_sp0_reg, arkansas_sp0_blank, arkansas_sp0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 1994, undefined, undefined, "Razorbacks"], //
         ]],
     ])],
     
@@ -1281,7 +1287,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
     
     [US_STATE_NAMES.KANSAS, new Map<PLATE_TYPE, PLATE_TUPLE[]>([
         [PLATE_TYPE.REGULAR, [
-            [kansas_reg_2024, kansas_blank_2024, kansas_blur_2024, [82, 5, 14, 18], 2024] //
+            [kansas_reg_2024, kansas_blank_2024, kansas_blur_2024, [82, 5, 14, 18, 82, 5, 5, 5], 2024] //
         ]],
         [PLATE_TYPE.OLD, [
             [kansas_reg_2007, kansas_blank_2007, kansas_blur_2007, [82, 5, 14, 18], 2007, 2024], //
@@ -1346,7 +1352,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [arizona_reg, arizona_blank, arizona_blur, [1000,1000, 14, 18], 1997] //
         ]],
         [PLATE_TYPE.VANITY, [
-            [arizona_sp0_reg, arizona_sp0_blank, arizona_sp0_blur, [1000,1000, 14, 18], 2015, undefined, undefined, "Veterans"] //
+            [arizona_sp0_reg, arizona_sp0_blank, arizona_sp0_blur, [82, 5, 14, 18], 2015, undefined, undefined, "Veterans"] //
         ]],
     ])],
     [US_STATE_NAMES.NEW_MEXICO, new Map<PLATE_TYPE, PLATE_TUPLE[]>([

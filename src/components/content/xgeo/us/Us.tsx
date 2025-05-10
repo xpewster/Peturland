@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Us.css';
 import './../Xgeo.css';
-import { QuizType } from '../constants';
+import { LocalStorageStreakKeys, QuizType } from '../constants';
 import { getStreakKey } from '../helpers';
 import { STATE_NAMES, STATE_TO_REGION_BITFLAG, STATES, TERRITORY_NAMES } from './constants';
 import dots from '../../../../assets/dots.png';
@@ -15,15 +15,19 @@ import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 
 const Us = (): React.ReactElement => {
 
-    const [enableRegion, setEnableRegion] = useState<boolean[]>([true, true, true, true, true, false, false, false]);
-    const [enableBlur, setEnableBlur] = useState<boolean>(true);
-    const [enableSkew, setEnableSkew] = useState<boolean>(false);
-    const [enableRandBlur, setEnableRandBlur] = useState<boolean>(true);
-    const [enableLowRes, setEnableLowRes] = useState<boolean>(!isMobile);
-    const [enableVanity, setEnableVanity] = useState<boolean>(false);
-    const [enableOld, setEnableOld] = useState<boolean>(true);
+    const savedRegions = localStorage.getItem(LocalStorageStreakKeys.US_LICENSE_PLATES + '_regions');
+    const savedOptions = localStorage.getItem(LocalStorageStreakKeys.US_LICENSE_PLATES + '_options');
 
-    const [enableRRSC, setEnableRRSC] = useState<boolean>(true); // random registration sticker color
+    const [enableRegion, setEnableRegion] = useState<boolean[]>(savedRegions ? Array.from(savedRegions).map((val) => { return val === '1' }) :
+        [true, true, true, true, true, false, false, false]);
+    const [enableBlur, setEnableBlur] = useState<boolean>((savedOptions?.[0]) ? (savedOptions?.[0] === '1') : true);
+    const [enableSkew, setEnableSkew] = useState<boolean>((savedOptions?.[1]) ? (savedOptions?.[1] === '1') : false);
+    const [enableRandBlur, setEnableRandBlur] = useState<boolean>((savedOptions?.[2]) ? (savedOptions?.[2] === '1') : true);
+    const [enableLowRes, setEnableLowRes] = useState<boolean>((savedOptions?.[3]) ? (savedOptions?.[3] === '1') : !isMobile);
+    const [enableVanity, setEnableVanity] = useState<boolean>((savedOptions?.[4]) ? (savedOptions?.[4] === '1') : false);
+    const [enableOld, setEnableOld] = useState<boolean>((savedOptions?.[5]) ? (savedOptions?.[5] === '1') : true);
+
+    const [enableRRSC, setEnableRRSC] = useState<boolean>((savedOptions?.[6]) ? (savedOptions?.[6] === '1') : true); // random registration sticker color
 
     /* ----------------- */
 
@@ -33,6 +37,7 @@ const Us = (): React.ReactElement => {
 
     function handleCheck(index: number) {
         const newEnableRegion = enableRegion.map((val, i) => {if (i === index) { return !val; } else { return val; }}); setEnableRegion(newEnableRegion);
+        localStorage.setItem(LocalStorageStreakKeys.US_LICENSE_PLATES + '_regions', newEnableRegion.map((val) => { return val ? '1' : '0' }).join(''));
     }
 
     function changeSetting(index: number) {
@@ -59,6 +64,11 @@ const Us = (): React.ReactElement => {
                 setEnableLowRes(!enableLowRes);
         }
     }
+
+    useEffect(() => {
+        const newOptions = [enableBlur, enableSkew, enableRandBlur, enableLowRes, enableVanity, enableOld, enableRRSC].map((val) => { return val ? '1' : '0' }).join('');
+        localStorage.setItem(LocalStorageStreakKeys.US_LICENSE_PLATES + '_options', newOptions);
+    }, [enableBlur, enableSkew, enableRandBlur, enableLowRes, enableVanity, enableOld, enableRRSC]);
 
     return (
         <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
