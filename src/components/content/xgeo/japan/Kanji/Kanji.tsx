@@ -4,7 +4,7 @@ import { getStreakKey, randomElement, shuffle } from '../../helpers';
 import { BADS, LocalStorageStreakKeys, NICES, QuizType } from '../../constants';
 import { KANJI } from './constants';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
-import { find } from 'lodash';
+import { find, set } from 'lodash';
 
 
 
@@ -78,19 +78,24 @@ const Kanji = (): React.ReactElement => {
 
     const validateFind = (find: number) => {
         if (find < 11 && !enableDirections) { return false; }
-        if (find >= 11 && find < 21 && !enablePhysicalAdjectives) { return false; }
-        if (find >= 21 && find < 30 && !enableColors) { return false; }
-        if (find >= 30 && find < 40 && !enableUrbanDescriptors) { return false; }
-        if (find >= 40 && find < 63 && !enableNaturalFeatures) { return false; }
-        if (find >= 63 && !enableOther) { return false; }
+        if (find >= 11 && find < 22 && !enablePhysicalAdjectives) { return false; }
+        if (find >= 22 && find < 31 && !enableColors) { return false; }
+        if (find >= 31 && find < 47 && !enableUrbanDescriptors) { return false; }
+        if (find >= 47 && find < 80 && !enableNaturalFeatures) { return false; }
+        if (find >= 80 && !enableOther) { return false; }
         return true;
     };
 
     const generateNewFind = () => {
         let newFind = 0;
         let found = false;
+        let tries = 0;
         while (!found) {
             newFind = Math.floor(Math.random() * KANJI.length);
+            ++tries;
+            if (tries > 100) {
+                return;
+            }
             if (newFind === toFind) { continue;}
             if (!validateFind(newFind)) { continue; }
             found = true;
@@ -183,6 +188,7 @@ const Kanji = (): React.ReactElement => {
             setMessageColor("orange");
             return;
         }
+        setInputValue('');
         if (isCloseMatch(KANJI[toFind][mode + 1] as string[], answerValue, exact ? 0 : 1)) {
             let newMessage;
             do {
