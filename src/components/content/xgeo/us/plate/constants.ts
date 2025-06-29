@@ -469,6 +469,9 @@ import california_sp0_reg from '../../../../../assets/plates/california/sp0_reg2
 import california_sp0_blank from '../../../../../assets/plates/california/sp0_blank2015.png';
 import california_sp0_blur from '../../../../../assets/plates/california/sp0_blur2015.png';
 
+import california_sp1_reg from '../../../../../assets/plates/_us_special/california/reg2006.png';
+import california_sp1_blank from '../../../../../assets/plates/_us_special/california/blank2006.png';
+import california_sp1_blur from '../../../../../assets/plates/_us_special/california/blur2006.png';
 import washington_sp0_reg from '../../../../../assets/plates/_us_special/washington/reg2012.png';
 import washington_sp0_blank from '../../../../../assets/plates/_us_special/washington/blank2012.png';
 import washington_sp0_blur from '../../../../../assets/plates/_us_special/washington/blur2012.png';
@@ -481,6 +484,9 @@ import oregon_sp1_blur from '../../../../../assets/plates/_us_special/oregon/blu
 import nevada_sp0_reg from '../../../../../assets/plates/_us_special/nevada/reg2013.png';
 import nevada_sp0_blank from '../../../../../assets/plates/_us_special/nevada/blank2013.png';
 import nevada_sp0_blur from '../../../../../assets/plates/_us_special/nevada/blur2013.png';
+import nevada_sp1_reg from '../../../../../assets/plates/_us_special/nevada/reg2015.png';
+import nevada_sp1_blank from '../../../../../assets/plates/_us_special/nevada/blank2015.png';
+import nevada_sp1_blur from '../../../../../assets/plates/_us_special/nevada/blur2015.png';
 import arizona_sp0_reg from '../../../../../assets/plates/_us_special/arizona/reg2021.png';
 import arizona_sp0_blank from '../../../../../assets/plates/_us_special/arizona/blank2021.png';
 import arizona_sp0_blur from '../../../../../assets/plates/_us_special/arizona/blur2021.png';
@@ -490,6 +496,9 @@ import colorado_sp0_blur from '../../../../../assets/plates/_us_special/colorado
 import colorado_sp1_reg from '../../../../../assets/plates/_us_special/colorado/reg2022.png';
 import colorado_sp1_blank from '../../../../../assets/plates/_us_special/colorado/blank2022.png';
 import colorado_sp1_blur from '../../../../../assets/plates/_us_special/colorado/blur2022.png';
+import colorado_sp2_reg from '../../../../../assets/plates/_us_special/colorado/reg2000.png';
+import colorado_sp2_blank from '../../../../../assets/plates/_us_special/colorado/blank2000.png';
+import colorado_sp2_blur from '../../../../../assets/plates/_us_special/colorado/blur2000.png';
 import nebraska_sp0_reg from '../../../../../assets/plates/_us_special/nebraska/reg2016.png';
 import nebraska_sp0_blank from '../../../../../assets/plates/_us_special/nebraska/blank2016.png';
 import nebraska_sp0_blur from '../../../../../assets/plates/_us_special/nebraska/blur2016.png';
@@ -1317,6 +1326,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
         [PLATE_TYPE.VANITY, [
             [colorado_sp0_reg, colorado_sp0_blank, colorado_sp0_blur, [82, 80, 12, 16, 82, 80, 5, 80], 2001, undefined, undefined, "Columbine"], //
             [colorado_sp1_reg, colorado_sp1_blank, colorado_sp1_blur, [82, 80, 12, 16, 82, 80, 5, 80], 2022, undefined, undefined, "Blackout"], //
+            [colorado_sp2_reg, colorado_sp2_blank, colorado_sp2_blur, [82, 80, 12, 16, 82, 80, 5, 80], 2000, undefined, undefined, "Fleet"], //
         ]],
     ])],
 
@@ -1335,7 +1345,8 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
             [nevada_o0_reg, nevada_o0_blank, nevada_o0_blur, [82, 5, 14, 18], 2006, 2017] //
         ]],
         [PLATE_TYPE.VANITY, [
-            [nevada_sp0_reg, nevada_sp0_blank, nevada_sp0_blur, [82, 5, 14, 18], 2013, undefined, undefined, "Las Vegas Commemorative"] //
+            [nevada_sp0_reg, nevada_sp0_blank, nevada_sp0_blur, [82, 5, 14, 18], 2013, undefined, undefined, "Las Vegas Commemorative"], //
+            [nevada_sp1_reg, nevada_sp1_blank, nevada_sp1_blur, [82, 5, 14, 18], 2015, undefined, undefined, "Circa 1982"], //
         ]],
     ])],
 
@@ -1345,6 +1356,7 @@ export const PLATES = new Map<STATE_NAMES, Map<PLATE_TYPE, PLATE_TUPLE[]>>([
         ]],
         [PLATE_TYPE.VANITY, [
             [california_sp0_reg, california_sp0_blank, california_sp0_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2015, undefined, undefined, "1960s Legacy"], //
+            [california_sp1_reg, california_sp1_blank, california_sp1_blur, [82, 5, 14, 18, 82, 5, 5, 5], 2006, undefined, undefined, "Disabled"], //
         ]]
     ])],
     [US_STATE_NAMES.ARIZONA, new Map<PLATE_TYPE, PLATE_TUPLE[]>([

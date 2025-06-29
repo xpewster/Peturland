@@ -121,6 +121,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://peturland.com/xgeo/mongolia/car-meta</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://peturland.com/xgeo/indonesia/kabupaten</loc>
     <priority>0.6</priority>
   </url>
@@ -151,6 +155,14 @@
   <url>
     <loc>https://peturland.com/xgeo/south-africa/provinces</loc>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/vietnam/provinces</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/vietnam/area-codes</loc>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://peturland.com/credits</loc>

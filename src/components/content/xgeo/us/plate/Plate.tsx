@@ -181,9 +181,11 @@ const Plate = (props: PlateProps): React.ReactElement => {
         const rect = element.getBoundingClientRect();
         const width = rect.width;
         const height = rect.height;
+        const dpr = window.devicePixelRatio || 1;
 
         return toPng(element, {
             skipFonts: true, // Can help with performance
+            pixelRatio: dpr,
           })
           .then((dataUrl: any) => {
 
@@ -208,7 +210,7 @@ const Plate = (props: PlateProps): React.ReactElement => {
             tempCanvas.width = smallWidth;
             tempCanvas.height = smallHeight;
 
-            tempCtx?.drawImage(img, 0, 0, width, height, 0, 0, smallWidth, smallHeight);
+            tempCtx?.drawImage(img, 0, 0, img.width, img.height, 0, 0, smallWidth, smallHeight);
 
             if (ctx) { 
                 ctx.imageSmoothingEnabled = false; // Disable image smoothing

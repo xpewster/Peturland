@@ -6,13 +6,15 @@ import jpa from '../../../../../assets/geojsons/jp_areacodes.json';
 import { getStreakKey } from '../../helpers';
 import { AREA_CODES, JAPAN_REGIONS_BITFLAG, REGION_INDEX_TO_PREFECTURE_INDEX } from './constants';
 import { QuizType } from '../../constants';
+import jp_area_codes from '../../../../../assets/maps/jp_area_codes.png';
 import totoro from '../../../../../assets/gifs/Totoro.gif';
-
+import ZoomableImage from '../../../../common/ZoomableImage';
 
 
 const JpAreaCodes = (): React.ReactElement => {
 
     const [enableRegion, setEnableRegion] = useState<boolean[]>(Array(18).fill(true));
+    const [showCheat, setShowCheat] = useState<boolean>(false);
 
     /* ----------------- */
 
@@ -58,6 +60,14 @@ const JpAreaCodes = (): React.ReactElement => {
                 />
             </div>
             <p>Thanks to <a href='https://super-duper.fr/' target='_blank' rel='noreferrer'>super-duper.fr</a> for the map json!</p>
+            <div style={{paddingTop: '40px'}}>
+                <div style={{display: 'inline'}}>
+                    Hide cheatsheet<input type="checkbox" onChange={() => {setShowCheat(!showCheat)}} checked={!showCheat}></input>
+                </div>
+            </div>
+            <div onScroll={(event) => { event.preventDefault(); }}>
+                <ZoomableImage src={jp_area_codes} divProps={{border: 'dashed 1px black', width: '80%'}} imageStyleProps={{display: 'block', width: '100%', filter: showCheat ? '' : 'blur(8px)'}}/>
+            </div>
             <img alt='Totoro' style={{position: 'absolute', top: '486px', left: '-200px', zIndex: -5, pointerEvents: 'none', opacity: '0.9'}} src={totoro}></img>
         </div>
     );

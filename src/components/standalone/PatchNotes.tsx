@@ -18,6 +18,7 @@ export const PatchNotes = (): React.ReactElement => {
         ['04-12-2025', <></>, "Added some more touches. Might pause the updates for a bit. The Wage Cage calls.."],
         ['04-30-2025', <></>, "Refined a multitude of things over the last few weeks. Also, Japan quizzes!! Prepping for my irl practice in the motherland itself.."],
         ['05-05-2025', <></>, "XGEO: Added a bunch of specialty U.S. plates and the new Kansan one."],
+        ['06-28-2025', <></>, "Updated the travel log with my latest trip to Japan! Also updated some of the Japan games with my newfound groundwork. Geoguessr just got Vietnam coverage (hype) so I added a phone code quiz as well."],
     ];
 
     return <Standalone>

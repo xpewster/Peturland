@@ -70,6 +70,7 @@ import ZaPlates from './za/Plates/ZaPlates';
 import ZaProvinces from './za/Provinces/ZaProvinces';
 import JpRegions from './japan/Regions/JpRegions';
 import VnProvinces from './vietnam/Provinces/VnProvinces';
+import VnAreaCodes from './vietnam/AreaCodes/VnAreaCodes';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -106,10 +107,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const PHILLIPINES_LINKS = [Path.XGEO_PHILLIPINES_PROVINCES, Path.XGEO_PHILLIPINES_REGIONS];
     const PHILLIPINES_STYLES = Array(2).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
 
-    const VN_IMGS = [provinces];
-    const VN_STRINGS = ['Provinces'];
-    const VN_LINKS = [Path.XGEO_VIETNAM_PROVINCES];
-    const VN_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const VN_IMGS = [phone, provinces];
+    const VN_STRINGS = ['Area Codes', 'Provinces'];
+    const VN_LINKS = [Path.XGEO_VIETNAM_AREA_CODES, Path.XGEO_VIETNAM_PROVINCES];
+    const VN_STYLES = [{}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
     
     const NIGERIA_IMGS = [provinces];
     const NIGERIA_STRINGS = ['States'];
@@ -213,6 +214,8 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <FiloRegions />;
             case ContentType.XGEO_VIETNAM_PROVINCES:
                 return <VnProvinces />;
+            case ContentType.XGEO_VIETNAM_AREA_CODES:
+                return <VnAreaCodes />;
             case ContentType.XGEO_NIGERIA_STATES:
                 return <NigeriaStates />;
             case ContentType.XGEO_KENYA_COUNTIES:

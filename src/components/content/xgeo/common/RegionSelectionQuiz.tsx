@@ -40,6 +40,7 @@ export interface RegionSelectionQuizProps {
     regionIsAnswer?: boolean;
     highlightGroups?: number[][];
     multiselect?: boolean;
+    debugMode?: boolean;
 }
 
 type LastItem = [number, number, number, number[], number, number]; // [toFind, randIndex, sepia, skew, scale, hue_rotate]
@@ -224,6 +225,9 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                 generateRandomParameters();
                 setToFind(nextItem!.newt);
                 setRandIndex(nextItem!.index);
+            }
+            if (props.debugMode) {
+                console.log(`Generated new find: ${nextItem?.newt}, index: ${randIndex}`);
             }
             setNextItem({
                 newt: newt,

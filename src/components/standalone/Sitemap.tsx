@@ -62,7 +62,7 @@ const Sitemap = () => {
                   <li><Link to={Path.XGEO_JP_POLE_PLATES}>Pole Plates</Link></li>
                   <li><Link to={Path.XGEO_JP_POLE_REFLECTORS}>Pole Reflectors</Link></li>
                   <li><Link to={Path.XGEO_JP_POLE_ATTACHMENTS}>Pole Attachments</Link></li>
-                  <li><Link to={Path.XGEO_JP_KANJI}>Kanji</Link></li>
+                  <li><Link to={Path.XGEO_JP_KANJI}>Place Name Kanji</Link></li>
                   <li><Link to={Path.XGEO_JP_REGIONS}>Regions</Link></li>
                 </ul>
               </li>
@@ -70,9 +70,12 @@ const Sitemap = () => {
                 Other countries
                 <ul>
                   <li><Link to={Path.XGEO_MONG}>Mongolia Driving Direction</Link></li>
+                  <li><Link to={Path.XGEO_MONG_CAR_META}>Mongolia Car Meta</Link></li>
                   <li><Link to={Path.XGEO_INDONESIA_KABUPATEN}>Indonesia Kabupaten</Link></li>
                   <li><Link to={Path.XGEO_PHILLIPINES_PROVINCES}>Philippines Provinces</Link></li>
                   <li><Link to={Path.XGEO_PHILLIPINES_REGIONS}>Philippines Regions</Link></li>
+                  <li><Link to={Path.XGEO_VIETNAM_PROVINCES}>Vietnam Provinces</Link></li>
+                  <li><Link to={Path.XGEO_VIETNAM_AREA_CODES}>Vietnam Area Codes</Link></li>
                   <li><Link to={Path.XGEO_NIGERIA_STATES}>Nigeria States</Link></li>
                   <li><Link to={Path.XGEO_KENYA_COUNTIES}>Kenya Counties</Link></li>
                   <li><Link to={Path.XGEO_AUSTRALIA_PLATES}>Australia Plates</Link></li>

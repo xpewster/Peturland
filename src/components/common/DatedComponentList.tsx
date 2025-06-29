@@ -5,13 +5,15 @@ export type DatedComponent = [string, React.ReactElement, string?];
 
 export interface DatedComponentListProps {
     datedComponents: DatedComponent[];
+    centered?: boolean;
+    dateTextStyle?: React.CSSProperties;
 }
 
 const DatedComponentList = (props: DatedComponentListProps) => {
     return <div>
         {props.datedComponents.map(([date, component, description], index) => (
             <div key={index} style={{ marginBottom: '20px' }}>
-                <p><span style={{textDecoration: 'underline', fontWeight: 'bold'}}>{date}:</span> <span>{description?.split("\n").map(
+                <p style={{ textAlign: props.centered ? 'center' : 'inherit'}}><span style={{textDecoration: 'underline', fontWeight: 'bold', ...props.dateTextStyle}}>{date}:</span> <span>{description?.split("\n").map(
                     (line, i) => {
                         const segments = line.split(":cool:");
                         return (

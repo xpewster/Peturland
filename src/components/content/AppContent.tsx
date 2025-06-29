@@ -49,6 +49,7 @@ const AppContent = ({
             case ContentType.XGEO_PHILLIPINES_PROVINCES:
             case ContentType.XGEO_PHILLIPINES_REGIONS:
             case ContentType.XGEO_VIETNAM_PROVINCES:
+            case ContentType.XGEO_VIETNAM_AREA_CODES:
             case ContentType.XGEO_NIGERIA_STATES:
             case ContentType.XGEO_KENYA_COUNTIES:
             case ContentType.XGEO_AUSTRALIA_PLATES:
