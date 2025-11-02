@@ -2,6 +2,7 @@ import peturshell from '../../assets/peturshell.png';
 import back from '../../assets/gifs/back.gif';
 import { Link, useNavigate } from 'react-router';
 import { Path } from '../../constants/Path';
+import { useEffect } from 'react';
 
 export interface StandaloneProps {
     children: React.ReactNode;
@@ -33,6 +34,12 @@ export const Standalone = ({
             top: 0,
         });
     };
+
+    useEffect(() => {
+        window.scrollTo({
+            top: 0,
+        });
+    }, []);
     
     return <div>
         <a id="top" style={{top: '0'}}></a>

@@ -88,7 +88,7 @@ const About = (): React.ReactElement => {
             <div style={{height: '100%', paddingTop: '10px', paddingLeft: '10px', paddingRight: '10px'}}>
                 <p style={{paddingBottom: '10px'}}>About the webmaster</p>
                 <img style={{position: 'absolute', left: '-2px', top: '106px'}} src={dots}></img>
-                <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Pronouns</span>: <img src={boy} alt='Boy' style={{height: '15px'}} /> (He/Him) <img src={boy} alt='Boy' style={{height: '15px'}} />&nbsp;&nbsp;&nbsp;<span style={{textDecoration: 'underline'}}>Age</span>: 24</p>
+                <p style={{paddingTop: '2px'}}> <span style={{textDecoration: 'underline'}}>Pronouns</span>: <img src={boy} alt='Boy' style={{height: '15px'}} /> (He/Him) <img src={boy} alt='Boy' style={{height: '15px'}} />&nbsp;&nbsp;&nbsp;<span style={{textDecoration: 'underline'}}>Age</span>: 25</p>
                 <img style={{position: 'absolute', left: '-2px', top: '136px'}} src={dots}></img>
                 <img src={mail} />
                 <p>Hi! My name is Peter. "Petur" is my childhood stuffed turtle up there on the header. He was envisioned as a gamer/hacker/coder type, and as I have become a similar thing,
@@ -119,7 +119,7 @@ const About = (): React.ReactElement => {
                                 <li><b>Video games (right now)</b>: CS:GO, GeoGuessr, ARAMs</li>
                                 <li><b>Video games (childhood)</b>: ToonTown, Tales of Pirates, Halo 3, XGen Stick Arena: Ballistick</li>
                                 <li><b>Movies</b>: Princess Mononoke, Dredd, The Princess Bride, </li>
-                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, Mushishi, Kaiba, Solo Leveling, Initial D, Spy Family</li>
+                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, Mushishi, LWA, Solo Leveling, Initial D, Spy Family. <a href='https://myanimelist.net/profile/Pewster' target="_blank" rel="noopener noreferrer"><img src={myanimelist} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></a></li>
                                 <li><b>TV Shows</b>: HotD, Fallout, The Witcher</li>
                                 <li><b>OSTs</b>: Wind waker, FF13, Mononoke-hime, In This Corner of the World, Interstellar, 86</li>
                                 <li><b>Bands/artists</b>: Mass of the Fermenting Dregs, Tricot, Gracie Abrams, The Strokes, Hideki Naganuma</li>

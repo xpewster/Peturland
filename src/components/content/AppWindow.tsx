@@ -16,6 +16,10 @@ export const getContentSize = (type: ContentType) => {
         case ContentType.ABOUT:
             return 1750;
         case ContentType.PROJECTS:
+            return 880;
+        case ContentType.PROJECTS_ART:
+            return 1070;
+        case ContentType.PROJECTS_PROGRAMS:
             return 1800;
         case ContentType.XGEO:
             return 1000;
@@ -63,9 +67,13 @@ export const getContentSize = (type: ContentType) => {
             return 850;
         case ContentType.XGEO_PHILLIPINES_REGIONS:
             return 750;
+        case ContentType.XGEO_PHILLIPINES_PLATES:
+            return 1000;
         case ContentType.XGEO_VIETNAM_PROVINCES:
             return 880;
         case ContentType.XGEO_VIETNAM_AREA_CODES:
+            return 880;
+        case ContentType.XGEO_VIETNAM_LICENSE_PLATE_CODES:
             return 880;
         case ContentType.XGEO_NIGERIA_STATES:
             return 700;

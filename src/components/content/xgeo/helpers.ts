@@ -57,6 +57,8 @@ export const getStreakKey = (quizType: QuizType, enableRegion: boolean[]): strin
             return LocalStorageStreakKeys.PHILLIPINES_PROVINCES + enabledRegionBits;
         case QuizType.PHILLIPINES_REGIONS:
             return LocalStorageStreakKeys.PHILLIPINES_REGIONS + enabledRegionBits;
+        case QuizType.PHILLIPINES_PLATES:
+            return LocalStorageStreakKeys.PHILLIPINES_PLATES + enabledRegionBits;
         case QuizType.VIETNAM_PROVINCES:
             return LocalStorageStreakKeys.VIETNAM_PROVINCES + enabledRegionBits;
         case QuizType.NIGERIA_STATES:

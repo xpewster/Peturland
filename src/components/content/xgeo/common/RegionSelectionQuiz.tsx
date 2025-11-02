@@ -261,6 +261,9 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
         }
 
         let newAnswer: any = "";
+        if (props.debugMode && props.answerIndexToRegionIndices) {
+            console.log(`Answer regions for toFind ${toFind}: ${props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]]}`);
+        }
         if (props.answerIndexToRegionIndices
                 ? props.answerIndexToRegionIndices[props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]].map((val) => { return `geo-${val}`; }).includes(key)
                 : `geo-${toFind}` === key) {

@@ -24,6 +24,10 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.ABOUT;
       case Path.PROJECTS:
         return ContentType.PROJECTS;
+      case Path.PROJECTS_ART:
+        return ContentType.PROJECTS_ART;
+      case Path.PROJECTS_PROGRAMS:
+        return ContentType.PROJECTS_PROGRAMS;
       case Path.XGEO:
         return ContentType.XGEO;
       case Path.XGEO_US:
@@ -72,10 +76,14 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_PHILLIPINES_PROVINCES;
       case Path.XGEO_PHILLIPINES_REGIONS:
         return ContentType.XGEO_PHILLIPINES_REGIONS;
+      case Path.XGEO_PHILLIPINES_PLATES:
+        return ContentType.XGEO_PHILLIPINES_PLATES;
       case Path.XGEO_VIETNAM_PROVINCES:
         return ContentType.XGEO_VIETNAM_PROVINCES;
       case Path.XGEO_VIETNAM_AREA_CODES:
         return ContentType.XGEO_VIETNAM_AREA_CODES;
+      case Path.XGEO_VIETNAM_LICENSE_PLATE_CODES:
+        return ContentType.XGEO_VIETNAM_LICENSE_PLATE_CODES;
       case Path.XGEO_NIGERIA_STATES:
         return ContentType.XGEO_NIGERIA_STATES;
       case Path.XGEO_KENYA_COUNTIES:
