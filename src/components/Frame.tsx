@@ -24,8 +24,6 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.ABOUT;
       case Path.PROJECTS:
         return ContentType.PROJECTS;
-      case Path.PROJECTS_ART:
-        return ContentType.PROJECTS_ART;
       case Path.PROJECTS_PROGRAMS:
         return ContentType.PROJECTS_PROGRAMS;
       case Path.XGEO:

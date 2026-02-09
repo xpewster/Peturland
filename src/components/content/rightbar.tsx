@@ -24,7 +24,7 @@ const Rightbar = (props: RightbarProps): React.ReactElement => {
     return (
         <div className='rightbar' style={{position: 'relative'}}>
             <Link className='rightbarlink' to={Path.CREDITS}><span >Credits</span></Link>
-            <Link className='rightbarlink' to={Path.DIGICAM}><span >Digicam</span></Link>
+            <Link className='rightbarlink' to={Path.ANNOUNCEMENTS}><span >Updates</span></Link>
             <Link className='rightbarlink' to={Path.EIGHTYEIGHT}><span >88x31</span></Link>
             <a href='https://yesterweb.org/no-to-web3/' target="_blank" rel="noopener noreferrer"><img className='rbarbox' style={{marginTop: '30px'}}  src={sayNo}/></a>
             <a href='https://myanimelist.net/anime/339/Serial_Experiments_Lain?q=lain&cat=anime' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={lain}/></a>

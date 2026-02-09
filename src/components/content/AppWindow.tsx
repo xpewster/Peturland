@@ -17,10 +17,8 @@ export const getContentSize = (type: ContentType) => {
             return 1750;
         case ContentType.PROJECTS:
             return 880;
-        case ContentType.PROJECTS_ART:
-            return 1070;
         case ContentType.PROJECTS_PROGRAMS:
-            return 1800;
+            return 2060;
         case ContentType.XGEO:
             return 1000;
         case ContentType.XGEO_SOON:

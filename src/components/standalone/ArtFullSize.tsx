@@ -1,12 +1,20 @@
 import Standalone from "./Standalone"
+
 import aki_bokeh from '../../assets/portfolio/art/aki_bokeh.png';
 import bananafish from '../../assets/portfolio/art/bananafish.png';
 import nuke from '../../assets/portfolio/art/nuke.png';
+
+import frieren from '../../assets/portfolio/art/frieren.png';
+import diakko3 from '../../assets/portfolio/art/diakko3.png';
+import akkofish_shrimp from '../../assets/portfolio/art/akkofish_shrimp.png';
+import yangwenli from '../../assets/portfolio/art/yangwenli.png';
+import michelle_lobster from '../../assets/portfolio/art/michelle_lobster.png';
+
 import { useParams } from "react-router";
 
 export const ArtFullSize = (): React.ReactElement => {
 
-    const art: string[] = [aki_bokeh, bananafish, nuke]
+    const art: string[] = [aki_bokeh, bananafish, nuke, frieren, diakko3, akkofish_shrimp, yangwenli, michelle_lobster];
 
     const params = useParams();
     const indexParam = params.index;

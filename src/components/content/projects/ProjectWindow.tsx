@@ -14,6 +14,7 @@ export interface ProjectWindowProps {
     sourceLink?: string;
     images: any;
     text?: React.ReactElement;
+    antiAliasing?: boolean;
 }
 
 const ProjectWindow = (props: ProjectWindowProps): React.ReactElement => {
@@ -70,7 +71,7 @@ const ProjectWindow = (props: ProjectWindowProps): React.ReactElement => {
                 </div>
                 {
                     props.images.map((image: any, index: number) => (
-                        <img key={index} src={image} alt='Portfolio image' style={{width: '100%', height: 'auto', margin: 0, imageRendering: 'pixelated'}} />
+                        <img key={index} src={image} alt='Portfolio image' style={{width: '100%', height: 'auto', margin: 0, imageRendering: props.antiAliasing ? 'auto' : 'pixelated'}} />
                     ))
                 }
                 <div id={'about' + props.projectName} style={{padding: '10px'}}>

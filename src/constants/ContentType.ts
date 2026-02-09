@@ -2,7 +2,6 @@ export enum ContentType {
     HOME,
     ABOUT,
     PROJECTS,
-    PROJECTS_ART,
     PROJECTS_PROGRAMS,
     XGEO,
     XGEO_SOON,

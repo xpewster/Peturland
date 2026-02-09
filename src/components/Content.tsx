@@ -106,8 +106,8 @@ const Content = (props: ContentProps): React.ReactElement => {
           </div>
           <Rightbar contentHeight={getContentSize(props.contentType ?? ContentType.HOME)} />
         </div>
-        <div style={{textAlign: 'center', fontSize: '12px', display: 'block', width: '100%'}}><Link className='staticA' to={Path.SITEMAP}>Sitemap</Link> | <Link className='staticA' to={Path.SUPPORT}>Web Support</Link> | <Link className='staticA' to={Path.SUPPORT}>Report a Bug</Link> | <a href='https://neocities.org/browse' target="_blank" rel="noopener noreferrer">Neocities</a> | <Link className='staticA' to={Path.ANNOUNCEMENTS}>Last Updated: June 2025</Link></div>
-        <p style={{textAlign: 'center'}}>(C) Peturland 2025 <img src={underconstruction} /></p><a style={{position: 'absolute', right: '20px', display: 'inline-block', bottom: '-5px', height: '20px', fontFamily: 'ibm_vga'}} className='staticA' onClick={scrollToTop} href='/'>^</a>
+        <div style={{textAlign: 'center', fontSize: '12px', display: 'block', width: '100%'}}><Link className='staticA' to={Path.SITEMAP}>Sitemap</Link> | <Link className='staticA' to={Path.SUPPORT}>Web Support</Link> | <Link className='staticA' to={Path.SUPPORT}>Report a Bug</Link> | <a href='https://neocities.org/browse' target="_blank" rel="noopener noreferrer">Neocities</a> | <Link className='staticA' to={Path.ANNOUNCEMENTS}>Last Updated: February 2026</Link></div>
+        <p style={{textAlign: 'center'}}>(C) Peturland 2026 <img src={underconstruction} /></p><a style={{position: 'absolute', right: '20px', display: 'inline-block', bottom: '-5px', height: '20px', fontFamily: 'ibm_vga'}} className='staticA' onClick={scrollToTop} href='/'>^</a>
         <div style={{position: 'fixed', bottom: '-10px', left: '0px', width: '200px', pointerEvents: 'none'}}> 
           <img src={coco} alt='Save Old Homes' style={{width: '100%', pointerEvents: 'none'}}></img>
           <p className='p-dos' style={{position: 'absolute', bottom: '10px', right: '50px', fontSmooth: 'never', color: 'white', textShadow: '-1px -1px 0 #000, 1px -1px 0 #000, -1px 1px 0 #000, 1px 1px 0 #000'}}>Coco says to save old homes!</p>

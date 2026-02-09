@@ -91,7 +91,7 @@ const Sitemap = () => {
         </div>
         
         <hr />
-        <p style={{paddingLeft: '10px'}}>© Peturland.com - Last Updated: April 27 2025</p>
+        <p style={{paddingLeft: '10px'}}>© Peturland.com - Last Updated: February 08 2026</p>
     </div>
     );
 };

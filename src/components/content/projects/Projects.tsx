@@ -17,7 +17,6 @@ import { Path } from '../../../constants/Path';
 import Art from './portfolios/Art';
 import Programs from './portfolios/Programs';
 import { ContentType } from '../../../constants/ContentType';
-import wink from '../../../assets/fileboxicons/wink.gif';
 import art1 from '../../../assets/portfolio/art1.png';
 import games1 from '../../../assets/portfolio/games1.png';
 import digicam1 from '../../../assets/portfolio/digicam1.jpg';
@@ -43,7 +42,7 @@ const Projects = (props: ProjectsProps): React.ReactElement => {
 
     const PORTFOLIO_IMGS = [pictures, games, camera, musicicon];
     const PORTFOLIO_STRINGS = ['Art', 'Games/Programs', 'Digicam', 'Musescore'];
-    const PORTFOLIO_LINKS = [Path.PROJECTS_ART, Path.PROJECTS_PROGRAMS, Path.DIGICAM, "https://musescore.com/user/7517616"];
+    const PORTFOLIO_LINKS = [Path.ART, Path.PROJECTS_PROGRAMS, Path.DIGICAM, "https://musescore.com/user/7517616"];
     const PORTFOLIO_STYLES = [{width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
     const PORTFOLIO_EXTERNAL = [false, false, false, true];
 
@@ -87,8 +86,8 @@ const Projects = (props: ProjectsProps): React.ReactElement => {
 
     const getTitle = (): React.ReactElement => {
         switch (props.contentType) {
-            case ContentType.PROJECTS_ART:
-                return <p style={{paddingBottom: '10px'}}>Art Portfolio</p>;
+            // case ContentType.PROJECTS_ART:
+            //     return <p style={{paddingBottom: '10px'}}>Art Portfolio</p>;
             case ContentType.PROJECTS_PROGRAMS:
                 return <p style={{paddingBottom: '10px'}}>Software Portfolio</p>;
             default:
@@ -98,14 +97,14 @@ const Projects = (props: ProjectsProps): React.ReactElement => {
 
     const getContent = () => {
         switch (props.contentType) {
-            case ContentType.PROJECTS_ART:
-                return <Art />;
+            // case ContentType.PROJECTS_ART:
+            //     return <Art />;
             case ContentType.PROJECTS_PROGRAMS:
                 return <Programs />;
             default:
                 return <div>
                     <div style={{float: 'left', textAlign: 'center', margin: 'auto', width: '100%'}}>
-                        <p style={{fontFamily: 'Bangalore'}}><Link to={Path.PROJECTS_ART}><img src={articon} alt="Art Portfolio" style={{width: '96px', verticalAlign: 'middle', marginRight: '5px'}}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Art</Link></p>
+                        <p style={{fontFamily: 'Bangalore'}}><Link to={Path.ART}><img src={articon} alt="Art Portfolio" style={{width: '96px', verticalAlign: 'middle', marginRight: '5px'}}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Art</Link></p>
                         <p style={{fontFamily: 'Bangalore'}}><Link to={Path.PROJECTS_PROGRAMS}><img src={gamesicon} alt="Games/Programs Portfolio" style={{width: '96px', verticalAlign: 'middle', marginRight: '5px'}}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Games/Software</Link></p>
                         <p style={{fontFamily: 'Bangalore'}}><Link to={Path.DIGICAM}><img src={digicamicon} alt="Digicam Portfolio" style={{width: '96px', verticalAlign: 'middle', marginRight: '5px'}}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Digicam</Link></p>
                         <p style={{fontFamily: 'Bangalore'}}><a href="https://musescore.com/user/7517616" target="_blank" rel="noopener noreferrer"><img src={musicicon} alt="Musescore Portfolio" style={{width: '96px', verticalAlign: 'middle', marginRight: '5px'}}/> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Musescore</a></p>
@@ -155,8 +154,8 @@ const Projects = (props: ProjectsProps): React.ReactElement => {
 
     const getDescription = (): React.ReactElement => {
         switch (props.contentType) {
-            case ContentType.PROJECTS_ART:
-                return <p>Hello! I've always liked to draw and stuff but got more into art recently when making anime jeopardy boards with my friends! Here are some preliminary works as I hone my skills. <img src={wink} alt='Wink' style={{width: '15px' as const, height: '15px' as const, paddingLeft: '0px' as const, paddingTop: '0px' as const}} /> <i>Click for full size!</i></p>;
+            // case ContentType.PROJECTS_ART:
+            //     return 
             case ContentType.PROJECTS_PROGRAMS:
                 return <p>Hello! I was indoctrinated into programming from a young age~ I found my passion in game development though! I made a ton of games as a kid on <a href='https://web.archive.org/web/20141016194718/http://sandbox.yoyogames.com/users/pikachu123' target="_blank" rel="noopener noreferrer">Yoyogames</a> with GameMaker. Once high school rolled around I started dabbling in <i>serious</i> languages like C++, Java, etc. My corporate wage cage has brought my amateur career to a screeching halt but I hope to get back to it soon! Here are some of my projects from over the years:</p>;
             default:

@@ -20,6 +20,7 @@ export const PatchNotes = (): React.ReactElement => {
         ['05-05-2025', <></>, "XGEO: Added a bunch of specialty U.S. plates and the new Kansan one."],
         ['06-28-2025', <></>, "Updated the travel log with my latest trip to Japan! Also updated some of the Japan games with my newfound groundwork. Geoguessr just got Vietnam coverage (hype) so I added a phone code quiz as well."],
         ['11-01-2025', <></>, "Updated portfolios (art!), travel log, and xgeo with some new stuff!"],
+        ['02-08-2026', <></>, "Added some new art, and also my first project involving microcontrollers (Sketchbook)! Please check out the portfolio 8)."]
     ];
 
     return <Standalone>

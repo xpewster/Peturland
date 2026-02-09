@@ -4,6 +4,8 @@ import missilecave2 from '../../../../assets/portfolio/missilecave2.png';
 import picoban from '../../../../assets/portfolio/picobanPV.png';
 import peturland from '../../../../assets/portfolio/peturland1.png';
 import oceanrender from '../../../../assets/portfolio/OceanRender.png';
+import sketchbook from '../../../../assets/portfolio/sketchbook.gif';
+import space from '../../../../assets/portfolio/space.gif';
 import t_pen from '../../../../assets/gifs/t_pen.gif';
 import ProjectWindow from '../ProjectWindow';
 
@@ -25,6 +27,14 @@ const Programs = (): React.ReactElement => {
                 text={<p>Wait... that's this website! Haha!</p>}
             />
             <ProjectWindow 
+                projectName='Sketchbook'
+                // playLink='' TODO 'View demo'
+                sourceLink='https://github.com/xpewster/Sketchbook'
+                images={[sketchbook, space]}
+                text={<p>Fun little hardware/weather monitor that connects to a microcontroller/display I mounted onto one of my PC's 5.25 drive bays. I made a lot of cool skins for this. My first project involving microcontrollers!</p>}
+                antiAliasing={true}
+            />
+            <ProjectWindow 
                 projectName='OceanRender'
                 sourceLink='https://github.com/xpewster/OceanRender'
                 images={[oceanrender]}
@@ -36,7 +46,7 @@ const Programs = (): React.ReactElement => {
                 text={<p>Fun little puzzle game based on Sokoban and an old mobile game PicoPicoPuzzle. Unfortunately the files for this one are lost but a remake is coming soon, stay tuned.</p>}
             />
         </div>
-        <div style={{paddingLeft: '10px', marginTop: '1060px'}}>
+        <div style={{paddingLeft: '10px', marginTop: '1325px'}}>
             <p style={{textAlign: 'center'}}><u>Other projects</u>: </p>
             <ul style={{paddingInlineStart: '15px', paddingRight: '20px'}}>
                 <li><b>GerryAway</b>: Detecting Gerrymandering programatically <a href='https://github.com/xpewster/GerryAway' target="_blank" rel="noopener noreferrer">Source</a></li>
