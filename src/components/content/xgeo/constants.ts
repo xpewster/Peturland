@@ -88,3 +88,5 @@ export enum LocalStorageStreakKeys {
 export const MAP_COLOR = "#FF5533";
 export const MAP_HOVER_COLOR = "#efd900";
 export const MAP_LAST_COLOR = "#72b000";
+
+export const CLICK_DRAG_DISTANCE_THRESHOLD = 10; // pixels: if the mouse moves more than this distance between mousedown and mouseup, we consider it a drag, not a click.

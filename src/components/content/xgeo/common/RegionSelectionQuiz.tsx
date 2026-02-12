@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './../Xgeo.css';
-import { BADS, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
+import { BADS, CLICK_DRAG_DISTANCE_THRESHOLD, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
 import { randomElement } from '../helpers';
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
@@ -90,6 +90,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
     });
 
     const [hoveredElement, setHoveredElement] = useState<number | null>(null);
+    const [mouseDownPos, setMouseDownPos] = useState<[number, number] | null>(null);
 
     const [selectedRegions, setSelectedRegions] = useState<string[]>([]);
 
@@ -450,7 +451,17 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                                             <Geography 
                                                 key={geo.rsmKey} 
                                                 geography={geo} 
-                                                onClick={() => { handleClick(geo.rsmKey); }} 
+                                                onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
+                                                onPointerUp={(e) => {
+                                                    if (mouseDownPos) {
+                                                        const dx = e.clientX - mouseDownPos[0];
+                                                        const dy = e.clientY - mouseDownPos[1];
+                                                        if (Math.sqrt(dx * dx + dy * dy) < CLICK_DRAG_DISTANCE_THRESHOLD) {
+                                                            handleClick(geo.rsmKey);
+                                                        }
+                                                    }
+                                                    setMouseDownPos(null);
+                                                }}
                                                 style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys) : defaultStyleFunction(geo.rsmKey)}
                                                 onMouseEnter={() => { setHoveredElement(Number(geo.rsmKey.split("-")[1])); }}
                                                 onMouseLeave={() => { setHoveredElement(null); }}

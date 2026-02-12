@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps"
 import brazil_phone_codes from '../../../../assets/geojsons/brazil_phone_codes2.json';
 import './../Xgeo.css';
-import { BADS, LocalStorageStreakKeys, MAP_COLOR, NICES, QuizType } from '../constants';
+import { BADS, CLICK_DRAG_DISTANCE_THRESHOLD, LocalStorageStreakKeys, MAP_COLOR, NICES, QuizType } from '../constants';
 import { getStreakKey, randomElement } from '../helpers';
 import { PHONE_CODES, STATE_COLORS } from './constants';
 import dots from '../../../../assets/dots.png';
@@ -21,6 +21,7 @@ const Brazil = (): React.ReactElement => {
     const [showCheat, setShowCheat] = useState<boolean>(false);
 
     const [position, setPosition] = useState({ coordinates: [0, 0], zoom: 1 });
+    const [mouseDownPos, setMouseDownPos] = useState<[number, number] | null>(null);
 
     const [streak, setStreak] = useState<number>(0);
     const [bestStreak, setBestStreak] = useState<number>(localStorage.getItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix)) ? Number(localStorage.getItem(getStreakKey(QuizType.BRAZIL_AREA_CODES, enablePrefix))) : 0);
@@ -156,13 +157,25 @@ const Brazil = (): React.ReactElement => {
                             <Geographies geography={brazil_phone_codes}>
                                 {({ geographies }) =>
                                 geographies.map((geo) => (
-                                    <Geography key={geo.rsmKey} geography={geo} onClick={() => { handleClick(geo.rsmKey); }} style={{
-                                        default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey), outline: 'none'},
-                                        hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey), outline: 'none'},
-                                        pressed: { fill: "green" },
-                                    }}/>
-                                ))
-                                }
+                                    <Geography key={geo.rsmKey}geography={geo}
+                                        onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
+                                        onPointerUp={(e) => {
+                                            if (mouseDownPos) {
+                                                const dx = e.clientX - mouseDownPos[0];
+                                                const dy = e.clientY - mouseDownPos[1];
+                                                if (Math.sqrt(dx * dx + dy * dy) < CLICK_DRAG_DISTANCE_THRESHOLD) {
+                                                    handleClick(geo.rsmKey);
+                                                }
+                                            }
+                                            setMouseDownPos(null);
+                                        }}
+                                        style={{
+                                            default: { fill: getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey), outline: 'none'},
+                                            hover: { fill: enableBorders ? "#efd900" : getCellColor(geo.rsmKey), stroke: enableBorders ? "#000000" : getCellColor(geo.rsmKey), strokeWidth: enableBorders ? '1px' : getStrokeWidth(geo.rsmKey), outline: 'none'},
+                                            pressed: { fill: "green" },
+                                        }}
+                                    />
+                                ))}
                             </Geographies>
                         </ZoomableGroup>
                     </ComposableMap>

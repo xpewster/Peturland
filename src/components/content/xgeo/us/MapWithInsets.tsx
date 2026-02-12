@@ -3,7 +3,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from 'react-simp
 import usa from '../../../../assets/geojsons/mergedfile2_goodcopy.json';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
 import { isStateEnabled, isStateEnabledCustomBitflag } from './constants';
-import { MAP_COLOR } from '../constants';
+import { CLICK_DRAG_DISTANCE_THRESHOLD, MAP_COLOR } from '../constants';
 import { MapParameters } from '../common/RegionSelectionQuiz';
 
 export interface MapWithInsetsProps {
@@ -26,6 +26,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
         coordinates: [145.7, 15.2], // Centered on NMI
         zoom: 1
     });
+    const [mouseDownPos, setMouseDownPos] = useState<[number, number] | null>(null);
 
     const handleMoveEnd = (pos: any) => {
         setPosition(pos);
@@ -101,7 +102,19 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
-                                        onClick={() => { handleClick(geo.rsmKey); }} 
+                                        onPointerDown={(e) => {
+                                            setMouseDownPos([e.clientX, e.clientY]);
+                                        }}
+                                        onPointerUp={(e) => {
+                                            if (mouseDownPos) {
+                                                const dx = e.clientX - mouseDownPos[0];
+                                                const dy = e.clientY - mouseDownPos[1];
+                                                if (Math.sqrt(dx * dx + dy * dy) < CLICK_DRAG_DISTANCE_THRESHOLD) {
+                                                    handleClick(geo.rsmKey);
+                                                }
+                                            }
+                                            setMouseDownPos(null);
+                                        }}
                                         style={
                                             props.styleFunction ? props.styleFunction(geo.rsmKey) : {
                                             default: { fill: getCellColor(geo.rsmKey), stroke: "#000000"},
@@ -177,7 +190,17 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
-                                        onClick={() => { handleClick(geo.rsmKey); }} 
+                                        onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
+                                        onPointerUp={(e) => {
+                                            if (mouseDownPos) {
+                                                const dx = e.clientX - mouseDownPos[0];
+                                                const dy = e.clientY - mouseDownPos[1];
+                                                if (Math.sqrt(dx * dx + dy * dy) < CLICK_DRAG_DISTANCE_THRESHOLD) {
+                                                    handleClick(geo.rsmKey);
+                                                }
+                                            }
+                                            setMouseDownPos(null);
+                                        }}
                                         style={{
                                             default: { fill: getCellColor(geo.rsmKey), stroke: "#000000", strokeWidth: '3px'},
                                             hover: { fill: "#efd900", stroke: "#000000", strokeWidth: '3px'},
@@ -227,7 +250,17 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
-                                        onClick={() => { handleClick(geo.rsmKey); }} 
+                                        onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
+                                        onPointerUp={(e) => {
+                                            if (mouseDownPos) {
+                                                const dx = e.clientX - mouseDownPos[0];
+                                                const dy = e.clientY - mouseDownPos[1];
+                                                if (Math.sqrt(dx * dx + dy * dy) < CLICK_DRAG_DISTANCE_THRESHOLD) {
+                                                    handleClick(geo.rsmKey);
+                                                }
+                                            }
+                                            setMouseDownPos(null);
+                                        }}
                                         style={{
                                             default: { fill: getCellColor(geo.rsmKey), stroke: "#000000", strokeWidth: '5px'},
                                             hover: { fill: "#efd900", stroke: "#000000", strokeWidth: '5px'},

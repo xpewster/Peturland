@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import './../us/Us.css';
 import './../Xgeo.css';
-import { BADS, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
+import { BADS, CLICK_DRAG_DISTANCE_THRESHOLD, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
 import { randomElement } from '../helpers';
 import { preloadImage } from '../../../common/preloadImage';
 import { isMobile } from 'react-device-detect';
@@ -91,6 +91,8 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
 
     const [isMobileDebug, setIsMobileDebug] = useState<boolean>(false);
     const [showDebugCheckbox, setShowDebugCheckbox] = useState<boolean>(isMobile);
+
+    const [mouseDownPos, setMouseDownPos] = useState<[number, number] | null>(null);
 
     /* ----------------- */
 
@@ -426,7 +428,17 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
-                                        onClick={() => { handleClick(geo.rsmKey); }} 
+                                        onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
+                                        onPointerUp={(e) => {
+                                            if (mouseDownPos) {
+                                                const dx = e.clientX - mouseDownPos[0];
+                                                const dy = e.clientY - mouseDownPos[1];
+                                                if (Math.sqrt(dx * dx + dy * dy) < CLICK_DRAG_DISTANCE_THRESHOLD) {
+                                                    handleClick(geo.rsmKey);
+                                                }
+                                            }
+                                            setMouseDownPos(null);
+                                        }}
                                         style={
                                             props.styleFunction ? props.styleFunction(geo.rsmKey, undefined) : {
                                             default: { fill: MAP_COLOR, stroke: "#000000"},
