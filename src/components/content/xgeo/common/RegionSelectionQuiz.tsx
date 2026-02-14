@@ -34,7 +34,7 @@ export interface RegionSelectionQuizProps {
     sayWrongAnswer?: boolean;
     showAllWrong?: boolean;
     mapParameters?: MapParameters;
-    styleFunction?: (rsmKey: string, lastItemKeys: string[] | undefined) => any;
+    styleFunction?: (rsmKey: string, lastItemKeys: string[] | undefined, mouseDownPos?: [number, number] | null) => any;
     useMapWithInsets?: boolean;
     insetEnableIndex?: number;
     regionIsAnswer?: boolean;
@@ -382,7 +382,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
         return {
             default: { fill: (groupHovered || selected) ? MAP_HOVER_COLOR
                 : (getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR), stroke: "#000000", outline: 'none' },
-            hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
+            hover: { fill: !mouseDownPos ? MAP_HOVER_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
         }
     };
@@ -462,7 +462,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                                                     }
                                                     setMouseDownPos(null);
                                                 }}
-                                                style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys) : defaultStyleFunction(geo.rsmKey)}
+                                                style={props.styleFunction ? props.styleFunction(geo.rsmKey, lastItems[0][0] < 0 ? undefined : getLastItemsKeys, mouseDownPos) : defaultStyleFunction(geo.rsmKey)}
                                                 onMouseEnter={() => { setHoveredElement(Number(geo.rsmKey.split("-")[1])); }}
                                                 onMouseLeave={() => { setHoveredElement(null); }}
                                             />

@@ -23,10 +23,10 @@ const Kabupaten = (): React.ReactElement => {
         return <span style={{textDecoration: 'underline', display: "inline"}}>{KABUPATEN[index]}</span>;
     }
 
-    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined) => {
+    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined, mouseDownPos?: [number, number] | null) => {
         return {
             default: { fill: (lastItemKeys?.includes(key)) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none', strokeWidth: '0.3px' },
-            hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none', strokeWidth: '0.3px' },
+            hover: { fill: !mouseDownPos ? MAP_HOVER_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none', strokeWidth: '0.3px' },
             pressed: { fill: "green", outline: 'none' },
         };
     }

@@ -39,7 +39,7 @@ export interface LicensePlatesQuizProps {
     mapJsonSrc: any;
     useMapWithInsets?: boolean;
     mapParameters?: MapParameters;
-    styleFunction?: (rsmKey: string, lastItemKeys: string[] | undefined) => any;
+    styleFunction?: (rsmKey: string, lastItemKeys: string[] | undefined, mouseDownPos?: [number, number] | null) => any;
     clickText: string;
     enableRegions: boolean[];
     enableOld: boolean;
@@ -377,13 +377,13 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
         props.enableSkew, loading
     ]);
 
-    const mapStyleFunction = useCallback((key: string) => {
+    const mapStyleFunction = useCallback((key: string, mouseDownPos?: [number, number] | null) => {
         return {
             default: { fill: (key === lastPlateKey) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
-            hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none' },
+            hover: { fill: !mouseDownPos ? MAP_HOVER_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
         };
-    }, [lastPlateKey]);
+    }, [lastPlateKey, mouseDownPos]);
 
     return (
         <div style={{height: '100%'}}>
@@ -440,7 +440,7 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
                                             setMouseDownPos(null);
                                         }}
                                         style={
-                                            props.styleFunction ? props.styleFunction(geo.rsmKey, undefined) : {
+                                            props.styleFunction ? props.styleFunction(geo.rsmKey, undefined, mouseDownPos) : {
                                             default: { fill: MAP_COLOR, stroke: "#000000"},
                                             hover: { fill: "#efd900", stroke: "#000000"},
                                             pressed: { fill: "green" },

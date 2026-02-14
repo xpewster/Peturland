@@ -4,7 +4,7 @@ import dots from '../../../../../assets/dots.png';
 import RegionSelectionQuiz from '../../common/RegionSelectionQuiz';
 import nigeria from '../../../../../assets/geojsons/nigeria.json';
 import { getStreakKey } from '../../helpers';
-import { MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, QuizType } from '../../constants';
+import { QuizType } from '../../constants';
 import { NIGERIA_REGION_BITFLAG, REGION_INDEX_TO_NIGERIAN_STATE_INDEX, STATES } from './constants';
 
 

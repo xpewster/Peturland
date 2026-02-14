@@ -23,11 +23,11 @@ const FiloProvinces = (): React.ReactElement => {
         return <span style={{textDecoration: 'underline', display: "inline"}}>{PROVINCES[index]}</span>;
     }
 
-    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined) => {
+    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined, mouseDownPos?: [number, number] | null) => {
         const SMALL_REGIONS = ['geo-61', 'geo-62', 'geo-63', 'geo-64'];
         return {
             default: { fill: (lastItemKeys?.includes(key)) ? MAP_LAST_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none', strokeWidth: SMALL_REGIONS.includes(key) ? '0.5px' : undefined },
-            hover: { fill: MAP_HOVER_COLOR, stroke: "#000000", outline: 'none', strokeWidth: SMALL_REGIONS.includes(key) ? '0.5px' : undefined },
+            hover: { fill: !mouseDownPos ? MAP_HOVER_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none', strokeWidth: SMALL_REGIONS.includes(key) ? '0.5px' : undefined },
             pressed: { fill: "green", outline: 'none' },
         };
     }

@@ -68,10 +68,10 @@ const BrazilPostcodes = (): React.ReactElement => {
         return "1px";
     }
 
-    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined) => {
+    const getGeometryStyle = (key: string, lastItemKeys: string[] | undefined, mouseDownPos?: [number, number] | null) => {
         return {
             default: { fill: (lastItemKeys?.includes(key)) ? MAP_LAST_COLOR : getCellColor(key), stroke: enableBorders ? "#000000" : getCellColor(key), strokeWidth: enableBorders ? getStrokeWidthBEnabled(key) : getStrokeWidth(key), outline: 'none' },
-            hover: { fill:  enableBorders ? MAP_HOVER_COLOR : getCellColor(key), stroke: enableBorders ? "#000000" : getCellColor(key), strokeWidth: enableBorders ? getStrokeWidthBEnabled(key) : getStrokeWidth(key), outline: 'none' },
+            hover: { fill:  enableBorders ? (!mouseDownPos ? MAP_HOVER_COLOR : MAP_COLOR) : getCellColor(key), stroke: enableBorders ? "#000000" : getCellColor(key), strokeWidth: enableBorders ? getStrokeWidthBEnabled(key) : getStrokeWidth(key), outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
         };
     };

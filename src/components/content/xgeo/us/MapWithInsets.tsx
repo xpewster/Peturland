@@ -10,7 +10,7 @@ export interface MapWithInsetsProps {
     mapJsonSrc?: string;
     clickHandler: (key: string) => void;
     enableRegions: boolean[];
-    styleFunction?: (key: string) => any;
+    styleFunction?: (key: string, mouseDownPos?: [number, number] | null) => any;
     mapParameters?: MapParameters;
     regionBitflags?: number[];
     insetEnableIndex?: number;
@@ -116,7 +116,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                             setMouseDownPos(null);
                                         }}
                                         style={
-                                            props.styleFunction ? props.styleFunction(geo.rsmKey) : {
+                                            props.styleFunction ? props.styleFunction(geo.rsmKey, mouseDownPos) : {
                                             default: { fill: getCellColor(geo.rsmKey), stroke: "#000000"},
                                             hover: { fill: "#efd900", stroke: "#000000"},
                                             pressed: { fill: "green" },
