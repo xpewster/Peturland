@@ -153,9 +153,7 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
         coordinates: props.mapParameters?.center ?? [-105, 36],
         zoom: props.mapParameters?.zoom ?? 1,
     });
-
-    const [hoveredElement, setHoveredElement] = useState<number | null>(null);
-
+    
     useEffect(() => {
         setStreak(0);
         setBestStreak(localStorage.getItem(props.streakKey) ? Number(localStorage.getItem(props.streakKey)) : 0);
@@ -428,6 +426,7 @@ const LicensePlatesQuiz = (props: LicensePlatesQuizProps): React.ReactElement =>
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
+                                        onFocus={(e) => { if (!mouseDownPos) e.target.blur(); }}
                                         onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
                                         onPointerUp={(e) => {
                                             if (mouseDownPos) {

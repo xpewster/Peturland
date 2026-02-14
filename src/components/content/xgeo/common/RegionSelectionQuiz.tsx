@@ -451,6 +451,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                                             <Geography 
                                                 key={geo.rsmKey} 
                                                 geography={geo} 
+                                                onFocus={(e) => { if (!mouseDownPos) e.target.blur(); }}
                                                 onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
                                                 onPointerUp={(e) => {
                                                     if (mouseDownPos) {

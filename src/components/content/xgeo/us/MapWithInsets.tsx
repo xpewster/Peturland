@@ -101,7 +101,8 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                 .map(geo => (
                                     <Geography 
                                         key={geo.rsmKey} 
-                                        geography={geo} 
+                                        geography={geo}
+                                        onFocus={(e) => { if (!mouseDownPos) e.target.blur(); }}
                                         onPointerDown={(e) => {
                                             setMouseDownPos([e.clientX, e.clientY]);
                                         }}
@@ -190,6 +191,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
+                                        onFocus={(e) => { if (!mouseDownPos) e.target.blur(); }}
                                         onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
                                         onPointerUp={(e) => {
                                             if (mouseDownPos) {
@@ -250,6 +252,7 @@ const MapWithInsets = (props: MapWithInsetsProps) => {
                                     <Geography 
                                         key={geo.rsmKey} 
                                         geography={geo} 
+                                        onFocus={(e) => { if (!mouseDownPos) e.target.blur(); }}
                                         onPointerDown={(e) => { setMouseDownPos([e.clientX, e.clientY]); }}
                                         onPointerUp={(e) => {
                                             if (mouseDownPos) {
