@@ -35,6 +35,8 @@ export enum Path {
     XGEO_VIETNAM_PROVINCES = "/xgeo/vietnam/provinces",
     XGEO_VIETNAM_AREA_CODES = "/xgeo/vietnam/area-codes",
     XGEO_VIETNAM_LICENSE_PLATE_CODES = "/xgeo/vietnam/license-plate-codes",
+    XGEO_VIETNAM_REGIONAL_PLACE_NAMES = "/xgeo/vietnam/regional-place-names",
+    XGEO_VIETNAM_POLES = "/xgeo/vietnam/poles",
     XGEO_NIGERIA_STATES = "/xgeo/nigeria/states",
     XGEO_KENYA_COUNTIES = "/xgeo/kenya/counties",
     XGEO_AUSTRALIA_PLATES = "/xgeo/australia/plates",

@@ -78,6 +78,8 @@ const Sitemap = () => {
                   <li><Link to={Path.XGEO_VIETNAM_PROVINCES}>Vietnam Provinces</Link></li>
                   <li><Link to={Path.XGEO_VIETNAM_AREA_CODES}>Vietnam Area Codes</Link></li>
                   <li><Link to={Path.XGEO_VIETNAM_LICENSE_PLATE_CODES}>Vietnam License Plate Codes</Link></li>
+                  <li><Link to={Path.XGEO_VIETNAM_REGIONAL_PLACE_NAMES}>Vietnam Regional Place Names</Link></li>
+                  <li><Link to={Path.XGEO_VIETNAM_POLES}>Vietnam Poles</Link></li>
                   <li><Link to={Path.XGEO_NIGERIA_STATES}>Nigeria States</Link></li>
                   <li><Link to={Path.XGEO_KENYA_COUNTIES}>Kenya Counties</Link></li>
                   <li><Link to={Path.XGEO_AUSTRALIA_PLATES}>Australia Plates</Link></li>

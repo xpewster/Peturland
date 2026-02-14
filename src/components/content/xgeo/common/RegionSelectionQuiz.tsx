@@ -14,6 +14,7 @@ export interface RegionSelectionQuizProps {
     toFindIndexToAnswerIndicesArray: number[][];
     answerIndexToSrc?: (toFind: number) => any;
     answerIndexToText?: (toFind: number) => React.ReactElement;
+    correctAnswerBoxIndexToText?: (toFind: number) => React.ReactElement;
     answerIndexToRegionIndices?: number[][];
     answerDescriptions?: string[];
     streakKey: string;
@@ -342,7 +343,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
         return `${baseId}${index}`;
     };
 
-    const getSrc = (index: number = 0, lastItemIndex?: number): any => {
+    const getSrc = (index: number = 0, lastItemIndex?: number, answerBox?: boolean): any => {
         if (props.answerIndexToSrc) {
             if (index === 1) {
                 const showIndex = props.answerIndexToShowIndex?.[props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]][0] ?? -1;
@@ -354,9 +355,11 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
             return props.answerIndexToSrc(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
         } else if (props.answerIndexToText) {
             if (index === 1) {
-                return props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]);
+                return (answerBox && props.correctAnswerBoxIndexToText) ? props.correctAnswerBoxIndexToText(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]) :
+                        props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]);
             }
-            return props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
+            return (answerBox && props.correctAnswerBoxIndexToText) ? props.correctAnswerBoxIndexToText(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]) :
+                    props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
         }
     }
 
@@ -490,7 +493,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                 {lastItems.map((lastItem, index) => <>
                     {lastItem[0] === -1 ? <></> :
                         <div style={{display: 'block', paddingBottom: '5px'}}>
-                            <p style={{marginTop: 0}}>{index + 1}. {props.answerIndexToText ? getSrc(1, index) : ((enablePPSkew && props.enableSkew) ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined}}>
+                            <p style={{marginTop: 0}}>{index + 1}. {props.answerIndexToText ? getSrc(1, index, true) : ((enablePPSkew && props.enableSkew) ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined}}>
                                     <defs>
                                         <filter id={getFilterId("combinedFilter", 3 + index)}>
                                             <feColorMatrix type="matrix"
@@ -501,7 +504,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                                                 result="sepia" />
                                         </filter>
                                     </defs>
-                                    <image href={getSrc(1, index)} xlinkHref={getSrc(1, index)} x="0" y="0" width="100%" height="100%"
+                                    <image href={getSrc(1, index, true)} xlinkHref={getSrc(1, index, true)} x="0" y="0" width="100%" height="100%"
                                         style={props.enableSkew ? {
                                             transformStyle: 'preserve-3d',
                                             transform: `rotateX(${lastItem[3][0] ?? 0}deg) rotateY(${lastItem[3][1] ?? 0}deg) scale(${lastItem[4] ?? 1})`,
@@ -511,7 +514,7 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                                         filter={props.enableSkew ? `url(#${getFilterId("combinedFilter", 3 + index)})` : undefined}
                                     />        
                                 </svg></div>
-                                : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}} src={getSrc(1, index)}></img>
+                                : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}} src={getSrc(1, index, true)}></img>
                             )}
                             {props.answerIndexToText && <span>&nbsp;</span>}{<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{!props.regionIsAnswer && props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
                                 ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])

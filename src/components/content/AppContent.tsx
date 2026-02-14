@@ -53,6 +53,8 @@ const AppContent = ({
             case ContentType.XGEO_VIETNAM_PROVINCES:
             case ContentType.XGEO_VIETNAM_AREA_CODES:
             case ContentType.XGEO_VIETNAM_LICENSE_PLATE_CODES:
+            case ContentType.XGEO_VIETNAM_REGIONAL_PLACE_NAMES:
+            case ContentType.XGEO_VIETNAM_POLES:
             case ContentType.XGEO_NIGERIA_STATES:
             case ContentType.XGEO_KENYA_COUNTIES:
             case ContentType.XGEO_AUSTRALIA_PLATES:

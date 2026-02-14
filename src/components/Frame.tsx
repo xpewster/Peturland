@@ -82,6 +82,10 @@ const Frame = (props: FrameProps): React.ReactElement => {
         return ContentType.XGEO_VIETNAM_AREA_CODES;
       case Path.XGEO_VIETNAM_LICENSE_PLATE_CODES:
         return ContentType.XGEO_VIETNAM_LICENSE_PLATE_CODES;
+      case Path.XGEO_VIETNAM_REGIONAL_PLACE_NAMES:
+        return ContentType.XGEO_VIETNAM_REGIONAL_PLACE_NAMES;
+      case Path.XGEO_VIETNAM_POLES:
+        return ContentType.XGEO_VIETNAM_POLES;
       case Path.XGEO_NIGERIA_STATES:
         return ContentType.XGEO_NIGERIA_STATES;
       case Path.XGEO_KENYA_COUNTIES:

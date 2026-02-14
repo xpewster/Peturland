@@ -73,6 +73,10 @@ export const getContentSize = (type: ContentType) => {
             return 880;
         case ContentType.XGEO_VIETNAM_LICENSE_PLATE_CODES:
             return 880;
+        case ContentType.XGEO_VIETNAM_REGIONAL_PLACE_NAMES:
+            return 880;
+        case ContentType.XGEO_VIETNAM_POLES:
+            return 880;
         case ContentType.XGEO_NIGERIA_STATES:
             return 700;
         case ContentType.XGEO_KENYA_COUNTIES:

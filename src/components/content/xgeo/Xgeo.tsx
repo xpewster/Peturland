@@ -73,6 +73,8 @@ import VnProvinces from './vietnam/Provinces/VnProvinces';
 import VnAreaCodes from './vietnam/AreaCodes/VnAreaCodes';
 import FiPlates from './phillipines/plates/FiPlates';
 import VnLicensePlateCodes from './vietnam/LicensePlateCodes/VnLicensePlateCodes';
+import VnRegionalPlaceNames from './vietnam/RegionalPlaceNames/VnRegionalPlaceNames';
+import VnPoles from './vietnam/Poles/VnPoles';
 
 export interface XgeoProps {
     contentType?: ContentType;
@@ -109,10 +111,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const PHILLIPINES_LINKS = [Path.XGEO_PHILLIPINES_PROVINCES, Path.XGEO_PHILLIPINES_REGIONS, Path.XGEO_PHILLIPINES_PLATES];
     const PHILLIPINES_STYLES = Array(3).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
 
-    const VN_IMGS = [phone, provinces, lice];
-    const VN_STRINGS = ['Area Codes', 'Provinces', 'License Plate Codes'];
-    const VN_LINKS = [Path.XGEO_VIETNAM_AREA_CODES, Path.XGEO_VIETNAM_PROVINCES, Path.XGEO_VIETNAM_LICENSE_PLATE_CODES];
-    const VN_STYLES = [{}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const VN_IMGS = [phone, provinces, lice, pole, jp_0];
+    const VN_STRINGS = ['Area Codes', 'Provinces', 'License Plate Codes', 'Poles', 'Regional Place Names'];
+    const VN_LINKS = [Path.XGEO_VIETNAM_AREA_CODES, Path.XGEO_VIETNAM_PROVINCES, Path.XGEO_VIETNAM_LICENSE_PLATE_CODES, Path.XGEO_VIETNAM_POLES, Path.XGEO_VIETNAM_REGIONAL_PLACE_NAMES];
+    const VN_STYLES = [{}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
 
     const NIGERIA_IMGS = [provinces];
     const NIGERIA_STRINGS = ['States'];
@@ -222,6 +224,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
                 return <VnAreaCodes />;
             case ContentType.XGEO_VIETNAM_LICENSE_PLATE_CODES:
                 return <VnLicensePlateCodes />;
+            case ContentType.XGEO_VIETNAM_REGIONAL_PLACE_NAMES:
+                return <VnRegionalPlaceNames />;
+            case ContentType.XGEO_VIETNAM_POLES:
+                return <VnPoles />;
             case ContentType.XGEO_NIGERIA_STATES:
                 return <NigeriaStates />;
             case ContentType.XGEO_KENYA_COUNTIES:
