@@ -13,6 +13,7 @@ import {
     ETHNIC_ELEMENT_END,
     SINO_VIET_ELEMENT_START,
     SINO_VIET_ELEMENT_END,
+    OBSCURE_ELEMENT_INDICES,
 } from './constants';
 import { PROVINCES } from '../constants';
 import { QuizType } from '../../constants';
@@ -23,10 +24,14 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
 
     const [enableEthnic, setEnableEthnic] = useState<boolean>(true);
     const [enableSinoViet, setEnableSinoViet] = useState<boolean>(false);
+    const [enableObscure, setEnableObscure] = useState<boolean>(false);
 
     const filteredList = useMemo(() => {
         return PROVINCE_INDEX_TO_ELEMENT_INDICES.map((elementIndices: number[]) => {
             return elementIndices.filter((index: number) => {
+                if (!enableObscure && OBSCURE_ELEMENT_INDICES.has(index)) {
+                    return false;
+                }
                 if (enableEthnic && index >= ETHNIC_ELEMENT_START && index <= ETHNIC_ELEMENT_END) {
                     return true;
                 }
@@ -36,11 +41,11 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
                 return false;
             });
         });
-    }, [enableEthnic, enableSinoViet]);
+    }, [enableEthnic, enableSinoViet, enableObscure]);
 
     const getText = (index: number): React.ReactElement => {
         return (
-            <span style={{ textDecoration: 'underline', fontWeight: 'bold' }}>{PLACE_NAME_ELEMENTS[index]}<br /></span>
+            <span style={{ textDecoration: 'underline', fontWeight: 'bold' }}>{PLACE_NAME_ELEMENTS[index]}<br /><br /></span>
         );
     };
 
@@ -65,10 +70,13 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
                     &nbsp;&nbsp;
                     Sino-Vietnamese
                     <input type="checkbox" onChange={() => { setEnableSinoViet(!enableSinoViet); }} checked={enableSinoViet}></input>
+                    &nbsp;&nbsp;
+                    Obscure
+                    <input type="checkbox" onChange={() => { setEnableObscure(!enableObscure); }} checked={enableObscure}></input>
                 </div>
             </div>
             <img style={{ position: 'absolute', left: '-2px', top: '136px' }} src={dots}></img>
-            <div style={{ paddingTop: '10px' }}>
+            <div style={{ paddingTop: '14px' }}>
                 <RegionSelectionQuiz
                     mapJsonSrc={vn}
                     clickText={'Click on a province where this regional place name can be found!'}
@@ -76,11 +84,12 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
                     toFindIndexToAnswerIndicesArray={filteredList}
                     answerIndexToRegionIndices={ELEMENT_TO_PROVINCE_INDICES}
                     answerIndexToText={getText}
-                    correctAnswerBoxIndexToText={getAnswerBoxText}
-                    streakKey={getStreakKey(QuizType.VIETNAM_REGIONAL_PLACE_NAMES, [enableEthnic, enableSinoViet])}
+                    correctAnswerBoxIndexToElement={getAnswerBoxText}
+                    streakKey={getStreakKey(QuizType.VIETNAM_REGIONAL_PLACE_NAMES, [enableEthnic, enableSinoViet, enableObscure])}
                     disallowRepeats={true}
                     numLastItems={5}
                     sayWrongAnswer={false}
+                    regionIsAnswer={true} // Hide province since RegionSelectionQuiz only shows one which may be confusing
                     mapParameters={{ scale: 1600, center: [105.5, 14.5] }}
                 />
             </div>

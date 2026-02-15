@@ -111,10 +111,10 @@ const Xgeo = (props: XgeoProps): React.ReactElement => {
     const PHILLIPINES_LINKS = [Path.XGEO_PHILLIPINES_PROVINCES, Path.XGEO_PHILLIPINES_REGIONS, Path.XGEO_PHILLIPINES_PLATES];
     const PHILLIPINES_STYLES = Array(3).fill({width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const});
 
-    const VN_IMGS = [phone, provinces, lice, pole, jp_0];
+    const VN_IMGS = [phone, provinces, lice, pole, jp_2];
     const VN_STRINGS = ['Area Codes', 'Provinces', 'License Plate Codes', 'Poles', 'Regional Place Names'];
     const VN_LINKS = [Path.XGEO_VIETNAM_AREA_CODES, Path.XGEO_VIETNAM_PROVINCES, Path.XGEO_VIETNAM_LICENSE_PLATE_CODES, Path.XGEO_VIETNAM_POLES, Path.XGEO_VIETNAM_REGIONAL_PLACE_NAMES];
-    const VN_STYLES = [{}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}];
+    const VN_STYLES = [{}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {width: '16px' as const, height: '16px' as const, paddingLeft: '4px' as const, paddingTop: '3px' as const}, {}];
 
     const NIGERIA_IMGS = [provinces];
     const NIGERIA_STRINGS = ['States'];

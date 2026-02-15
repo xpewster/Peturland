@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import './../Xgeo.css';
-import { BADS, CLICK_DRAG_DISTANCE_THRESHOLD, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, NICES } from '../constants';
+import { BADS, CLICK_DRAG_DISTANCE_THRESHOLD, MAP_COLOR, MAP_HOVER_COLOR, MAP_LAST_COLOR, MAP_SELECT_COLOR, NICES } from '../constants';
 import { randomElement } from '../helpers';
 import { ComposableMap, ZoomableGroup, Geographies, Geography } from 'react-simple-maps';
 import ScrollingDisabler from '../../../common/ScrollingDisabler';
@@ -14,8 +14,9 @@ export interface RegionSelectionQuizProps {
     toFindIndexToAnswerIndicesArray: number[][];
     answerIndexToSrc?: (toFind: number) => any;
     answerIndexToText?: (toFind: number) => React.ReactElement;
-    correctAnswerBoxIndexToText?: (toFind: number) => React.ReactElement;
+    correctAnswerBoxIndexToElement?: (toFind: number) => React.ReactElement;
     answerIndexToRegionIndices?: number[][];
+    unevenAnswerDistribution?: boolean;
     answerDescriptions?: string[];
     streakKey: string;
     disallowRepeats?: boolean;
@@ -23,8 +24,9 @@ export interface RegionSelectionQuizProps {
     enableRandColor?: boolean;
     randColorEnabledIndices?: boolean[];
     enableRegions?: boolean[];
-    answerIndexToYears?: (number[] | null)[];
-    showYears?: boolean;
+    answerIndexToLabelExtra?: (toFind: number) => React.ReactElement | string;
+    answerBoxWidthPadding?: number;
+    answerBoxHeightPadding?: number;
     regionsBitFlag?: number[];
     dashedBorder?: boolean;
     itemHeight?: number;
@@ -183,6 +185,43 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
             return !!(props.regionsBitFlag[index] & enabledRegionBitFlag);
         };
     }, [props.regionsBitFlag]);
+
+    // Pick a random answer index first, then find a province containing it.
+    // This gives every unique answer equal probability regardless of how many provinces share it.
+    const getRandomAnswerFirst = (enableRegion: boolean[]): { newt: number, answerIdx: number } | null => {
+        const enabledRegionBitFlag = enableRegion.reduce((acc, enabled, index) => {
+            return enabled ? acc | REGION_INDEX_TO_BIT[index] : acc;
+        }, 0);
+
+        // Collect all unique answer indices from enabled provinces
+        const answerSet = new Set<number>();
+        for (let i = 0; i < props.toFindIndexToAnswerIndicesArray.length; i++) {
+            if (props.regionsBitFlag && !(props.regionsBitFlag[i] & enabledRegionBitFlag)) continue;
+            for (const idx of props.toFindIndexToAnswerIndicesArray[i]) {
+                answerSet.add(idx);
+            }
+        }
+
+        if (answerSet.size === 0) return null;
+
+        // Pick a random answer uniformly
+        const answers = Array.from(answerSet);
+        const chosenAnswer = answers[Math.floor(Math.random() * answers.length)];
+
+        // Find all enabled provinces that contain this answer
+        const candidateProvinces: number[] = [];
+        for (let i = 0; i < props.toFindIndexToAnswerIndicesArray.length; i++) {
+            if (props.regionsBitFlag && !(props.regionsBitFlag[i] & enabledRegionBitFlag)) continue;
+            if (props.toFindIndexToAnswerIndicesArray[i].includes(chosenAnswer)) {
+                candidateProvinces.push(i);
+            }
+        }
+
+        const newt = candidateProvinces[Math.floor(Math.random() * candidateProvinces.length)];
+        // Find the position of chosenAnswer within the province's array so randIndex maps to it
+        const answerIdx = props.toFindIndexToAnswerIndicesArray[newt].indexOf(chosenAnswer);
+        return { newt, answerIdx };
+    };
     
     function generateFirstFind() {
         let tries = 0;
@@ -206,19 +245,38 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
         if (!nextItem) {
             generateFirstFind();
         }
+
+        const currentAnswerIdx = props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind]?.[currentOrFutureIndex % props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind]?.length];
+
         while(tries < 1000) {
-            const newt = getRandomEnabledStateIndexFast(props.enableRegions ?? []) ?? 0;
-            if ((currentOrFutureToFind === newt && props.disallowRepeats) || (props.toFindIndexToAnswerIndicesArray[newt]?.length ?? 0) === 0) {
-                tries++;
-                continue;
+            let newt: number;
+            let newIndex: number;
+
+            if (!props.unevenAnswerDistribution) {
+                const result = getRandomAnswerFirst(props.enableRegions ?? []);
+                if (!result) break;
+                newt = result.newt;
+                newIndex = result.answerIdx;
+                const newAnswerIdx = props.toFindIndexToAnswerIndicesArray[newt][newIndex];
+                if (props.disallowRepeats && newAnswerIdx === currentAnswerIdx) {
+                    tries++;
+                    continue;
+                }
+            } else {
+                newt = getRandomEnabledStateIndexFast(props.enableRegions ?? []) ?? 0;
+                if ((currentOrFutureToFind === newt && props.disallowRepeats) || (props.toFindIndexToAnswerIndicesArray[newt]?.length ?? 0) === 0) {
+                    tries++;
+                    continue;
+                }
+                newIndex = Math.floor(Math.random() * 100);
+                if (props.disallowRepeats && props.answerIndexToRegionIndices?.[props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind][currentOrFutureIndex % props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind].length]]?.includes(newt)) {
+                    tries++;
+                    continue;
+                }
             }
+
             if (loading) {
                 setLoading(false);
-            }
-            const newIndex = (Math.floor(Math.random() * 100));
-            if (props.disallowRepeats && props.answerIndexToRegionIndices?.[props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind][currentOrFutureIndex % props.toFindIndexToAnswerIndicesArray[currentOrFutureToFind].length]]?.includes(newt)) {
-                tries++;
-                continue;
             }
             if (props.answerIndexToSrc) {
                 preloadImage(props.answerIndexToSrc(props.toFindIndexToAnswerIndicesArray[newt][newIndex % props.toFindIndexToAnswerIndicesArray[newt].length]));
@@ -252,12 +310,21 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
         generateNewFind();
     }, []);
 
+    const highlightGroupKeysMap = useMemo(() => {
+        if (!props.highlightGroups) return null;
+        return props.highlightGroups.map(group => group.map(val => `geo-${val}`));
+    }, [props.highlightGroups]);
+    const selectedRegionsSet = useMemo(() => new Set(selectedRegions), [selectedRegions]);
+
     function handleClick(key: string) {
         if (props.multiselect) {
-            if (selectedRegions.includes(key)) {
-                setSelectedRegions(selectedRegions.filter((val) => val !== key));
+            const regionIndex = Number(key.split("-")[1]);
+            const groupKeys = highlightGroupKeysMap?.[regionIndex] ?? [key];
+            const anySelected = groupKeys.some((k) => selectedRegionsSet.has(k));
+            if (anySelected) {
+                setSelectedRegions(selectedRegions.filter((val) => !groupKeys.includes(val)));
             } else {
-                setSelectedRegions([...selectedRegions, key]);
+                setSelectedRegions(Array.from(new Set([...selectedRegions, ...groupKeys])));
             }
             return;
         }
@@ -344,6 +411,12 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
     };
 
     const getSrc = (index: number = 0, lastItemIndex?: number, answerBox?: boolean): any => {
+        if (answerBox && props.correctAnswerBoxIndexToElement) {
+            if (index === 1) {
+                return props.correctAnswerBoxIndexToElement(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]);
+            }
+            return props.correctAnswerBoxIndexToElement(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
+        }
         if (props.answerIndexToSrc) {
             if (index === 1) {
                 const showIndex = props.answerIndexToShowIndex?.[props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]][0] ?? -1;
@@ -355,23 +428,10 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
             return props.answerIndexToSrc(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
         } else if (props.answerIndexToText) {
             if (index === 1) {
-                return (answerBox && props.correctAnswerBoxIndexToText) ? props.correctAnswerBoxIndexToText(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]) :
-                        props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]);
+                return props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]][lastItems[lastItemIndex ?? 0][1] % props.toFindIndexToAnswerIndicesArray[lastItems[lastItemIndex ?? 0][0]].length]);
             }
-            return (answerBox && props.correctAnswerBoxIndexToText) ? props.correctAnswerBoxIndexToText(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]) :
-                    props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
+            return props.answerIndexToText(props.toFindIndexToAnswerIndicesArray[toFind][randIndex % props.toFindIndexToAnswerIndicesArray[toFind].length]);
         }
-    }
-
-    const getYearString = (index: number): string => {
-        if (props.answerIndexToYears?.[index] === null) {
-            return "";
-        } else if (props.answerIndexToYears?.[index]![0] === null && props.answerIndexToYears[index]![1] !== null) {
-            return `(-${props.answerIndexToYears?.[index]![1]})`;
-        } else if (props.answerIndexToYears?.[index]![1] === null) {
-            return `(${props.answerIndexToYears[index]![0]}-)`;
-        }
-        return `(${props.answerIndexToYears?.[index]![0]}-${props.answerIndexToYears?.[index]![1]})`;
     }
 
     const getLastItemsKeys = useMemo(() => {
@@ -381,10 +441,10 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
     const defaultStyleFunction = (key: string) => {
         const regionIndex = Number(key.split("-")[1]);
         const groupHovered = (hoveredElement && props.highlightGroups?.[hoveredElement]?.includes(regionIndex));
-        const selected = selectedRegions.includes(key);
+        const selected = selectedRegionsSet.has(key);
         return {
-            default: { fill: (groupHovered || selected) ? MAP_HOVER_COLOR
-                : (getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR), stroke: "#000000", outline: 'none' },
+            default: { fill: (groupHovered && !mouseDownPos) ? MAP_HOVER_COLOR : (selected ? MAP_SELECT_COLOR
+                : (getLastItemsKeys.includes(key) ? MAP_LAST_COLOR : MAP_COLOR)), stroke: "#000000", outline: 'none' },
             hover: { fill: !mouseDownPos ? MAP_HOVER_COLOR : MAP_COLOR, stroke: "#000000", outline: 'none' },
             pressed: { fill: "green", outline: 'none' },
         }
@@ -487,13 +547,13 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                 />
             }
             </div>
-            {((props.numLastItems ?? 1) > 0 && lastItems[0][0] >= 0) && <div className="scrollable-content" style={{paddingLeft: '5px', marginTop: '5px', border: (props.numLastItems ?? 1 > 1) ? 'dashed 1px #808080' : undefined, height: `${(props.itemHeight ?? 75) + 100}px`, overflow: (props.numLastItems ?? 1) > 1 ? 'scroll' : undefined, width: `${(props.itemHeight ?? 25) + 125}px`}}>
+            {((props.numLastItems ?? 1) > 0 && lastItems[0][0] >= 0) && <div className="scrollable-content" style={{paddingLeft: '5px', marginTop: '5px', border: (props.numLastItems ?? 1 > 1) ? 'dashed 1px #808080' : undefined, height: `${(props.itemHeight ?? 75) + 100 + (props.answerBoxHeightPadding ?? 0)}px`, overflow: (props.numLastItems ?? 1) > 1 ? 'scroll' : undefined, width: `${(props.itemHeight ?? 25) + 125 + (props.answerBoxWidthPadding ?? 0)}px`}}>
                 <p style={{marginBottom: '5px', textDecoration: 'underline'}}>{(props.numLastItems ?? 1) > 1 ? "Previous items:" : "Previous item:"}</p>
                 {props.enableSkew && <span>Angle<input type='checkbox' onChange={() => {setEnablePPSkew(!enablePPSkew);}} checked={enablePPSkew}></input></span>}
                 {lastItems.map((lastItem, index) => <>
                     {lastItem[0] === -1 ? <></> :
                         <div style={{display: 'block', paddingBottom: '5px'}}>
-                            <p style={{marginTop: 0}}>{index + 1}. {props.answerIndexToText ? getSrc(1, index, true) : ((enablePPSkew && props.enableSkew) ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined}}>
+                            <p style={{marginTop: 0}}>{index + 1}. {(props.answerIndexToText || props.correctAnswerBoxIndexToElement) ? getSrc(1, index, true) : ((enablePPSkew && props.enableSkew) ? <div style={{filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}}><svg height={`${props.itemHeight ?? 75}px`} width={`${props.itemHeight ?? 75}px`} style={{display: 'block', border: props.dashedBorder ? 'dashed 1px black' : undefined}}>
                                     <defs>
                                         <filter id={getFilterId("combinedFilter", 3 + index)}>
                                             <feColorMatrix type="matrix"
@@ -516,8 +576,8 @@ const RegionSelectionQuiz = (props: RegionSelectionQuizProps): React.ReactElemen
                                 </svg></div>
                                 : <img style={{height: `${props.itemHeight ?? 75}px`, display: 'block', filter: (props.enableRandColor && (props.randColorEnabledIndices?.[props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length]] ?? false)) ? `hue-rotate(${lastItem[5]}deg)` : undefined}} src={getSrc(1, index, true)}></img>
                             )}
-                            {props.answerIndexToText && <span>&nbsp;</span>}{<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{!props.regionIsAnswer && props.regionIndexArray[lastItem[0]]?.toString()} {(props.showYears && props.answerIndexToYears)
-                                ? getYearString(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])
+                            {props.answerIndexToText && <span>&nbsp;</span>}{<span className='p-old' style={{margin: 'auto', textAlign: 'left'}}>{!props.regionIsAnswer && props.regionIndexArray[lastItem[0]]?.toString()} {(props.answerIndexToLabelExtra)
+                                ? props.answerIndexToLabelExtra(props.toFindIndexToAnswerIndicesArray[lastItem[0]][lastItem[1] % props.toFindIndexToAnswerIndicesArray[lastItem[0]].length])
                                 : ''}</span>}
                             </p>
                         </div>

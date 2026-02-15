@@ -10,6 +10,7 @@ import { getStreakKey } from '../../helpers';
 import { QuizType } from '../../constants';
 import { STATE_TO_REGION_BITFLAG, STATES } from '../constants';
 import { REGION_TO_US_FLAGS, US_FLAGS, US_FLAGS_TO_YEARS } from './constants';
+import { getYearString } from '../../../../common/getYearString';
 
 
 const UsFlags = (): React.ReactElement => {
@@ -85,8 +86,7 @@ const UsFlags = (): React.ReactElement => {
                     disallowRepeats={true}
                     enableSkew={enableDistort}
                     enableRegions={enableRegion}
-                    showYears={true}
-                    answerIndexToYears={US_FLAGS_TO_YEARS}
+                    answerIndexToLabelExtra={(toFind) => getYearString(US_FLAGS_TO_YEARS, toFind)}
                     regionsBitFlag={STATE_TO_REGION_BITFLAG}
                     numLastItems={5}
                     itemHeight={150}
