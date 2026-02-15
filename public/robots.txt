@@ -27,6 +27,10 @@ Allow: /xgeo/mongolia/driving-direction
 Allow: /xgeo/indonesia/kabupaten
 Allow: /xgeo/philippines/provinces
 Allow: /xgeo/philippines/regions
+Allow: /xgeo/philippines/plates
+Allow: /xgeo/vietnam/provinces
+Allow: /xgeo/vietnam/poles
+Allow: /xgeo/vietnam/regional-place-names
 Allow: /credits
 Allow: /88x31
 Allow: /patch-notes

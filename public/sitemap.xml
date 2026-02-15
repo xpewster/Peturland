@@ -137,6 +137,10 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://peturland.com/xgeo/philippines/plates</loc>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://peturland.com/xgeo/nigeria/states</loc>
     <priority>0.6</priority>
   </url>
@@ -162,6 +166,14 @@
   </url>
   <url>
     <loc>https://peturland.com/xgeo/vietnam/area-codes</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/vietnam/poles</loc>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://peturland.com/xgeo/vietnam/regional-place-names</loc>
     <priority>0.7</priority>
   </url>
   <url>
