@@ -14,10 +14,12 @@ import {
     SINO_VIET_ELEMENT_START,
     SINO_VIET_ELEMENT_END,
     OBSCURE_ELEMENT_INDICES,
+    PLACE_NAME_CONSISTENCY_RATINGS,
 } from './constants';
 import { PROVINCES } from '../constants';
 import { QuizType } from '../../constants';
 import pho from '../../../../../assets/gifs/pho.gif';
+import Consistency from '../../../../common/ConsistencyRating';
 
 
 const VnRegionalPlaceNames = (): React.ReactElement => {
@@ -45,16 +47,21 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
 
     const getText = (index: number): React.ReactElement => {
         return (
-            <span style={{ textDecoration: 'underline', fontWeight: 'bold' }}>{PLACE_NAME_ELEMENTS[index]}<br /><br /></span>
+            <span style={{ fontWeight: 'bold' }}>{PLACE_NAME_ELEMENTS[index]}<br /><br /></span>
         );
+    };
+
+    const getConsistencyElement = (index: number): React.ReactElement => {
+        const rating = PLACE_NAME_CONSISTENCY_RATINGS[index];
+        return <Consistency rating={rating[0]} bonusText={rating[1]} />; // Placeholder, replace with actual logic to determine consistency
     };
 
     const getAnswerBoxText = (index: number): React.ReactElement => {
         return (
             <span>
-                <span style={{ textDecoration: 'underline', fontWeight: 'bold' }}>{PLACE_NAME_ELEMENTS[index]}</span>
+                <span style={{ fontWeight: 'bold' }}>{PLACE_NAME_ELEMENTS[index]}</span>
                 <br />
-                <span style={{ fontSize: '0.85em', color: '#555' }}>{PLACE_NAME_DESCRIPTIONS[index]}</span>
+                <span style={{ fontSize: '14px', color: '#555' }}>{PLACE_NAME_DESCRIPTIONS[index]} {getConsistencyElement(index)}</span>
             </span>
         );
     };
@@ -71,7 +78,7 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
                     Sino-Vietnamese
                     <input type="checkbox" onChange={() => { setEnableSinoViet(!enableSinoViet); }} checked={enableSinoViet}></input>
                     &nbsp;&nbsp;
-                    Obscure
+                    Rare
                     <input type="checkbox" onChange={() => { setEnableObscure(!enableObscure); }} checked={enableObscure}></input>
                 </div>
             </div>
@@ -91,6 +98,7 @@ const VnRegionalPlaceNames = (): React.ReactElement => {
                     sayWrongAnswer={false}
                     regionIsAnswer={true} // Hide province since RegionSelectionQuiz only shows one which may be confusing
                     mapParameters={{ scale: 1600, center: [105.5, 14.5] }}
+                    answerBoxWidthPadding={145}
                 />
             </div>
             <p style={{ position: 'absolute', bottom: '20px', right: '150px', fontFamily: 'Comic Sans MS' }}>It's pronounced pho, not pho!</p>
