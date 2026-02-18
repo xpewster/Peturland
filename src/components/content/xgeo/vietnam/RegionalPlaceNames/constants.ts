@@ -1,8 +1,8 @@
 import { ConsistencyRating } from "../../../../common/ConsistencyRating";
 
-// Place name elements array - indices 0-29 are ethnic minority, 30-46 are Sino-Vietnamese
+// Place name elements array - indices 0-30 are ethnic minority, 31-49 are Sino-Vietnamese
 export const PLACE_NAME_ELEMENTS = [
-    // === Ethnic Minority Elements (0-28) ===
+    // === Ethnic Minority Elements (0-30) ===
     // Northern Highlands (Tày/Nùng/Thái/Mường)
     'Bản',          // 0
     'Nà / Na',      // 1
@@ -53,35 +53,42 @@ export const PLACE_NAME_ELEMENTS = [
     'Làng',         // 28
     'Cư',           // 29
 
-    // === Sino-Vietnamese Elements (30-46) ===
+    // Mekong Delta — Khmer
+    'Khóm',         // 30
+
+    // === Sino-Vietnamese Elements (31-49) ===
+    // Administrative Vietnamese
+    'Ấp',           // 31
+    'Thôn',         // 32
+
     // Concentrated in South
-    'Tân',          // 30
-    'Mỹ',           // 31
-    'Thạnh',        // 32
-    'Long',         // 33
-    'Gò',           // 34
+    'Tân',          // 33
+    'Mỹ',           // 34
+    'Thạnh',        // 35
+    'Long',         // 36
+    'Gò',           // 37
 
     // Concentrated in North
-    'Hải',          // 35
-    'Thái',         // 36
+    'Hải',          // 38
+    'Thái',         // 39
 
     // Concentrated in Central
-    'Quảng',        // 37
-    'Đức',          // 38
-    'Nghĩa',        // 39
-    'Thuận',        // 40
+    'Quảng',        // 40
+    'Đức',          // 41
+    'Nghĩa',        // 42
+    'Thuận',        // 43
 
     // New Sino-Vietnamese
-    'Hương',        // 41
-    'Thịnh',        // 42
-    'Phúc',         // 43
-    'Phước',        // 44
-    'Nhân',         // 45
-    'Nhơn',         // 46
+    'Hương',        // 44
+    'Thịnh',        // 45
+    'Phúc',         // 46
+    'Phước',        // 47
+    'Nhân',         // 48
+    'Nhơn',         // 49
 ];
 
 export const PLACE_NAME_DESCRIPTIONS = [
-    // Ethnic (0-28)
+    // Ethnic (0-30)
     'Village / hamlet — Tày, Nùng, Thái',
     'Rice paddy / flatland — Tày, Nùng, Thái',
     'Sub-district / community — Thái',
@@ -112,7 +119,10 @@ export const PLACE_NAME_DESCRIPTIONS = [
     'Field / flat area — Thái / Katuic',
     'Village — Vietnamese (regional)',
     'Hamlet / village — Ede',
-    // Sino-Vietnamese (30-46)
+    'Neighborhood / block — Khmer',
+    // Sino-Vietnamese (31-49)
+    'Hamlet — Vietnamese (southern)',
+    'Village — Vietnamese (northern)',
     '新 New — frontier settlement',
     '美 Beautiful / good — aspirational settlement',
     '盛 Prosperous (southern pronunciation)',
@@ -212,115 +222,122 @@ export const ELEMENT_TO_PROVINCE_INDICES: number[][] = [
     [20, 54],
     // 29: Cư — Đắk Lắk
     [15],
+    // 30: Khóm — Đồng Tháp, Vĩnh Long, Trà Vinh, and everything southwest
+    [0, 4, 11, 12, 19, 27, 31, 49, 58, 60],
 
-    // === Sino-Vietnamese (30-46) ===
-    // 30: Tân — added coastal provinces up to Ninh Thuận
-    [0, 1, 4, 6, 8, 10, 11, 12, 19, 27, 31, 37, 41, 49, 51, 56, 57, 58, 60],
-    // 31: Mỹ — all Mekong delta + HCMC, Bà Rịa, coastal to Bình Định
-    [0, 1, 4, 6, 7, 10, 11, 12, 19, 27, 30, 31, 37, 41, 43, 49, 56, 57, 58, 60],
-    // 32: Thạnh — all Mekong delta provinces
-    [0, 4, 6, 11, 12, 19, 27, 31, 37, 49, 56, 58, 60],
-    // 33: Long — all Mekong delta + HCMC region
+    // === Sino-Vietnamese (31-49) ===
+    // 31: Ấp — Bình Phước, Đồng Nai, Bà Rịa-VT and everything southwest
     [0, 1, 4, 6, 8, 9, 11, 12, 18, 19, 27, 31, 37, 49, 51, 56, 57, 58, 60],
-    // 34: Gò — all Mekong delta, southeast, coastal to Đà Nẵng
+    // 32: Thôn — everything not covered by Ấp
+    [2, 3, 5, 7, 10, 13, 14, 15, 16, 17, 20, 21, 22, 23, 24, 25, 26, 28, 29, 30, 32, 33, 34, 35, 36, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47, 48, 50, 52, 53, 54, 55, 59, 61, 62],
+
+    // 33: Tân
+    [0, 1, 4, 6, 8, 10, 11, 12, 19, 27, 31, 37, 41, 49, 51, 56, 57, 58, 60],
+    // 34: Mỹ — all Mekong delta + HCMC, Bà Rịa, coastal to Bình Định
+    [0, 1, 4, 6, 7, 10, 11, 12, 19, 27, 30, 31, 37, 41, 43, 49, 56, 57, 58, 60],
+    // 35: Thạnh — all Mekong delta provinces
+    [0, 4, 6, 11, 12, 19, 27, 31, 37, 49, 56, 58, 60],
+    // 36: Long — all Mekong delta + HCMC region
+    [0, 1, 4, 6, 8, 9, 11, 12, 18, 19, 27, 31, 37, 49, 51, 56, 57, 58, 60],
+    // 37: Gò — all Mekong delta, southeast, coastal to Đà Nẵng
     [0, 1, 4, 6, 7, 10, 11, 12, 14, 19, 27, 30, 31, 37, 41, 43, 45, 46, 49, 51, 56, 57, 58, 60],
-    // 35: Hải
-    [25, 26, 38, 48, 52],
-    // 36: Thái — Red River Delta + Thái Nguyên
+    // 38: Hải — all coastal provinces except Kiên Giang
+    [1, 4, 6, 7, 10, 11, 14, 24, 26, 30, 38, 39, 40, 41, 43, 44, 45, 46, 47, 48, 49, 52, 54, 55, 56, 57, 58],
+    // 39: Thái — Red River Delta + Thái Nguyên
     [5, 22, 23, 25, 26, 29, 38, 40, 52, 53, 61],
-    // 37: Quảng
-    [14, 44, 45, 46, 47, 48, 55],
-    // 38: Đức — removed Bình Thuận
+    // 40: Quảng — removed Quảng Ninh
+    [14, 44, 45, 46, 48, 55],
+    // 41: Đức
     [24, 39, 46],
-    // 39: Nghĩa — north-central, central + outliers
+    // 42: Nghĩa — north-central, central + outliers
     [14, 24, 39, 44, 45, 46, 48, 54, 55, 62],
-    // 40: Thuận — all provinces between Huế and HCMC
+    // 43: Thuận — all provinces between Huế and HCMC
     [1, 7, 8, 9, 10, 14, 18, 30, 34, 41, 43, 45, 46, 51, 55],
-    // 41: Hương — Huế
+    // 44: Hương — Huế
     [24, 55],
-    // 42: Thịnh — RRD + surrounding hinterland
+    // 45: Thịnh — RRD + surrounding hinterland
     [2, 5, 22, 23, 25, 26, 28, 29, 38, 40, 42, 52, 53, 61],
-    // 43: Phúc — RRD + hinterland, not south of Thanh Hóa
+    // 46: Phúc — RRD + hinterland, not south of Thanh Hóa
     [5, 22, 23, 25, 26, 29, 38, 40, 42, 52, 53, 54, 59, 61],
-    // 44: Phước — Mekong delta + SE + Lâm Đồng + coast to Bình Định
+    // 47: Phước — Mekong delta + SE + Lâm Đồng + coast to Bình Định
     [0, 1, 4, 6, 7, 8, 9, 10, 11, 12, 18, 19, 27, 30, 31, 34, 37, 41, 43, 49, 51, 56, 57, 58, 60],
-    // 45: Nhân — same as Phúc
+    // 48: Nhân — same as Phúc
     [5, 22, 23, 25, 26, 29, 38, 40, 42, 52, 53, 54, 59, 61],
-    // 46: Nhơn — same as Phước + Quảng Ngãi
+    // 49: Nhơn — same as Phước + Quảng Ngãi
     [0, 1, 4, 6, 7, 8, 9, 10, 11, 12, 18, 19, 27, 30, 31, 34, 37, 41, 43, 46, 49, 51, 56, 57, 58, 60],
 ];
 
 // For each province (GeoJSON region 0-62), which element indices are found there.
 // Reverse mapping of ELEMENT_TO_PROVINCE_INDICES.
 export const PROVINCE_INDEX_TO_ELEMENT_INDICES: number[][] = [
-    /* 0  An Giang      */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 1  Bà Rịa-VT     */ [30, 31, 33, 34, 40, 44, 46],
-    /* 2  Bắc Giang     */ [42],
-    /* 3  Bắc Kạn       */ [0, 1, 5, 6],
-    /* 4  Bạc Liêu      */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 5  Bắc Ninh      */ [36, 42, 43, 45],
-    /* 6  Bến Tre       */ [22, 23, 30, 31, 32, 33, 34, 44, 46],
-    /* 7  Bình Định     */ [8, 31, 34, 40, 44, 46],
-    /* 8  Bình Dương    */ [20, 30, 33, 40, 44, 46],
-    /* 9  Bình Phước    */ [20, 21, 33, 40, 44, 46],
-    /* 10 Bình Thuận    */ [21, 30, 31, 34, 40, 44, 46],
-    /* 11 Cà Mau        */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 12 Cần Thơ       */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 13 Cao Bằng      */ [0, 1, 5, 6],
-    /* 14 Đà Nẵng       */ [8, 34, 37, 39, 40],
-    /* 15 Đắk Lắk      */ [10, 11, 12, 13, 14, 17, 19, 29],
-    /* 16 Đắk Nông     */ [11, 12, 17],
-    /* 17 Điện Biên     */ [0, 1, 2, 3, 4, 27],
-    /* 18 Đồng Nai      */ [21, 33, 40, 44, 46],
-    /* 19 Đồng Tháp    */ [22, 23, 30, 31, 32, 33, 34, 44, 46],
-    /* 20 Gia Lai       */ [14, 15, 16, 17, 18, 19, 28],
-    /* 21 Hà Giang      */ [0, 1, 3, 5, 6],
-    /* 22 Hà Nam        */ [36, 42, 43, 45],
-    /* 23 Hà Nội        */ [36, 42, 43, 45],
-    /* 24 Hà Tĩnh       */ [0, 7, 38, 39, 41],
-    /* 25 Hải Dương     */ [35, 36, 42, 43, 45],
-    /* 26 Hải Phòng     */ [35, 36, 42, 43, 45],
-    /* 27 Hậu Giang     */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 28 Hòa Bình      */ [0, 2, 4, 42],
-    /* 29 Hưng Yên      */ [36, 42, 43, 45],
-    /* 30 Khánh Hòa     */ [21, 31, 34, 40, 44, 46],
-    /* 31 Kiên Giang    */ [22, 23, 30, 31, 32, 33, 34, 44, 46],
-    /* 32 Kon Tum        */ [14, 15, 16, 17],
-    /* 33 Lai Châu      */ [0, 1, 3, 4, 6, 27],
-    /* 34 Lâm Đồng      */ [9, 21, 25, 40, 44, 46],
-    /* 35 Lạng Sơn      */ [0, 1, 5, 6],
-    /* 36 Lào Cai        */ [0, 1, 3, 5, 6],
-    /* 37 Long An        */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 38 Nam Định       */ [35, 36, 42, 43, 45],
-    /* 39 Nghệ An       */ [0, 1, 3, 4, 7, 38, 39],
-    /* 40 Ninh Bình      */ [36, 42, 43, 45],
-    /* 41 Ninh Thuận     */ [21, 30, 31, 34, 40, 44, 46],
-    /* 42 Phú Thọ       */ [4, 42, 43, 45],
-    /* 43 Phú Yên       */ [31, 34, 40, 44, 46],
-    /* 44 Quảng Bình    */ [0, 7, 37, 39],
-    /* 45 Quảng Nam     */ [8, 21, 24, 27, 34, 37, 39, 40],
-    /* 46 Quảng Ngãi    */ [8, 26, 34, 37, 38, 39, 40, 46],
-    /* 47 Quảng Ninh    */ [37],
-    /* 48 Quảng Trị     */ [7, 24, 35, 37, 39],
-    /* 49 Sóc Trăng     */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 50 Sơn La         */ [0, 1, 2, 3, 4, 27],
-    /* 51 Tây Ninh       */ [30, 33, 34, 40, 44, 46],
-    /* 52 Thái Bình      */ [35, 36, 42, 43, 45],
-    /* 53 Thái Nguyên   */ [0, 1, 36, 42, 43, 45],
-    /* 54 Thanh Hóa      */ [0, 1, 2, 4, 28, 39, 43, 45],
-    /* 55 Thừa Thiên-Huế*/ [8, 24, 37, 39, 40, 41],
-    /* 56 Tiền Giang    */ [22, 23, 30, 31, 32, 33, 34, 44, 46],
-    /* 57 TP. HCM        */ [22, 30, 31, 33, 34, 44, 46],
-    /* 58 Trà Vinh       */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 59 Tuyên Quang   */ [0, 1, 43, 45],
-    /* 60 Vĩnh Long     */ [22, 30, 31, 32, 33, 34, 44, 46],
-    /* 61 Vĩnh Phúc     */ [36, 42, 43, 45],
-    /* 62 Yên Bái        */ [0, 1, 3, 39],
+    /* 0  An Giang      */ [22, 30, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 1  Bà Rịa-VT     */ [31, 33, 34, 36, 37, 38, 43, 47, 49],
+    /* 2  Bắc Giang     */ [32, 45],
+    /* 3  Bắc Kạn       */ [0, 1, 5, 6, 32],
+    /* 4  Bạc Liêu      */ [22, 30, 31, 33, 34, 35, 36, 37, 38, 47, 49],
+    /* 5  Bắc Ninh      */ [32, 39, 45, 46, 48],
+    /* 6  Bến Tre       */ [22, 23, 31, 33, 34, 35, 36, 37, 38, 47, 49],
+    /* 7  Bình Định     */ [8, 32, 34, 37, 38, 43, 47, 49],
+    /* 8  Bình Dương    */ [20, 31, 33, 36, 43, 47, 49],
+    /* 9  Bình Phước    */ [20, 21, 31, 36, 43, 47, 49],
+    /* 10 Bình Thuận    */ [21, 32, 33, 34, 37, 38, 43, 47, 49],
+    /* 11 Cà Mau        */ [22, 30, 31, 33, 34, 35, 36, 37, 38, 47, 49],
+    /* 12 Cần Thơ       */ [22, 30, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 13 Cao Bằng      */ [0, 1, 5, 6, 32],
+    /* 14 Đà Nẵng       */ [8, 32, 37, 38, 40, 42, 43],
+    /* 15 Đắk Lắk      */ [10, 11, 12, 13, 14, 17, 19, 29, 32],
+    /* 16 Đắk Nông     */ [11, 12, 17, 32],
+    /* 17 Điện Biên     */ [0, 1, 2, 3, 4, 27, 32],
+    /* 18 Đồng Nai      */ [21, 31, 36, 43, 47, 49],
+    /* 19 Đồng Tháp    */ [22, 23, 30, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 20 Gia Lai       */ [14, 15, 16, 17, 18, 19, 28, 32],
+    /* 21 Hà Giang      */ [0, 1, 3, 5, 6, 32],
+    /* 22 Hà Nam        */ [32, 39, 45, 46, 48],
+    /* 23 Hà Nội        */ [32, 39, 45, 46, 48],
+    /* 24 Hà Tĩnh       */ [0, 7, 32, 38, 41, 42, 44],
+    /* 25 Hải Dương     */ [32, 39, 45, 46, 48],
+    /* 26 Hải Phòng     */ [32, 38, 39, 45, 46, 48],
+    /* 27 Hậu Giang     */ [22, 30, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 28 Hòa Bình      */ [0, 2, 4, 32, 45],
+    /* 29 Hưng Yên      */ [32, 39, 45, 46, 48],
+    /* 30 Khánh Hòa     */ [21, 32, 34, 37, 38, 43, 47, 49],
+    /* 31 Kiên Giang    */ [22, 23, 30, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 32 Kon Tum        */ [14, 15, 16, 17, 32],
+    /* 33 Lai Châu      */ [0, 1, 3, 4, 6, 27, 32],
+    /* 34 Lâm Đồng      */ [9, 21, 25, 32, 43, 47, 49],
+    /* 35 Lạng Sơn      */ [0, 1, 5, 6, 32],
+    /* 36 Lào Cai        */ [0, 1, 3, 5, 6, 32],
+    /* 37 Long An        */ [22, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 38 Nam Định       */ [32, 38, 39, 45, 46, 48],
+    /* 39 Nghệ An       */ [0, 1, 3, 4, 7, 32, 38, 41, 42],
+    /* 40 Ninh Bình      */ [32, 38, 39, 45, 46, 48],
+    /* 41 Ninh Thuận     */ [21, 32, 33, 34, 37, 38, 43, 47, 49],
+    /* 42 Phú Thọ       */ [4, 32, 45, 46, 48],
+    /* 43 Phú Yên       */ [32, 34, 37, 38, 43, 47, 49],
+    /* 44 Quảng Bình    */ [0, 7, 32, 38, 40, 42],
+    /* 45 Quảng Nam     */ [8, 21, 24, 27, 32, 37, 38, 40, 42, 43],
+    /* 46 Quảng Ngãi    */ [8, 26, 32, 37, 38, 40, 41, 42, 43, 49],
+    /* 47 Quảng Ninh    */ [32, 38],
+    /* 48 Quảng Trị     */ [7, 24, 32, 38, 40, 42],
+    /* 49 Sóc Trăng     */ [22, 30, 31, 33, 34, 35, 36, 37, 38, 47, 49],
+    /* 50 Sơn La         */ [0, 1, 2, 3, 4, 27, 32],
+    /* 51 Tây Ninh       */ [31, 33, 36, 37, 43, 47, 49],
+    /* 52 Thái Bình      */ [32, 38, 39, 45, 46, 48],
+    /* 53 Thái Nguyên   */ [0, 1, 32, 39, 45, 46, 48],
+    /* 54 Thanh Hóa      */ [0, 1, 2, 4, 28, 32, 38, 42, 46, 48],
+    /* 55 Thừa Thiên-Huế*/ [8, 24, 32, 38, 40, 42, 43, 44],
+    /* 56 Tiền Giang    */ [22, 23, 31, 33, 34, 35, 36, 37, 38, 47, 49],
+    /* 57 TP. HCM        */ [22, 31, 33, 34, 36, 37, 38, 47, 49],
+    /* 58 Trà Vinh       */ [22, 30, 31, 33, 34, 35, 36, 37, 38, 47, 49],
+    /* 59 Tuyên Quang   */ [0, 1, 32, 46, 48],
+    /* 60 Vĩnh Long     */ [22, 30, 31, 33, 34, 35, 36, 37, 47, 49],
+    /* 61 Vĩnh Phúc     */ [32, 39, 45, 46, 48],
+    /* 62 Yên Bái        */ [0, 1, 3, 32, 42],
 ];
 
 export const PLACE_NAME_CONSISTENCY_RATINGS: ReadonlyArray<[ConsistencyRating, string | null]> = [
 
-    // ── Ethnic Minority Elements (0–29) ──────────────────────────────────────
+    // ── Ethnic Minority Elements (0–30) ──────────────────────────────────────
 
     // 0: Bản — covers the full northern highlands Tày/Nùng/Thái/Mường zone
     // No disconnected outliers. Minor bleed into Phú Thọ (42) edges is fine.
@@ -439,73 +456,83 @@ export const PLACE_NAME_CONSISTENCY_RATINGS: ReadonlyArray<[ConsistencyRating, s
     // into adjacent Đắk Nông / Gia Lai border areas only
     [ConsistencyRating.VeryConsistent, null],
 
+    // 30: Khóm — tight Mekong delta neighborhood/block term; Khmer origin
+    [ConsistencyRating.VeryConsistent, null],
 
-    // ── Sino-Vietnamese Elements (30–46) ─────────────────────────────────────
 
-    // 30: Tân — southern frontier concentration is real but Tân appears disconnectedly
+    // ── Sino-Vietnamese Elements (31–49) ─────────────────────────────────────
+
+    // 31: Ấp — southern Vietnamese administrative hamlet term; clean north/south split
+    [ConsistencyRating.VeryConsistent, null],
+
+    // 32: Thôn — northern/central Vietnamese administrative village term; complement of Ấp
+    [ConsistencyRating.VeryConsistent, null],
+
+    // 33: Tân — southern frontier concentration is real but Tân appears disconnectedly
     // across northern provinces as a generic "new settlement" prefix:
     // Tân Kỳ (Nghệ An), Tân Lạc (Hòa Bình), Tân Yên (Bắc Giang), Tân Sơn (Phú Thọ)
     [ConsistencyRating.SomewhatConsistent, null],
 
-    // 31: Mỹ — southern concentration is real but disconnected northern outliers exist:
+    // 34: Mỹ — southern concentration is real but disconnected northern outliers exist:
     // Mỹ Đức (Hà Nội), Mỹ Hào (Hưng Yên), Mỹ Lộc (Nam Định)
     [ConsistencyRating.WeakCorrelation, 'Found everywhere but more common in the south'],
 
-    // 32: Thạnh — southern dialect phonological variant (thịnh → thạnh); essentially
+    // 35: Thạnh — southern dialect phonological variant (thịnh → thạnh); essentially
     // exclusive to the southern dialect zone. No disconnected outliers.
     [ConsistencyRating.Consistent, 'Dialectal variant of "Thịnh" in the south!'],
 
-    // 33: Long — strong southern concentration; Long Biên (Hà Nội) and Thăng Long are
+    // 36: Long — strong southern concentration; Long Biên (Hà Nội) and Thăng Long are
     // disconnected northern outliers, though isolated rather than a northern pattern
     [ConsistencyRating.Consistent, null],
 
-    // 34: Gò — strong southern + coastal concentration; Gò Đống Đa (Hà Nội) is a
+    // 37: Gò — strong southern + coastal concentration; Gò Đống Đa (Hà Nội) is a
     // disconnected northern outlier, though an isolated case
     [ConsistencyRating.Consistent, null],
 
-    // 35: Hải — northern coastal concentration; no meaningful disconnected outliers
-    [ConsistencyRating.VeryConsistent, null],
+    // 38: Hải — all coastal provinces; extremely broad coverage but geographically
+    // coherent as a coastal marker. No inland outliers.
+    [ConsistencyRating.Consistent, null],
 
-    // 36: Thái — Red River Delta + Thái Nguyên; tight cluster.
+    // 39: Thái — Red River Delta + Thái Nguyên; tight cluster.
     // Thái Hòa (Nghệ An) remains a disconnected southern outlier.
+    [ConsistencyRating.Consistent, 'There is a province Quang Ninh and city Quang Yen in the north'],
+
+    // 40: Quảng — tight central coast clustering; no disconnected outliers
     [ConsistencyRating.Consistent, null],
 
-    // 37: Quảng — extremely tight central coast clustering; no disconnected outliers
-    [ConsistencyRating.Consistent, null],
-
-    // 38: Đức — north-central Confucian concentration; Đức Huệ and Đức Hòa (Long An)
+    // 41: Đức — north-central Confucian concentration; Đức Huệ and Đức Hòa (Long An)
     // are disconnected southern outliers
     [ConsistencyRating.SomewhatConsistent, null],
 
-    // 39: Nghĩa — north-central to central concentration; Nghĩa Hưng (Nam Định) is
+    // 42: Nghĩa — north-central to central concentration; Nghĩa Hưng (Nam Định) is
     // a disconnected outlier north of the listed range
     [ConsistencyRating.SomewhatConsistent, null],
 
-    // 40: Thuận — Huế-to-HCMC corridor is well-defined; Thuận Thành (Bắc Ninh) and
+    // 43: Thuận — Huế-to-HCMC corridor is well-defined; Thuận Thành (Bắc Ninh) and
     // Thuận Châu (Sơn La) are disconnected northern outliers
     [ConsistencyRating.SomewhatConsistent, null],
 
-    // 41: Hương — Nguyễn court naming centered tightly on Huế; Hương An (Quảng Nam)
+    // 44: Hương — Nguyễn court naming centered tightly on Huế; Hương An (Quảng Nam)
     // is adjacent bleed one province south. No disconnected outliers.
     [ConsistencyRating.VeryConsistent, null],
 
-    // 42: Thịnh — northern dialectal variant of Thạnh (盛); well-contained in
+    // 45: Thịnh — northern dialectal variant of Thạnh (盛); well-contained in
     // Red River Delta and immediate hinterland. No disconnected outliers.
     [ConsistencyRating.Consistent, 'Dialectal variant of "Thạnh" in the north!'],
 
-    // 43: Phúc — 福 fortune/blessing (northern pronunciation);
+    // 46: Phúc — 福 fortune/blessing (northern pronunciation);
     // well-concentrated in RRD + hinterland. No disconnected outliers.
     [ConsistencyRating.Consistent, 'Dialectal variant of "Phước" in the north!'],
 
-    // 44: Phước — 福 fortune/blessing (southern pronunciation);
+    // 47: Phước — 福 fortune/blessing (southern pronunciation);
     // well-concentrated in Mekong delta + SE + southern coast. No disconnected outliers.
     [ConsistencyRating.Consistent, 'Dialectal variant of "Phúc" in the south!'],
 
-    // 45: Nhân — 仁 benevolence/humanity (northern pronunciation);
+    // 48: Nhân — 仁 benevolence/humanity (northern pronunciation);
     // well-concentrated in RRD + hinterland. No disconnected outliers.
     [ConsistencyRating.Consistent, 'Dialectal variant of "Nhơn" in the north!'],
 
-    // 46: Nhơn — 仁 benevolence/humanity (southern pronunciation);
+    // 49: Nhơn — 仁 benevolence/humanity (southern pronunciation);
     // well-concentrated in Mekong delta + SE + southern coast to Quảng Ngãi.
     [ConsistencyRating.Consistent, 'Dialectal variant of "Nhân" in the south!'],
 ];
@@ -514,9 +541,9 @@ export const PLACE_NAME_CONSISTENCY_RATINGS: ReadonlyArray<[ConsistencyRating, s
 
 // The first ethnic element index and first sino-viet element index (for toggle filtering)
 export const ETHNIC_ELEMENT_START = 0;
-export const ETHNIC_ELEMENT_END = 29;    // inclusive
-export const SINO_VIET_ELEMENT_START = 30;
-export const SINO_VIET_ELEMENT_END = 46; // inclusive
+export const ETHNIC_ELEMENT_END = 30;    // inclusive
+export const SINO_VIET_ELEMENT_START = 31;
+export const SINO_VIET_ELEMENT_END = 49; // inclusive
 
 // Elements gated behind the "Obscure" toggle
 export const OBSCURE_ELEMENT_INDICES: ReadonlySet<number> = new Set([
@@ -537,11 +564,11 @@ export const OBSCURE_ELEMENT_INDICES: ReadonlySet<number> = new Set([
     27, // Pa
     28, // Làng
     // Sino-Vietnamese
-    32, // Thạnh
-    33, // Long
-    34, // Gò
-    38, // Đức
-    39, // Nghĩa
-    40, // Thuận
-    41, // Hương
+    35, // Thạnh
+    36, // Long
+    37, // Gò
+    41, // Đức
+    42, // Nghĩa
+    43, // Thuận
+    44, // Hương
 ]);
