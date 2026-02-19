@@ -25,8 +25,8 @@ import Consistency from '../../../../common/ConsistencyRating';
 const VnRegionalPlaceNames = (): React.ReactElement => {
 
     const [enableEthnic, setEnableEthnic] = useState<boolean>(true);
-    const [enableSinoViet, setEnableSinoViet] = useState<boolean>(false);
-    const [enableObscure, setEnableObscure] = useState<boolean>(false);
+    const [enableSinoViet, setEnableSinoViet] = useState<boolean>(true);
+    const [enableObscure, setEnableObscure] = useState<boolean>(true);
 
     const filteredList = useMemo(() => {
         return PROVINCE_INDEX_TO_ELEMENT_INDICES.map((elementIndices: number[]) => {

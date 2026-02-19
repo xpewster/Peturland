@@ -378,7 +378,7 @@ export const PLACE_NAME_CONSISTENCY_RATINGS: ReadonlyArray<[ConsistencyRating, s
     // and is not adjacent to Lâm Đồng, so this is a missing center rather than bleed.
     // Even with Đà Nẵng added, Sông Đà in the north remains a genuine disconnected
     // outlier (different Tai origin), so some inconsistency remains.
-    [ConsistencyRating.SomewhatConsistent, 'For instance don\'t forget about Da Nang!'],
+    [ConsistencyRating.SomewhatConsistent, 'Don\'t forget about Da Nang!'],
 
     // 10: Ea — essentially exclusive to Đắk Lắk; minor edge bleed into Đắk Nông/Gia Lai
     [ConsistencyRating.VeryConsistent, null],
