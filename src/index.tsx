@@ -18,6 +18,7 @@ import GetInTheSky from './components/standalone/GetInTheSky';
 import Sitemap from './components/standalone/Sitemap';
 import { ArtFullSize } from './components/standalone/ArtFullSize';
 import Art from './components/content/projects/portfolios/Art';
+import Aniguessr from './components/standalone/aniguessr/Aniguessr';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -29,7 +30,7 @@ root.render(
         <Route index element={<Navigate to={Path.HOME} replace />} />
         {
           Object.keys(Path).map((key) => {
-            if ([Path.ART_FULL_SIZE, Path.CREDITS, Path.DIGICAM, Path.ART, Path.EIGHTYEIGHT, Path.VISITORS, Path.SUPPORT, Path.ANNOUNCEMENTS, Path.TRAVEL_LOG, Path.SOON, Path.STARS, Path.IN_THE_SKY, Path.GET_IN_THE_SKY, Path.SITEMAP].includes(Path[key as keyof typeof Path])) {
+            if ([Path.ART_FULL_SIZE, Path.CREDITS, Path.DIGICAM, Path.ART, Path.EIGHTYEIGHT, Path.VISITORS, Path.SUPPORT, Path.ANNOUNCEMENTS, Path.TRAVEL_LOG, Path.SOON, Path.STARS, Path.IN_THE_SKY, Path.GET_IN_THE_SKY, Path.ANIGUESSR, Path.SITEMAP].includes(Path[key as keyof typeof Path])) {
               return;
             }
             return <Route key={key} path={Path[key as keyof typeof Path]} element={<Frame path={Path[key as keyof typeof Path]} />} />
@@ -48,6 +49,7 @@ root.render(
         <Route path={Path.STARS} element={<UnderConstructionStandalone />} />
         <Route path={Path.IN_THE_SKY} element={<EmbeddableWidget />} />
         <Route path={Path.GET_IN_THE_SKY} element={<GetInTheSky />} />
+        <Route path={Path.ANIGUESSR} element={<Aniguessr />} />
         <Route path={Path.SITEMAP} element={<Sitemap />} />
       </Routes>
     </BrowserRouter>

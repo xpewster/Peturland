@@ -60,5 +60,6 @@ export enum Path {
     IN_THE_SKY = "/InTheSky", 
     GET_IN_THE_SKY = "/get-in-the-sky",
     STARS = "/stars",
+    ANIGUESSR = "/ayaya",
     SITEMAP = "/sitemap",
 }

@@ -1,0 +1,213 @@
+
+import type { GameState, Team, TeamId } from "./game";
+import type {
+  ClientMessage,
+  HostWelcomeMessage,
+  ServerMessage,
+} from "./protocol";
+import { httpToWs, type ConnectionStatus } from "./connection";
+import { Answer, Guess } from "./types";
+
+export type HostClientOptions = {
+  /** Base server URL, e.g. "http://localhost:8080". */
+  url: string;
+  password: string;
+};
+
+export type HostClientState = {
+  connectionStatus: ConnectionStatus;
+  quizInfo: HostWelcomeMessage["quizInfo"] | null;
+  gameState: GameState | null;
+  lastError: string | null;
+  liveGuesses: ReadonlyMap<string, Guess>;
+  currentRoundAnswer: { roundIndex: number; answer: Answer } | null;
+};
+
+export class HostClient {
+  private socket: WebSocket;
+  private state: HostClientState;
+  private listeners = new Set<() => void>();
+  private welcomeResolve: ((c: HostClient) => void) | null = null;
+  private welcomeReject: ((e: Error) => void) | null = null;
+
+  private constructor(opts: HostClientOptions) {
+    this.state = {
+      connectionStatus: "connecting",
+      quizInfo: null,
+      gameState: null,
+      lastError: null,
+      liveGuesses: new Map(),
+      currentRoundAnswer: null,
+    };
+    this.socket = new WebSocket(httpToWs(opts.url));
+    this.socket.addEventListener("open", () => {
+      this.rawSend({ type: "host_login", password: opts.password });
+    });
+    this.socket.addEventListener("message", (e) =>
+      this.handleMessage(typeof e.data === "string" ? e.data : ""),
+    );
+    this.socket.addEventListener("close", () => this.handleClose());
+  }
+
+  static connect(opts: HostClientOptions): Promise<HostClient> {
+    return new Promise((resolve, reject) => {
+      const client = new HostClient(opts);
+      client.welcomeResolve = resolve;
+      client.welcomeReject = reject;
+    });
+  }
+
+  // -------------------------------------------------------------------------
+  // Store API.
+  // -------------------------------------------------------------------------
+
+  getState(): HostClientState {
+    return this.state;
+  }
+
+  subscribe(listener: () => void): () => void {
+    this.listeners.add(listener);
+    return () => {
+      this.listeners.delete(listener);
+    };
+  }
+
+  // -------------------------------------------------------------------------
+  // Actions.
+  // -------------------------------------------------------------------------
+
+  createTeam(name: string): void {
+    this.rawSend({ type: "create_team", name });
+  }
+
+  removeTeam(name: TeamId): void {
+    this.rawSend({ type: "remove_team", name });
+  }
+
+  startGame(): void {
+    this.rawSend({ type: "start_game" });
+  }
+
+  advanceRound(): void {
+    this.rawSend({ type: "advance_round" });
+  }
+
+  endGame(): void {
+    this.rawSend({ type: "end_game" });
+  }
+
+  resetToLobby(): void {
+    this.rawSend({ type: "reset_to_lobby" });
+  }
+
+  kickPlayer(playerId: string): void {
+    this.rawSend({ type: "kick_player", playerId });
+  }
+
+  clearError(): void {
+    if (this.state.lastError !== null) {
+      this.updateState({ lastError: null });
+    }
+  }
+
+  close(): void {
+    try {
+      this.socket.close();
+    } catch {
+      /* ignore */
+    }
+  }
+
+  // -------------------------------------------------------------------------
+  // Internal.
+  // -------------------------------------------------------------------------
+
+  private rawSend(msg: ClientMessage): void {
+    if (this.socket.readyState === WebSocket.OPEN) {
+      this.socket.send(JSON.stringify(msg));
+    }
+  }
+
+  private handleMessage(data: string): void {
+    let msg: ServerMessage;
+    try {
+      msg = JSON.parse(data) as ServerMessage;
+    } catch {
+      return;
+    }
+
+    switch (msg.type) {
+      case "host_welcome": {
+        this.updateState({
+          connectionStatus: "connected",
+          quizInfo: msg.quizInfo,
+        });
+        const resolve = this.welcomeResolve;
+        this.welcomeResolve = null;
+        this.welcomeReject = null;
+        resolve?.(this);
+        return;
+      }
+      case "state": {
+        const prevPhase = this.state.gameState?.phase;
+        const newPhase = msg.state.phase;
+
+        const sameRound =
+            prevPhase?.type === "guessing" &&
+            newPhase.type === "guessing" &&
+            prevPhase.roundIndex === newPhase.roundIndex;
+
+        this.updateState({
+            gameState: msg.state,
+            ...(sameRound
+                ? {}
+                : { liveGuesses: new Map(), currentRoundAnswer: null }),
+        });
+        return;
+      }
+      case "error": {
+        this.updateState({ lastError: msg.message });
+        if (this.welcomeReject) {
+          const reject = this.welcomeReject;
+          this.welcomeResolve = null;
+          this.welcomeReject = null;
+          reject(new Error(msg.message));
+        }
+        return;
+      }
+      case "welcome":
+        return;
+      case "teammate_guess": {
+        if (msg.guess === null) return;
+        const next = new Map(this.state.liveGuesses);
+        next.set(msg.playerId, msg.guess);
+        this.updateState({ liveGuesses: next });
+        return;
+      }
+      case "round_answer": {
+        this.updateState({
+            currentRoundAnswer: {
+                roundIndex: msg.roundIndex,
+                answer: msg.answer,
+            },
+        });
+        return;
+      }
+    }
+  }
+
+  private handleClose(): void {
+    this.updateState({ connectionStatus: "disconnected" });
+    if (this.welcomeReject) {
+      const reject = this.welcomeReject;
+      this.welcomeResolve = null;
+      this.welcomeReject = null;
+      reject(new Error("Connection closed before welcome"));
+    }
+  }
+
+  private updateState(patch: Partial<HostClientState>): void {
+    this.state = { ...this.state, ...patch };
+    this.listeners.forEach((listener) => listener());
+  }
+}
