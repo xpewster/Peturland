@@ -199,13 +199,34 @@ export const PlayerView = (): React.ReactElement => {
                 <label htmlFor="name">Name:</label>
                 <input type="text" id="name" value={name} onChange={(e) => setName(e.target.value)} />
                 <label htmlFor="url">Server IP:</label>
-                <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value)} />
+                <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value.trim())} />
                 <label htmlFor="password">Password:</label>
                 <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button onClick={join}>Join Game</button>
             </div>
         </div> : <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
             <div>
+                {state?.connectionStatus === "reconnecting" && (
+                    <div style={{
+                        position: "fixed",
+                        top: 10,
+                        left: "50%",
+                        transform: "translateX(-50%)",
+                        background: "#aa3030",
+                        color: "white",
+                        padding: "6px 14px",
+                        borderRadius: 4,
+                        zIndex: 9999,
+                        fontFamily: "DOS, basiic, sans-serif",
+                    }}>
+                        <p className="animatedEllipsis">Reconnecting</p>
+                    </div>
+                )}
+                {state?.connectionStatus === "closed" && (
+                    <div>
+                        Disconnected. Try refreshing
+                    </div>
+                )}
                 {frame(getGameView(), 1, 900, 600)}
             </div>
         </div>

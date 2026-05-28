@@ -30,7 +30,16 @@ export class HostClient {
   private welcomeResolve: ((c: HostClient) => void) | null = null;
   private welcomeReject: ((e: Error) => void) | null = null;
 
+  private readonly url: string;
+  private readonly password: string;
+
+  private intentionallyClosed = false;
+  private reconnectAttempt = 0;
+  private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+
   private constructor(opts: HostClientOptions) {
+    this.url = opts.url;
+    this.password = opts.password;
     this.state = {
       connectionStatus: "connecting",
       quizInfo: null,
@@ -39,14 +48,22 @@ export class HostClient {
       liveGuesses: new Map(),
       currentRoundAnswer: null,
     };
-    this.socket = new WebSocket(httpToWs(opts.url));
-    this.socket.addEventListener("open", () => {
-      this.rawSend({ type: "host_login", password: opts.password });
+    this.socket = this.openSocket();
+  }
+
+  private openSocket(): WebSocket {
+    const socket = new WebSocket(httpToWs(this.url));
+    socket.addEventListener("open", () => {
+        socket.send(JSON.stringify({
+            type: "host_login",
+            password: this.password,
+        }));
     });
-    this.socket.addEventListener("message", (e) =>
-      this.handleMessage(typeof e.data === "string" ? e.data : ""),
+    socket.addEventListener("message", (e) =>
+        this.handleMessage(typeof e.data === "string" ? e.data : ""),
     );
-    this.socket.addEventListener("close", () => this.handleClose());
+    socket.addEventListener("close", () => this.handleClose());
+    return socket;
   }
 
   static connect(opts: HostClientOptions): Promise<HostClient> {
@@ -111,10 +128,15 @@ export class HostClient {
   }
 
   close(): void {
+    this.intentionallyClosed = true;
+    if (this.reconnectTimer) {
+        clearTimeout(this.reconnectTimer);
+        this.reconnectTimer = null;
+    }
     try {
-      this.socket.close();
+        this.socket.close();
     } catch {
-      /* ignore */
+        /* ignore */
     }
   }
 
@@ -138,6 +160,7 @@ export class HostClient {
 
     switch (msg.type) {
       case "host_welcome": {
+        this.reconnectAttempt = 0;
         this.updateState({
           connectionStatus: "connected",
           quizInfo: msg.quizInfo,
@@ -168,6 +191,7 @@ export class HostClient {
       case "error": {
         this.updateState({ lastError: msg.message });
         if (this.welcomeReject) {
+          this.intentionallyClosed = true; // prevent reconnect
           const reject = this.welcomeReject;
           this.welcomeResolve = null;
           this.welcomeReject = null;
@@ -197,13 +221,29 @@ export class HostClient {
   }
 
   private handleClose(): void {
-    this.updateState({ connectionStatus: "disconnected" });
-    if (this.welcomeReject) {
-      const reject = this.welcomeReject;
-      this.welcomeResolve = null;
-      this.welcomeReject = null;
-      reject(new Error("Connection closed before welcome"));
-    }
+      if (this.welcomeReject) {
+          const reject = this.welcomeReject;
+          this.welcomeResolve = null;
+          this.welcomeReject = null;
+          reject(new Error("Connection closed before welcome"));
+      }
+      if (this.intentionallyClosed) {
+          this.updateState({ connectionStatus: "disconnected" });
+          return;
+      }
+      this.updateState({ connectionStatus: "reconnecting" });
+      this.scheduleReconnect();
+  }
+
+  private scheduleReconnect(): void {
+      const delay = Math.min(10_000, 500 * Math.pow(2, this.reconnectAttempt));
+      this.reconnectAttempt++;
+      this.reconnectTimer = setTimeout(() => {
+          this.reconnectTimer = null;
+          this.socket = this.openSocket();
+          // openSocket's close listener re-enters handleClose if this attempt
+          // also fails, which re-schedules with longer backoff.
+      }, delay);
   }
 
   private updateState(patch: Partial<HostClientState>): void {

@@ -18,26 +18,29 @@ const commonStyle = {
     imageRendering: 'pixelated' as const,
 };
 
-export const getPlayerIcon = (name: string): React.ReactElement => {
+const matches = (match: string[], name: string): boolean => {
     const nameWithoutFirstChar = name.substring(1).toLowerCase();
-    
-    if ("aegis".includes(nameWithoutFirstChar) || "aegis".includes(name.toLowerCase()) || name.toLowerCase().includes("aegis")) {
+    return match.some(m => m.toLowerCase() === nameWithoutFirstChar || m.toLowerCase() === name.toLowerCase() || name.toLowerCase().includes(m.toLowerCase()));
+}
+
+export const getPlayerIcon = (name: string): React.ReactElement => {    
+    if (matches(["aegis"], name)) {
         return <img src={aegis} alt="Aegis" style={commonStyle} />;
-    } else if ("arendex".includes(nameWithoutFirstChar) || "arendex".includes(name.toLowerCase()) || name.toLowerCase().includes("arendex")) {
+    } else if (matches(["arendex", "dex"], name)) {
         return <img src={arendex} alt="Arendex" style={commonStyle} />;
-    } else if ("eepa".includes(nameWithoutFirstChar) || "eepa".includes(name.toLowerCase()) || name.toLowerCase().includes("eepa")) {
+    } else if (matches(["eepa", "justin"], name)) {
         return <img src={eepa} alt="Eepa" style={commonStyle} />;
-    } else if ("ivlivs".includes(nameWithoutFirstChar) || "ivlivs".includes(name.toLowerCase()) || name.toLowerCase().includes("ivlivs")) {
+    } else if (matches(["ivlivs"], name)) {
         return <img src={ivlivs} alt="Ivlivs" style={commonStyle} />;
-    } else if ("kevinw0w".includes(nameWithoutFirstChar) || "kevinw0w".includes(name.toLowerCase()) || name.toLowerCase().includes("kevin") || name.toLowerCase().includes("w0w")) {
+    } else if (matches(["kevin", "w0w"], name)) {
         return <img src={kevin} alt="Kevin" style={commonStyle} />;
-    } else if ("oof".includes(nameWithoutFirstChar) || "oof".includes(name.toLowerCase()) || name.toLowerCase().includes("oof")) {
+    } else if (matches(["oof", "alex"], name)) {
         return <img src={oof} alt="Oof" style={commonStyle} />;
-    } else if ("pew".includes(nameWithoutFirstChar) || "pew".includes(name.toLowerCase()) || name.toLowerCase().includes("pew")) {
+    } else if (matches(["pew"], name)) {
         return <img src={pew} alt="Pew" style={commonStyle} />;
-    } else if ("shuttles".includes(nameWithoutFirstChar) || "shuttles".includes(name.toLowerCase()) || name.toLowerCase().includes("shuttles")) {
+    } else if (matches(["shuttles", "uttles", "shu"], name)) {
         return <img src={shuttles} alt="Shuttles" style={commonStyle} />;
-    } else if ("xiph0s".includes(nameWithoutFirstChar) || "xiph0s".includes(name.toLowerCase()) || name.toLowerCase().includes("xiph0s")) {
+    } else if (matches(["xiph0s", "xiph"], name)) {
         return <img src={xiph0s} alt="Xiph0s" style={commonStyle} />;
     }
     return <img src={ayaya} alt="Person" style={commonStyle} />;

@@ -62,12 +62,20 @@ function createPlayerMarkerDom(color: string): {
 function createCorrectAnswerDom(): HTMLDivElement {
     const dom = document.createElement("div");
     dom.style.cssText = `
-        width: 24px; height: 24px;
-        border-radius: 50%;
-        background: gold;
-        border: 3px solid white;
-        box-shadow: 0 0 14px rgba(255, 215, 0, 0.9);
-        transform: translate(0, 50%);
+        width: 20px;
+        height: 20px;
+        filter: drop-shadow(0 0 6px rgba(255, 215, 0, 0.9));
+    `;
+    dom.innerHTML = `
+        <svg width="20" height="20" viewBox="0 0 20 20"
+             style="overflow: visible"
+             xmlns="http://www.w3.org/2000/svg">
+            <polygon points="10,20 0,0 20,0"
+                     fill="gold"
+                     stroke="white"
+                     stroke-width="2"
+                     stroke-linejoin="miter" />
+        </svg>
     `;
     return dom;
 }

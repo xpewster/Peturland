@@ -34,7 +34,7 @@ export const HealthBar: React.FC<HealthBarProps> = ({
                 width: "100%",
                 overflow: "hidden",
                 color: "white",
-                fontSize: 12,
+                fontSize: 14,
                 display: "inline-block",
                 verticalAlign: "middle",
                 ...style,

@@ -323,7 +323,7 @@ export const HostView = (): React.ReactElement => {
             <p style={{fontFamily: 'DOS, basiic, sans-serif', fontSize: '40px'}}>Aniguessr</p>
             <div style={{alignItems: 'left', display: 'flex', flexDirection: 'column'}}>
                 <label htmlFor="url">Server IP:</label>
-                <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value)} />
+                <input type="text" id="url" value={url} onChange={(e) => setUrl(e.target.value.trim())} />
                 <label htmlFor="password">Password:</label>
                 <input type="text" id="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                 <button onClick={join}>Host Game</button>

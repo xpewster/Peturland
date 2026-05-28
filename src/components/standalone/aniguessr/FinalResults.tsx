@@ -31,8 +31,6 @@ export const FinalResults: React.FC<FinalResultsProps> = ({
         );
     }
 
-    // Total team score across rounds = sum of per-round team scores
-    // (max-of-teammates per round, since that's the team scoring rule).
     const teamTotals = new Map<string, number>();
     for (const round of state.roundResults) {
         for (const o of round.teamOutcomes) {
