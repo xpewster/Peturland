@@ -1,6 +1,7 @@
 
 import type { GameState, Team, TeamId } from "./game";
 import type {
+  ChatMessage,
   ClientMessage,
   HostWelcomeMessage,
   ServerMessage,
@@ -21,6 +22,7 @@ export type HostClientState = {
   lastError: string | null;
   liveGuesses: ReadonlyMap<string, Guess>;
   currentRoundAnswer: { roundIndex: number; answer: Answer } | null;
+  chatLog: ChatMessage[];
 };
 
 export class HostClient {
@@ -47,6 +49,7 @@ export class HostClient {
       lastError: null,
       liveGuesses: new Map(),
       currentRoundAnswer: null,
+      chatLog: [],
     };
     this.socket = this.openSocket();
   }
@@ -62,7 +65,7 @@ export class HostClient {
     socket.addEventListener("message", (e) =>
         this.handleMessage(typeof e.data === "string" ? e.data : ""),
     );
-    socket.addEventListener("close", () => this.handleClose());
+    socket.addEventListener("close", (e) => this.handleClose(e));
     return socket;
   }
 
@@ -119,6 +122,10 @@ export class HostClient {
 
   kickPlayer(playerId: string): void {
     this.rawSend({ type: "kick_player", playerId });
+  }
+
+  sendChat(text: string): void {
+    this.rawSend({ type: "chat", text });
   }
 
   clearError(): void {
@@ -217,17 +224,26 @@ export class HostClient {
         });
         return;
       }
+      case "chat":
+        this.updateState({ chatLog: [...this.state.chatLog, msg.message] });
+        return;
+      case "chat_history":
+        this.updateState({ chatLog: msg.messages });
+        return;
     }
   }
 
-  private handleClose(): void {
+  private handleClose(event?: CloseEvent): void {
       if (this.welcomeReject) {
           const reject = this.welcomeReject;
           this.welcomeResolve = null;
           this.welcomeReject = null;
+          this.intentionallyClosed = true;
+          this.updateState({ connectionStatus: "disconnected" });
           reject(new Error("Connection closed before welcome"));
+          return;
       }
-      if (this.intentionallyClosed) {
+      if (this.intentionallyClosed || event?.code === 1000) {
           this.updateState({ connectionStatus: "disconnected" });
           return;
       }

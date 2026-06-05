@@ -3,6 +3,7 @@ export type {
   PlayerClientOptions,
   PlayerClientState,
 } from "./player-client";
+export type { ChatMessage } from "./protocol"
 
 export { HostClient } from "./host-client";
 export type { HostClientOptions, HostClientState } from "./host-client";

@@ -1,15 +1,15 @@
 import React from "react"
-import aegis from './icons/aegis.png';
-import arendex from './icons/arendex.png';
-import eepa from './icons/eepa.png';
-import ivlivs from './icons/ivlivs.png';
-import kevin from './icons/kevin.png';
-import oof from './icons/oof.png';
-import pew from './icons/pew.png';
-import shuttles from './icons/shuttles.png';
-import xiph0s from './icons/xiph0s.png'; 
-import ayaya from './icons/ayaya.jpg';
-import { GuessingPhase, ImageQuestion } from "./client";
+import aegis from '../icons/aegis.png';
+import arendex from '../icons/arendex.png';
+import eepa from '../icons/eepa.png';
+import ivlivs from '../icons/ivlivs.png';
+import kevin from '../icons/kevin.png';
+import oof from '../icons/oof.png';
+import pew from '../icons/pew.png';
+import shuttles from '../icons/shuttles.png';
+import xiph0s from '../icons/xiph0s.png'; 
+import ayaya from '../icons/ayaya.jpg';
+import { GuessingPhase, ImageQuestion } from "../client";
 
 const commonStyle = {
     width: '20px',

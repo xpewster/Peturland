@@ -5,6 +5,7 @@ import { MapOverlay } from "./maps/GuessingMap";
 import { getPlayerIcon, getQuestion, getRoundTimer } from "./utils";
 import { Results } from "./Results";
 import { FinalResults } from "./FinalResults";
+import { ChatPanel } from "./ChatPanel";
 
 
 function usePlayer(client: PlayerClient | null): PlayerClientState | null {
@@ -227,7 +228,17 @@ export const PlayerView = (): React.ReactElement => {
                         Disconnected. Try refreshing
                     </div>
                 )}
-                {frame(getGameView(), 1, 900, 600)}
+                <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 16 }}>
+                    <div>{frame(getGameView(), 1, 900, 600)}</div>
+                    {frame(
+                        <ChatPanel
+                        log={state?.chatLog ?? []}
+                        onSend={(text) => player?.sendChat(text)}
+                        myId={state?.playerId ?? null}
+                        />,
+                        1, 270, 500,
+                    )}
+                    </div>
             </div>
         </div>
     );

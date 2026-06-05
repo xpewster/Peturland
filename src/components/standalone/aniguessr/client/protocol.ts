@@ -2,6 +2,22 @@ import type { Answer, Guess } from "./types";
 import type { GameState, TeamId } from "./game";
 
 // -----------------------------------------------------------------------------
+// Chat.
+// -----------------------------------------------------------------------------
+
+/** A single chat message, as stored on the server and shown to clients. */
+export type ChatMessage = {
+  /** Monotonic, server-assigned. Lets clients dedupe and order. */
+  id: number;
+  senderId: string | null;
+  /** Display name. Player name, or "Host". Display-only — senderId is authoritative. */
+  senderName: string;
+  text: string;
+  /** Server timestamp (ms since epoch). */
+  timestamp: number;
+};
+
+// -----------------------------------------------------------------------------
 // Client → Server.
 // -----------------------------------------------------------------------------
 
@@ -17,7 +33,8 @@ export type ClientMessage =
   | EndGameMessage
   | ResetToLobbyMessage
   | KickPlayerMessage
-  | RemoveTeamMessage;
+  | RemoveTeamMessage
+  | SendChatMessage;
 
 /** First message from a player connection. Password is the shared secret. */
 export type JoinMessage = {
@@ -95,6 +112,12 @@ export type RemoveTeamMessage = {
   name: TeamId;
 };
 
+/** Player or host. Any phase. Sends a chat message to everyone. */
+export type SendChatMessage = {
+  type: "chat";
+  text: string;
+};
+
 // -----------------------------------------------------------------------------
 // Server → Client.
 // -----------------------------------------------------------------------------
@@ -105,7 +128,9 @@ export type ServerMessage =
   | StateMessage
   | TeammateGuessMessage
   | ErrorMessage
-  | RoundAnswerMessage;
+  | RoundAnswerMessage
+  | ChatBroadcastMessage
+  | ChatHistoryMessage;
 
 export type WelcomeMessage = {
   type: "welcome";
@@ -149,4 +174,16 @@ export type RoundAnswerMessage = {
   type: "round_answer";
   roundIndex: number;
   answer: Answer;
+};
+
+/** A newly sent chat message, broadcast to everyone (including the sender). */
+export type ChatBroadcastMessage = {
+  type: "chat";
+  message: ChatMessage;
+};
+
+/** Full chat history, sent to a connection when it (re)joins. */
+export type ChatHistoryMessage = {
+  type: "chat_history";
+  messages: ChatMessage[];
 };

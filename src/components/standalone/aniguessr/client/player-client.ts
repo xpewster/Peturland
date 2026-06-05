@@ -5,6 +5,7 @@ import type {
   TeamId,
 } from "./game";
 import type {
+  ChatMessage,
   ClientMessage,
   ServerMessage,
   WelcomeMessage,
@@ -36,6 +37,7 @@ export type PlayerClientState = {
    * display + dismiss via `clearError()`.
    */
   lastError: string | null;
+  chatLog: ChatMessage[];
 };
 
 export class PlayerClient {
@@ -64,6 +66,7 @@ export class PlayerClient {
         gameState: null,
         liveGuesses: new Map(),
         lastError: null,
+        chatLog: [],
     };
     this.socket = this.openSocket();
   }
@@ -80,7 +83,7 @@ export class PlayerClient {
     socket.addEventListener("message", (e) =>
         this.handleMessage(typeof e.data === "string" ? e.data : ""),
     );
-    socket.addEventListener("close", () => this.handleClose());
+    socket.addEventListener("close", (e) => this.handleClose(e));
     return socket;
   }
 
@@ -166,6 +169,10 @@ export class PlayerClient {
     this.rawSend({ type: "submit_guess" });
   }
 
+  sendChat(text: string): void {
+    this.rawSend({ type: "chat", text });
+  }
+
   clearError(): void {
     if (this.state.lastError !== null) {
       this.updateState({ lastError: null });
@@ -238,6 +245,12 @@ export class PlayerClient {
       case "host_welcome":
         // Wrong client role — shouldn't happen, ignore.
         return;
+      case "chat":
+        this.updateState({ chatLog: [...this.state.chatLog, msg.message] });
+        return;
+      case "chat_history":
+        this.updateState({ chatLog: msg.messages });
+        return;
     }
   }
 
@@ -262,14 +275,17 @@ export class PlayerClient {
     this.updateState({ liveGuesses: newLive });
   }
 
-  private handleClose(): void {
+  private handleClose(event?: CloseEvent): void {
       if (this.welcomeReject) {
           const reject = this.welcomeReject;
           this.welcomeResolve = null;
           this.welcomeReject = null;
+          this.intentionallyClosed = true;
+          this.updateState({ connectionStatus: "disconnected" });
           reject(new Error("Connection closed before welcome"));
+          return;
       }
-      if (this.intentionallyClosed) {
+      if (this.intentionallyClosed || event?.code === 1000) {
           this.updateState({ connectionStatus: "disconnected" });
           return;
       }

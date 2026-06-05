@@ -6,6 +6,7 @@ import { getPlayerIcon, getQuestion, getRoundTimer } from "./utils";
 import { SpectatorMap } from "./maps/SpectatorMap";
 import { FinalResults } from "./FinalResults";
 import { TeamStatusPanel } from "./TeamStatusPanel";
+import { ChatPanel } from "./ChatPanel";
 
 
 function useHost(client: HostClient | null): HostClientState | null {
@@ -329,9 +330,16 @@ export const HostView = (): React.ReactElement => {
                 <button onClick={join}>Host Game</button>
             </div>
         </div> : <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100vh'}}>
-            <div>
-                {frame(getGameView(), 1, 900, 600)}
-            </div>
+            <div style={{ display: "flex", flexDirection: "row", alignItems: "center", gap: 16 }}>
+                <div>{frame(getGameView(), 1, 900, 600)}</div>
+                {frame(
+                    <ChatPanel
+                    log={state?.chatLog ?? []}
+                    onSend={(text) => host?.sendChat(text)}
+                    />,
+                    1, 270, 500,
+                )}
+                </div>
         </div>
     );
 }
