@@ -2,6 +2,7 @@
 import type { GameState, Team, TeamId } from "./game";
 import type {
   ChatMessage,
+  ChatScope,
   ClientMessage,
   HostWelcomeMessage,
   ServerMessage,
@@ -124,8 +125,8 @@ export class HostClient {
     this.rawSend({ type: "kick_player", playerId });
   }
 
-  sendChat(text: string): void {
-    this.rawSend({ type: "chat", text });
+  sendChat(text: string, scope: ChatScope = { type: "all" }): void {
+    this.rawSend({ type: "chat", text, scope });
   }
 
   clearError(): void {

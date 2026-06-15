@@ -6,6 +6,7 @@ import type {
 } from "./game";
 import type {
   ChatMessage,
+  ChatScope,
   ClientMessage,
   ServerMessage,
   WelcomeMessage,
@@ -40,6 +41,8 @@ export type PlayerClientState = {
   chatLog: ChatMessage[];
 };
 
+export type ChatEntry = ChatMessage & { system?: boolean };
+
 export class PlayerClient {
   private socket: WebSocket;
   private state: PlayerClientState;
@@ -54,6 +57,10 @@ export class PlayerClient {
   private intentionallyClosed = false;
   private reconnectAttempt = 0;
   private reconnectTimer: ReturnType<typeof setTimeout> | null = null;
+
+  private chatTimeoutUntil: number | null = null;
+  private chatTimeoutMessage: string | null = null;
+  private localChatId = -1;
 
   private constructor(opts: PlayerClientOptions) {
     this.url = opts.url;
@@ -169,8 +176,17 @@ export class PlayerClient {
     this.rawSend({ type: "submit_guess" });
   }
 
-  sendChat(text: string): void {
-    this.rawSend({ type: "chat", text });
+  sendChat(text: string, scope: ChatScope = { type: "all" }): void {
+    const now = Date.now();
+    if (this.chatTimeoutUntil !== null && now < this.chatTimeoutUntil) {
+      if (this.chatTimeoutMessage !== null) {
+        this.updateState({ chatLog: [...this.state.chatLog, this.makeNotice(this.chatTimeoutMessage)] });
+      }
+      return;
+    }
+    this.chatTimeoutUntil = null;
+    this.chatTimeoutMessage = null;
+    this.rawSend({ type: "chat", text, scope });
   }
 
   clearError(): void {
@@ -231,7 +247,17 @@ export class PlayerClient {
         this.handleTeammateGuess(msg.playerId, msg.guess);
         return;
       case "error": {
-        this.updateState({ lastError: msg.message });
+        const secs = this.parseTimeoutSeconds(msg.message);
+        if (secs !== null && this.state.playerId !== null) {
+          this.chatTimeoutUntil = Date.now() + secs * 1000;
+          this.chatTimeoutMessage = msg.message;
+          this.updateState({
+            lastError: msg.message,
+            chatLog: [...this.state.chatLog, this.makeNotice(msg.message)],
+          });
+        } else {
+          this.updateState({ lastError: msg.message });
+        }
         // If still in auth phase, fail the connect() promise.
         if (this.welcomeReject) {
           this.intentionallyClosed = true; // prevent reconnect
@@ -302,6 +328,28 @@ export class PlayerClient {
           // openSocket's close listener re-enters handleClose if this attempt
           // also fails, which re-schedules with longer backoff.
       }, delay);
+  }
+
+  
+  private makeNotice(text: string): ChatEntry {
+    return {
+      id: this.localChatId--, // negative ids never collide with server ids
+      senderId: this.state.playerId,
+      senderName: this.state.playerId ?? "You",
+      text, timestamp: Date.now(),
+      scope: { type: "all" },
+      system: true,
+    };
+  }
+
+  // Pull timeout from error message
+  private parseTimeoutSeconds(message: string): number | null {
+    const m = message.match(/\b(\d+)s\b/);
+    if (!message.includes("imed out")) {
+      return null;
+    }
+    const timeout = m ? parseInt(m[1]!, 10) : null;
+    return timeout;
   }
 
   private updateState(patch: Partial<PlayerClientState>): void {

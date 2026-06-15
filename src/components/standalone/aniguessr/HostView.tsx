@@ -1,4 +1,4 @@
-import React, { useEffect, useSyncExternalStore } from "react";
+import React, { useEffect, useRef, useSyncExternalStore } from "react";
 import { fetchGoogleApiKey, GuessingPhase, HostClient, HostClientState } from "./client";
 import { frame } from "../../common/getImageFramed";
 import { Results } from "./Results";
@@ -30,6 +30,8 @@ export const HostView = (): React.ReactElement => {
     const [teamName, setTeamName] = React.useState('');
     
     const state = useHost(host);
+
+    const teamInputRef = useRef<HTMLInputElement | null>(null);
 
     const updateView = (state: HostClientState | null): void => {
         console.log("Host state updated:", state); // todo: remove
@@ -161,8 +163,13 @@ export const HostView = (): React.ReactElement => {
                 <p style={{fontFamily: 'DOS, basiic, sans-serif', textDecoration: 'underline'}}>Lobby</p>
                 <div>
                     <label htmlFor="team">Team: </label>
-                    <input type="text" id="team" value={teamName} onChange={(e) => setTeamName(e.target.value)} />
-                    <button onClick={() => addTeam(teamName)}>Add Team</button>
+                    <input type="text" id="team" ref={teamInputRef} value={teamName} onChange={(e) => setTeamName(e.target.value)} />
+                    <button onClick={() => {
+                        addTeam(teamName);
+                        if (teamInputRef.current) {
+                            teamInputRef.current.focus();
+                        }
+                        }}>Add Team</button>
                 </div>
                 <div style={{display: 'flex', flexDirection: 'row', alignItems: 'left', justifyContent: 'left', marginTop: '25px', marginBottom: '15px'}}>
                     {state?.gameState?.teams.map((team) => (
@@ -180,6 +187,27 @@ export const HostView = (): React.ReactElement => {
                         </div>
                     ))}
                 </div>
+                {(() => {
+                    const unassigned = state?.gameState?.players.filter((p) => !p.team) ?? [];
+                    if (unassigned.length === 0) return null;
+                    return (
+                        <div style={{ marginBottom: '15px' }}>
+                        <p style={{ fontFamily: 'DOS, basiic, sans-serif', textDecoration: 'underline' }}>
+                            No team yet
+                        </p>
+                        <ul style={{ padding: 0, margin: 0, listStyle: 'none' }}>
+                            {unassigned.map((p) => (
+                            <li key={p.id} style={{ textAlign: 'left' }}>
+                                {p.name}{' '}
+                                <button type="button" onClick={() => kickPlayer(p.id)} aria-label="Kick">
+                                <span aria-hidden="true">&times;</span>
+                                </button>
+                            </li>
+                            ))}
+                        </ul>
+                        </div>
+                    );
+                })()}
                 <button onClick={startGame}>Start Game</button>
             </div>
         </div>;
@@ -335,7 +363,8 @@ export const HostView = (): React.ReactElement => {
                 {frame(
                     <ChatPanel
                     log={state?.chatLog ?? []}
-                    onSend={(text) => host?.sendChat(text)}
+                    onSend={(text, scope) => host?.sendChat(text, scope)}
+                    teamChannels={state?.gameState?.teams.map((t) => t.name) ?? []}
                     />,
                     1, 270, 500,
                 )}

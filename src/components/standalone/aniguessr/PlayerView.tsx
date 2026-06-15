@@ -34,6 +34,9 @@ export const PlayerView = (): React.ReactElement => {
         : null;
     const [timeLeft, setTimeLeft] = React.useState<number | null>(null);
 
+    const myId = state?.playerId ?? null;
+    const myTeam = state?.gameState?.players.find((p) => p.id === myId)?.team ?? null;
+
     React.useEffect(() => {
         if (window.location.hostname === "localhost") {
             setUrl("http://localhost:8080"); // default for local dev
@@ -233,8 +236,9 @@ export const PlayerView = (): React.ReactElement => {
                     {frame(
                         <ChatPanel
                         log={state?.chatLog ?? []}
-                        onSend={(text) => player?.sendChat(text)}
+                        onSend={(text, scope) => player?.sendChat(text, scope)}
                         myId={state?.playerId ?? null}
+                        teamChannels={myTeam ? [myTeam] : []}
                         />,
                         1, 270, 500,
                     )}

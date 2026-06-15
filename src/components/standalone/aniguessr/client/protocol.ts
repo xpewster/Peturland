@@ -4,6 +4,10 @@ import type { GameState, TeamId } from "./game";
 // -----------------------------------------------------------------------------
 // Chat.
 // -----------------------------------------------------------------------------
+export type ChatScope =
+  | { type: "all" }
+  | { type: "team"; id: TeamId }
+  | { type: "player"; id: string };
 
 /** A single chat message, as stored on the server and shown to clients. */
 export type ChatMessage = {
@@ -15,6 +19,7 @@ export type ChatMessage = {
   text: string;
   /** Server timestamp (ms since epoch). */
   timestamp: number;
+  scope: ChatScope;
 };
 
 // -----------------------------------------------------------------------------
@@ -116,6 +121,7 @@ export type RemoveTeamMessage = {
 export type SendChatMessage = {
   type: "chat";
   text: string;
+  scope: ChatScope;
 };
 
 // -----------------------------------------------------------------------------
