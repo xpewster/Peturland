@@ -13,6 +13,8 @@ import cs from '../../assets/88x31/cs.gif';
 import hostyellow from '../../assets/88x31/hostyellow.gif';
 import npp from '../../assets/88x31/notepadpp3.gif';
 import xp from '../../assets/88x31/winxp.gif';
+import ostans from '../../assets/88x31/ostans.gif';
+import retrobar from '../../assets/88x31/retrobar.png'; 
 import { Link } from 'react-router';
 
 export interface RightbarProps {
@@ -29,7 +31,7 @@ const Rightbar = (props: RightbarProps): React.ReactElement => {
             <a href='https://yesterweb.org/no-to-web3/' target="_blank" rel="noopener noreferrer"><img className='rbarbox' style={{marginTop: '30px'}}  src={sayNo}/></a>
             <a href='https://myanimelist.net/anime/339/Serial_Experiments_Lain?q=lain&cat=anime' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={lain}/></a>
             <a href='https://animemusicquiz.com/' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={shiina}/></a>
-            <a href='https://wtfhappenedin1971.com/' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={wtf}/></a>
+            <a href='https://www.ostan-collections.net/wiki/index.php/List_of_OS-tans/' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={ostans}/></a>
             <img className='rbarbox' src={cs}/>
             <a href='https://www.toontownrewritten.com/' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={tt}/></a>
             <a href='https://www.oriland.com/gallery/animals/main.php?index.php' target="_blank" rel="noopener noreferrer"><img className='rbarbox' src={oriland}/></a>

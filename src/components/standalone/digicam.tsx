@@ -41,6 +41,12 @@ import P1001134 from '../../assets/standalone/digicam/2025/P1010134.jpg';
 
 export const Digicam = (): React.ReactElement => {
 
+    const PINNED_IMAGES: [string, number][] = [
+        [P1000838, 450],
+        [P1000886, 500],
+        
+    ];
+
     const IMAGE_LIST_2024: [string, number][] = [
         [P1000709, 470],
         [P1000718, 280],
@@ -77,9 +83,15 @@ export const Digicam = (): React.ReactElement => {
         [P1000991, 600],
     ];
 
+    const IMAGE_LIST_2026: [string, number][] = [
+        
+    ];
+
     const IMAGE_LIST: [string, [string, number][]][] = [
         ['2024', IMAGE_LIST_2024],
         ['2025', IMAGE_LIST_2025],
+        ['2026', IMAGE_LIST_2026],
+        ['Favorites', PINNED_IMAGES],
     ];
 
     const dateMapDescriptionPairs: DatedComponent[] = IMAGE_LIST.map(([year, images]) => {

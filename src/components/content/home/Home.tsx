@@ -162,7 +162,7 @@ const Home = (): React.ReactElement => {
                 <p style={{paddingTop: '2px', paddingLeft: '14px', marginTop: 0}}><span style={{textDecoration: 'underline'}}>W</span>hat you surely will NOT find</p>
                 <ul style={{paddingTop: '20px', paddingLeft: '20px'}}>
                     <li>millenial gray</li>
-                    <li><a href='https://simple.wikipedia.org/wiki/Hotlinking' target="_blank" rel="noopener noreferrer">hotlinking</a></li>
+                    <li><a href='https://simple.wikipedia.org/wiki/Hotlinking' target="_blank" rel="noopener noreferrer" style={{textDecoration: 'none', color: '#666'}}>hotlinking</a></li>
                     <li>anything that's fully complete. This whole website will always be a work in progress!!</li>
                 </ul>
                 <p style={{paddingTop: '20px', paddingLeft: '10px'}}></p>
