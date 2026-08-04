@@ -12,6 +12,7 @@ import type {
   WelcomeMessage,
 } from "./protocol";
 import { httpToWs, type ConnectionStatus } from "./connection";
+import type { GameStats } from "./stats";
 
 export type PlayerClientOptions = {
   /** Base server URL, e.g. "http://localhost:8080". */
@@ -39,6 +40,7 @@ export type PlayerClientState = {
    */
   lastError: string | null;
   chatLog: ChatMessage[];
+  latestStats: GameStats | null;
 };
 
 export type ChatEntry = ChatMessage & { system?: boolean };
@@ -74,6 +76,7 @@ export class PlayerClient {
         liveGuesses: new Map(),
         lastError: null,
         chatLog: [],
+        latestStats: null,
     };
     this.socket = this.openSocket();
   }
@@ -189,6 +192,10 @@ export class PlayerClient {
     this.rawSend({ type: "chat", text, scope });
   }
 
+  requestStats(): void {
+    this.rawSend({ type: "request_stats" });
+  }
+
   clearError(): void {
     if (this.state.lastError !== null) {
       this.updateState({ lastError: null });
@@ -276,6 +283,9 @@ export class PlayerClient {
         return;
       case "chat_history":
         this.updateState({ chatLog: msg.messages });
+        return;
+      case "stats":
+        this.updateState({ latestStats: msg.stats });
         return;
     }
   }

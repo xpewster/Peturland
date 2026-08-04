@@ -1,5 +1,6 @@
 import type { Answer, Guess } from "./types";
 import type { GameState, TeamId } from "./game";
+import { GameStats, StatsLog } from "./stats";
 
 // -----------------------------------------------------------------------------
 // Chat.
@@ -39,7 +40,8 @@ export type ClientMessage =
   | ResetToLobbyMessage
   | KickPlayerMessage
   | RemoveTeamMessage
-  | SendChatMessage;
+  | SendChatMessage
+  | RequestStatsMessage;
 
 /** First message from a player connection. Password is the shared secret. */
 export type JoinMessage = {
@@ -136,7 +138,8 @@ export type ServerMessage =
   | ErrorMessage
   | RoundAnswerMessage
   | ChatBroadcastMessage
-  | ChatHistoryMessage;
+  | ChatHistoryMessage
+  | StatsMessage;
 
 export type WelcomeMessage = {
   type: "welcome";
@@ -193,3 +196,6 @@ export type ChatHistoryMessage = {
   type: "chat_history";
   messages: ChatMessage[];
 };
+  
+export type RequestStatsMessage = { type: "request_stats" };
+export type StatsMessage = { type: "stats"; stats: GameStats }; 

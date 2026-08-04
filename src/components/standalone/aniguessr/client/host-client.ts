@@ -9,6 +9,7 @@ import type {
 } from "./protocol";
 import { httpToWs, type ConnectionStatus } from "./connection";
 import { Answer, Guess } from "./types";
+import type { GameStats } from "./stats";
 
 export type HostClientOptions = {
   /** Base server URL, e.g. "http://localhost:8080". */
@@ -24,6 +25,7 @@ export type HostClientState = {
   liveGuesses: ReadonlyMap<string, Guess>;
   currentRoundAnswer: { roundIndex: number; answer: Answer } | null;
   chatLog: ChatMessage[];
+  latestStats: GameStats | null;
 };
 
 export class HostClient {
@@ -51,6 +53,7 @@ export class HostClient {
       liveGuesses: new Map(),
       currentRoundAnswer: null,
       chatLog: [],
+      latestStats: null,
     };
     this.socket = this.openSocket();
   }
@@ -127,6 +130,10 @@ export class HostClient {
 
   sendChat(text: string, scope: ChatScope = { type: "all" }): void {
     this.rawSend({ type: "chat", text, scope });
+  }
+
+  requestStats(): void {
+    this.rawSend({ type: "request_stats" });
   }
 
   clearError(): void {
@@ -230,6 +237,9 @@ export class HostClient {
         return;
       case "chat_history":
         this.updateState({ chatLog: msg.messages });
+        return;
+      case "stats":
+        this.updateState({ latestStats: msg.stats });
         return;
     }
   }
