@@ -7,6 +7,8 @@ import world03202025 from '../../assets/travellog/03202025_world.png';
 import world06282025 from '../../assets/travellog/06282025_world.png';
 import m11012025 from '../../assets/travellog/11012025.png';
 import world11012025 from '../../assets/travellog/11012025_world.png';
+import m08042026 from '../../assets/travellog/08042026.png';
+import world08042026 from '../../assets/travellog/08042026_world.png';
 
 import ZoomableImage from "../common/ZoomableImage";
 import ScrollingDisabler from "../common/ScrollingDisabler";
@@ -55,17 +57,22 @@ export const TravelLog = (): React.ReactElement => {
         [
             '06-28-2025',
             getImageBlock(m03202025, world06282025),
-            "Back from Japan. It was MID. For one, I got sick, but honestly there are just way too many people there nowadays. Best part is still the food. My hot take is that if you're white and don't have a deep interest in some facet of japanese culture...why are you there?? I also included a few provinces in Vietnam that I forgot to include before. Apparently I did a road trip from Saigon to Nha Trang when I was a kid but forgot.."
+            "Back from Japan. It was MID. For one, I got sick, but honestly there are just way too many people there nowadays. Best part is still the food. My hot take is that if you're white and don't have a deep interest in some facet of japanese culture...why are you there?? I also included a few provinces in Vietnam that I forgot to include before. Apparently I did a road trip from Saigon to Nha Trang when I was a kid but forgot"
         ],
         [
             '11-01-2025',
-            getImageBlock(m11012025, world11012025, true),
+            getImageBlock(m11012025, world11012025),
             "Did a road trip with the fam to Canada recently! We drove up to Squamish which was so incredibly beautiful."
+        ],
+        [
+            '08-04-2026',
+            getImageBlock(m08042026, world08042026, true),
+            "Another scar has been added across the US. My odyssey from Cali through Nevada, Utah, Idaho and Oregon to Washington. Also prefiring Chicago cause I'm going later this month"
         ],
         [
             'Best cities',
             <></>,
-            "Da Nang\nOsaka\nSan Diego\nSeattle\nNYC"
+            "Da Nang\nSF\nSan Diego\nSeattle\nNYC"
         ],
         [
             'Favorite places so far',

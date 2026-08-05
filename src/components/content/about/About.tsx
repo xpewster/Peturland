@@ -119,10 +119,10 @@ const About = (): React.ReactElement => {
                                 <li><b>Video games (right now)</b>: CS:GO, GeoGuessr, ARAMs</li>
                                 <li><b>Video games (childhood)</b>: ToonTown, Tales of Pirates, Halo 3, XGen Stick Arena: Ballistick</li>
                                 <li><b>Movies</b>: Princess Mononoke, Dredd, The Princess Bride, </li>
-                                <li><b>Anime</b>: HxH, Fairy Tail, MiA, LWA, Sketchbook ~full colors~, Initial D, Spy Family. <a href='https://myanimelist.net/profile/Pewster' target="_blank" rel="noopener noreferrer"><img src={myanimelist} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></a></li>
+                                <li><b>Anime</b>: HxH, School Rumble, MiA, LWA, Sketchbook ~full colors~, Initial D, Spy Family. <a href='https://myanimelist.net/profile/Pewster' target="_blank" rel="noopener noreferrer"><img src={myanimelist} style={{height: '15px', verticalAlign: 'middle', imageRendering: 'pixelated'}} /></a></li>
                                 <li><b>TV Shows</b>: HotD, Fallout, The Witcher</li>
-                                <li><b>OSTs</b>: Wind waker, FF13, Mononoke-hime, In This Corner of the World, Interstellar, 86</li>
-                                <li><b>Bands/artists</b>: Mass of the Fermenting Dregs, Tricot, Gracie Abrams, The Strokes, Hideki Naganuma, After</li>
+                                <li><b>OSTs</b>: Wind waker, FF13, Mononoke-hime, In This Corner of the World, Interstellar, Fairy Tail</li>
+                                <li><b>Bands/artists</b>: Mass of the Fermenting Dregs, The Strokes, Tricot, Gracie Abrams, Advantage Lucy, After</li>
                                 <li><b>Songs to play on the piano</b>: <a href='https://www.youtube.com/watch?v=kOFqpwrL9fw' target="_blank" rel="noopener noreferrer">The Promise (FF13)</a>, Rouge no Dengon (Hirohashi Makiko), Kaze no Tani no Nausicaa (Makiko), You've got a friend in me</li>
                                 <li><b>Celestial Objects</b>: Needle Galaxy, Orion Nebula, Saturn, M35/NGC 2168, Caroline's Rose</li>
                             </ul>
