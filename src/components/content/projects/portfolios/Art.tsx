@@ -10,6 +10,7 @@ import diakko3 from '../../../../assets/portfolio/art/diakko3.png';
 import akkofish_shrimp from '../../../../assets/portfolio/art/akkofish_shrimp.png';
 import yangwenli from '../../../../assets/portfolio/art/yangwenli.png';
 import michelle_lobster from '../../../../assets/portfolio/art/michelle_lobster.png';
+import akkoantique from '../../../../assets/portfolio/art/akkoantique.png';
 
 import frame1_left from '../../../../assets/portfolio/frames/frame1_left.png';
 import frame1_right from '../../../../assets/portfolio/frames/frame1_right.png';
@@ -101,6 +102,17 @@ const Art = (): React.ReactElement => {
   const collage2026 = {
     images: [
       {
+        src: akkoantique,
+        alt: 'Akko Victorian',
+        width: 900,
+        height: 1008,
+        frame: 1,
+        index: 5,
+        top: 0,
+        frameTop: 0,
+        frameLeft: 55,
+      },
+      {
         src: frieren,
         alt: 'Frieren',
         width: 290,
@@ -108,19 +120,19 @@ const Art = (): React.ReactElement => {
         frame: 1,
         index: 0,
         top: 0,
-        frameTop: 700,
+        frameTop: 1050,
         frameLeft: 0,
       },
       {
         src: diakko3,
         alt: 'Diakko',
-        width: 900,
-        height: 651,
+        width: 800,
+        height: 551,
         frame: 1,
         index: 1,
         top: 0,
-        frameTop: 0,
-        frameLeft: 55,
+        frameTop: 100,
+        frameLeft: 1000,
       },
       {
         src: akkofish_shrimp,
@@ -130,7 +142,7 @@ const Art = (): React.ReactElement => {
         frame: 1,
         index: 2,
         top: 0,
-        frameTop: 900,
+        frameTop: 1250,
         frameLeft: 1000,
       },
       {
@@ -141,7 +153,7 @@ const Art = (): React.ReactElement => {
         frame: 1,
         index: 3,
         top: 0,
-        frameTop: 390,
+        frameTop: 740,
         frameLeft: 1000,
       },
       {
@@ -152,7 +164,7 @@ const Art = (): React.ReactElement => {
         frame: 1,
         index: 4,
         top: 155,
-        frameTop: 750,
+        frameTop: 1100,
         frameLeft: 500,
       },
     ],
@@ -162,7 +174,7 @@ const Art = (): React.ReactElement => {
   return (
     <Standalone backToTopButton>
         <div style={{marginLeft: '5px'}}>
-        <p>Hello! I've always liked to draw and stuff but got more into art recently when making anime jeopardy boards with my friends! Here are some preliminary works as I hone my skills. <img src={wink} alt='Wink' style={{width: '15px' as const, height: '15px' as const, paddingLeft: '0px' as const, paddingTop: '0px' as const}} /> <i>Click for full size!</i></p>
+        <p>Hello! I've always liked to draw and stuff but got more into art recently for fun! Here are some preliminary works as I hone my skills. <img src={wink} alt='Wink' style={{width: '15px' as const, height: '15px' as const, paddingLeft: '0px' as const, paddingTop: '0px' as const}} /> <i>Click for full size!</i></p>
         </div>
         <div style={{position: 'relative'}}>
         {/* <div style={{position: 'absolute', top: '0px', left: '0px'}}>

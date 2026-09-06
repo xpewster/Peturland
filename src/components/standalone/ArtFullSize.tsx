@@ -9,12 +9,13 @@ import diakko3 from '../../assets/portfolio/art/diakko3.png';
 import akkofish_shrimp from '../../assets/portfolio/art/akkofish_shrimp.png';
 import yangwenli from '../../assets/portfolio/art/yangwenli.png';
 import michelle_lobster from '../../assets/portfolio/art/michelle_lobster.png';
+import akkoantique from '../../assets/portfolio/art/akkoantique.png';
 
 import { useParams } from "react-router";
 
 export const ArtFullSize = (): React.ReactElement => {
 
-    const art: string[] = [aki_bokeh, bananafish, nuke, frieren, diakko3, akkofish_shrimp, yangwenli, michelle_lobster];
+    const art: string[] = [aki_bokeh, bananafish, nuke, frieren, diakko3, akkofish_shrimp, yangwenli, michelle_lobster, akkoantique];
 
     const params = useParams();
     const indexParam = params.index;
